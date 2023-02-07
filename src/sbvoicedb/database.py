@@ -434,7 +434,7 @@ class SbVoiceDb:
         # if file has not been downloaded, grab it
         self._download_once([id], vowels, phrase, timings, nsp, egg, progress)
 
-    def download_batch(
+    def download_full(
         self,
         vowels: bool,
         phrase: bool,
@@ -444,7 +444,7 @@ class SbVoiceDb:
         progress: Callable = None,
         **filters,
     ):
-        """download a batch of data
+        """download all recording data of a given voice & data types
 
         :param vowels: True to download vowel tasks
         :type vowels: bool
