@@ -444,7 +444,7 @@ class SbVoiceDb:
         progress: Callable = None,
         **filters,
     ):
-        """download all recording data of a given voice & data types
+        """download all recording data of given voice & data types
 
         :param vowels: True to download vowel tasks
         :type vowels: bool
@@ -465,12 +465,42 @@ class SbVoiceDb:
             raise ValueError("Both nsp and egg are False. Nothing to download.")
 
         # get all matching indices
-        id = self.query(**filters).index
+        ids = self.query(**filters).index
+
+        # download
+        self.download_batch(ids, vowels, phrase, timings, nsp, egg, progress)
+
+    def download_batch(
+        self,
+        ids: List[int],
+        vowels: bool,
+        phrase: bool,
+        timings: bool,
+        nsp: bool = True,
+        egg: bool = False,
+        progress: Callable = None,
+    ):
+        """download a batch of specified recording sessions in a given voice & data types
+
+        :param ids: ids of recording sessions to download
+        :param vowels: True to download vowel tasks
+        :type vowels: bool
+        :param phrase: True to download phrase task
+        :type phrase: bool
+        :param timings: True to download vowel task timings
+        :type timings: bool
+        :param nsp: True to download audio data, defaults to True
+        :type nsp: bool, optional
+        :param egg: True to download EGG data, defaults to False
+        :type egg: bool, optional
+        :param progress: progress callback function, defaults to None (TODO)
+        :type progress: Callable, optional
+        """
 
         # separate ids into groups with different downloading needs
         files = self._df_files
         mi = self._mi_miss
-        tf = pd.DataFrame(index=id)
+        tf = pd.DataFrame(index=ids)
         if vowels or timings:
             mi1 = mi[mi.isin(["iau"], 0)]
             tf_miss = id.isin(mi1[mi1.isin([egg], 1)].get_level_values(2))
