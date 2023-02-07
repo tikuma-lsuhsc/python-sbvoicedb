@@ -287,22 +287,26 @@ class SbVoiceDb:
             # remove already cached files
             try:
 
-                if need_timing:
-                    # make sure id in timing data
+                # check for the file ids
+                try:
+                    ids_ok = set(self._df_files.loc[file].index)
+                except KeyError:
+                    # none avail
+                    ids_ok = set()
+
+                if need_timing and len(ids_ok):
+                    # make sure id also in timing data
                     try:
                         # ok only if in timing
-                        ids_ok = set(
+                        ids_ok = ids_ok & set(
                             self._df_timing.loc[
                                 (slice(None), task), :
                             ].index.get_level_values(0)
                         )
 
                     except KeyError:
-                        # all unavail
+                        # none avail
                         ids_ok = set()
-                else:
-                    # check for the file ids
-                    ids_ok = set(self._df_files.loc[file].index)
 
                 ids -= ids_ok
             except:
