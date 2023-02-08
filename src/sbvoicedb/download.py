@@ -1,3 +1,4 @@
+import logging
 import re
 from os import path, scandir, makedirs
 import requests
@@ -234,7 +235,8 @@ def download_data(dst, ids, tasks=None, exp_nsp=True, exp_egg=False, progress=No
 
         except:
             # invalid file
-            raise RuntimeError("no matching file found.")
+            logging.warn("no matching file found.")
+            return []
 
         sleep(4)
         r = s.post(url)
