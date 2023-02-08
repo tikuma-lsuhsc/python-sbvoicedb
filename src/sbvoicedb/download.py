@@ -229,6 +229,9 @@ def download_data(dst, ids, tasks=None, exp_nsp=True, exp_egg=False, progress=No
         try:
             prog_pct = int(soup.find(string=re_pct).text[:-1])
             print(f"waiting... ({prog_pct}% complete)")
+
+            assert prog_pct < 100 and not soup.find(string="The zip file is empty.")
+
         except:
             # invalid file
             raise RuntimeError("no matching file found.")
