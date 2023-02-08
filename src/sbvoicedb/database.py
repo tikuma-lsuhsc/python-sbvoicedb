@@ -505,6 +505,7 @@ class SbVoiceDb:
         files = self._df_files
         mi = self._mi_miss
         tf = pd.DataFrame(index=ids)
+        id = pd.Index(list(ids))
         if vowels or timings:
             mi1 = mi[mi.isin(["iau"], 0)]
             tf_miss = id.isin(mi1[mi1.isin([egg], 1)].get_level_values(2))
@@ -539,9 +540,8 @@ class SbVoiceDb:
             if not tf.any(axis=0):
                 return  # nothing to download
 
-            ids = grp.index
             args = tuple(pd.DataFrame(list(grp.columns.values[tf])).any(axis=0))
-            self._download_groups(ids, *args, progress=progress)
+            self._download_groups(grp.index, *args, progress=progress)
 
         tf.groupby(list(tf.columns.values)).apply(download_groups)
 
