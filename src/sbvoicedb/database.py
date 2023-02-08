@@ -33,7 +33,7 @@ DataField = Literal[
     "G",  # gender ['w' or 'm']
     "A",  # age
     "Pathologies",
-    "Remark w.rt. diagnosis",
+    "Remark w.r.t. diagnosis",
 ]
 
 
