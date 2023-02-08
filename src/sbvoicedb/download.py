@@ -188,7 +188,7 @@ def load_db(
 def download_data(dst, ids, tasks=None, exp_nsp=True, exp_egg=False, progress=None):
 
     if not (exp_nsp or exp_egg):
-        return  # nothing to download
+        raise ValueError("both exp_nsp and exp_egg are False, nothing to download")
 
     if not path.isdir(dst):
         raise ValueError("dst must be an existing directory path")
