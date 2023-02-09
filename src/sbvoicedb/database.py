@@ -600,30 +600,29 @@ class SbVoiceDb:
 
         with TemporaryDirectory() as tdir:
             # download & extract files to tdir
-            dl_files = download_data(tdir, ids, tasks, nsp, egg, progress)
+            download_data(tdir, ids, tasks, nsp, egg, progress)
 
             # validate iau & phrase files
             save_files = []
             miss_files = []
             for entry in files:
                 file = path.join(tdir, entry[-1])
-                if file in dl_files:
-                    try:
-                        _, x = nspfile.read(file)
-                        file_ok = True
-                    except:
-                        file_ok = False
-                        miss_files.append(entry[:-1])
+                try:
+                    _, x = nspfile.read(file)
+                    file_ok = True
+                except:
+                    file_ok = False
+                    miss_files.append(entry[:-1])
 
-                    if file_ok:
-                        try:
-                            shutil.move(file, dir)
-                        except Exception as e:
-                            if not path.isfile(path.join(dir, entry[-1])):
-                                raise e
-                        save_files.append(entry)
-                        if timings:
-                            full_data.append((entry[-2], x))
+                if file_ok:
+                    try:
+                        shutil.move(file, dir)
+                    except Exception as e:
+                        if not path.isfile(path.join(dir, entry[-1])):
+                            raise e
+                    save_files.append(entry)
+                    if timings:
+                        full_data.append((entry[-2], x))
 
             if len(files):
                 self._add_files(FileSeries(save_files))
