@@ -644,7 +644,8 @@ class SbVoiceDb:
                             except:
                                 pass
                     timing_data.append(df)
-                self._add_timings(pd.concat(timing_data))
+                if len(timing_data):
+                    self._add_timings(pd.concat(timing_data))
 
     def iter_data(
         self,
