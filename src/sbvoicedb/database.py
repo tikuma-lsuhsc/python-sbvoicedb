@@ -201,7 +201,6 @@ class SbVoiceDb:
 
         # apply the filters to reduce the rows
         for fcol, fcond in filters.items():
-
             if fcol == "Pathologies":
                 continue
 
@@ -296,7 +295,6 @@ class SbVoiceDb:
 
             # remove already cached files
             try:
-
                 # check for the file ids
                 try:
                     ids_ok = set(self._df_files.loc[file].index)
@@ -561,7 +559,6 @@ class SbVoiceDb:
             )
 
         def download_groups(grp):
-
             tf = grp.iloc[0]  # guaranteed to have at least 1 element
             if not tf.any(axis=0):
                 return  # nothing to download
@@ -582,7 +579,6 @@ class SbVoiceDb:
     def _download_once(
         self, ids, vowels, phrase, timings, nsp=True, egg=False, progress=None
     ):
-
         dir = path.join(self._dir, data_dir)
         makedirs(dir, exist_ok=True)
 
@@ -742,7 +738,6 @@ class SbVoiceDb:
         df = self.get_files(task, egg, cached_only, True, auxdata_fields, **filters)
 
         for id, file, *auxdata in df.itertuples():
-
             timing = None if task in ("iau", "phrase") else self._df_timing.loc[id]
 
             framerate, x = self._read_file(file, task, timing, normalize, padding)
@@ -763,7 +758,6 @@ class SbVoiceDb:
         normalize: bool = True,
         padding: float = None,
     ) -> tuple[int, np.array] | tuple[int, np.array, pd.Series]:
-
         if not task:
             task = self.default_task
 
@@ -782,11 +776,9 @@ class SbVoiceDb:
         return data if auxdata_fields is None else (*data, file.iloc[1:])
 
     def _read_file(self, file, task, timing, normalize=True, padding=None):
-
         fs, x = nspfile.read(file)
 
         if timing is not None:
-
             if not padding:
                 padding = self.default_padding
 
@@ -801,12 +793,27 @@ class SbVoiceDb:
                 tend += padding
 
                 if padding > 0.0:
-                    talt = ts.iloc[i - 1, 1] if i > 0 else 0
-                    if tstart < talt:
-                        tstart = talt
+                    if i > 0:
+                        i0 = i - 1
+                        while ts.iloc[i, 0] < ts.iloc[i0, 1]:
+                            i0 -= 1
+                            if i0 < 0:
+                                raise RuntimeError(
+                                    f"something is wrong with timing data for id={id} ({task})"
+                                )
+                        talt = ts.iloc[i0, 1]
+                        if tstart < talt:
+                            tstart = talt
 
-                    if i + 1 < len(ts):
-                        talt = ts.iloc[i + 1, 0]
+                    i0 = i + 1
+                    if i0 < len(ts):
+                        while ts.iloc[i, 1] > ts.iloc[i0, 0]:
+                            i0 += 1
+                            if i0 == len(ts):
+                                raise RuntimeError(
+                                    f"something is wrong with timing data for id={id} ({task})"
+                                )
+                        talt = ts.iloc[i0, 0]
                         if tend > talt:
                             tend = talt
             else:
