@@ -136,11 +136,15 @@ class SbVoiceDb:
         """List of diagnosis (in German)"""
         return list(self._df_dx["pathology"].unique())
 
-    def query(self, columns: List[DataField] = None, **filters) -> pd.DataFrame:
+    def query(
+        self, columns: List[DataField] = None, include_missing: bool = False, **filters
+    ) -> pd.DataFrame:
         """query database
 
         :param columns: database columns to return, defaults to None
         :type columns: sequence of str, optional
+        :param include_missing: True to include recording sessions with any missing file/timing
+        :type include_missing: bool
         :param **filters: query conditions (values) for specific per-database columns (keys)
         :type **filters: dict
         :return: query result
@@ -157,6 +161,12 @@ class SbVoiceDb:
 
         # work on a copy of the dataframe
         df = self._df.copy(deep=True)
+
+        if not include_missing:
+            # remove any recording session missing files or timings
+            n0 = self._df_timing["N0"].groupby("ID").min()
+            missing_ids = self._mi_miss.get_level_values("ID").union(n0[n0 < 0].index)
+            df = df.drop(index=missing_ids)
 
         df_dx = self._df_dx
         if "Pathologies" in filters:
@@ -401,6 +411,22 @@ class SbVoiceDb:
             if has_file and task != _task
             else has_file
         )
+
+    def known_missing(self, id: int, task: TaskType, egg: bool = False) -> bool:
+        """True if data is known to be missing (marked as missing in cache)
+
+        :param id: recording ID
+        :type id: int
+        :param task: vocal task
+        :type task: TaskType
+        :param egg: True for EGG, False for audio, defaults to False
+        :type egg: bool, optional
+        :return: True if data has been cached and is available locally
+        :rtype: bool
+        """
+        _task = "phrase" if task == "phrase" else "iau"
+        file_idx = (_task, egg, id)
+        return file_idx in self._mi_miss or (id, task) not in self._df_timing.index
 
     def download_task(
         self, id: int, task: TaskType, egg: bool = False, progress: Callable = None
