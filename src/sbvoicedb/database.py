@@ -768,10 +768,12 @@ class SbVoiceDb:
             task = self.default_task
 
         # get the file name
-        file = self.get_files(task, egg, cached_only, True, auxdata_fields, ID=id).loc[
-            id
-        ]
-        if not file[0]:
+        try:
+            file = self.get_files(
+                task, egg, cached_only, True, auxdata_fields, ID=id
+            ).loc[id]
+            assert file[0]
+        except:
             raise ValueError(f"{id}:{task} data is not available.")
 
         timing = None if task in ("iau", "phrase") else self._df_timing.loc[id]
