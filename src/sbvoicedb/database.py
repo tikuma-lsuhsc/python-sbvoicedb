@@ -9,7 +9,7 @@ import numpy as np
 import nspfile
 import numpy as np
 from tempfile import TemporaryDirectory
-from typing import Literal, List, Callable, NamedTuple, Iterator
+from typing import Literal, List, Callable, Iterator, Tuple, Optional
 
 from .common import *
 from .download import download_data, load_db
@@ -35,19 +35,6 @@ DataField = Literal[
     "Pathologies",
     "Remark w.r.t. diagnosis",
 ]
-
-
-class VoiceData(NamedTuple):
-    id: int
-    fs: int
-    x: np.array
-
-
-class VoiceDataPlusInfo(NamedTuple):
-    id: int
-    fs: int
-    x: np.array
-    info: pd.Series
 
 
 class SbVoiceDb:
@@ -678,7 +665,7 @@ class SbVoiceDb:
         normalize: bool = True,
         padding: float = None,
         **filters,
-    ) -> Iterator[VoiceData | VoiceDataPlusInfo]:
+    ) -> Iterator[int, int, np.array, Optional[pd.Series]]:
         """iterate over queried recordings (yielding data samples)
 
         :param task: vocal task type, defaults to None
@@ -692,44 +679,7 @@ class SbVoiceDb:
         :param normalize: True to convert sample values to float between [-1.0,1.0], defaults to True
         :type normalize: bool, optional
         :return: voice data namedtuple: id, fs, data array, (optional) aux info
-        :rtype: Iterator[VoiceData|VoiceDataPlusInfo]
-
-        Iterates over all the DataFrame columns, returning a tuple with the column name and the content as a Series.
-
-        Yields
-
-            labelobject
-
-                The column names for the DataFrame being iterated over.
-            contentSeries
-
-                The column entries belonging to each label, as a Series.
-
-
-
-        Valid values of `auxdata_fields` argument
-        ---------------------------------
-
-        * All columns of the database specified in EXCEL50/TEXT/README.TXT Section 3.1
-        (except for "pathology" and "#")
-        * "Pathologies" - A list containing all the original "pathology" associated with the subject
-        * "NORM" - True if normal data, False if pathological data
-        * "MDVP" - Short-hand notation to include all the MDVP parameter measurements: from "Fo" to "PER"
-
-        Valid `filters` keyword arguments
-        ---------------------------------
-
-        * All columns of the database specified in EXCEL50/TEXT/README.TXT Section 3.1
-        (except for "pathology" and "#")
-        * "Pathologies" - A list containing all the original "pathology" associated with the subject
-        * "NORM" - True if normal data, False if pathological data
-
-        Valid `filters` keyword argument values
-        ---------------------------------------
-
-        * A scalar value
-        * For numeric and date columns, 2-element sequence to define a range: [start, end)
-        * For all other columns, a sequence of allowable values
+        :rtype: Iterator[int, int, np.array, Optional[pd.Series]]
         """
 
         if not task:
@@ -742,10 +692,11 @@ class SbVoiceDb:
 
             framerate, x = self._read_file(file, task, timing, normalize, padding)
 
-            yield VoiceData(
-                id, framerate, x
-            ) if auxdata_fields is None else VoiceDataPlusInfo(
-                id, framerate, x, auxdata
+            yield (id, framerate, x) if auxdata_fields is None else (
+                id,
+                framerate,
+                x,
+                auxdata,
             )
 
     def read_data(
@@ -757,7 +708,7 @@ class SbVoiceDb:
         auxdata_fields: List[DataField] = None,
         normalize: bool = True,
         padding: float = None,
-    ) -> tuple[int, np.array] | tuple[int, np.array, pd.Series]:
+    ) -> Tuple[int, np.array, Optional[pd.Series]]:
         if not task:
             task = self.default_task
 
@@ -826,5 +777,5 @@ class SbVoiceDb:
 
         return fs, x
 
-    def __getitem__(self, key):
+    def __getitem__(self, key: int) -> Tuple[int, np.array]:
         return self.read_data(key)
