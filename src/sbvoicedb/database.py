@@ -703,12 +703,27 @@ class SbVoiceDb:
         self,
         id: int,
         task: TaskType = None,
-        cached_only: bool = False,
         egg: bool = False,
+        cached_only: bool = False,
         auxdata_fields: List[DataField] = None,
         normalize: bool = True,
         padding: float = None,
     ) -> Tuple[int, np.array, Optional[pd.Series]]:
+        """read specific recordings
+
+        :param task: vocal task type, defaults to None
+        :type task: TaskType, optional
+        :param egg: True for EGG, False for audio, defaults to False
+        :type egg: bool, optional
+        :param cached_only: True to block downloading, defaults to False
+        :type cached_only: bool, optional
+        :param auxdata_fields: Additional recording data to return, defaults to None
+        :type auxdata_fields: List[DataField], optional
+        :param normalize: True to convert sample values to float between [-1.0,1.0], defaults to True
+        :type normalize: bool, optional
+        :return: voice data namedtuple: fs, data array, (optional) aux info
+        :rtype: Iterator[int, np.array, Optional[pd.Series]]
+        """
         if not task:
             task = self.default_task
 
