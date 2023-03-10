@@ -45,7 +45,7 @@ Examples
   df = sbvoicedb.get_files('a_n')
 
   # to get the audio data of /a/ vowel at normal pitch from the recording session 2091
-  fs, x = sbvoicedb.get_data(2091, 'a_n')
+  fs, x = sbvoicedb.read_data(2091, 'a_n')
 
   # to iterate over 'a_n' acoustic data of male participants along with aux with age and pathologies
   for id, fs, x, auxdata in sbvoicedb.iter_data('a_n',
