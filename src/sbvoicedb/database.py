@@ -665,7 +665,7 @@ class SbVoiceDb:
         normalize: bool = True,
         padding: float = None,
         **filters,
-    ) -> Iterator[int, int, np.array, Optional[pd.Series]]:
+    ) -> Iterator[Tuple[int, int, np.array, Optional[pd.Series]]]:
         """iterate over queried recordings (yielding data samples)
 
         :param task: vocal task type, defaults to None
