@@ -16,7 +16,11 @@
 This Python package is not yet published and still under development.
 
 This Python module provides functions to retrieve data and information easily from 
-Saarbucken Voice Database: http://www.stimmdatenbank.coli.uni-saarland.de/
+Saarbucken Voice Database: https://stimmdb.coli.uni-saarland.de/ 
+
+The voice data is now hosted by Zonedo: https://zenodo.org/records/16874898
+
+http://www.stimmdatenbank.coli.uni-saarland.de/
 
 Install
 -------

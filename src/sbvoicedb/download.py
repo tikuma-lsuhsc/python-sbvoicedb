@@ -16,6 +16,9 @@ from .process import extract
 url_root = "http://stimmdb.coli.uni-saarland.de"
 url = "/".join((url_root, "index.php4#target"))
 
+# https://stimmdb.coli.uni-saarland.de/data/voice_data.csv
+# https://zenodo.org/records/16874898
+
 
 def _parse_result_item(tr):
     tds = tr.find_all("td")
