@@ -15,15 +15,8 @@ classifiers = [
     "Programming Language :: Python :: 3",
 ]
 dynamic = ["version"]
-requires-python = ">=3.8"
-dependencies = [
-    "pandas",
-    "numpy",
-    "requests",
-    "beautifulsoup4",
-    "tqdm",
-    "nspfile",
-]
+requires-python = ">=3.10"
+dependencies = ["numpy", "requests", "tqdm", "nspfile>=0.2.0", "sqlalchemy"]
 
 [project.urls]
 Repository = "https://github.com/tikuma-lsuhsc/python-sbvoicedb"

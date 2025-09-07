@@ -1,5 +1,68 @@
 from os import path
-import pandas as pd
+from shutil import copyfile
+
+# import pandas as pd
+
+
+def fix_incomplete_nsp(file: str) -> str:
+    """fix an incomplete NSP file without data size information
+
+    :param file: path of the nsp file
+    :returns: fixed nsp file (with -fixed postfix)
+    """
+
+    with open(file, "rb") as f:
+        b = bytearray(f.read())
+
+    sz = len(b) - 12
+    b[8:12] = sz.to_bytes(4, "little", signed=False)
+
+    i = b.find("SDA_".encode("utf8")) + 4
+    nbytes = len(b) - i - 4
+    b[i : i + 4] = nbytes.to_bytes(4, "little", signed=False)
+
+    nsamples = nbytes // 2  # int16_t data
+    b[0x2C:0x30] = nsamples.to_bytes(4, "little", signed=False)
+
+    fileparts = path.splitext(file)
+    outfile = "".join([fileparts[0], "-fixed", fileparts[1]])
+    with open(outfile, "wb") as f:
+        f.write(b)
+
+    return outfile
+
+
+def swap_nsp_egg(nspfile: str, eggfile: str, n: int | None = None) -> tuple[str, str]:
+
+    def rename(file):
+        fileparts = path.splitext(file)
+        return "".join([fileparts[0], "-fixed", fileparts[1]])
+
+    newnsp = rename(nspfile)
+    newegg = rename(eggfile)
+
+    if n is None:
+        copyfile(nspfile, newegg)
+        copyfile(eggfile, newnsp)
+    else:
+        with open(nspfile, "rb") as f:
+            b_nsp = bytearray(f.read())
+
+        with open(eggfile, "rb") as f:
+            b_egg = bytearray(f.read())
+
+        i = b_nsp.find("SDA_".encode("utf8")) + 4
+        i += 8  # beginning of the data
+        i += n * 2
+        b_nsp[i:], b_egg[i:] = b_egg[i:], b_nsp[i:]
+
+        with open(newnsp, "wb") as f:
+            f.write(b_nsp)
+        with open(newegg, "wb") as f:
+            f.write(b_egg)
+
+    return newnsp, newegg
+
 
 db_dtypes = {
     "T": "string",

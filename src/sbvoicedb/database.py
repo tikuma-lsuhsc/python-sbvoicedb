@@ -1,40 +1,153 @@
-"""Saarbrueken Voice Database Reader module
-"""
+"""Saarbrueken Voice Database Reader module"""
+
+from __future__ import annotations
 
 import logging
-import pandas as pd
+
+# import pandas as pd
 from os import path, makedirs
+import re
 import shutil
 import numpy as np
 import nspfile
 import numpy as np
 from tempfile import TemporaryDirectory
-from typing import Literal, List, Callable, Iterator, Tuple, Optional
+from typing import (
+    Literal,
+    List,
+    Callable,
+    Iterator,
+    Tuple,
+    Optional,
+    get_args,
+    Sequence,
+)
+from datetime import datetime
+import glob
 
-from .common import *
-from .download import download_data, load_db
-from .process import align_data
+
+from sqlalchemy.orm import (
+    Mapped,
+    mapped_column,
+    relationship,
+    declarative_base,
+    Session,
+    aliased,
+)
+
+# from sqlalchemy_utils import create_view
+from sqlalchemy import (
+    Engine,
+    ForeignKey,
+    Column,
+    PrimaryKeyConstraint,
+    String,
+    Date,
+    create_engine,
+    bindparam,
+    select,
+    insert,
+    update,
+    delete,
+    func,
+    MetaData,
+    Table,
+    UniqueConstraint,
+    Select,
+    and_,
+    or_,
+)
+from sqlalchemy.sql.expression import ColumnElement
+
+import tqdm
+from nspfile import read as nspread, NSPHeaderDict
+
+from .download import download_data, download_database
+from .common import fix_incomplete_nsp
+
+logger = logging.getLogger(__name__)
+logger.addHandler(logging.NullHandler())
+
+Base = declarative_base()
+
+
+class Setting(Base):
+    __tablename__ = "settings"
+    __table_args__ = (PrimaryKeyConstraint("group", "key"),)
+    group: Mapped[str]
+    key: Mapped[str]
+    value: Mapped[str]
+
+
+pathology_in_recordings = Table(
+    "pathology_in_recordings",
+    Base.metadata,
+    Column("session_id", ForeignKey("recording_sessions.id"), primary_key=True),
+    Column("pathology_id", ForeignKey("pathologies.id"), primary_key=True),
+)
+
+
+class Pathology(Base):
+    __tablename__ = "pathologies"
+    __table_args__ = ()
+    id: Mapped[int] = mapped_column(primary_key=True)
+    name: Mapped[str] = mapped_column(unique=True)
+
+    recording_sessions: Mapped[List["RecordingSession"]] = relationship(
+        secondary=pathology_in_recordings
+    )
+
+
+class Speaker(Base):
+    __tablename__ = "speakers"
+    __table_args__ = ()
+    id: Mapped[int] = mapped_column(primary_key=True)
+    gender: Mapped[Literal["m", "w"]] = mapped_column(String(1))
+    birthdate: Mapped[str] = mapped_column(Date)
+
+    recording_sessions: Mapped[List["RecordingSession"]] = relationship(
+        back_populates="speaker"
+    )
+
+
+class RecordingSession(Base):
+    __tablename__ = "recording_sessions"
+    __table_args__ = ()
+    id: Mapped[int] = mapped_column(primary_key=True)
+    speaker_id: Mapped[int] = mapped_column(ForeignKey("speakers.id"))
+    date: Mapped[str] = mapped_column(Date)
+    type: Mapped[Literal["n", "p"]] = mapped_column(String(1))
+    note: Mapped[str] = mapped_column()
+
+    speaker: Mapped[Speaker] = relationship(back_populates="recording_sessions")
+    pathologies: Mapped[List[Pathology]] = relationship(
+        secondary=pathology_in_recordings, overlaps="recording_sessions"
+    )
+    recordings: Mapped[List["Recording"]] = relationship(back_populates="session")
+
 
 TaskType = Literal[
     # fmt: off
-            "a_n", "i_n", "u_n", 
-            "a_l", "i_l", "u_l",
-            "a_h", "i_h", "u_h", 
-            "a_lhl", "i_lhl", "u_lhl",
-            "iau", "phase",
+            "a_n", "i_n", "u_n",  "a_l", "i_l", "u_l", "a_h", "i_h", "u_h", 
+            "a_lhl", "i_lhl", "u_lhl", "iau", "phase",
     # fmt: on
 ]
 
-DataField = Literal[
-    "ID",  # recording ID
-    "T",  # Voice Type ['n' or 'p']
-    "D",  # date of recording
-    "S",  # speaker ID
-    "G",  # gender ['w' or 'm']
-    "A",  # age
-    "Pathologies",
-    "Remark w.r.t. diagnosis",
-]
+
+class Recording(Base):
+    __tablename__ = "recordings"
+    __table_args__ = (UniqueConstraint("session_id", "task"),)
+    id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
+    session_id: Mapped[int] = mapped_column(ForeignKey("recording_sessions.id"))
+    task: Mapped[TaskType] = mapped_column(
+        String(max(len(s) for s in get_args(TaskType)))
+    )
+    rate: Mapped[int] = mapped_column()
+    length: Mapped[int] = mapped_column()
+    nspfile: Mapped[str] = mapped_column()
+    eggfile: Mapped[str] = mapped_column()
+
+    session: Mapped[RecordingSession] = relationship(back_populates="recordings")
 
 
 class SbVoiceDb:
@@ -43,75 +156,525 @@ class SbVoiceDb:
     Constructor Arguments
 
     :param dbdir: databse directory
-    :type dbdir: str
-    :param no_download: True to use only cached files, defaults to False
-    :type no_download: bool, optional
-    :param default_task: set default task type to get, defaults to "a_n"
-    :type default_task: Literal[ &quot;a_n&quot;, &quot;i_n&quot;, &quot;u_n&quot;, &quot;a_l&quot;, &quot;i_l&quot;, &quot;u_l&quot;, &quot;a_h&quot;, &quot;i_h&quot;, &quot;u_h&quot;, &quot;a_lhl&quot;, &quot;i_lhl&quot;, &quot;u_lhl&quot;, &quot;iau&quot;, &quot;phase&quot;, ], optional
-    :param default_padding: set default padding in seconds (negative to crop), defaults to 0.3
-    :type default_padding: float, optional
-    :param _dev: _description_, defaults to False
-    :type _dev: bool, optional
+    :param download_mode: True to use only cached files, defaults to False
     """
+
+    _datadir: str
+    _dbdir: str
+    _db: Engine
+    _download: bool = True
+
+    _speaker_filter: ColumnElement | None = None
+    _session_filter: ColumnElement | None = None
+    _pathology_filter: ColumnElement | None = None
+    _recording_filter: ColumnElement | None = None
+    _include_normal: bool = True
 
     def __init__(
         self,
         dbdir: str,
-        no_download: bool = False,
-        default_task: TaskType = "a_n",
-        default_padding: float = 0.3,
-        _dev=False,
+        download_mode: Literal["once", "incremental", False] = "incremental",
+        connect_kws=None,
+        echo=False,
+        **create_engine_kws,
     ):
-        self.default_task = default_task
-        self.default_padding = default_padding
 
-        if _dev:
-            # devmode
-            dbdir = path.join("tests", "db")
-            if not path.exists(dbdir):
-                makedirs(dbdir)
+        if not path.exists(dbdir):
+            raise ValueError(f"invalid datbase path")
 
-        # load the database
-        (
-            self._df,  # main database table
-            self._df_dx,  # patient pathology table
-            self._df_files,  # list of audio file
-            self._df_timing,  # list of audio task start/end timestamps
-            self._mi_miss,  # list of missing files
-        ) = load_db(dbdir, no_download, _dev)
-        self._dir = dbdir  # database dir
+        self._dbdir = dbdir
+        self._datadir = path.join(self._dbdir, "data")
 
-    def _add_files(self, new_files):
-        # update the dataframe
-        df_files = pd.concat([self._df_files, new_files]).sort_index()
-        df_files = df_files[~df_files.index.duplicated(keep="last")]
+        db_path = path.join(dbdir, "sbvoice.db")
+        db_exists = path.exists(db_path)
 
-        # finalize dataframe
-        self._df_files = df_files
+        self._db = create_engine(
+            f"sqlite+pysqlite:///{db_path}",
+            connect_args=connect_kws or {},
+            echo=echo,
+            **create_engine_kws,
+        )
 
-    def _add_missing(self, new_missings):
-        # update the dataframe
-        df = pd.concat([self._mi_miss.to_frame(), new_missings.to_frame()]).sort_index()
-        df = df[~df.index.duplicated()]
+        Base.metadata.create_all(self._db)
 
-        # update the csv file
-        csvfile = path.join(self._dir, "missing_data.csv")
-        df.to_csv(csvfile, index=False)
+        if not db_exists:
+            self._populate_db()
 
-        # finalize dataframe
-        self._mi_miss = pd.MultiIndex.from_frame(df)
+        if download_mode == "once" and path.exists(self._datadir):
+            if not (self._download_data() or db_exists):
+                self._populate_recordings()
+        elif download_mode is False:
+            self._download = False
 
-    def _add_timings(self, new_timings):
-        # update the dataframe
-        df_timing = pd.concat([self._df_timing, new_timings]).sort_index()
-        df_timing = df_timing[~df_timing.index.duplicated(keep="last")]
+    def _populate_db(self):
+        rexp = re.compile(r", ")
+        with Session(self._db) as session:
+            for row, _ in zip(
+                download_database(),
+                tqdm.tqdm(range(2225), desc="Populating SQLite database "),
+            ):
+                speaker_id = int(row["SprecherID"])
+                session_id = int(row["AufnahmeID"])
 
-        # update the csv file
-        csvfile = path.join(self._dir, "vowel_timings.csv")
-        df_timing.reset_index().to_csv(csvfile, index=False)
+                if session_id > 2611:
+                    # recording_sessions with id>2611 do not have any data files
+                    continue
 
-        # finalize dataframe
-        self._df_timing = df_timing
+                # set speaker
+                session.execute(
+                    insert(Speaker)
+                    .prefix_with("OR IGNORE")
+                    .values(
+                        {
+                            "id": speaker_id,
+                            "birthdate": datetime.strptime(
+                                row["Geburtsdatum"], "%Y-%m-%d"
+                            ).date(),
+                            "gender": row["Geschlecht"],
+                        }
+                    )
+                )
+
+                # set recording
+                session.execute(
+                    insert(RecordingSession).values(
+                        {
+                            "id": session_id,
+                            "speaker_id": speaker_id,
+                            "date": datetime.strptime(
+                                row["AufnahmeDatum"], "%Y-%m-%d"
+                            ).date(),
+                            "type": row["AufnahmeTyp"],
+                            "note": row["Diagnose"],
+                        }
+                    )
+                )
+
+                # list pathologies
+                pathologies = [p for p in rexp.split(row["Pathologien"]) if p]
+                if len(pathologies):
+                    session.execute(
+                        insert(Pathology)
+                        .prefix_with("OR IGNORE")
+                        .values([{"name": name} for name in pathologies])
+                    )
+
+                    patho_ids = session.scalars(
+                        select(Pathology.id).where(Pathology.name.in_(pathologies))
+                    )
+                    session.execute(
+                        pathology_in_recordings.insert().values(
+                            [
+                                {"session_id": session_id, "pathology_id": id}
+                                for id in patho_ids
+                            ]
+                        )
+                    )
+
+                # save
+                session.commit()
+
+    def _download_data(self, pathology: str | None = None) -> bool:
+        """download data from Zenodo if any data is missing
+
+        :param pathology: specify the pathology to download,
+                          defaults to download all the data (caution: large
+                          download size, ~16 GB)
+        :returns: True if downloadng took place
+        """
+
+        # download only if not all the speakers are present
+        stmt = select(RecordingSession.id)
+        if pathology is not None:
+            stmt = stmt.where(
+                RecordingSession.pathologies.any(Pathology.name == pathology)
+            )
+        with Session(self._db) as session:
+            session_ids = list(session.scalars(stmt))
+
+        do_download = not all(
+            path.exists(path.join(self._datadir, str(rid))) for rid in session_ids
+        )
+        if do_download:
+            download_data(self._datadir, pathology)
+            self._populate_recordings(pathology)
+
+        return do_download
+
+    def _populate_recordings(self, pathology: str | None = None):
+        """scan directory and populate tasks table
+
+        :param pathology: populate only the tasks associated with the specified pathology, defaults to None
+        """
+
+        with Session(self._db) as session:
+            # only if speaker is missing
+            stmt = select(RecordingSession.id)
+            if pathology is not None:
+                stmt = stmt.where(
+                    RecordingSession.pathologies.any(Pathology.name == (pathology))
+                )
+
+            session_ids = list(session.scalars(stmt))
+            nrecs = len(session_ids)
+
+            for rid, _ in zip(
+                session_ids,
+                tqdm.tqdm(range(nrecs), desc="Populating recordings table "),
+            ):
+                dirpath = path.join(self._datadir, str(rid))
+                for nspfile in glob.glob("**/*.nsp", root_dir=dirpath, recursive=True):
+                    task = path.basename(nspfile[:-4]).rsplit("-")[1]
+                    eggfile = f"{path.splitext(nspfile)[0]}-egg.egg"
+                    try:
+                        hdr: NSPHeaderDict = nspread(
+                            path.join(dirpath, nspfile), just_header=True
+                        )
+                    except RuntimeError:
+                        nspfile, oldfile = (
+                            fix_incomplete_nsp(path.join(dirpath, nspfile)),
+                            nspfile,
+                        )
+                        hdr = nspread(nspfile, just_header=True)
+                        nspfile = path.relpath(nspfile, dirpath)
+
+                    entry = {
+                        "session_id": rid,
+                        "task": task,
+                        "rate": hdr["rate"],
+                        "length": hdr["length"],
+                        "nspfile": nspfile.replace("\\", "/"),
+                    }
+                    if path.exists(path.join(dirpath, eggfile)):
+                        try:
+                            nspread(path.join(dirpath, eggfile), just_header=True)
+                        except RuntimeError:
+                            eggfile, oldfile = (
+                                fix_incomplete_nsp(path.join(dirpath, eggfile)),
+                                eggfile,
+                            )
+                            hdr = nspread(eggfile, just_header=True)
+                            eggfile = path.relpath(eggfile, dirpath)
+                        entry["eggfile"] = eggfile.replace("\\", "/")
+                    session.execute(
+                        insert(Recording).prefix_with("OR IGNORE").values(entry)
+                    )
+            session.commit()
+
+    ################
+
+    def set_speaker_filter(self, where_clause: ColumnElement | None):
+        self._speaker_filter = where_clause
+
+    def set_session_filter(self, where_clause: ColumnElement | None):
+        self._session_filter = where_clause
+
+    def set_pathology_filter(self, where_clause: ColumnElement | None):
+        self._pathology_filter = where_clause
+
+    def set_recording_filter(self, where_clause: ColumnElement | None):
+        self._recording_filter = where_clause
+
+    ################
+
+    def _pathology_select(
+        self, *args, exclude_session_filter=False, **kwargs
+    ) -> Select:
+        stmt = select(*args, **kwargs)
+
+        if self._pathology_filter is not None:
+            stmt = stmt.where(self._pathology_filter)
+
+        if exclude_session_filter:
+            return stmt
+
+        session_filters = []
+        if self._session_filter is not None:
+            session_filters.append(self._session_filter)
+        if self._speaker_filter is not None:
+            session_filters.append(RecordingSession.speaker.has(self._speaker_filter))
+        if self._recording_filter is not None:
+            session_filters.append(
+                RecordingSession.recordings.any(self._recording_filter)
+            )
+        nsfilt = len(session_filters)
+        session_filter = (
+            and_(*session_filters)
+            if nsfilt > 1
+            else session_filters[0] if nsfilt else None
+        )
+        if session_filter is not None:
+            stmt.where(Pathology.recording_sessions.any(session_filter))
+
+        return stmt
+
+    def get_pathology_count(self) -> int:
+        """Return the number of unique pathologies"""
+        with Session(self._db) as session:
+            return session.scalar(self._pathology_select(func.count(Pathology.id))) or 0
+
+    def get_pathology_ids(self) -> Sequence[int]:
+        """Return an id list of all the unique speakers"""
+        with Session(self._db) as session:
+            return session.scalars(
+                self._pathology_select(Pathology.id).order_by(Pathology.name)
+            ).fetchall()
+
+    def get_pathology_names(self) -> Sequence[str]:
+        """Return an id list of all the unique speakers"""
+        with Session(self._db) as session:
+            return session.scalars(
+                self._pathology_select(Pathology.name).order_by(Pathology.name)
+            ).fetchall()
+
+    def get_pathology_name(self, pathology_id: int) -> str | None:
+        with Session(self._db) as session:
+            return session.scalar(
+                select(Pathology.name).where(Pathology.id == pathology_id)
+            )
+
+    def get_pathology_id(self, name: str) -> int | None:
+        with Session(self._db) as session:
+            return session.scalar(select(Pathology.id).where(Pathology.name == name))
+
+    def get_pathologies_in_session(self, session_id: int) -> Sequence[str]:
+        with Session(self._db) as session:
+            return session.scalars(
+                self._pathology_select(
+                    Pathology.name, exclude_session_filter=True
+                ).where(Pathology.session.has(RecordingSession.id == session_id))
+            ).fetchall()
+
+    ################
+
+    def _speaker_select(self, *args, **kwargs) -> Select:
+        stmt = select(*args, **kwargs)
+
+        if self._speaker_filter is not None:
+            stmt = stmt.where(self._speaker_filter)
+
+        session_filters = []
+        if self._session_filter is not None:
+            session_filters.append(self._session_filter)
+        if self._pathology_filter is not None:
+            f = RecordingSession.pathologies.any(self._pathology_filter)
+            if self._include_normal:
+                f = or_(f, ~RecordingSession.pathologies.any())
+            session_filters.append(f)
+        if self._recording_filter is not None:
+            session_filters.append(
+                RecordingSession.recordings.any(self._recording_filter)
+            )
+        nsfilt = len(session_filters)
+        session_filter = (
+            and_(*session_filters)
+            if nsfilt > 1
+            else session_filters[0] if nsfilt else None
+        )
+        if session_filter is not None:
+            stmt.where(Pathology.recording_sessions.any(session_filter))
+
+        return stmt
+
+    def get_speaker_count(self) -> int:
+        """Return the number of unique speakers"""
+        with Session(self._db) as session:
+            return session.scalar(self._speaker_select(func.count(Speaker.id))) or 0
+
+    def get_speaker_ids(self) -> Sequence[int]:
+        """Return an id list of all the unique speakers"""
+        with Session(self._db) as session:
+            return session.scalars(self._speaker_select(Speaker.id)).fetchall()
+
+    def get_speaker_id(self, index: int) -> int | None:
+        with Session(self._db) as session:
+            return session.scalar(
+                self._speaker_select(Speaker.id)
+                .order_by(Speaker.id)
+                .offset(index)
+                .limit(1)
+            )
+
+    def get_speaker_index(self, speaker_id: int) -> int | None:
+        with Session(self._db) as session:
+            try:
+                return (
+                    session.scalars(self._speaker_select(Speaker.id))
+                    .all()
+                    .index(speaker_id)
+                )
+            except ValueError:
+                return None
+
+    def get_speaker(self, speaker_id: int) -> Speaker | None:
+        with Session(self._db) as session:
+            return session.scalar(select(Speaker).where(Speaker.id == speaker_id))
+
+    ################
+
+    def _session_select(
+        self,
+        *args,
+        exclude_pathology_filter: bool = False,
+        exclude_speaker_filter: bool = False,
+        exclude_recording_filter: bool = False,
+        **kwargs,
+    ) -> Select:
+        stmt = select(*args, **kwargs)
+
+        if self._session_filter is not None:
+            stmt = stmt.where(self._session_filter)
+        if not exclude_speaker_filter and self._speaker_filter is not None:
+            stmt = stmt.where(RecordingSession.speaker.has(self._speaker_filter))
+        if not exclude_pathology_filter and self._pathology_filter is not None:
+            f = RecordingSession.pathologies.any(self._pathology_filter)
+            if self._include_normal:
+                f = or_(f, ~RecordingSession.pathologies.any())
+            stmt = stmt.where(f)
+        if not exclude_recording_filter and self._recording_filter is not None:
+            stmt = stmt.where(RecordingSession.recordings.any(self._recording_filter))
+
+        return stmt
+
+    def get_session_count(self) -> int:
+        """Return the number of unique recording sessions"""
+        with Session(self._db) as session:
+            return (
+                session.scalar(self._session_select(func.count(RecordingSession.id)))
+                or 0
+            )
+
+    def get_session_ids(self) -> Sequence[int]:
+        """Return an id list of all the unique sessions"""
+        with Session(self._db) as session:
+            return session.scalars(self._session_select(RecordingSession.id)).fetchall()
+
+    def get_session_id(self, index: int) -> int | None:
+        with Session(self._db) as session:
+            return session.scalar(
+                self._session_select(RecordingSession.id)
+                .order_by(RecordingSession.id)
+                .offset(index)
+                .limit(1)
+            )
+
+    def get_session_index(self, session_id: int) -> int | None:
+        with Session(self._db) as session:
+            try:
+                return (
+                    session.scalars(self._session_select(RecordingSession.id))
+                    .all()
+                    .index(session_id)
+                )
+            except ValueError:
+                return None
+
+    def get_session(self, session_id: int) -> RecordingSession | None:
+        with Session(self._db) as session:
+            return session.scalar(
+                self._session_select(RecordingSession.id).where(
+                    RecordingSession.id == session_id
+                )
+            )
+
+    def get_sessions_with_pathology(self, pathology: str) -> Sequence[RecordingSession]:
+        with Session(self._db) as session:
+            pathology_id = session.scalar(
+                self._pathology_select(Pathology.id).where(Pathology.name == pathology)
+            )
+
+            if pathology_id is None:
+                return []
+
+            return session.scalars(
+                self._session_select(
+                    Pathology.name, exclude_pathology_filter=True
+                ).where(RecordingSession.pathologies.any(Pathology.id == pathology_id))
+            ).fetchall()
+
+    ################
+
+    def _recording_select(
+        self, *args, exclude_session_filter: bool = False, **kwargs
+    ) -> Select:
+        stmt = select(*args, **kwargs)
+
+        if self._recording_filter is not None:
+            stmt = stmt.where(self._recording_filter)
+
+        if exclude_session_filter:
+            return stmt
+
+        session_filters = []
+
+        if self._session_filter is not None:
+            session_filters.append(self._session_filter)
+        if self._speaker_filter is not None:
+            session_filters.append(RecordingSession.speaker.has(self._speaker_filter))
+        if self._pathology_filter is not None:
+            f = RecordingSession.pathologies.any(self._pathology_filter)
+            if self._include_normal:
+                f = or_(f, ~RecordingSession.pathologies.any())
+            session_filters.append(f)
+
+        nfilt = len(session_filters)
+        session_filter = (
+            and_(*session_filters)
+            if nfilt > 1
+            else session_filters[0] if nfilt else None
+        )
+        if session_filter is not None:
+            stmt = stmt.where(Recording.session.has(session_filter))
+
+        return stmt
+
+    def get_recording_count(self) -> int:
+        """Return the number of unique recording recordings"""
+        with Session(self._db) as recording:
+            return (
+                recording.scalar(self._recording_select(func.count(Recording.id))) or 0
+            )
+
+    def get_recording_ids(self) -> Sequence[int]:
+        """Return an id list of all the unique recordings"""
+        with Session(self._db) as recording:
+            return recording.scalars(self._recording_select(Recording.id)).fetchall()
+
+    def get_recording_id(self, index: int) -> int | None:
+        with Session(self._db) as recording:
+            return recording.scalar(
+                self._recording_select(Recording.id)
+                .order_by(Recording.id)
+                .offset(index)
+                .limit(1)
+            )
+
+    def get_recording_index(self, recording_id: int) -> int | None:
+        with Session(self._db) as recording:
+            try:
+                return (
+                    recording.scalars(self._recording_select(Recording.id))
+                    .all()
+                    .index(recording_id)
+                )
+            except ValueError:
+                return None
+
+    def get_recording(self, recording_id: int) -> Recording | None:
+        with Session(self._db) as recording:
+            return recording.scalar(
+                select(Recording).where(Recording.id == recording_id)
+            )
+
+    def get_recordings_in_session(self, session_id: int) -> Sequence[Recording]:
+        with Session(self._db) as session:
+            return session.scalars(
+                self._recording_select(Recording, exclude_session_filter=True).where(
+                    Recording.session_id == session_id
+                )
+            ).fetchall()
+
+    ################
 
     @property
     def tasks(self) -> List[str]:
@@ -125,12 +688,12 @@ class SbVoiceDb:
 
     def query(
         self, columns: List[DataField] = None, include_missing: bool = False, **filters
-    ) -> pd.DataFrame:
+    ):  # -> pd.DataFrame:
         """query database
 
         :param columns: database columns to return, defaults to None
         :type columns: sequence of str, optional
-        :param include_missing: True to include recording sessions with any missing file/timing
+        :param include_missing: True to include recording recording_sessions with any missing file/timing
         :type include_missing: bool
         :param **filters: query conditions (values) for specific per-database columns (keys)
         :type **filters: dict
@@ -228,10 +791,10 @@ class SbVoiceDb:
         paths_only: bool = False,
         auxdata_fields: List[DataField] = None,
         **filters,
-    ) -> pd.DataFrame:
+    ):  # -> pd.DataFrame:
         """get audio files
 
-        :param task: utterance task
+        :param task: recorded task
         :type task: TaskType
         :param egg: True for EGG False for audio, defaults to False
         :type egg: bool, optional
@@ -374,288 +937,6 @@ class SbVoiceDb:
 
         return df
 
-    def in_cache(self, id: int, task: TaskType, egg: bool = False) -> bool:
-        """Check if data has been cached
-
-        :param id: recording ID
-        :type id: int
-        :param task: vocal task
-        :type task: TaskType
-        :param egg: True for EGG, False for audio, defaults to False
-        :type egg: bool, optional
-        :return: True if data has been cached and is available locally
-        :rtype: bool
-        """
-        _task = "phrase" if task == "phrase" else "iau"
-        file_idx = (_task, egg, id)
-        if file_idx in self._mi_miss:
-            return True
-        has_file = file_idx in self._df_files.index
-        return (
-            (id, task) in self._df_timing.index
-            if has_file and task != _task
-            else has_file
-        )
-
-    def known_missing(self, id: int, task: TaskType, egg: bool = False) -> bool:
-        """True if data is known to be missing (marked as missing in cache)
-
-        :param id: recording ID
-        :type id: int
-        :param task: vocal task
-        :type task: TaskType
-        :param egg: True for EGG, False for audio, defaults to False
-        :type egg: bool, optional
-        :return: True if data has been cached and is available locally
-        :rtype: bool
-        """
-        _task = "phrase" if task == "phrase" else "iau"
-        file_idx = (_task, egg, id)
-        return file_idx in self._mi_miss or (id, task) not in self._df_timing.index
-
-    def download_task(
-        self, id: int, task: TaskType, egg: bool = False, progress: Callable = None
-    ):
-        """download a vocal task from a recording
-
-        :param id: recording id
-        :type id: int
-        :param task: vocal task
-        :type task: TaskType
-        :param egg: True to download EGG, False to download audio, defaults to False
-        :type egg: bool, optional
-        :param progress: progress callback, defaults to None (TODO)
-        :type progress: Callable, optional
-        """
-        if self.in_cache(id, task, egg):
-            return
-
-        # make sure id & task are valid:
-        if id not in self._df.index:
-            raise ValueError(f"invalid id: {id}")
-
-        if task not in task2key:
-            raise ValueError(f"invalid task: {task}")
-
-        phrase = task == "phrase"
-        vowels = task == "iau"
-        timings = not (phrase or vowels)
-        nsp = not egg
-
-        if timings and not self.in_cache(id, "iau", False):
-            vowels = True
-            nsp = True
-
-        # if file has not been downloaded, grab it
-        self._download_once([id], vowels, phrase, timings, nsp, egg, progress)
-
-    def download_full(
-        self,
-        vowels: bool,
-        phrase: bool,
-        timings: bool,
-        nsp: bool = True,
-        egg: bool = False,
-        progress: Callable = None,
-        **filters,
-    ):
-        """download all recording data of given voice & data types
-
-        :param vowels: True to download vowel tasks
-        :type vowels: bool
-        :param phrase: True to download phrase task
-        :type phrase: bool
-        :param timings: True to download vowel task timings
-        :type timings: bool
-        :param nsp: True to download audio data, defaults to True
-        :type nsp: bool, optional
-        :param egg: True to download EGG data, defaults to False
-        :type egg: bool, optional
-        :param progress: progress callback function, defaults to None (TODO)
-        :type progress: Callable, optional
-        """
-        egg = bool(egg)
-
-        if not (nsp or egg or timings):
-            raise ValueError("Both nsp and egg are False. Nothing to download.")
-
-        # get all matching indices
-        ids = self.query(**filters).index
-
-        # download
-        self.download_batch(ids, vowels, phrase, timings, nsp, egg, progress)
-
-    def download_batch(
-        self,
-        ids: List[int],
-        vowels: bool,
-        phrase: bool,
-        timings: bool,
-        nsp: bool = True,
-        egg: bool = False,
-        progress: Callable = None,
-    ):
-        """download a batch of specified recording sessions in a given voice & data types
-
-        :param ids: ids of recording sessions to download
-        :param vowels: True to download vowel tasks
-        :type vowels: bool
-        :param phrase: True to download phrase task
-        :type phrase: bool
-        :param timings: True to download vowel task timings
-        :type timings: bool
-        :param nsp: True to download audio data, defaults to True
-        :type nsp: bool, optional
-        :param egg: True to download EGG data, defaults to False
-        :type egg: bool, optional
-        :param progress: progress callback function, defaults to None (TODO)
-        :type progress: Callable, optional
-        """
-
-        # separate ids into groups with different downloading needs
-        files = self._df_files
-        mi = self._mi_miss
-        tf = pd.DataFrame(index=ids)
-        id = pd.Index(list(ids))
-        if vowels or timings:
-            mi1 = mi[mi.isin(["iau"], 0)]
-            tf_miss = id.isin(mi1[mi1.isin([egg], 1)].get_level_values(2))
-            tf[(True, False, False, not egg, egg)] = ~(
-                id.isin(files.loc[("iau", egg)].index) | tf_miss
-            )
-            if egg and (nsp or timings):
-                tf[(True, False, False, True, False)] = ~(
-                    id.isin(files.loc[("iau", False)].index)
-                    | id.isin(mi1[mi1.isin([False], 1)].get_level_values(2))
-                )
-        if phrase:
-            mi1 = mi[mi.isin(["phrase"], 0)]
-            tf[(False, True, False, not egg, egg)] = ~(
-                id.isin(files.loc[("phrase", egg)].index)
-                | id.isin(mi1[mi1.isin([egg], 1)].get_level_values(2))
-            )
-            if egg and nsp:
-                tf[(False, True, False, True, False)] = ~(
-                    id.isin(files.loc[("phrase", False)].index)
-                    | id.isin(mi1[mi1.isin([False], 1)].get_level_values(2))
-                )
-
-        if timings:
-            tf[(False, False, True, False, False)] = ~(
-                tf_miss | id.isin(self._df_timing.index.get_level_values(0).unique())
-            )
-
-        def download_groups(grp):
-            tf = grp.iloc[0]  # guaranteed to have at least 1 element
-            if not tf.any(axis=0):
-                return  # nothing to download
-
-            args = tuple(pd.DataFrame(list(grp.columns.values[tf])).any(axis=0))
-            self._download_groups(grp.index, *args, progress=progress)
-
-        tf.groupby(list(tf.columns.values)).apply(download_groups)
-
-    def _download_groups(self, ids, *args, ngroup=20, **kwargs):
-        k = len(ids) // ngroup
-
-        for i in range(k):
-            self._download_once(ids[i * ngroup : (i + 1) * ngroup], *args, **kwargs)
-        if ngroup * k < len(ids):
-            self._download_once(ids[k * ngroup :], *args, **kwargs)
-
-    def _download_once(
-        self, ids, vowels, phrase, timings, nsp=True, egg=False, progress=None
-    ):
-        dir = path.join(self._dir, data_dir)
-        makedirs(dir, exist_ok=True)
-
-        tasks = []
-        if vowels:
-            tasks.append("iau")
-        if phrase:
-            tasks.append("phrase")
-        if timings:
-            tasks.extend((t for t in task2key.keys() if t not in ("iau", "phrase")))
-            if not nsp:  # must download acoustic data
-                nsp = True
-
-        files = []
-        for id in ids:
-            if nsp:
-                if vowels:
-                    files.append(("iau", False, id, f"{id}-iau.nsp"))
-                if phrase:
-                    files.append(("phrase", False, id, f"{id}-phrase.nsp"))
-            if egg:
-                if vowels:
-                    files.append(("iau", True, id, f"{id}-iau-egg.egg"))
-                if phrase:
-                    files.append(("phrase", True, id, f"{id}-phrase-egg.egg"))
-
-        full_data = []
-        if not vowels and timings:
-            # iau files are expected to be already present for all ids
-            for id in ids:
-                try:
-                    file = path.join(self._dir, data_dir, f"{id}-iau.nsp")
-                    _, x = nspfile.read(file)
-                    full_data.append((id, x))
-                except:
-                    raise ValueError(
-                        f"The iau task nsp data not found. Set vowels=True"
-                        if nsp
-                        else f"Need the iau task nsp data to resolve vowel timings: missing {file}"
-                    )
-
-        with TemporaryDirectory() as tdir:
-            # download & extract files to tdir
-            download_data(tdir, ids, tasks, nsp, egg, progress)
-
-            # validate iau & phrase files
-            save_files = []
-            miss_files = []
-            for entry in files:
-                file = path.join(tdir, entry[-1])
-                try:
-                    _, x = nspfile.read(file)
-                    file_ok = True
-                except:
-                    file_ok = False
-                    miss_files.append(entry[:-1])
-
-                if file_ok:
-                    try:
-                        shutil.move(file, dir)
-                    except Exception as e:
-                        if not path.isfile(path.join(dir, entry[-1])):
-                            raise e
-                    save_files.append(entry)
-                    if timings:
-                        full_data.append((entry[-2], x))
-
-            if len(files):
-                self._add_files(FileSeries(save_files))
-            if len(miss_files):
-                self._add_missing(MissingDataIndex(miss_files))
-
-            # if timing data is needed for the task, download individual segments and compute
-            if timings:
-                timing_data = []
-                for id, x in full_data:
-                    df = TimingDataFrame(
-                        {"ID": id, "F": vowel_tasks, "N0": -1, "N1": -1}
-                    )
-                    for task in vowel_tasks:
-                        f = path.join(tdir, f"{id}-{task}.nsp")
-                        if path.isfile(f):
-                            try:
-                                df.loc[(id, task)] = align_data(x, f)
-                            except:
-                                pass
-                    timing_data.append(df)
-                if len(timing_data):
-                    self._add_timings(pd.concat(timing_data))
-
     def iter_data(
         self,
         task: TaskType = None,
@@ -665,8 +946,8 @@ class SbVoiceDb:
         normalize: bool = True,
         padding: float = None,
         **filters,
-    ) -> Iterator[Tuple[int, int, np.array, Optional[pd.Series]]]:
-        """iterate over queried recordings (yielding data samples)
+    ):  # -> Iterator[Tuple[int, int, np.array, Optional[pd.Series]]]:
+        """iterate over queried recording_sessions (yielding data samples)
 
         :param task: vocal task type, defaults to None
         :type task: TaskType, optional
@@ -692,11 +973,15 @@ class SbVoiceDb:
 
             framerate, x = self._read_file(file, task, timing, normalize, padding)
 
-            yield (id, framerate, x) if auxdata_fields is None else (
-                id,
-                framerate,
-                x,
-                auxdata,
+            yield (
+                (id, framerate, x)
+                if auxdata_fields is None
+                else (
+                    id,
+                    framerate,
+                    x,
+                    auxdata,
+                )
             )
 
     def read_data(
@@ -708,8 +993,8 @@ class SbVoiceDb:
         auxdata_fields: List[DataField] = None,
         normalize: bool = True,
         padding: float = None,
-    ) -> Tuple[int, np.array, Optional[pd.Series]]:
-        """read specific recordings
+    ):  # -> Tuple[int, np.array, Optional[pd.Series]]:
+        """read specific recording_sessions
 
         :param task: vocal task type, defaults to None
         :type task: TaskType, optional

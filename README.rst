@@ -61,3 +61,22 @@ Examples
     # log the measurements along with aux data
     my_logger.log_outcome(id, *auxdata, *params)
 
+
+Data Modifications
+------------------
+
+SVD Dataset has several 
+
+713-i_n/-iau - corrupted NSP/EGG files
+
+980-iau.wav/980-iau-egg.wav - acoustic and EGG waveforms were flipflopped at n = 583414
+
+980-phrase.wav/980-phrase-egg.wav - acoustic & Egg files were named backwards
+
+1697-iau.wav/1697-iau-egg.wav - acoustic & Egg files were named backwards
+1697-phrase.wav/1697-phrase-egg.wav - acoustic & Egg files were named backwards
+
+139-xxx, 141-xxx - acoustic & egg swapped
+
+Downloaded vowel files
+1573 normal vowels (i-a-u) not cut correctly, recreated
