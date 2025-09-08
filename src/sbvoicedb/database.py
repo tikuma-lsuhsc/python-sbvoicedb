@@ -3,15 +3,13 @@
 from __future__ import annotations
 
 import logging
-
-# import pandas as pd
+from datetime import datetime
+import glob
 from os import path, makedirs
 import re
-import shutil
+import unicodedata
+
 import numpy as np
-import nspfile
-import numpy as np
-from tempfile import TemporaryDirectory
 from typing import (
     Literal,
     List,
@@ -21,10 +19,8 @@ from typing import (
     Optional,
     get_args,
     Sequence,
+    cast,
 )
-from datetime import datetime
-import glob
-
 
 from sqlalchemy.orm import (
     Mapped,
@@ -58,9 +54,11 @@ from sqlalchemy import (
     or_,
 )
 from sqlalchemy.sql.expression import ColumnElement
+from sqlalchemy_utils import create_view
 
-import tqdm
+import numpy as np
 from nspfile import read as nspread, NSPHeaderDict
+import tqdm
 
 from .download import download_data, download_database
 from .common import fix_incomplete_nsp
@@ -92,8 +90,9 @@ class Pathology(Base):
     __table_args__ = ()
     id: Mapped[int] = mapped_column(primary_key=True)
     name: Mapped[str] = mapped_column(unique=True)
+    downloaded: Mapped[bool] = mapped_column(default=False)
 
-    recording_sessions: Mapped[List["RecordingSession"]] = relationship(
+    sessions: Mapped[List["RecordingSession"]] = relationship(
         secondary=pathology_in_recordings
     )
 
@@ -105,9 +104,7 @@ class Speaker(Base):
     gender: Mapped[Literal["m", "w"]] = mapped_column(String(1))
     birthdate: Mapped[str] = mapped_column(Date)
 
-    recording_sessions: Mapped[List["RecordingSession"]] = relationship(
-        back_populates="speaker"
-    )
+    sessions: Mapped[List["RecordingSession"]] = relationship(back_populates="speaker")
 
 
 class RecordingSession(Base):
@@ -115,33 +112,23 @@ class RecordingSession(Base):
     __table_args__ = ()
     id: Mapped[int] = mapped_column(primary_key=True)
     speaker_id: Mapped[int] = mapped_column(ForeignKey("speakers.id"))
-    date: Mapped[str] = mapped_column(Date)
+    speaker_age: Mapped[int] = mapped_column()
     type: Mapped[Literal["n", "p"]] = mapped_column(String(1))
     note: Mapped[str] = mapped_column()
 
-    speaker: Mapped[Speaker] = relationship(back_populates="recording_sessions")
+    speaker: Mapped[Speaker] = relationship(back_populates="sessions")
     pathologies: Mapped[List[Pathology]] = relationship(
-        secondary=pathology_in_recordings, overlaps="recording_sessions"
+        secondary=pathology_in_recordings, overlaps="sessions"
     )
     recordings: Mapped[List["Recording"]] = relationship(back_populates="session")
 
 
-TaskType = Literal[
-    # fmt: off
-            "a_n", "i_n", "u_n",  "a_l", "i_l", "u_l", "a_h", "i_h", "u_h", 
-            "a_lhl", "i_lhl", "u_lhl", "iau", "phase",
-    # fmt: on
-]
-
-
 class Recording(Base):
     __tablename__ = "recordings"
-    __table_args__ = (UniqueConstraint("session_id", "task"),)
+    __table_args__ = (UniqueConstraint("session_id", "utterance"),)
     id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
     session_id: Mapped[int] = mapped_column(ForeignKey("recording_sessions.id"))
-    task: Mapped[TaskType] = mapped_column(
-        String(max(len(s) for s in get_args(TaskType)))
-    )
+    utterance: Mapped[str] = mapped_column(String(5))
     rate: Mapped[int] = mapped_column()
     length: Mapped[int] = mapped_column()
     nspfile: Mapped[str] = mapped_column()
@@ -162,13 +149,13 @@ class SbVoiceDb:
     _datadir: str
     _dbdir: str
     _db: Engine
-    _download: bool = True
+    _download_allowed: bool = True
 
     _speaker_filter: ColumnElement | None = None
     _session_filter: ColumnElement | None = None
     _pathology_filter: ColumnElement | None = None
     _recording_filter: ColumnElement | None = None
-    _include_normal: bool = True
+    _include_normal: bool = False  # True to include normals with pathology filter
 
     def __init__(
         self,
@@ -184,6 +171,9 @@ class SbVoiceDb:
 
         self._dbdir = dbdir
         self._datadir = path.join(self._dbdir, "data")
+
+        if not path.exists(self._datadir):
+            makedirs(self._datadir)
 
         db_path = path.join(dbdir, "sbvoice.db")
         db_exists = path.exists(db_path)
@@ -201,24 +191,36 @@ class SbVoiceDb:
             self._populate_db()
 
         if download_mode == "once" and path.exists(self._datadir):
-            if not (self._download_data() or db_exists):
+            if not (self.download_data() or db_exists):
+                # if dataset already exist, just populate the DB of its info
                 self._populate_recordings()
         elif download_mode is False:
-            self._download = False
+            self._download_allowed = False
 
     def _populate_db(self):
         rexp = re.compile(r", ")
         with Session(self._db) as session:
+
             for row, _ in zip(
                 download_database(),
                 tqdm.tqdm(range(2225), desc="Populating SQLite database "),
             ):
-                speaker_id = int(row["SprecherID"])
                 session_id = int(row["AufnahmeID"])
-
                 if session_id > 2611:
-                    # recording_sessions with id>2611 do not have any data files
+                    # sessions with id>2611 do not have any data files
                     continue
+
+                speaker_id = int(row["SprecherID"])
+                birthdate = datetime.strptime(row["Geburtsdatum"], "%Y-%m-%d")
+                session_date = datetime.strptime(row["AufnahmeDatum"], "%Y-%m-%d")
+
+                # calculate speaker's age at the time of the recording session
+                speaker_age = session_date.year - birthdate.year
+                if (session_date.month, session_date.day) < (
+                    birthdate.month,
+                    birthdate.day,
+                ):
+                    speaker_age -= 1
 
                 # set speaker
                 session.execute(
@@ -227,9 +229,7 @@ class SbVoiceDb:
                     .values(
                         {
                             "id": speaker_id,
-                            "birthdate": datetime.strptime(
-                                row["Geburtsdatum"], "%Y-%m-%d"
-                            ).date(),
+                            "birthdate": birthdate.date(),
                             "gender": row["Geschlecht"],
                         }
                     )
@@ -241,9 +241,7 @@ class SbVoiceDb:
                         {
                             "id": session_id,
                             "speaker_id": speaker_id,
-                            "date": datetime.strptime(
-                                row["AufnahmeDatum"], "%Y-%m-%d"
-                            ).date(),
+                            "speaker_age": speaker_age,
                             "type": row["AufnahmeTyp"],
                             "note": row["Diagnose"],
                         }
@@ -251,7 +249,11 @@ class SbVoiceDb:
                 )
 
                 # list pathologies
-                pathologies = [p for p in rexp.split(row["Pathologien"]) if p]
+                pathologies = [
+                    unicodedata.normalize("NFC", p)
+                    for p in rexp.split(row["Pathologien"])
+                    if p
+                ]
                 if len(pathologies):
                     session.execute(
                         insert(Pathology)
@@ -271,49 +273,49 @@ class SbVoiceDb:
                         )
                     )
 
-                # save
-                session.commit()
-
-    def _download_data(self, pathology: str | None = None) -> bool:
-        """download data from Zenodo if any data is missing
-
-        :param pathology: specify the pathology to download,
-                          defaults to download all the data (caution: large
-                          download size, ~16 GB)
-        :returns: True if downloadng took place
-        """
-
-        # download only if not all the speakers are present
-        stmt = select(RecordingSession.id)
-        if pathology is not None:
-            stmt = stmt.where(
-                RecordingSession.pathologies.any(Pathology.name == pathology)
+            # scan data availability
+            session_id = session.scalar(
+                select(RecordingSession.id).where(RecordingSession.type == "n").limit(1)
             )
-        with Session(self._db) as session:
-            session_ids = list(session.scalars(stmt))
+            session.add(
+                Setting(
+                    group="",
+                    key="healthy_downloaded",
+                    value=session_id is not None,
+                )
+            )
+            for pid in session.scalars(select(Pathology.id)):
+                session_id = session.scalar(
+                    select(pathology_in_recordings.c.session_id)
+                    .where(pathology_in_recordings.c.pathology_id == pid)
+                    .limit(1)
+                )
+                if path.exists(path.join(self._datadir, str(session_id))):
+                    session.execute(
+                        update(Pathology)
+                        .where(Pathology.id == pid)
+                        .values({"downloaded": True})
+                    )
 
-        do_download = not all(
-            path.exists(path.join(self._datadir, str(rid))) for rid in session_ids
-        )
-        if do_download:
-            download_data(self._datadir, pathology)
-            self._populate_recordings(pathology)
+            # save
+            session.commit()
 
-        return do_download
+    def _populate_recordings(self, pathology: str | Sequence[str] | None = None):
+        """scan directory and populate recordings table
 
-    def _populate_recordings(self, pathology: str | None = None):
-        """scan directory and populate tasks table
-
-        :param pathology: populate only the tasks associated with the specified pathology, defaults to None
+        :param pathology: populate only the recordings associated with the specified pathology, defaults to None
         """
 
         with Session(self._db) as session:
             # only if speaker is missing
             stmt = select(RecordingSession.id)
             if pathology is not None:
-                stmt = stmt.where(
-                    RecordingSession.pathologies.any(Pathology.name == (pathology))
+                patho_comp = (
+                    Pathology.name == pathology
+                    if isinstance(pathology, str)
+                    else Pathology.name.in_(pathology)
                 )
+                stmt = stmt.where(RecordingSession.pathologies.any(patho_comp))
 
             session_ids = list(session.scalars(stmt))
             nrecs = len(session_ids)
@@ -324,7 +326,7 @@ class SbVoiceDb:
             ):
                 dirpath = path.join(self._datadir, str(rid))
                 for nspfile in glob.glob("**/*.nsp", root_dir=dirpath, recursive=True):
-                    task = path.basename(nspfile[:-4]).rsplit("-")[1]
+                    utterance = path.basename(nspfile[:-4]).rsplit("-")[1]
                     eggfile = f"{path.splitext(nspfile)[0]}-egg.egg"
                     try:
                         hdr: NSPHeaderDict = nspread(
@@ -340,7 +342,7 @@ class SbVoiceDb:
 
                     entry = {
                         "session_id": rid,
-                        "task": task,
+                        "utterance": utterance,
                         "rate": hdr["rate"],
                         "length": hdr["length"],
                         "nspfile": nspfile.replace("\\", "/"),
@@ -361,6 +363,108 @@ class SbVoiceDb:
                     )
             session.commit()
 
+    @property
+    def number_of_all_sessions(self) -> int:
+        """total number of recording sessions in the database"""
+        with Session(self._db) as session:
+            return session.scalar(select(func.count(RecordingSession.id)))
+
+    @property
+    def number_of_sessions_downloaded(self) -> int:
+        """number of recording sessions already downloaded"""
+
+        with Session(self._db) as session:
+            count = sum(
+                session.scalars(
+                    select(func.count(RecordingSession.id)).where(
+                        RecordingSession.pathologies.any(Pathology.downloaded)
+                    )
+                )
+            )
+            if (
+                session.scalar(
+                    select(Setting.value).where(
+                        and_(Setting.group == "", Setting.key == "healthy_downloaded")
+                    )
+                )
+                == "1"
+            ):
+                count += (
+                    session.scalar(
+                        select(func.count(RecordingSession.id)).where(
+                            RecordingSession.type == "n"
+                        )
+                    )
+                    or 0
+                )
+            return count
+
+    def download_data(self) -> bool:
+        """download minimal dataset required for current filter configurations"""
+
+        sessions = cast(
+            dict[str | None, Sequence[int]],
+            self.get_session_ids_of_all_pathologies(use_name=True),
+        )
+
+        # check the recording count of the first session of each pathology
+        counts = {
+            patho_name: len(session_ids)
+            for patho_name, session_ids in sessions.items()
+            if any(
+                self._get_recording_count(session_id) == 0 for session_id in session_ids
+            )
+        }
+
+        total_sessions = sum(counts.values())
+        all_sessions = self.number_of_all_sessions
+        if self._download_allowed:
+            if total_sessions > all_sessions:
+                # duplicates in the pathologies are too large to warrant pathology-wise download
+                download_data(self._datadir)
+                self._populate_recordings()
+
+            else:
+                # per-pathology download
+                for patho_name in counts:
+                    name = patho_name
+                    download_data(self._datadir, name)
+                    self._populate_recordings(name)
+            return True
+        else:
+            logger.warning(
+                "At most %d recording sessions are missing from the current dataset. "
+                'Instantiate SbVoiceDb object with `download_mode` argument set to either "once" or "incremental" '
+                "to enable the automatic downloading feature.",
+                min(total_sessions, all_sessions),
+            )
+            return False
+
+    def _mark_downloaded(self, pathologies: Sequence[str] | None, value: bool = True):
+        mark_healthy = True
+        with Session(self._db) as session:
+            stmt = update(Pathology).values({"downloaded": value})
+            if pathologies is not None:  # specific pathologies and healthy
+                pathologies = list(set(pathologies))
+                try:
+                    pathologies.remove("healthy")
+                except ValueError:
+                    mark_healthy = False
+                if len(pathologies):
+                    stmt = stmt.where(Pathology.name.in_(pathologies))
+            session.execute(stmt)
+
+            if mark_healthy:
+                session.execute(
+                    update(Setting)
+                    .where(
+                        and_(Setting.group == "", Setting.key == "healthy_downloaded")
+                    )
+                    .values({"value": value})
+                )
+
+            session.commit()
+
     ################
 
     def set_speaker_filter(self, where_clause: ColumnElement | None):
@@ -369,8 +473,11 @@ class SbVoiceDb:
     def set_session_filter(self, where_clause: ColumnElement | None):
         self._session_filter = where_clause
 
-    def set_pathology_filter(self, where_clause: ColumnElement | None):
+    def set_pathology_filter(
+        self, where_clause: ColumnElement | None, include_normal: bool = False
+    ):
         self._pathology_filter = where_clause
+        self._include_normal = include_normal
 
     def set_recording_filter(self, where_clause: ColumnElement | None):
         self._recording_filter = where_clause
@@ -378,14 +485,14 @@ class SbVoiceDb:
     ################
 
     def _pathology_select(
-        self, *args, exclude_session_filter=False, **kwargs
+        self, *args, exclude_related_filters=False, **kwargs
     ) -> Select:
         stmt = select(*args, **kwargs)
 
         if self._pathology_filter is not None:
             stmt = stmt.where(self._pathology_filter)
 
-        if exclude_session_filter:
+        if exclude_related_filters:
             return stmt
 
         session_filters = []
@@ -404,7 +511,7 @@ class SbVoiceDb:
             else session_filters[0] if nsfilt else None
         )
         if session_filter is not None:
-            stmt.where(Pathology.recording_sessions.any(session_filter))
+            stmt = stmt.where(Pathology.sessions.any(session_filter))
 
         return stmt
 
@@ -412,6 +519,10 @@ class SbVoiceDb:
         """Return the number of unique pathologies"""
         with Session(self._db) as session:
             return session.scalar(self._pathology_select(func.count(Pathology.id))) or 0
+
+    def get_pathologies(self) -> Sequence[Pathology]:
+        with Session(self._db) as session:
+            return session.scalars(self._pathology_select(Pathology)).fetchall()
 
     def get_pathology_ids(self) -> Sequence[int]:
         """Return an id list of all the unique speakers"""
@@ -441,25 +552,34 @@ class SbVoiceDb:
         with Session(self._db) as session:
             return session.scalars(
                 self._pathology_select(
-                    Pathology.name, exclude_session_filter=True
+                    Pathology.name, exclude_related_filters=True
                 ).where(Pathology.session.has(RecordingSession.id == session_id))
             ).fetchall()
 
     ################
 
-    def _speaker_select(self, *args, **kwargs) -> Select:
+    def _speaker_select(
+        self,
+        *args,
+        exclude_related_filters: bool = False,
+        **kwargs,
+    ) -> Select:
         stmt = select(*args, **kwargs)
 
         if self._speaker_filter is not None:
             stmt = stmt.where(self._speaker_filter)
 
+        if exclude_related_filters:
+            return stmt
+
         session_filters = []
-        if self._session_filter is not None:
-            session_filters.append(self._session_filter)
+        if not exclude_related_filters:
+            if self._session_filter is not None:
+                session_filters.append(self._session_filter)
         if self._pathology_filter is not None:
             f = RecordingSession.pathologies.any(self._pathology_filter)
-            if self._include_normal:
-                f = or_(f, ~RecordingSession.pathologies.any())
+            if self._include_normal is True:
+                f = or_(f, RecordingSession.type == "n")
             session_filters.append(f)
         if self._recording_filter is not None:
             session_filters.append(
@@ -472,7 +592,7 @@ class SbVoiceDb:
             else session_filters[0] if nsfilt else None
         )
         if session_filter is not None:
-            stmt.where(Pathology.recording_sessions.any(session_filter))
+            stmt = stmt.where(Speaker.sessions.any(session_filter))
 
         return stmt
 
@@ -484,7 +604,9 @@ class SbVoiceDb:
     def get_speaker_ids(self) -> Sequence[int]:
         """Return an id list of all the unique speakers"""
         with Session(self._db) as session:
-            return session.scalars(self._speaker_select(Speaker.id)).fetchall()
+            return session.scalars(
+                self._speaker_select(Speaker.id).order_by(Speaker.id)
+            ).fetchall()
 
     def get_speaker_id(self, index: int) -> int | None:
         with Session(self._db) as session:
@@ -499,7 +621,9 @@ class SbVoiceDb:
         with Session(self._db) as session:
             try:
                 return (
-                    session.scalars(self._speaker_select(Speaker.id))
+                    session.scalars(
+                        self._speaker_select(Speaker.id).order_by(Speaker.id)
+                    )
                     .all()
                     .index(speaker_id)
                 )
@@ -526,11 +650,12 @@ class SbVoiceDb:
             stmt = stmt.where(self._session_filter)
         if not exclude_speaker_filter and self._speaker_filter is not None:
             stmt = stmt.where(RecordingSession.speaker.has(self._speaker_filter))
-        if not exclude_pathology_filter and self._pathology_filter is not None:
-            f = RecordingSession.pathologies.any(self._pathology_filter)
-            if self._include_normal:
-                f = or_(f, ~RecordingSession.pathologies.any())
-            stmt = stmt.where(f)
+        if self._pathology_filter is not None:
+            if not exclude_pathology_filter:
+                f = RecordingSession.pathologies.any(self._pathology_filter)
+                if self._include_normal:
+                    f = or_(f, RecordingSession.type == "n")
+                stmt = stmt.where(f)
         if not exclude_recording_filter and self._recording_filter is not None:
             stmt = stmt.where(RecordingSession.recordings.any(self._recording_filter))
 
@@ -572,37 +697,74 @@ class SbVoiceDb:
     def get_session(self, session_id: int) -> RecordingSession | None:
         with Session(self._db) as session:
             return session.scalar(
-                self._session_select(RecordingSession.id).where(
-                    RecordingSession.id == session_id
-                )
+                select(RecordingSession).where(RecordingSession.id == session_id)
             )
 
-    def get_sessions_with_pathology(self, pathology: str) -> Sequence[RecordingSession]:
+    def get_session_ids_with_pathology(
+        self, pathology: str | int | None
+    ) -> Sequence[int]:
         with Session(self._db) as session:
-            pathology_id = session.scalar(
-                self._pathology_select(Pathology.id).where(Pathology.name == pathology)
-            )
+            if pathology is None:  # healthy samples
+                if not self._include_normal:
+                    return []
+                stmt = self._session_select(
+                    RecordingSession.id, exclude_pathology_filter=True
+                ).where(RecordingSession.type == "n")
+            else:  # pathology samples
+                # if pathology name given, convert it to id
+                pathology_id = (
+                    pathology
+                    if isinstance(pathology, int)
+                    else session.scalar(
+                        self._pathology_select(Pathology.id).where(
+                            Pathology.name == pathology
+                        )
+                    )
+                )
+                if pathology_id is None:
+                    raise ValueError(
+                        f"{pathology=} is not a registered pathology name."
+                    )
 
-            if pathology_id is None:
-                return []
+                stmt = self._session_select(
+                    RecordingSession.id, exclude_pathology_filter=True
+                ).where(RecordingSession.pathologies.any(Pathology.id == pathology_id))
 
+            return session.scalars(stmt).fetchall()
+
+    def get_session_ids_of_all_pathologies(
+        self, use_name: bool = False
+    ) -> dict[str | int | None, Sequence[int]]:
+
+        keys: dict[int | None, str | int | None] = (
+            {patho.id: patho.name for patho in self.get_pathologies()}
+            if use_name
+            else {patho_id: patho_id for patho_id in self.get_pathology_ids()}
+        )
+        if self._include_normal is True:
+            keys[None] = "healthy" if use_name else None
+
+        return {v: self.get_session_ids_with_pathology(k) for k, v in keys.items()}
+
+    def get_session_ids_of_speaker(self, speaker_id: int) -> Sequence[RecordingSession]:
+        with Session(self._db) as session:
             return session.scalars(
                 self._session_select(
-                    Pathology.name, exclude_pathology_filter=True
-                ).where(RecordingSession.pathologies.any(Pathology.id == pathology_id))
+                    RecordingSession.id, exclude_speaker_filter=True
+                ).where(RecordingSession.speaker_id == speaker_id)
             ).fetchall()
 
     ################
 
     def _recording_select(
-        self, *args, exclude_session_filter: bool = False, **kwargs
+        self, *args, exclude_related_filters: bool = False, **kwargs
     ) -> Select:
         stmt = select(*args, **kwargs)
 
         if self._recording_filter is not None:
             stmt = stmt.where(self._recording_filter)
 
-        if exclude_session_filter:
+        if exclude_related_filters:
             return stmt
 
         session_filters = []
@@ -628,12 +790,28 @@ class SbVoiceDb:
 
         return stmt
 
-    def get_recording_count(self) -> int:
-        """Return the number of unique recording recordings"""
-        with Session(self._db) as recording:
+    def _get_recording_count(self, session_id: int | None = None) -> int:
+        """Return the number of unique recording recordings (no download)"""
+        with Session(self._db) as session:
             return (
-                recording.scalar(self._recording_select(func.count(Recording.id))) or 0
+                session.scalar(
+                    self._recording_select(
+                        func.count(Recording.id),
+                        exclude_related_filters=session_id is not None,
+                    )
+                )
+                or 0
             )
+
+    def get_recording_count(self, session_id: int | None = None) -> int:
+        """Return the number of unique recording recordings"""
+        count = self._get_recording_count(session_id)
+
+        if not count:
+            self.on_demand_download()
+            count = self._get_recording_count(session_id)
+
+        return count
 
     def get_recording_ids(self) -> Sequence[int]:
         """Return an id list of all the unique recordings"""
@@ -641,19 +819,21 @@ class SbVoiceDb:
             return recording.scalars(self._recording_select(Recording.id)).fetchall()
 
     def get_recording_id(self, index: int) -> int | None:
-        with Session(self._db) as recording:
-            return recording.scalar(
+        with Session(self._db) as session:
+            rid = session.scalar(
                 self._recording_select(Recording.id)
                 .order_by(Recording.id)
                 .offset(index)
                 .limit(1)
             )
 
+        return rid
+
     def get_recording_index(self, recording_id: int) -> int | None:
-        with Session(self._db) as recording:
+        with Session(self._db) as session:
             try:
                 return (
-                    recording.scalars(self._recording_select(Recording.id))
+                    session.scalars(self._recording_select(Recording.id))
                     .all()
                     .index(recording_id)
                 )
@@ -661,24 +841,25 @@ class SbVoiceDb:
                 return None
 
     def get_recording(self, recording_id: int) -> Recording | None:
-        with Session(self._db) as recording:
-            return recording.scalar(
-                select(Recording).where(Recording.id == recording_id)
-            )
+        with Session(self._db) as session:
+            rec = session.scalar(select(Recording).where(Recording.id == recording_id))
+        return rec
 
     def get_recordings_in_session(self, session_id: int) -> Sequence[Recording]:
         with Session(self._db) as session:
-            return session.scalars(
-                self._recording_select(Recording, exclude_session_filter=True).where(
+            recs = session.scalars(
+                self._recording_select(Recording, exclude_related_filters=True).where(
                     Recording.session_id == session_id
                 )
             ).fetchall()
 
+        return recs
+
     ################
 
     @property
-    def tasks(self) -> List[str]:
-        """List of task types"""
+    def recordings(self) -> List[str]:
+        """List of utterance types"""
         return list(task2key.keys())
 
     @property
@@ -693,7 +874,7 @@ class SbVoiceDb:
 
         :param columns: database columns to return, defaults to None
         :type columns: sequence of str, optional
-        :param include_missing: True to include recording recording_sessions with any missing file/timing
+        :param include_missing: True to include recording sessions with any missing file/timing
         :type include_missing: bool
         :param **filters: query conditions (values) for specific per-database columns (keys)
         :type **filters: dict
@@ -785,7 +966,7 @@ class SbVoiceDb:
 
     def get_files(
         self,
-        task: TaskType,
+        utterance: TaskType,
         egg: bool = False,
         cached_only: bool = False,
         paths_only: bool = False,
@@ -794,8 +975,8 @@ class SbVoiceDb:
     ):  # -> pd.DataFrame:
         """get audio files
 
-        :param task: recorded task
-        :type task: TaskType
+        :param utterance: recorded utterance
+        :type utterance: TaskType
         :param egg: True for EGG False for audio, defaults to False
         :type egg: bool, optional
         :param cached_only: True to disallow downloading, defaults to False
@@ -815,9 +996,9 @@ class SbVoiceDb:
         * For all other columns, a sequence of allowable values
         """
 
-        if task not in tuple(task2key.keys()):
+        if utterance not in tuple(task2key.keys()):
             raise ValueError(
-                f"invalid task ('{task}'): must be one of {sorted(task2key.keys())}"
+                f"invalid utterance ('{utterance}'): must be one of {sorted(task2key.keys())}"
             )
 
         # retrieve auxdata and filter if conditions given
@@ -828,8 +1009,8 @@ class SbVoiceDb:
             else self._df
         )
 
-        need_timing = task not in ("iau", "phrase")
-        file = ("iau" if need_timing else task, egg)
+        need_timing = utterance not in ("iau", "phrase")
+        file = ("iau" if need_timing else utterance, egg)
 
         if not cached_only:
             # check for missing ids in cache
@@ -858,7 +1039,7 @@ class SbVoiceDb:
                         # ok only if in timing
                         ids_ok = ids_ok & set(
                             self._df_timing.loc[
-                                (slice(None), task), :
+                                (slice(None), utterance), :
                             ].index.get_level_values(0)
                         )
 
@@ -873,8 +1054,8 @@ class SbVoiceDb:
             if len(ids):
                 self._download_groups(
                     list(ids),
-                    need_timing or task == "iau",
-                    task == "phrase",
+                    need_timing or utterance == "iau",
+                    utterance == "phrase",
                     need_timing,
                     nsp=not egg,
                     egg=egg,
@@ -883,7 +1064,7 @@ class SbVoiceDb:
         try:
             # get cached files
             df_files = self._df_files.loc[
-                ("iau" if need_timing else task, egg)
+                ("iau" if need_timing else utterance, egg)
             ].to_frame()
         except:
             raise RuntimeError(f"cannot find cached matching files")
@@ -894,7 +1075,9 @@ class SbVoiceDb:
         if need_timing:
             try:
                 self._df_timing
-                df_timing = self._df_timing.loc[(slice(None), task), :].droplevel(1)
+                df_timing = self._df_timing.loc[(slice(None), utterance), :].droplevel(
+                    1
+                )
             except:
                 df_timing = pd.DataFrame(
                     index=self._df_timing.index.levels[0],
@@ -929,7 +1112,7 @@ class SbVoiceDb:
 
         # remove missing files
         mi = self._mi_miss
-        mi = mi[(mi.isin(["iau" if need_timing else task], 0) & mi.isin([egg], 1))]
+        mi = mi[(mi.isin(["iau" if need_timing else utterance], 0) & mi.isin([egg], 1))]
         df = df[~df.index.isin(mi.get_level_values(2))]
 
         # expand the filepaths
@@ -939,7 +1122,7 @@ class SbVoiceDb:
 
     def iter_data(
         self,
-        task: TaskType = None,
+        utterance: TaskType = None,
         egg: bool = False,
         cached_only: bool = False,
         auxdata_fields: List[DataField] = None,
@@ -947,10 +1130,10 @@ class SbVoiceDb:
         padding: float = None,
         **filters,
     ):  # -> Iterator[Tuple[int, int, np.array, Optional[pd.Series]]]:
-        """iterate over queried recording_sessions (yielding data samples)
+        """iterate over queried sessions (yielding data samples)
 
-        :param task: vocal task type, defaults to None
-        :type task: TaskType, optional
+        :param utterance: vocal utterance type, defaults to None
+        :type utterance: TaskType, optional
         :param egg: True for EGG, False for audio, defaults to False
         :type egg: bool, optional
         :param cached_only: True to block downloading, defaults to False
@@ -963,15 +1146,17 @@ class SbVoiceDb:
         :rtype: Iterator[int, int, np.array, Optional[pd.Series]]
         """
 
-        if not task:
-            task = self.default_task
+        if not utterance:
+            utterance = self.default_task
 
-        df = self.get_files(task, egg, cached_only, True, auxdata_fields, **filters)
+        df = self.get_files(
+            utterance, egg, cached_only, True, auxdata_fields, **filters
+        )
 
         for id, file, *auxdata in df.itertuples():
-            timing = None if task in ("iau", "phrase") else self._df_timing.loc[id]
+            timing = None if utterance in ("iau", "phrase") else self._df_timing.loc[id]
 
-            framerate, x = self._read_file(file, task, timing, normalize, padding)
+            framerate, x = self._read_file(file, utterance, timing, normalize, padding)
 
             yield (
                 (id, framerate, x)
@@ -987,17 +1172,17 @@ class SbVoiceDb:
     def read_data(
         self,
         id: int,
-        task: TaskType = None,
+        utterance: TaskType = None,
         egg: bool = False,
         cached_only: bool = False,
         auxdata_fields: List[DataField] = None,
         normalize: bool = True,
         padding: float = None,
     ):  # -> Tuple[int, np.array, Optional[pd.Series]]:
-        """read specific recording_sessions
+        """read specific sessions
 
-        :param task: vocal task type, defaults to None
-        :type task: TaskType, optional
+        :param utterance: vocal utterance type, defaults to None
+        :type utterance: TaskType, optional
         :param egg: True for EGG, False for audio, defaults to False
         :type egg: bool, optional
         :param cached_only: True to block downloading, defaults to False
@@ -1009,24 +1194,24 @@ class SbVoiceDb:
         :return: voice data namedtuple: fs, data array, (optional) aux info
         :rtype: Iterator[int, np.array, Optional[pd.Series]]
         """
-        if not task:
-            task = self.default_task
+        if not utterance:
+            utterance = self.default_task
 
         # get the file name
         try:
             file = self.get_files(
-                task, egg, cached_only, True, auxdata_fields, ID=id
+                utterance, egg, cached_only, True, auxdata_fields, ID=id
             ).loc[id]
             assert file[0]
         except:
-            raise ValueError(f"{id}:{task} data is not available.")
+            raise ValueError(f"{id}:{utterance} data is not available.")
 
-        timing = None if task in ("iau", "phrase") else self._df_timing.loc[id]
-        data = self._read_file(file.loc["File"], task, timing, normalize, padding)
+        timing = None if utterance in ("iau", "phrase") else self._df_timing.loc[id]
+        data = self._read_file(file.loc["File"], utterance, timing, normalize, padding)
 
         return data if auxdata_fields is None else (*data, file.iloc[1:])
 
-    def _read_file(self, file, task, timing, normalize=True, padding=None):
+    def _read_file(self, file, utterance, timing, normalize=True, padding=None):
         fs, x = nspfile.read(file)
 
         if timing is not None:
@@ -1036,7 +1221,7 @@ class SbVoiceDb:
             if padding:
                 # sort timing by N0
                 ts = timing.sort_values("N0")
-                i = ts.index.get_loc(task)
+                i = ts.index.get_loc(utterance)
 
                 padding = round(padding * fs)
                 tstart, tend = ts.iloc[i]
@@ -1050,7 +1235,7 @@ class SbVoiceDb:
                             i0 -= 1
                             if i0 < 0:
                                 raise RuntimeError(
-                                    f"something is wrong with timing data for id={id} ({task})"
+                                    f"something is wrong with timing data for id={id} ({utterance})"
                                 )
                         talt = ts.iloc[i0, 1]
                         if tstart < talt:
@@ -1062,13 +1247,13 @@ class SbVoiceDb:
                             i0 += 1
                             if i0 == len(ts):
                                 raise RuntimeError(
-                                    f"something is wrong with timing data for id={id} ({task})"
+                                    f"something is wrong with timing data for id={id} ({utterance})"
                                 )
                         talt = ts.iloc[i0, 0]
                         if tend > talt:
                             tend = talt
             else:
-                tstart, tend = timing.loc[task]
+                tstart, tend = timing.loc[utterance]
 
             x = x[tstart:tend]
 
