@@ -4,7 +4,15 @@ import nspfile
 from pprint import pprint
 
 logging.basicConfig(level=logging.WARNING)
-db = database.SbVoiceDb("/home/kesh/data/SVD", download_mode="once")
+db = database.SbVoiceDb(
+    "/home/kesh/data/SVD",
+    download_mode="lazy",
+    pathology_filter=Pathology.name == "Laryngitis",
+    include_healthy=True,
+    speaker_filter=Speaker.gender == "w",
+    session_filter=RecordingSession.speaker_age.between(50, 70),
+    recording_filter=Recording.utterance.in_(("a_n", "phrase")),
+)
 
 print(f"downloaded: {db.number_of_sessions_downloaded}/{db.number_of_all_sessions}")
 
@@ -20,12 +28,6 @@ single_case = [
 
 print(single_case)
 
-db.set_pathology_filter(
-    Pathology.name == "Laryngitis", include_normal=True
-)  # '.in_(single_case)
-db.set_speaker_filter(Speaker.gender == "w")
-db.set_session_filter(RecordingSession.speaker_age.between(50, 70))
-db.set_recording_filter(Recording.utterance.in_(("a_n", "phrase")))
 
 # db.set_session_filter(~RecordingSession.pathologies.any())
 # db.set_session_filter(RecordingSession.type=='n')
