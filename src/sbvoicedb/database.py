@@ -130,7 +130,7 @@ class Pathology(Base):
     __table_args__ = ()
     id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
     """auto-assigned id"""
-    name: Mapped[PathologyLiteral] = mapped_column(unique=True)
+    name: Mapped[str] = mapped_column(unique=True)
     """pathology name in German"""
     downloaded: Mapped[bool] = mapped_column(default=False)
     """True if pathology dataset has been downloaded"""
