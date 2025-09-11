@@ -58,7 +58,7 @@ def download_data(
         key = "data.zip"
     else:
         # specific dataset
-        key = f"{unicodedata.normalize("NFC", pathology)}.zip"
+        key = f"{unicodedata.normalize('NFC', pathology)}.zip"
 
     repo = requests.get(zenodo_url).json()
 
