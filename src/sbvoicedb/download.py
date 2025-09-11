@@ -28,8 +28,19 @@ class CsvDict(TypedDict):
 
 def download_database(timeout: float = 10.0) -> csv.DictReader[str]:
 
-    r = requests.get(url, timeout=timeout)
-    return csv.DictReader(io.StringIO(r.text))
+    # site-packages/sbvoicedb/voice_data.csv
+    cached_file = path.join(path.dirname(__file__), "voice_data.csv")
+
+    try:
+        with open(cached_file, "rt", encoding="utf8") as f:
+            f = io.StringIO(f.read())
+    except FileNotFoundError:
+        r = requests.get(url, timeout=timeout)
+        f = io.StringIO(r.text)
+        with open(cached_file, "wt", encoding="utf8") as fcache:
+            copyfileobj(f, fcache)
+        f.seek(0)
+    return csv.DictReader(f)
 
 
 def download_data(

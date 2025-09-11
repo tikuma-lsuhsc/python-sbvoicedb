@@ -48,6 +48,31 @@ from .utils import fix_incomplete_nsp, swap_nsp_egg
 logger = logging.getLogger(__name__)
 logger.addHandler(logging.NullHandler())
 
+
+# build Literal typehint objects
+def _gather_pathologies():
+    pathologies = set()
+    rexp = re.compile(r", ")
+    for csv in download_database():
+        for p in rexp.split(csv["Pathologien"]):
+            if p:
+                pathologies.add(unicodedata.normalize("NFC", p))
+    return list(pathologies)
+
+
+PathologyLiteral = Literal[*_gather_pathologies()]
+
+# fmt:off
+UtteranceLiteral = Literal[
+    "a_n", "i_n", "u_n",
+    "a_l", "i_l", "u_l",
+    "a_h", "i_h", "u_h",
+    "a_lhl", "i_lhl", "u_lhl",
+    "aiu", "phrase",
+]
+# fmt:on
+
+
 Base = declarative_base()
 
 
@@ -109,7 +134,7 @@ class Pathology(Base):
     __table_args__ = ()
     id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
     """auto-assigned id"""
-    name: Mapped[str] = mapped_column(unique=True)
+    name: Mapped[PathologyLiteral] = mapped_column(unique=True)
     """pathology name in German"""
     downloaded: Mapped[bool] = mapped_column(default=False)
     """True if pathology dataset has been downloaded"""
@@ -312,7 +337,7 @@ class Recording(Base):
     """auto-assigned id"""
     session_id: Mapped[int] = mapped_column(ForeignKey("recording_sessions.id"))
     """the recording session of this recording"""
-    utterance: Mapped[LiteralString] = mapped_column(String(5))
+    utterance: Mapped[UtteranceLiteral] = mapped_column(String(5))
     """the utterance type stored in this recording.
     
     =========  ===============================================================
@@ -627,6 +652,8 @@ class SbVoiceDb:
         if self._speaker_filter is not None:
             session_filters.append(RecordingSession.speaker.has(self._speaker_filter))
         if self._recording_filter is not None:
+            if self._try_download:
+                self.download_data()
             session_filters.append(
                 RecordingSession.recordings.any(self._recording_filter)
             )
@@ -641,9 +668,8 @@ class SbVoiceDb:
 
         if downloaded is not None:
             stmt = stmt.where(
-                Pathology.downloaded == sql_expr.true()
-                if downloaded
-                else sql_expr.false()
+                Pathology.downloaded
+                == (sql_expr.true() if downloaded else sql_expr.false())
             )
 
         return stmt
@@ -687,7 +713,7 @@ class SbVoiceDb:
                 select(Pathology.name).where(Pathology.id == pathology_id)
             )
 
-    def get_pathology_id(self, name: str) -> int | None:
+    def get_pathology_id(self, name: PathologyLiteral) -> int | None:
         """Return the id of the specified pathology name"""
         with Session(self._db) as session:
             return session.scalar(select(Pathology.id).where(Pathology.name == name))
@@ -719,6 +745,8 @@ class SbVoiceDb:
                 f = sql_expr.or_(RecordingSession.type == "n", f)
             session_filters.append(f)
         if self._recording_filter is not None:
+            if self._try_download:
+                self.download_data()
             session_filters.append(
                 RecordingSession.recordings.any(self._recording_filter)
             )
@@ -789,10 +817,10 @@ class SbVoiceDb:
         *args,
         speakers: int | Sequence[int] | None = None,
         pathologies: (
-            LiteralString
+            PathologyLiteral
             | Literal["healthy"]
             | int
-            | Sequence[LiteralString | Literal["healthy"]]
+            | Sequence[PathologyLiteral | Literal["healthy"]]
             | Sequence[int]
             | None
         ) = None,
@@ -871,6 +899,8 @@ class SbVoiceDb:
         if recording_filter is None and self._recording_filter is not None:
             recording_filter = self._recording_filter
         if recording_filter is not None:
+            if self._try_download:
+                self.download_data()
             stmt = stmt.where(RecordingSession.recordings.any(recording_filter))
 
         return stmt
@@ -879,10 +909,10 @@ class SbVoiceDb:
         self,
         speakers: int | Sequence[int] | None = None,
         pathologies: (
-            LiteralString
+            PathologyLiteral
             | Literal["healthy"]
             | int
-            | Sequence[LiteralString | Literal["healthy"]]
+            | Sequence[PathologyLiteral | Literal["healthy"]]
             | Sequence[int]
             | None
         ) = None,
@@ -917,10 +947,10 @@ class SbVoiceDb:
         self,
         speakers: int | Sequence[int] | None = None,
         pathologies: (
-            LiteralString
+            PathologyLiteral
             | Literal["healthy"]
             | int
-            | Sequence[LiteralString | Literal["healthy"]]
+            | Sequence[PathologyLiteral | Literal["healthy"]]
             | Sequence[int]
             | None
         ) = None,
@@ -956,10 +986,10 @@ class SbVoiceDb:
         self,
         speakers: int | Sequence[int] | None = None,
         pathologies: (
-            LiteralString
+            PathologyLiteral
             | Literal["healthy"]
             | int
-            | Sequence[LiteralString | Literal["healthy"]]
+            | Sequence[PathologyLiteral | Literal["healthy"]]
             | Sequence[int]
             | None
         ) = None,
@@ -1051,6 +1081,9 @@ class SbVoiceDb:
         **kwargs,
     ) -> Select:
 
+        if self._try_download:
+            self.download_data()
+
         stmt = select(*args, **kwargs)
 
         if self._recording_filter is not None:
@@ -1091,8 +1124,6 @@ class SbVoiceDb:
         :param session_id: specify recording session id, defaults to None to get
                            the number across all recording sessions
         """
-        if self._try_download:
-            self.download_data()
 
         stmt = self._recording_select(
             sql_expr.func.count(Recording.id),
@@ -1110,8 +1141,6 @@ class SbVoiceDb:
         :param session_id: specify recording session id, defaults to None to get
                            the number across all recording sessions
         """
-        if self._try_download:
-            self.download_data()
 
         stmt = self._recording_select(Recording.id).order_by(Recording.id)
         if session_id is not None:
@@ -1127,8 +1156,6 @@ class SbVoiceDb:
         :param session_id: specify recording session id, defaults to None to get
                            the number across all recording sessions
         """
-        if self._try_download:
-            self.download_data()
 
         stmt = (
             self._recording_select(Recording.id)
@@ -1154,8 +1181,6 @@ class SbVoiceDb:
                            the number across all recording sessions
         :return: _description_
         """
-        if self._try_download:
-            self.download_data()
 
         stmt = self._recording_select(Recording.id).all().index(recording_id)
         if session_id is not None:
@@ -1186,9 +1211,6 @@ class SbVoiceDb:
         :param full_file_paths: True to expand the NSP and EGG file paths to full path, defaults to False
         :yield: ``Recording`` object
         """
-
-        if self._try_download:
-            self.download_data()
 
         with Session(self._db) as session:
             for rec in session.scalars(self._recording_select(Recording)):

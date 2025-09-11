@@ -3,6 +3,8 @@
 __version__ = "0.2.0"
 
 from .database import (
+    PathologyLiteral,
+    UtteranceLiteral,
     SbVoiceDb,
     Speaker,
     RecordingSession,
@@ -12,6 +14,8 @@ from .database import (
 )
 
 __all__ = [
+    "PathologyLiteral",
+    "UtteranceLiteral",
     "SbVoiceDb",
     "Speaker",
     "RecordingSession",

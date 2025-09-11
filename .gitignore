@@ -163,3 +163,5 @@ cython_debug/
 
 # downloaded database files for dev/testing
 tests/db/
+
+src/sbvoicedb/voice_data.csv
