@@ -26,7 +26,7 @@ class CsvDict(TypedDict):
     Pathologien: str
 
 
-def download_database(timeout: float = 10.0) -> csv.DictReader[str]:
+def download_database(timeout: float = 10.0) -> csv.DictReader:
 
     # site-packages/sbvoicedb/voice_data.csv
     cached_file = path.join(path.dirname(__file__), "voice_data.csv")
