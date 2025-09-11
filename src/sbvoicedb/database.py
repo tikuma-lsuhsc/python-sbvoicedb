@@ -9,7 +9,7 @@ from os import path, makedirs
 import re
 import unicodedata
 
-from typing import Literal, List, Sequence, cast, Iterator, LiteralString, Any
+from typing_extensions import Literal, List, Sequence, cast, Iterator, Any
 import numpy as np
 
 from sqlalchemy.orm import (
