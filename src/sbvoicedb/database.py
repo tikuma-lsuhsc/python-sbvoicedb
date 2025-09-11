@@ -9,7 +9,15 @@ from os import path, makedirs
 import re
 import unicodedata
 
-from typing_extensions import Literal, List, Sequence, cast, Iterator, Any
+from typing_extensions import (
+    Literal,
+    List,
+    Sequence,
+    cast,
+    Iterator,
+    Any,
+    LiteralString,
+)
 import numpy as np
 
 from sqlalchemy.orm import (
@@ -49,19 +57,7 @@ logger = logging.getLogger(__name__)
 logger.addHandler(logging.NullHandler())
 
 
-# build Literal typehint objects
-def _gather_pathologies():
-    pathologies = set()
-    rexp = re.compile(r", ")
-    for csv in download_database():
-        for p in rexp.split(csv["Pathologien"]):
-            if p:
-                pathologies.add(unicodedata.normalize("NFC", p))
-    return list(pathologies)
-
-
-PathologyLiteral = Literal[*_gather_pathologies()]
-
+PathologyLiteral = LiteralString
 # fmt:off
 UtteranceLiteral = Literal[
     "a_n", "i_n", "u_n",
