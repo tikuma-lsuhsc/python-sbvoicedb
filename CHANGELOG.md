@@ -5,6 +5,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [0.2.0] - 2025-09-11
+
+- Complete rebuild of the package with new API
+
 ## [0.1.0.dev7] - 2023-03-10
 
 ### Added
