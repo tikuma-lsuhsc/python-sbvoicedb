@@ -17,7 +17,7 @@ This Python module provides capability to download and organize Saarbrücker Sti
 (Saarbrücken Voice Database, https://stimmdb.coli.uni-saarland.de/) with SQLAlchemy (sqlalchemy.org).
 
 Features
--------
+--------
 
 * Auto-download the database file at https://stimmdb.coli.uni-saarland.de
 * Auto-download the associated datasets from Zonedo: https://zenodo.org/records/16874898
