@@ -1,8 +1,25 @@
-"""Saarbruecken Voice Database Reader
-"""
+"""Saarbruecken Voice Database Reader"""
 
-__version__ = "0.1.0.dev7"
+__version__ = "0.2.0"
 
-from .database import SbVoiceDb
+from .database import (
+    PathologyLiteral,
+    UtteranceLiteral,
+    SbVoiceDb,
+    Speaker,
+    RecordingSession,
+    Recording,
+    Pathology,
+    sql_expr,
+)
 
-__all__ = ["SbVoiceDb"]
+__all__ = [
+    "PathologyLiteral",
+    "UtteranceLiteral",
+    "SbVoiceDb",
+    "Speaker",
+    "RecordingSession",
+    "Recording",
+    "Pathology",
+    "sql_expr",
+]

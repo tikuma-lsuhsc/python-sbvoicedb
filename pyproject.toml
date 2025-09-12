@@ -4,26 +4,19 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "sbvoicedb"
-description = "Saarbrueken Voice Database Reader module"
+description = "Saarbrueken Voice Database Downloader and Reader"
 readme = "README.rst"
 keywords = ["multimedia"]
 license = { text = "GPL-2.0 License" }
 classifiers = [
-    "Development Status :: 3 - Alpha",
+    "Development Status :: 4 - Beta",
     "License :: OSI Approved :: GNU General Public License v2 (GPLv2)",
     "Topic :: Multimedia :: Sound/Audio",
     "Programming Language :: Python :: 3",
 ]
 dynamic = ["version"]
-requires-python = ">=3.8"
-dependencies = [
-    "pandas",
-    "numpy",
-    "requests",
-    "beautifulsoup4",
-    "tqdm",
-    "nspfile",
-]
+requires-python = ">=3.10"
+dependencies = ["numpy", "requests", "tqdm", "nspfile>=0.2.0", "sqlalchemy>=2.0.0",'typing_extensions']
 
 [project.urls]
 Repository = "https://github.com/tikuma-lsuhsc/python-sbvoicedb"

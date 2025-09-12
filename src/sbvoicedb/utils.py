@@ -1,68 +1,77 @@
-from .common import *
+from os import path
+from shutil import copyfile
+from .utils import *
 
 import re
-from os import path, remove
+from os import path
 from glob import glob
 import nspfile
 import numpy as np
-import zipfile
-from shutil import copyfileobj
 from os import path
 
 
-# unzip
-def extract(zippath, dst, progress=None):
+def fix_incomplete_nsp(file: str, root_dir: str) -> str:
+    """fix an incomplete NSP file without data size information
 
-    files = []
-    with zipfile.ZipFile(zippath, "r") as f:
-        for i in f.infolist():
-            if getattr(i, "file_size", 0):  # file
-                try:
-                    filepath = path.join(dst, path.basename(i.filename))
-                    with f.open(i) as fi, open(filepath, "xb") as fo:
-                        copyfileobj(progress.io_wrapper(fi) if progress else fi, fo)
-                    files.append(filepath)
-                except FileExistsError:
-                    pass
+    :param file: path of the nsp file
+    :returns: fixed nsp file (with -fixed postfix)
+    """
 
-    return files
+    with open(path.join(root_dir, file), "rb") as f:
+        b = bytearray(f.read())
 
+    sz = len(b) - 12
+    b[8:12] = sz.to_bytes(4, "little", signed=False)
 
-def align_data(x, segm_file):
-    _, y = nspfile.read(segm_file)
-    try:
-        n0 = x.tobytes().index(y.tobytes()) // x.itemsize
-        return n0, n0 + len(y)
-    except:
-        nx = len(x)
-        ny = len(y)
-        d0 = ny // 2
-        d1 = ny - d0
-        i = np.where(x == y[d0])[0]
-        ix0 = [(ii - d0, ii + d1) for ii in i]
-        ix = [(max(ii0, 0), min(ii1, nx)) for ii0, ii1 in ix0]
-        iy = [(ii[0] - ii0[0], ny - ii0[1] + ii[1]) for ii, ii0 in zip(ix, ix0)]
-        s = [np.sum(x[i0:i1] == y[j0:j1]) for (i0, i1), (j0, j1) in zip(ix, iy)]
-        return ix[np.argmax(s)]
+    i = b.find("SDA_".encode("utf8")) + 4
+    nbytes = len(b) - i - 4
+    b[i : i + 4] = nbytes.to_bytes(4, "little", signed=False)
+
+    nsamples = nbytes // 2  # int16_t data
+    b[0x2C:0x30] = nsamples.to_bytes(4, "little", signed=False)
+
+    fileparts = path.splitext(file)
+    outfile = "".join([fileparts[0], "-fixed", fileparts[1]])
+    with open(path.join(root_dir, outfile), "wb") as f:
+        f.write(b)
+
+    return outfile
 
 
-def validate_file(file):
-    egg = file.endswith(".egg")
-    m = re.search(
-        r"(\d+)-(iau|phrase)-egg.egg$" if egg else r"(\d+)-(iau|phrase).nsp$",
-        file,
-    )
-    if not m:
-        raise ValueError(f"Invalid file name: {file}")
+def swap_nsp_egg(
+    nspfile: str, eggfile: str, root_dir: str, n: int | None = None
+) -> tuple[str, str]:
 
-    idx = (m[2], egg, int(m[1]))
-    try:
-        nspfile.read(file)
-        return *idx, path.basename(file)
-    except:
-        remove(file)
-        return *idx, ""
+    def rename(file):
+        fileparts = path.splitext(file)
+        return "".join([fileparts[0], "-fixed", fileparts[1]])
 
+    newnsp = rename(nspfile)
+    newegg = rename(eggfile)
+
+    if n is None:
+        copyfile(path.join(root_dir, nspfile), path.join(root_dir, newegg))
+        copyfile(path.join(root_dir, eggfile), path.join(root_dir, newnsp))
+    else:
+        with open(path.join(root_dir, nspfile), "rb") as f:
+            b_nsp = bytearray(f.read())
+
+        with open(path.join(root_dir, eggfile), "rb") as f:
+            b_egg = bytearray(f.read())
+
+        i = b_nsp.find("SDA_".encode("utf8")) + 8  # SDA_+SIZE
+        i += n * 2
+        b_nsp[i:], b_egg[i:] = b_egg[i:], b_nsp[i:]
+
+        with open(path.join(root_dir, newnsp), "wb") as f:
+            f.write(b_nsp)
+        with open(path.join(root_dir, newegg), "wb") as f:
+            f.write(b_egg)
+
+    return newnsp, newegg
+
+
+data_dir = "data"
 
 def align_vowels(id, file, segm_dir):
 
