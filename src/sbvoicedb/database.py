@@ -8,6 +8,9 @@ import glob
 from os import path, makedirs
 import re
 import unicodedata
+from shutil import rmtree
+
+from tempfile import mkdtemp
 
 from typing_extensions import (
     Literal,
@@ -475,7 +478,7 @@ class SbVoiceDb:
     """
 
     _datadir: str
-    _dbdir: str
+    _dbdir: str | None
     _db: Engine
     _try_download: bool = False
 
@@ -499,8 +502,12 @@ class SbVoiceDb:
         **create_engine_kws,
     ):
 
-        self._dbdir = dbdir
-        self._datadir = path.join(self._dbdir, "data")
+        if dbdir == ":memory:":  # in-memory database
+            self._dbdir = None
+            self._datadir = mkdtemp()
+        else:
+            self._dbdir = dbdir
+            self._datadir = path.join(self._dbdir, "data")
 
         if speaker_filter is not None:
             self._speaker_filter = speaker_filter
@@ -520,7 +527,7 @@ class SbVoiceDb:
             makedirs(self._datadir)
 
         db_path = self.dbfile
-        db_exists = path.exists(db_path)
+        db_exists = self._dbdir is not None and path.exists(db_path)
 
         self._db = create_engine(
             f"sqlite+pysqlite:///{db_path}",
@@ -545,10 +552,17 @@ class SbVoiceDb:
             # download full dataset if download_mode is 'immediate'
             self.download_data()
 
+    def __del__(self):
+        if self._dbdir is None: # in-memory
+            # remove the downloaded datasets
+            rmtree(self._datadir)
+
     @property
     def dbfile(self) -> str:
         """filepath of the SQLite database"""
-        return path.join(self._dbdir, "sbvoice.db")
+        return (
+            ":memory:" if self._dbdir is None else path.join(self._dbdir, "sbvoice.db")
+        )
 
     @property
     def datadir(self) -> str:

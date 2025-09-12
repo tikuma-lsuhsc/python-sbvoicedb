@@ -6,7 +6,7 @@ from shutil import rmtree
 
 def load_db():
     return SbVoiceDb(
-        "",
+        ":memory:",
         download_mode="lazy",
         pathology_filter=Pathology.name.in_(
             ["Carcinoma in situ", "Dysplastischer Kehlkopf"]
@@ -21,8 +21,6 @@ def load_db():
 @pytest.fixture(scope="module")
 def sbvoicedb():
     yield load_db()
-    remove("sbvoice.db")
-    rmtree("data")
 
 
 def test_pathology(sbvoicedb):
