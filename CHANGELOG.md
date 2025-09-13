@@ -5,6 +5,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [0.3.0] - 2025-09-12
+
+- Changed on-the-fly filter arguments
+- Removed `*_index()` and `*_id()` methods
+
 ## [0.2.0] - 2025-09-11
 
 - Complete rebuild of the package with new API
