@@ -553,7 +553,7 @@ class SbVoiceDb:
             self.download_data()
 
     def __del__(self):
-        if self._dbdir is None: # in-memory
+        if self._dbdir is None:  # in-memory
             # remove the downloaded datasets
             rmtree(self._datadir)
 
@@ -642,45 +642,29 @@ class SbVoiceDb:
     ### PATHOLOGY ACCESS METHODS
 
     def _pathology_select(
-        self,
-        *args,
-        exclude_related_filters=False,
-        downloaded: bool | None = None,
-        **kwargs,
+        self, *args, downloaded: bool | None = None, **kwargs
     ) -> Select:
         stmt = select(*args, **kwargs)
 
         if self._pathology_filter is not None:
             stmt = stmt.where(self._pathology_filter)
 
-        if exclude_related_filters:
-            return stmt
-
-        session_filters = []
-        if self._session_filter is not None:
-            session_filters.append(self._session_filter)
-        if self._speaker_filter is not None:
-            session_filters.append(RecordingSession.speaker.has(self._speaker_filter))
-        if self._recording_filter is not None:
-            if self._try_download:
-                self.download_data()
-            session_filters.append(
-                RecordingSession.recordings.any(self._recording_filter)
-            )
-        nsfilt = len(session_filters)
-        session_filter = (
-            sql_expr.and_(*session_filters)
-            if nsfilt > 1
-            else session_filters[0] if nsfilt else None
-        )
-        if session_filter is not None:
-            stmt = stmt.where(Pathology.sessions.any(session_filter))
-
         if downloaded is not None:
             stmt = stmt.where(
                 Pathology.downloaded
                 == (sql_expr.true() if downloaded else sql_expr.false())
             )
+            return stmt
+
+        session_filters = self._build_session_filters(exclude_pathology=True)
+        nsfilt = len(session_filters)
+        if nsfilt > 0:
+            session_filter = (
+                sql_expr.and_(*session_filters)
+                if nsfilt > 1
+                else session_filters[0] if nsfilt else None
+            )
+            stmt = stmt.where(Pathology.sessions.any(session_filter))
 
         return stmt
 
@@ -695,7 +679,13 @@ class SbVoiceDb:
             )
 
     def iter_pathologies(self, downloaded: bool | None = None) -> Iterator[Pathology]:
-        """Iterates over Pathology objects of unique pathologies"""
+        """Iterates over Pathology objects of unique pathologies
+
+        :param downloaded: (Special iterator mode). True to iterate only already
+                           downloaded pathologies, or False to iterate those
+                           without their local datasets, defaults to None.
+        """
+
         with Session(self._db) as session:
             for patho in session.scalars(
                 self._pathology_select(Pathology, downloaded=downloaded)
@@ -731,42 +721,20 @@ class SbVoiceDb:
     ##########################
     ### SPEAKER ACCESS METHODS
 
-    def _speaker_select(
-        self,
-        *args,
-        exclude_related_filters: bool = False,
-        **kwargs,
-    ) -> Select:
+    def _speaker_select(self, *args, **kwargs) -> Select:
         stmt = select(*args, **kwargs)
 
         if self._speaker_filter is not None:
             stmt = stmt.where(self._speaker_filter)
 
-        if exclude_related_filters:
-            return stmt
-
-        session_filters = []
-        if not exclude_related_filters:
-            if self._session_filter is not None:
-                session_filters.append(self._session_filter)
-        if self._pathology_filter is not None:
-            f = RecordingSession.pathologies.any(self._pathology_filter)
-            if self._include_normal is True:
-                f = sql_expr.or_(RecordingSession.type == "n", f)
-            session_filters.append(f)
-        if self._recording_filter is not None:
-            if self._try_download:
-                self.download_data()
-            session_filters.append(
-                RecordingSession.recordings.any(self._recording_filter)
-            )
+        session_filters = self._build_session_filters(exclude_speaker=True)
         nsfilt = len(session_filters)
-        session_filter = (
-            sql_expr.and_(*session_filters)
-            if nsfilt > 1
-            else session_filters[0] if nsfilt else None
-        )
-        if session_filter is not None:
+        if nsfilt > 0:
+            session_filter = (
+                sql_expr.and_(*session_filters)
+                if nsfilt > 1
+                else session_filters[0] if nsfilt else None
+            )
             stmt = stmt.where(Speaker.sessions.any(session_filter))
 
         return stmt
@@ -786,27 +754,6 @@ class SbVoiceDb:
                 self._speaker_select(Speaker.id).order_by(Speaker.id)
             ).fetchall()
 
-    def get_speaker_id(self, n: int) -> int | None:
-        """Return an id of the n-th speaker"""
-        with Session(self._db) as session:
-            return session.scalar(
-                self._speaker_select(Speaker.id).order_by(Speaker.id).offset(n).limit(1)
-            )
-
-    def get_speaker_index(self, speaker_id: int) -> int | None:
-        """Return the position of the specified speaker"""
-        with Session(self._db) as session:
-            try:
-                return (
-                    session.scalars(
-                        self._speaker_select(Speaker.id).order_by(Speaker.id)
-                    )
-                    .all()
-                    .index(speaker_id)
-                )
-            except ValueError:
-                return None
-
     def get_speaker(self, speaker_id: int) -> Speaker | None:
         """get the full speaker info of the specified speaker"""
         with Session(self._db) as session:
@@ -825,7 +772,7 @@ class SbVoiceDb:
     def _session_select(
         self,
         *args,
-        speakers: int | Sequence[int] | None = None,
+        speaker_id: int | None = None,
         pathologies: (
             PathologyLiteral
             | Literal["healthy"]
@@ -834,24 +781,37 @@ class SbVoiceDb:
             | Sequence[int]
             | None
         ) = None,
-        additional_filter: sql_expr.ColumnElement | None = None,
+        speaker_filter: sql_expr.ColumnElement | None = None,
+        session_filter: sql_expr.ColumnElement | None = None,
         recording_filter: sql_expr.ColumnElement | None = None,
         **kwargs,
     ) -> Select:
         stmt = select(*args, **kwargs)
 
+        if speaker_id is not None:
+            stmt = stmt.where(RecordingSession.speaker_id == speaker_id)
+
+        # sessions table filter
         if self._session_filter is not None:
-            stmt = stmt.where(self._session_filter)
-        elif additional_filter is not None:
-            stmt = stmt.where(additional_filter)
+            session_filter = (
+                self._session_filter
+                if session_filter is None
+                else sql_expr.and_(self._session_filter, session_filter)
+            )
+        if session_filter is not None:
+            stmt = stmt.where(session_filter)
 
-        if isinstance(speakers, int):
-            stmt = stmt.where(RecordingSession.speaker_id == speakers)
-        elif speakers is not None:
-            stmt = stmt.where(RecordingSession.speaker_id.in_(speakers))
-        elif self._speaker_filter is not None:
-            stmt = stmt.where(RecordingSession.speaker.has(self._speaker_filter))
+        # speakers table filter
+        if self._speaker_filter is not None:
+            speaker_filter = (
+                self._speaker_filter
+                if speaker_filter is None
+                else sql_expr.and_(self._speaker_filter, speaker_filter)
+            )
+        if speaker_filter is not None:
+            stmt = stmt.where(RecordingSession.speaker.has(speaker_filter))
 
+        # pathologies table filter
         if pathologies is not None:
             # use custom pathology filter
             patho_list = (
@@ -878,7 +838,7 @@ class SbVoiceDb:
             if npatho:
 
                 patho_col = (
-                    Pathology.id if isinstance(pathologies, int) else Pathology.name
+                    Pathology.id if isinstance(patho_list[0], int) else Pathology.name
                 )
 
                 pf = RecordingSession.pathologies.any(
@@ -897,7 +857,6 @@ class SbVoiceDb:
             elif hf is not None:
                 stmt = stmt.where(hf)
 
-            RecordingSession.pathologies.any(Pathology.id == pathologies)
         else:
             # use the default pathology filter
             if self._pathology_filter is not None:
@@ -906,8 +865,13 @@ class SbVoiceDb:
                     f = sql_expr.or_(f, RecordingSession.type == "n")
                 stmt = stmt.where(f)
 
-        if recording_filter is None and self._recording_filter is not None:
-            recording_filter = self._recording_filter
+        if self._recording_filter is not None:
+            if recording_filter is None:
+                recording_filter = self._recording_filter
+            else:
+                recording_filter = sql_expr.and_(
+                    self._recording_filter, recording_filter
+                )
         if recording_filter is not None:
             if self._try_download:
                 self.download_data()
@@ -917,7 +881,7 @@ class SbVoiceDb:
 
     def get_session_count(
         self,
-        speakers: int | Sequence[int] | None = None,
+        speaker_id: int | None = None,
         pathologies: (
             PathologyLiteral
             | Literal["healthy"]
@@ -926,36 +890,36 @@ class SbVoiceDb:
             | Sequence[int]
             | None
         ) = None,
-        additional_filter: sql_expr.ColumnElement | None = None,
+        speaker_filter: sql_expr.ColumnElement | None = None,
+        session_filter: sql_expr.ColumnElement | None = None,
         recording_filter: sql_expr.ColumnElement | None = None,
     ) -> int:
         """Return the number of unique recording sessions
 
-        :param speakers: optionally specify speakers by their ids, defaults to None to
-                         include all included by ``SbVoiceDb.speaker_filter``
-        :param pathologies: optionally specify pathologies either by their id or
-                            name. The healthy speakers can be selected either
-                            by using the ``id=0`` or ``name='healthy'``,
-                            defaults to None to use the ``SbVoiceDb.pathology_filter``
-        :param additional_filter: optionally specify an additional filter on
-                                  RecordingSession, defaults to None
-        :param recording_filter: optionally specify an alternate filter on
-                                 RecordingSession.recordings, defaults to None
-                                 to use the ``SbVoiceDb.recording_filter``.
+        :param speaker_id: only of the specified speaker_id, defaults to None
+        :param pathologies: only sessions wtih the specified pathologies
+                            either by their id or name. The healthy speaker_ids can be
+                            selected either by using the ``id=0`` or ``name='healthy'``,
+                            defaults to None
+        :param speaker_filter: additional filter on Speaker columns, defaults to None
+        :param session_filter: additional filter on RecordingSession columns, defaults to None
+        :param recording_filter: additional filter on Recording columns, defaults to None
         """
+
         stmt = self._session_select(
             sql_expr.func.count(RecordingSession.id),
-            speakers=speakers,
+            speaker_id=speaker_id,
             pathologies=pathologies,
+            speaker_filter=speaker_filter,
+            session_filter=session_filter,
             recording_filter=recording_filter,
-            additional_filter=additional_filter,
         )
         with Session(self._db) as session:
             return session.scalar(stmt) or 0
 
     def get_session_ids(
         self,
-        speakers: int | Sequence[int] | None = None,
+        speaker_id: int | None = None,
         pathologies: (
             PathologyLiteral
             | Literal["healthy"]
@@ -964,29 +928,28 @@ class SbVoiceDb:
             | Sequence[int]
             | None
         ) = None,
-        additional_filter: sql_expr.ColumnElement | None = None,
+        speaker_filter: sql_expr.ColumnElement | None = None,
+        session_filter: sql_expr.ColumnElement | None = None,
         recording_filter: sql_expr.ColumnElement | None = None,
     ) -> Sequence[int]:
         """Return an id list of all the unique recording sessions
 
-        :param speakers: optionally specify speakers by their ids, defaults to None to
-                         include all included by ``SbVoiceDb.speaker_filter``
-        :param pathologies: optionally specify pathologies either by their id or
-                            name. The healthy speakers can be selected either
-                            by using the ``id=0`` or ``name='healthy'``,
-                            defaults to None to use the ``SbVoiceDb.pathology_filter``
-        :param additional_filter: optionally specify an additional filter on
-                                  RecordingSession, defaults to None
-        :param recording_filter: optionally specify an alternate filter on
-                                 RecordingSession.recordings, defaults to None
-                                 to use the ``SbVoiceDb.recording_filter``.
+        :param speaker_id: only of the specified speaker_id, defaults to None
+        :param pathologies: only sessions wtih the specified pathologies
+                            either by their id or name. The healthy speaker_ids can be
+                            selected either by using the ``id=0`` or ``name='healthy'``,
+                            defaults to None
+        :param speaker_filter: additional filter on Speaker columns, defaults to None
+        :param session_filter: additional filter on RecordingSession columns, defaults to None
+        :param recording_filter: additional filter on Recording columns, defaults to None
         """
 
         stmt = self._session_select(
             RecordingSession.id,
-            speakers=speakers,
+            speaker_id=speaker_id,
             pathologies=pathologies,
-            additional_filter=additional_filter,
+            speaker_filter=speaker_filter,
+            session_filter=session_filter,
             recording_filter=recording_filter,
         ).order_by(RecordingSession.id)
         with Session(self._db) as session:
@@ -994,7 +957,7 @@ class SbVoiceDb:
 
     def iter_sessions(
         self,
-        speakers: int | Sequence[int] | None = None,
+        speaker_id: int | None = None,
         pathologies: (
             PathologyLiteral
             | Literal["healthy"]
@@ -1003,32 +966,31 @@ class SbVoiceDb:
             | Sequence[int]
             | None
         ) = None,
-        additional_filter: sql_expr.ColumnElement | None = None,
+        speaker_filter: sql_expr.ColumnElement | None = None,
+        session_filter: sql_expr.ColumnElement | None = None,
         recording_filter: sql_expr.ColumnElement | None = None,
     ) -> Iterator[RecordingSession]:
         """iterate over all the sessions
 
-        :param speakers: optionally specify speakers by their ids, defaults to None to
-                         include all included by ``SbVoiceDb.speaker_filter``
-        :param pathologies: optionally specify pathologies either by their id or
-                            name. The healthy speakers can be selected either
-                            by using the ``id=0`` or ``name='healthy'``,
-                            defaults to None to use the ``SbVoiceDb.pathology_filter``
-        :param additional_filter: optionally specify an additional filter on
-                                  RecordingSession, defaults to None
-        :param recording_filter: optionally specify an alternate filter on
-                                 RecordingSession.recordings, defaults to None
-                                 to use the ``SbVoiceDb.recording_filter``.
+        :param speaker_id: only of the specified speaker_id, defaults to None
+        :param pathologies: only sessions wtih the specified pathologies
+                            either by their id or name. The healthy speaker_ids can be
+                            selected either by using the ``id=0`` or ``name='healthy'``,
+                            defaults to None
+        :param speaker_filter: additional filter on Speaker columns, defaults to None
+        :param session_filter: additional filter on RecordingSession columns, defaults to None
+        :param recording_filter: additional filter on Recording columns, defaults to None
         """
 
         stmt = self._session_select(
             RecordingSession,
-            speakers=speakers,
+            speaker_id=speaker_id,
             pathologies=pathologies,
+            speaker_filter=speaker_filter,
+            session_filter=session_filter,
             recording_filter=recording_filter,
         )
-        if additional_filter is not None:
-            stmt = stmt.where(additional_filter)
+
         with Session(self._db) as session:
             for sess in session.scalars(stmt):
                 yield sess
@@ -1040,54 +1002,15 @@ class SbVoiceDb:
                 select(RecordingSession).where(RecordingSession.id == session_id)
             )
 
-    def get_session_id(self, n: int, speaker_id: int | None = None) -> int | None:
-        """Returns the id of the n-th recording session
-
-        :param n: the position of recording session in the default order
-        :param speaker_id: specify speaker id, defaults to None to get
-                           the number across all speakers
-        """
-
-        stmt = (
-            self._session_select(RecordingSession.id)
-            .order_by(RecordingSession.id)
-            .offset(n)
-            .limit(1)
-        )
-        if speaker_id is not None:
-            stmt = stmt.where(RecordingSession.speaker_id == speaker_id)
-        with Session(self._db) as session:
-            return session.scalar(stmt)
-
-    def get_session_index(
-        self, session_id: int, speaker_id: int | None = None
-    ) -> int | None:
-        """Returns the position of the specified recording session
-
-        :param session_id: recording session id
-        :param speaker_id: specify speaker id, defaults to None to get
-                           the number across all speakers
-        """
-
-        stmt = self._session_select(RecordingSession.id).order_by(RecordingSession.id)
-        if speaker_id is not None:
-            stmt = stmt.where(RecordingSession.speaker_id == speaker_id)
-
-        with Session(self._db) as session:
-            try:
-                return session.scalars(stmt).all().index(session_id)
-            except ValueError:
-                return None
-
     ############################
     ### RECORDING ACCESS METHODS
 
     def _recording_select(
         self,
         *args,
-        exclude_related_filters: bool = False,
-        exclude_pathology_filter: bool = False,
-        additional_session_filters: Sequence[sql_expr.ColumnElement] | None = None,
+        session_id: int | None = None,
+        session_filter: sql_expr.ColumnElement | None = None,
+        recording_filter: sql_expr.ColumnElement | None = None,
         **kwargs,
     ) -> Select:
 
@@ -1096,115 +1019,81 @@ class SbVoiceDb:
 
         stmt = select(*args, **kwargs)
 
+        if session_id is not None:
+            stmt = stmt.where(Recording.session_id == session_id)
+
         if self._recording_filter is not None:
-            stmt = stmt.where(self._recording_filter)
+            recording_filter = (
+                self._recording_filter
+                if recording_filter is None
+                else sql_expr.and_(self._recording_filter, recording_filter)
+            )
+        if recording_filter is not None:
+            stmt = stmt.where(recording_filter)
 
-        if exclude_related_filters:
-            return stmt
+        session_filters = self._build_session_filters(exclude_record=True)
 
-        session_filters = []
-
-        if self._session_filter is not None:
-            session_filters.append(self._session_filter)
-        if self._speaker_filter is not None:
-            session_filters.append(RecordingSession.speaker.has(self._speaker_filter))
-        if not exclude_pathology_filter and self._pathology_filter is not None:
-            if self._pathology_filter is not None:
-                f = RecordingSession.pathologies.any(self._pathology_filter)
-                if self._include_normal:
-                    f = sql_expr.or_(RecordingSession.type == "n", f)
-                session_filters.append(f)
-        if additional_session_filters is not None:
-            session_filters.extend(additional_session_filters)
-
-        nfilt = len(session_filters)
-        session_filter = (
-            sql_expr.and_(*session_filters)
-            if nfilt > 1
-            else session_filters[0] if nfilt else None
-        )
         if session_filter is not None:
-            stmt = stmt.where(Recording.session.has(session_filter))
+            session_filters.append(session_filter)
+        if len(session_filters):
+            stmt = stmt.where(Recording.session.has(sql_expr.and_(*session_filters)))
 
         return stmt
 
-    def get_recording_count(self, session_id: int | None = None) -> int:
+    def get_recording_count(
+        self,
+        session_id: int | Sequence[int] | None = None,
+        session_filter: sql_expr.ColumnElement | None = None,
+        recording_filter: sql_expr.ColumnElement | None = None,
+    ) -> int:
         """Return the number of recordings
 
-        :param session_id: specify recording session id, defaults to None to get
-                           the number across all recording sessions
+        :param session_id: only of the specified session_id, defaults to None
+        :param session_filter: additional filter on RecordingSession columns, defaults to None
+        :param recording_filter: additional filter on Recording columns, defaults to None
         """
 
         stmt = self._recording_select(
             sql_expr.func.count(Recording.id),
-            exclude_related_filters=session_id is not None,
+            session_id=session_id,
+            session_filter=session_filter,
+            recording_filter=recording_filter,
         )
-
-        if session_id is not None:
-            stmt = stmt.where(Recording.session.has(RecordingSession.id == session_id))
 
         with Session(self._db) as session:
             return session.scalar(stmt) or 0
 
-    def get_recording_ids(self, session_id: int | None = None) -> Sequence[int]:
+    def get_recording_ids(
+        self,
+        session_id: int | Sequence[int] | None = None,
+        session_filter: sql_expr.ColumnElement | None = None,
+        recording_filter: sql_expr.ColumnElement | None = None,
+    ) -> Sequence[int]:
         """Return an id list of all the unique recordings
-        :param session_id: specify recording session id, defaults to None to get
-                           the number across all recording sessions
+
+        :param session_id: only of the specified session_id, defaults to None
+        :param session_filter: additional filter on RecordingSession columns, defaults to None
+        :param recording_filter: additional filter on Recording columns, defaults to None
         """
 
-        stmt = self._recording_select(Recording.id).order_by(Recording.id)
-        if session_id is not None:
-            stmt = stmt.where(Recording.session.has(RecordingSession.id == session_id))
+        stmt = self._recording_select(
+            Recording.id,
+            session_id=session_id,
+            session_filter=session_filter,
+            recording_filter=recording_filter,
+        ).order_by(Recording.id)
 
         with Session(self._db) as recording:
             return recording.scalars(stmt).fetchall()
 
-    def get_recording_id(self, n: int, session_id: int | None = None) -> int | None:
-        """Return the recording id associated with the n-th recording
-
-        :param n: position of the recording in the list
-        :param session_id: specify recording session id, defaults to None to get
-                           the number across all recording sessions
-        """
-
-        stmt = (
-            self._recording_select(Recording.id)
-            .order_by(Recording.id)
-            .offset(n)
-            .limit(1)
-        )
-        if session_id is not None:
-            stmt = stmt.where(Recording.session.has(RecordingSession.id == session_id))
-
-        with Session(self._db) as session:
-            rid = session.scalar(stmt)
-
-        return rid
-
-    def get_recording_index(
-        self, recording_id: int, session_id: int | None = None
-    ) -> int | None:
-        """_summary_
-
-        :param recording_id: _description_
-        :param session_id: specify recording session id, defaults to None to get
-                           the number across all recording sessions
-        :return: _description_
-        """
-
-        stmt = self._recording_select(Recording.id).all().index(recording_id)
-        if session_id is not None:
-            stmt = stmt.where(Recording.session.has(RecordingSession.id == session_id))
-
-        with Session(self._db) as session:
-            try:
-                return session.scalars(stmt)
-            except ValueError:
-                return None
-
     def get_recording(
         self, recording_id: int, full_file_paths: bool = False
     ) -> Recording | None:
+        """Return a row of recordings table as a Recording object
+
+        :param recording_id: id of the recording row to retrieve
+        :param full_file_paths: _description_, defaults to False
+        """
         if self._try_download:
             self.download_data()
 
@@ -1215,15 +1104,31 @@ class SbVoiceDb:
             self._datafile_to_full_path(rec)
         return rec
 
-    def iter_recordings(self, full_file_paths: bool = True) -> Iterator[Recording]:
+    def iter_recordings(
+        self,
+        session_id: int | Sequence[int] | None = None,
+        full_file_paths: bool = True,
+        session_filter: sql_expr.ColumnElement | None = None,
+        recording_filter: sql_expr.ColumnElement | None = None,
+    ) -> Iterator[Recording]:
         """iterate over recordings
 
+        :param session_id: only of the specified session_id, defaults to None
         :param full_file_paths: True to expand the NSP and EGG file paths to full path, defaults to False
+        :param session_filter: additional filter on RecordingSession columns, defaults to None
+        :param recording_filter: additional filter on Recording columns, defaults to None
         :yield: ``Recording`` object
         """
 
         with Session(self._db) as session:
-            for rec in session.scalars(self._recording_select(Recording)):
+            for rec in session.scalars(
+                self._recording_select(
+                    Recording,
+                    session_id=session_id,
+                    session_filter=session_filter,
+                    recording_filter=recording_filter,
+                )
+            ):
                 if full_file_paths:
                     self._datafile_to_full_path(rec)
                 yield rec
@@ -1243,6 +1148,9 @@ class SbVoiceDb:
 
     def download_data(self):
         """download minimal dataset required for current filter configurations"""
+
+        # download is tried only once
+        self._try_download = False
 
         session_counts = self._get_download_list()
 
@@ -1265,9 +1173,6 @@ class SbVoiceDb:
 
             # insert the new recordings to the database
             self._populate_recordings(patho_list)
-
-        # downloading no longer needed
-        self._try_download = False
 
     def query(
         self,
@@ -1534,12 +1439,27 @@ class SbVoiceDb:
         """returns dataset names (keys) and the number of recording sessions in each"""
 
         # get all pathologies (and healthy) and their sessions
-        session_counts = {
-            patho.name: self.get_session_count(pathologies=patho.id)
-            for patho in self.iter_pathologies(downloaded=False)
-        }
-        if self.includes_healthy and not self.has_healthy_dataset():
-            session_counts["healthy"] = len(list(self.iter_sessions(pathologies=0)))
+        need_healthy = self.includes_healthy and not self.has_healthy_dataset()
+        session_counts = {}
+        stmt = select(Pathology).where(Pathology.downloaded == sql_expr.false())
+        if self._pathology_filter is not None:
+            stmt = stmt.where(self._pathology_filter)
+
+        with Session(self._db) as session:
+
+            for patho in session.scalars(stmt):
+                session_counts[patho.name] = session.scalar(
+                    select(sql_expr.func.count(RecordingSession.id)).where(
+                        RecordingSession.pathologies.any(Pathology.id == patho.id)
+                    )
+                )
+
+            if need_healthy:
+                session_counts["healthy"] = session.scalar(
+                    select(sql_expr.func.count(RecordingSession.id)).where(
+                        RecordingSession.type == "n"
+                    )
+                )
 
         return session_counts
 
@@ -1548,3 +1468,28 @@ class SbVoiceDb:
         datadir = path.join(self._datadir, str(rec.session_id))
         rec.nspfile = path.join(datadir, rec.nspfile)
         rec.eggfile = path.join(datadir, rec.eggfile)
+
+    def _build_session_filters(
+        self,
+        exclude_speaker: bool = False,
+        exclude_pathology: bool = False,
+        exclude_record: bool = False,
+    ):
+        session_filters = []
+        if self._session_filter is not None:
+            session_filters.append(self._session_filter)
+        if not exclude_speaker and self._speaker_filter is not None:
+            session_filters.append(RecordingSession.speaker.has(self._speaker_filter))
+        if not exclude_pathology and self._pathology_filter is not None:
+            f = RecordingSession.pathologies.any(self._pathology_filter)
+            if self._include_normal:
+                f = sql_expr.or_(f, RecordingSession.type == "n")
+            session_filters.append(f)
+        if not exclude_record and self._recording_filter is not None:
+            if self._try_download:
+                self.download_data()
+            session_filters.append(
+                RecordingSession.recordings.any(self._recording_filter)
+            )
+
+        return session_filters
