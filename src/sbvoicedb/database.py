@@ -477,6 +477,8 @@ class SbVoiceDb:
 
     """
 
+    _healthy_label: str = "[Healthy]"
+
     _datadir: str
     _dbdir: str | None
     _db: Engine
@@ -668,46 +670,83 @@ class SbVoiceDb:
 
         return stmt
 
-    def get_pathology_count(self) -> int:
-        """Returns the number of unique pathologies"""
+    def get_pathology_count(self, *, include_healthy: bool = False) -> int:
+        """Returns the number of unique pathologies
+
+        :param include_healthy: True to add vocally healthy subset to the count
+                                if included, defaults to False
+        """
         with Session(self._db) as session:
-            return (
+            n = (
                 session.scalar(
                     self._pathology_select(sql_expr.func.count(Pathology.id))
                 )
                 or 0
             )
+        if include_healthy and self.includes_healthy:
+            n += 1
+        return n
 
-    def iter_pathologies(self, downloaded: bool | None = None) -> Iterator[Pathology]:
+    def iter_pathologies(
+        self, *, include_healthy: bool = False, downloaded: bool | None = None
+    ) -> Iterator[Pathology]:
         """Iterates over Pathology objects of unique pathologies
 
+        :param include_healthy: True to include vocally healthy, defaults to False
         :param downloaded: (Special iterator mode). True to iterate only already
                            downloaded pathologies, or False to iterate those
                            without their local datasets, defaults to None.
+
         """
 
         with Session(self._db) as session:
+
+            if include_healthy and self.includes_healthy:
+                yield Pathology(0, self._healthy_label, self.has_healthy_dataset())
+
             for patho in session.scalars(
                 self._pathology_select(Pathology, downloaded=downloaded)
             ):
                 yield patho
 
-    def get_pathology_ids(self) -> Sequence[int]:
-        """Return the list of the ids of all the unique pathologies"""
+    def get_pathology_ids(self, *, include_healthy: bool = False) -> Sequence[int]:
+        """Return the list of the ids of all the unique pathologies
+
+        :param include_healthy: True to add 0 to the output list to represent
+                                vocally healthy subset if included, defaults to False
+        """
         with Session(self._db) as session:
-            return session.scalars(
+            patho_ids = session.scalars(
                 self._pathology_select(Pathology.id).order_by(Pathology.name)
             ).fetchall()
 
-    def get_pathology_names(self) -> Sequence[str]:
-        """Return the list of the names of all the unique pathologies"""
+        if include_healthy and self.includes_healthy:
+            patho_ids = tuple((0, *patho_ids))
+
+        return patho_ids
+
+    def get_pathology_names(self, include_healthy: bool = False) -> Sequence[str]:
+        """Return the list of the names of all the unique pathologies
+
+        :param include_healthy: True to add vocally healthy subset's label
+                                (`'[Healthy]'` by default) to the names if
+                                included, defaults to False
+        """
+
         with Session(self._db) as session:
-            return session.scalars(
+            names = session.scalars(
                 self._pathology_select(Pathology.name).order_by(Pathology.name)
             ).fetchall()
 
+        if include_healthy and self.includes_healthy:
+            return tuple((self._healthy_label, *names))
+
     def get_pathology_name(self, pathology_id: int) -> str | None:
         """Return the name of the specified pathology id"""
+
+        if pathology_id == 0:
+            return self._healthy_label
+
         with Session(self._db) as session:
             return session.scalar(
                 select(Pathology.name).where(Pathology.id == pathology_id)
@@ -715,6 +754,9 @@ class SbVoiceDb:
 
     def get_pathology_id(self, name: PathologyLiteral) -> int | None:
         """Return the id of the specified pathology name"""
+
+        if name == self._healthy_label:
+            return 0
         with Session(self._db) as session:
             return session.scalar(select(Pathology.id).where(Pathology.name == name))
 
@@ -774,12 +816,7 @@ class SbVoiceDb:
         *args,
         speaker_id: int | None = None,
         pathologies: (
-            PathologyLiteral
-            | Literal["healthy"]
-            | int
-            | Sequence[PathologyLiteral | Literal["healthy"]]
-            | Sequence[int]
-            | None
+            PathologyLiteral | int | Sequence[PathologyLiteral] | Sequence[int] | None
         ) = None,
         speaker_filter: sql_expr.ColumnElement | None = None,
         session_filter: sql_expr.ColumnElement | None = None,
@@ -824,7 +861,7 @@ class SbVoiceDb:
                 healthy_index = patho_list.index(0)
             except ValueError:
                 try:
-                    healthy_index = patho_list.index("healthy")
+                    healthy_index = patho_list.index(self._healthy_label)
                 except ValueError:
                     healthy_index = None
 
@@ -883,12 +920,7 @@ class SbVoiceDb:
         self,
         speaker_id: int | None = None,
         pathologies: (
-            PathologyLiteral
-            | Literal["healthy"]
-            | int
-            | Sequence[PathologyLiteral | Literal["healthy"]]
-            | Sequence[int]
-            | None
+            PathologyLiteral | int | Sequence[PathologyLiteral] | Sequence[int] | None
         ) = None,
         speaker_filter: sql_expr.ColumnElement | None = None,
         session_filter: sql_expr.ColumnElement | None = None,
@@ -899,7 +931,7 @@ class SbVoiceDb:
         :param speaker_id: only of the specified speaker_id, defaults to None
         :param pathologies: only sessions wtih the specified pathologies
                             either by their id or name. The healthy speaker_ids can be
-                            selected either by using the ``id=0`` or ``name='healthy'``,
+                            selected either by using the ``id=0`` or ``name='[Healthy]'``,
                             defaults to None
         :param speaker_filter: additional filter on Speaker columns, defaults to None
         :param session_filter: additional filter on RecordingSession columns, defaults to None
@@ -921,12 +953,7 @@ class SbVoiceDb:
         self,
         speaker_id: int | None = None,
         pathologies: (
-            PathologyLiteral
-            | Literal["healthy"]
-            | int
-            | Sequence[PathologyLiteral | Literal["healthy"]]
-            | Sequence[int]
-            | None
+            PathologyLiteral | int | Sequence[PathologyLiteral] | Sequence[int] | None
         ) = None,
         speaker_filter: sql_expr.ColumnElement | None = None,
         session_filter: sql_expr.ColumnElement | None = None,
@@ -937,7 +964,7 @@ class SbVoiceDb:
         :param speaker_id: only of the specified speaker_id, defaults to None
         :param pathologies: only sessions wtih the specified pathologies
                             either by their id or name. The healthy speaker_ids can be
-                            selected either by using the ``id=0`` or ``name='healthy'``,
+                            selected either by using the ``id=0`` or ``name='[Healthy]'``,
                             defaults to None
         :param speaker_filter: additional filter on Speaker columns, defaults to None
         :param session_filter: additional filter on RecordingSession columns, defaults to None
