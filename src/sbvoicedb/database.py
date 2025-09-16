@@ -636,7 +636,7 @@ class SbVoiceDb:
     @property
     def includes_healthy(self) -> bool | None:
         """user-defined where clause for speakers table if set"""
-        return self._pathology_filter is not None and self._include_normal is not False
+        return self._pathology_filter is None or self._include_normal is not False
 
     ############################
     ### PATHOLOGY ACCESS METHODS
