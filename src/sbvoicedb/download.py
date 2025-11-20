@@ -1,4 +1,4 @@
-from typing import TypedDict
+from typing_extensions import TypedDict
 from os import path
 import unicodedata
 import zipfile
