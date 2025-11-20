@@ -53,6 +53,8 @@ import sqlalchemy.sql.expression as sql_expr
 from nspfile import read as nspread, NSPHeaderDict
 import tqdm
 
+from platformdirs import user_data_dir
+
 from .download import download_data, download_database
 from .utils import fix_incomplete_nsp, swap_nsp_egg
 
@@ -492,7 +494,7 @@ class SbVoiceDb:
 
     def __init__(
         self,
-        dbdir: str,
+        dbdir: str | None = None,
         speaker_filter: sql_expr.ColumnElement | None = None,
         session_filter: sql_expr.ColumnElement | None = None,
         recording_filter: sql_expr.ColumnElement | None = None,
@@ -508,7 +510,7 @@ class SbVoiceDb:
             self._dbdir = None
             self._datadir = mkdtemp()
         else:
-            self._dbdir = dbdir
+            self._dbdir = user_data_dir("sbvoicedb") if dbdir is None else dbdir
             self._datadir = path.join(self._dbdir, "data")
 
         if speaker_filter is not None:
