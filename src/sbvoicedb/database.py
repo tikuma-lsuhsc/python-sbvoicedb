@@ -9,6 +9,7 @@ from os import path, makedirs
 import re
 import unicodedata
 from shutil import rmtree
+from contextlib import contextmanager
 
 from tempfile import mkdtemp
 
@@ -20,6 +21,7 @@ from typing_extensions import (
     Iterator,
     Any,
     LiteralString,
+    Generator,
 )
 import numpy as np
 
@@ -47,6 +49,7 @@ from sqlalchemy import (
     Select,
     Result,
     text,
+    CursorResult,
 )
 
 import sqlalchemy.sql.expression as sql_expr
@@ -576,6 +579,33 @@ class SbVoiceDb:
         This is the base directory of nspfile and eggfile columns of
         the recordings SQLite table"""
         return self._datadir
+
+    @contextmanager
+    def execute_sql(
+        self,
+        statement: str,
+        parameters: dict[str, Any] | list[dict[str, Any]] | None = None,
+        *,
+        commit: bool = False,
+    ) -> Generator[CursorResult[Any], None, None]:
+        """execute an sql statement
+
+        :param statement: SQL statement
+        :param parameters: parameters which will be bound into the statement,
+                           defaults to None. This may be either a dictionary of
+                           parameter names to values, or a mutable sequence
+                           (e.g. a list) of dictionaries. When a list of
+                           dictionaries is passed, the underlying statement
+                           execution will make use of the DBAPI cursor.
+                           executemany() method. When a single dictionary is
+                           passed,  the DBAPI cursor.execute() method will be
+                           used.
+        :yield: a Result object
+        """
+        with self._db.connect() as connection:
+            yield connection.execute(text(statement), parameters)
+            if commit:
+                connection.commit()
 
     @property
     def lazy_download(self) -> bool:
