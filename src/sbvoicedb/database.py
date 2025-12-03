@@ -29,6 +29,7 @@ from sqlalchemy.orm import (
     relationship,
     declarative_base,
     Session,
+    joinedload,
 )
 
 from sqlalchemy import (
@@ -798,10 +799,32 @@ class SbVoiceDb:
                 self._speaker_select(Speaker.id).order_by(Speaker.id)
             ).fetchall()
 
-    def get_speaker(self, speaker_id: int) -> Speaker | None:
-        """get the full speaker info of the specified speaker"""
+    def get_speaker(
+        self,
+        speaker_id: int,
+        query_sessions: bool = False,
+        query_recordings: bool = False,
+    ) -> Speaker | None:
+        """get the full speaker info of the specified speaker
+
+        :param speaker_id: id of the speaker
+        :param query_sessions: True to populate `Speaker.sessions` attribute,
+                              defaults to False
+        :param query_recordings: True to populate `Speaker.sessions.recordings`
+                                 attribute, defaults to False
+        :return: queried output or None if `speaker_id` is not valid.
+        """        
+
+        stmt = select(Speaker).where(Speaker.id == speaker_id)
+
+        if query_sessions or query_recordings:
+            opts = joinedload(Speaker.sessions)
+            if query_recordings:
+                opts = opts.subqueryload(RecordingSession.recordings)
+            stmt = stmt.options(opts)
+
         with Session(self._db) as session:
-            return session.scalar(select(Speaker).where(Speaker.id == speaker_id))
+            return session.scalar(stmt)
 
     def iter_speakers(self) -> Iterator[Speaker]:
         """iterate over all the speakers"""
@@ -1024,12 +1047,35 @@ class SbVoiceDb:
             for sess in session.scalars(stmt):
                 yield sess
 
-    def get_session(self, session_id: int) -> RecordingSession | None:
-        """Retrun the RecordingSession object by its id"""
+    def get_session(
+        self,
+        session_id: int,
+        query_speaker: bool = False,
+        query_pathologies: bool = False,
+        query_recordings: bool = False,
+    ) -> RecordingSession | None:
+        """Return a row of the `recording_sessions` table
+
+        :param session_id: _description_
+        :param query_speaker: True to populate `RecordingSession.speaker` attribute,
+                              defaults to False
+        :param query_pathologies: True to populate `RecordingSession.pathologies`
+                                  attribute, defaults to False
+        :param query_recordings: True to populate `RecordingSession.recordings`
+                                 attribute, defaults to False
+        :return: queried output or None if `session_id` is not valid.
+        """
+
+        stmt = select(RecordingSession).where(RecordingSession.id == session_id)
+        if query_recordings:
+            stmt = stmt.options(joinedload(RecordingSession.recordings))
+        if query_pathologies:
+            stmt = stmt.options(joinedload(RecordingSession.pathologies))
+        if query_speaker:
+            stmt = stmt.options(joinedload(RecordingSession.speaker))
+
         with Session(self._db) as session:
-            return session.scalar(
-                select(RecordingSession).where(RecordingSession.id == session_id)
-            )
+            return session.scalar(stmt)
 
     ############################
     ### RECORDING ACCESS METHODS
@@ -1116,18 +1162,37 @@ class SbVoiceDb:
             return recording.scalars(stmt).fetchall()
 
     def get_recording(
-        self, recording_id: int, full_file_paths: bool = False
+        self,
+        recording_id: int,
+        full_file_paths: bool = False,
+        query_session: bool = False,
+        query_speaker: bool = False,
     ) -> Recording | None:
         """Return a row of recordings table as a Recording object
 
         :param recording_id: id of the recording row to retrieve
-        :param full_file_paths: _description_, defaults to False
+        :param full_file_paths: True for the returned `Recording.nspfile` and
+                                `Recording.eggfile` to contain the full paths,
+                                defaults to False
+        :param query_session: True to populate `Recording.session` attribute,
+                              defaults to False
+        :param query_speaker: True to populate `Recording.sesssion.speaker` attribute,
+                              defaults to False
+        :return: queried output or None if `recording_id` is not valid.
         """
         if self._try_download:
             self.download_data()
 
+        stmt = select(Recording).where(Recording.id == recording_id)
+
+        if query_session or query_speaker:
+            opts = joinedload(Recording.session)
+            if query_speaker:
+                opts = opts.subqueryload(RecordingSession.speaker)
+            stmt = stmt.options(opts)
+
         with Session(self._db) as session:
-            rec = session.scalar(select(Recording).where(Recording.id == recording_id))
+            rec = session.scalar(stmt)
 
         if rec is not None and full_file_paths:
             self._datafile_to_full_path(rec)
