@@ -528,7 +528,6 @@ class SbVoiceDb:
         echo: bool = False,
         **create_engine_kws,
     ):
-
         if dbdir == ":memory:":  # in-memory database
             self._dbdir = None
             self._datadir = mkdtemp()
@@ -899,7 +898,7 @@ class SbVoiceDb:
         :param query_recordings: True to populate `Speaker.sessions.recordings`
                                  attribute, defaults to False
         :return: queried output or None if `speaker_id` is not valid.
-        """        
+        """
 
         stmt = select(Speaker).where(Speaker.id == speaker_id)
 
@@ -1262,7 +1261,7 @@ class SbVoiceDb:
                                 defaults to False
         :param query_session: True to populate `Recording.session` attribute,
                               defaults to False
-        :param query_speaker: True to populate `Recording.sesssion.speaker` attribute,
+        :param query_speaker: True to populate `Recording.session.speaker` attribute,
                               defaults to False
         :return: queried output or None if `recording_id` is not valid.
         """
