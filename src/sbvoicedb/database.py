@@ -50,6 +50,7 @@ from sqlalchemy import (
     Result,
     text,
     CursorResult,
+    Row,
 )
 
 import sqlalchemy.sql.expression as sql_expr
@@ -407,6 +408,24 @@ class Recording(Base):
             return None
 
 
+PathologySummaryColumn = Literal["id", "name", "nb_speakers", "nb_sessions"]
+
+RecordingSessionSummaryColumn = Literal[
+    "speaker_id", "gender", "age", "session_id", "type", "nb_recordings"
+]
+
+RecordingSummaryColumn = Literal[
+    "id",
+    "speaker_id",
+    "session_id",
+    "gender",
+    "age",
+    "type",
+    "utterance",
+    "duration",
+]
+
+
 class SbVoiceDb:
     """Saarbrucken Voice Database Downloader and Reader
 
@@ -555,6 +574,11 @@ class SbVoiceDb:
             # if any portion of dataset already exists, populate the DB with its recording info
             if len(existing_pathos):
                 self._populate_recordings(pathology=existing_pathos)
+
+            # create views
+            self._create_pathology_summary()
+            self._create_recording_session_summary()
+            self._create_recording_summary()
 
         if download_mode == "immediate":
             # download full dataset if download_mode is 'immediate'
@@ -1290,6 +1314,329 @@ class SbVoiceDb:
                 yield rec
 
     ###################
+    ### SUMMARY VIEW
+
+    def pathology_summary(
+        self,
+        columns: (
+            PathologySummaryColumn | Literal["*"] | Sequence[PathologySummaryColumn]
+        ) | dict[PathologySummaryColumn, str] = "*",
+        *,
+        minimum_speakers: int | None = None,
+        maximum_speakers: int | None = None,
+        minimum_sessions: int | None = None,
+        maximum_sessions: int | None = None,
+        order_by: (
+            PathologySummaryColumn
+            | list[
+                PathologySummaryColumn
+                | tuple[PathologySummaryColumn, Literal["asc", "desc"]]
+            ]
+            | None
+        ) = None,
+        limit: int | None = None,
+        offset: int | None = None,
+    ) -> Sequence[Row[Any]]:
+        """summary table of recording sessions
+
+        :param columns: columns of `'recording_session_summary'` view to include,
+                        defaults to "*" to choose all columns
+        :param gender: specify gender ('m' or 'w'), defaults to None
+        :param minimum_speakers: specify the minimum number of speakers required, defaults to None
+        :param maximum_speakers: specify the maximum number of speakers required, defaults to None
+        :param minimum_sessions: specify the minimum number of sessions required, defaults to None
+        :param maximum_sessions: specify the maximum number of sessions required, defaults to None
+        :param order_by: specify the recording sorting order by columns, defaults to None.
+                         The specified columns are sorted in the ascending order by default.
+                         To sort in a descending order, use `(column, 'desc')` where `column`
+                         is the name of the column.
+        :param limit: specify the maximum number of recordings to retrieve, defaults to None
+        :param offset: specify the first recording to retrieve if `limit` is specified,
+                       defaults to None (from the first recording)
+        :return: sequence of the fetched rows
+        """
+        if isinstance(columns, str):
+            columns = [columns]
+        elif isinstance(columns, dict):
+            columns = [f"{c} AS {alias}" for c, alias in columns.items()]
+
+        columns_list = ",".join(columns)
+
+        stmt = f"SELECT {columns_list} FROM pathology_summary"
+
+        where_list = []
+        if minimum_speakers is not None and maximum_speakers is not None:
+            where_list.append(
+                f"nb_speakers BETWEEN {minimum_speakers} AND {maximum_speakers}"
+            )
+        elif minimum_speakers is not None:
+            where_list.append(f"nb_speakers>={minimum_speakers}")
+        elif maximum_speakers is not None:
+            where_list.append(f"nb_speakers<={maximum_speakers}")
+        if minimum_sessions is not None and maximum_sessions is not None:
+            where_list.append(
+                f"nb_sessions BETWEEN {minimum_sessions} AND {maximum_sessions}"
+            )
+        elif minimum_sessions is not None:
+            where_list.append(f"nb_sessions>={minimum_sessions}")
+        elif maximum_sessions is not None:
+            where_list.append(f"nb_sessions<={maximum_sessions}")
+        if len(where_list) > 0:
+            stmt += f" WHERE " + " AND ".join(where_list)
+
+        if order_by is not None:
+            if isinstance(order_by, str):
+                order_by = [order_by]
+            order_by_list = ",".join(
+                o if isinstance(o, str) else f"{o[0]} {o[1].upper()}" for o in order_by
+            )
+            if len(order_by_list):
+                stmt += " ORDER BY " + order_by_list
+
+        if limit is not None:
+            stmt += f" LIMIT {limit}"
+            if offset is not None:
+                stmt += f" OFFSET {offset}"
+
+        logger.info("SbVoiceDb.recording_session_summary.SQL:\n%s  ", stmt)
+
+        with self.execute_sql(stmt) as results:
+            return results.fetchall()
+
+    def recording_session_summary(
+        self,
+        columns: (
+            RecordingSessionSummaryColumn
+            | Literal["*"]
+            | Sequence[RecordingSessionSummaryColumn]
+        ) | dict[RecordingSessionSummaryColumn, str] = "*",
+        *,
+        gender: Literal["w", "m"] | None = None,
+        minimum_age: int | None = None,
+        maximum_age: int | None = None,
+        pathologies: str | Sequence[str] | None = None,
+        include_normal: bool = True,
+        order_by: (
+            RecordingSessionSummaryColumn
+            | list[
+                RecordingSessionSummaryColumn
+                | tuple[RecordingSessionSummaryColumn, Literal["asc", "desc"]]
+            ]
+            | None
+        ) = None,
+        limit: int | None = None,
+        offset: int | None = None,
+    ) -> Sequence[Row[Any]]:
+        """summary table of recording sessions
+
+        :param columns: columns of `'recording_session_summary'` view to include,
+                        defaults to "*" to choose all columns
+        :param gender: specify gender ('m' or 'w'), defaults to None
+        :param minimum_age: specify the speaker's minimum age, defaults to None
+        :param maximum_age: specify the speaker's maximum age, defaults to None
+        :param pathologies: specify specific pathologies to include, defaults to None
+                            (all pathologies)
+        :param include_normal: True to include normal (pathology-free) speakers,
+                               False to exclude them, defaults to True
+        :param order_by: specify the recording sorting order by columns, defaults to None.
+                         The specified columns are sorted in the ascending order by default.
+                         To sort in a descending order, use `(column, 'desc')` where `column`
+                         is the name of the column.
+        :param limit: specify the maximum number of recordings to retrieve, defaults to None
+        :param offset: specify the first recording to retrieve if `limit` is specified,
+                       defaults to None (from the first recording)
+        :return: sequence of the fetched rows
+        """
+        if isinstance(columns, str):
+            columns = [columns]
+        elif isinstance(columns, dict):
+            columns = [f"{c} AS {alias}" for c, alias in columns.items()]
+
+        columns_list = ",".join(columns)
+
+        stmt = f"SELECT {columns_list} FROM recording_summary"
+
+        where_list = []
+        if gender is not None:
+            where_list.append(f"gender='{gender}'")
+        if minimum_age is not None and maximum_age is not None:
+            where_list.append(f"age BETWEEN {minimum_age} AND {maximum_age}")
+        elif minimum_age is not None:
+            where_list.append(f"age>={minimum_age}")
+        elif maximum_age is not None:
+            where_list.append(f"age<={maximum_age}")
+        if isinstance(pathologies, str):
+            pathologies = [pathologies]
+        if pathologies is not None:
+            npatho = len(pathologies)
+            if npatho == 0 and include_normal:
+                where_list.append(f"type='n'")
+            elif npatho > 0:
+                patho_list = ",".join(f"'{p}'" for p in pathologies)
+                patho_where = (
+                    f"B.name={patho_list}"
+                    if npatho == 1
+                    else f"B.name IN ({patho_list})"
+                )
+                patho_select = f"SELECT A.session_id FROM recording_session_pathologies AS A INNER JOIN pathologies AS B ON A.pathology_id=B.id WHERE {patho_where}"
+                if include_normal:
+                    where_list.append(f"(session_id in ({patho_select}) OR type='n')")
+                else:
+                    where_list.append(f"session_id in ({patho_select})")
+        elif not include_normal:
+            # only pathological recordings
+            where_list.append(f"type='p'")
+
+        if len(where_list) > 0:
+            stmt += f" WHERE " + " AND ".join(where_list)
+
+        if order_by is not None:
+            if isinstance(order_by, str):
+                order_by = [order_by]
+            order_by_list = ",".join(
+                o if isinstance(o, str) else f"{o[0]} {o[1].upper()}" for o in order_by
+            )
+            if len(order_by_list):
+                stmt += " ORDER BY " + order_by_list
+
+        if limit is not None:
+            stmt += f" LIMIT {limit}"
+            if offset is not None:
+                stmt += f" OFFSET {offset}"
+
+        logger.info("SbVoiceDb.recording_session_summary.SQL:\n%s  ", stmt)
+
+        with self.execute_sql(stmt) as results:
+            return results.fetchall()
+
+    def recording_summary(
+        self,
+        columns: (
+            RecordingSummaryColumn | Literal["*"] | Sequence[RecordingSummaryColumn]
+        ) | dict[RecordingSummaryColumn, str] = "*",
+        *,
+        gender: Literal["w", "m"] | None = None,
+        minimum_age: int | None = None,
+        maximum_age: int | None = None,
+        pathologies: str | Sequence[str] | None = None,
+        include_normal: bool = True,
+        utterances: UtteranceLiteral | Sequence[UtteranceLiteral] | None = None,
+        minimum_duration: float | None = None,
+        maximum_duration: float | None = None,
+        order_by: (
+            RecordingSummaryColumn
+            | list[
+                RecordingSummaryColumn
+                | tuple[RecordingSummaryColumn, Literal["asc", "desc"]]
+            ]
+            | None
+        ) = None,
+        limit: int | None = None,
+        offset: int | None = None,
+    ) -> Sequence[Row[Any]]:
+        """summary table of recordings
+
+        :param columns: columns of `'recording_summary'` view to include,
+                        defaults to "*" to choose all columns
+        :param gender: specify gender ('m' or 'w'), defaults to None
+        :param minimum_age: specify the speaker's minimum age, defaults to None
+        :param maximum_age: specify the speaker's maximum age, defaults to None
+        :param pathologies: specify specific pathologies to include, defaults to None
+                            (all pathologies)
+        :param include_normal: True to include normal (pathology-free) speakers,
+                               False to exclude them, defaults to True
+        :param utterances: specify utterances to include, defaults to None
+        :param minimum_duration: specify the recordings' minimum duration in seconds, defaults to None
+        :param maximum_duration: specify the recordings' maximum duration in seconds, defaults to None
+        :param order_by: specify the recording sorting order by columns, defaults to None.
+                         The specified columns are sorted in the ascending order by default.
+                         To sort in a descending order, use `(column, 'desc')` where `column`
+                         is the name of the column.
+        :param limit: specify the maximum number of recordings to retrieve, defaults to None
+        :param offset: specify the first recording to retrieve if `limit` is specified,
+                       defaults to None (from the first recording)
+        :return: sequence of the fetched rows
+        """
+        if isinstance(columns, str):
+            columns = [columns]
+        elif isinstance(columns, dict):
+            columns = [f"{c} AS {alias}" for c, alias in columns.items()]
+
+        columns_list = ",".join(columns)
+
+        stmt = f"SELECT {columns_list} FROM recording_summary"
+
+        where_list = []
+        if gender is not None:
+            where_list.append(f"gender='{gender}'")
+        if minimum_age is not None and maximum_age is not None:
+            where_list.append(f"age BETWEEN {minimum_age} AND {maximum_age}")
+        elif minimum_age is not None:
+            where_list.append(f"age>={minimum_age}")
+        elif maximum_age is not None:
+            where_list.append(f"age<={maximum_age}")
+        if isinstance(pathologies, str):
+            pathologies = [pathologies]
+        if pathologies is not None:
+            npatho = len(pathologies)
+            if npatho == 0 and include_normal:
+                where_list.append(f"type='n'")
+            elif npatho > 0:
+                patho_list = ",".join(f"'{p}'" for p in pathologies)
+                patho_where = (
+                    f"B.name={patho_list}"
+                    if npatho == 1
+                    else f"B.name IN ({patho_list})"
+                )
+                patho_select = f"SELECT A.session_id FROM recording_session_pathologies AS A INNER JOIN pathologies AS B ON A.pathology_id=B.id WHERE {patho_where}"
+                if include_normal:
+                    where_list.append(f"(session_id in ({patho_select}) OR type='n')")
+                else:
+                    where_list.append(f"session_id in ({patho_select})")
+        elif not include_normal:
+            # only pathological recordings
+            where_list.append(f"type='p'")
+        if utterances is not None and len(utterances) > 0:
+            if isinstance(utterances, str):
+                utterances = [utterances]
+            utter_list = ",".join(f"'{u}'" for u in utterances)
+            where_list.append(
+                f"utterance={utter_list}"
+                if len(utter_list) == 1
+                else f"utterance IN ({utter_list})"
+            )
+        if minimum_duration is not None and maximum_duration is not None:
+            where_list.append(
+                f"duration BETWEEN {minimum_duration} AND {maximum_duration}"
+            )
+        elif minimum_duration is not None:
+            where_list.append(f"duration>={minimum_duration}")
+        elif maximum_duration is not None:
+            where_list.append(f"duration<={maximum_duration}")
+
+        if len(where_list) > 0:
+            stmt += f" WHERE " + " AND ".join(where_list)
+
+        if order_by is not None:
+            if isinstance(order_by, str):
+                order_by = [order_by]
+            order_by_list = ",".join(
+                o if isinstance(o, str) else f"{o[0]} {o[1].upper()}" for o in order_by
+            )
+            if len(order_by_list):
+                stmt += " ORDER BY " + order_by_list
+
+        if limit is not None:
+            stmt += f" LIMIT {limit}"
+            if offset is not None:
+                stmt += f" OFFSET {offset}"
+
+        logger.info("SbVoiceDb.recording_summary.SQL:\n%s  ", stmt)
+
+        with self.execute_sql(stmt) as results:
+            return results.fetchall()
+
+    ###################
     ### GENERAL METHODS
 
     def has_healthy_dataset(self) -> bool:
@@ -1649,3 +1996,61 @@ class SbVoiceDb:
             )
 
         return session_filters
+
+    def _create_recording_summary(self):
+        """add `recording_summary` to the database"""
+        with self.execute_sql(
+            """CREATE VIEW IF NOT EXISTS recording_summary 
+                       (id, speaker_id, gender, age, session_id, type, utterance, duration) AS 
+                    SELECT 
+                      A.id,
+                      B.speaker_id, 
+                      C.gender,
+                      (strftime('%Y', B.date) - strftime('%Y', C.birthdate)) - (strftime('%m-%d', B.date) < strftime('%m-%d', C.birthdate)), 
+                      A.session_id, 
+                      B.type,
+                      A.utterance,
+                      CAST(A.length AS REAL) / A.rate
+                    FROM recordings AS A INNER JOIN recording_sessions AS B ON A.session_id=B.id INNER JOIN speakers AS C ON B.speaker_id=C.id
+                    ORDER BY speaker_id, session_id, utterance"""
+        ):
+            ...
+
+    def _create_recording_session_summary(self):
+        """add `recording_session_summary` to the database"""
+        with self.execute_sql(
+            """CREATE VIEW IF NOT EXISTS recording_session_summary 
+                       (speaker_id,gender,age,session_id,type,nb_recordings) AS 
+                    SELECT 
+                      A.speaker_id, 
+                      C.gender,
+                      (strftime('%Y', A.date) - strftime('%Y', C.birthdate)) - (strftime('%m-%d', A.date) < strftime('%m-%d', C.birthdate)), 
+                      A.id, 
+                      A.type,
+                      QTY.nb_recordings
+                    FROM recording_sessions AS A LEFT JOIN
+                         (SELECT COUNT(B.session_id) AS nb_recordings, B.session_id FROM recordings AS B GROUP BY B.session_id) AS QTY
+                         ON A.id = QTY.session_id
+                         INNER JOIN speakers AS C ON A.speaker_id=C.id
+                    ORDER BY speaker_id, session_id"""
+        ):
+            ...
+
+    def _create_pathology_summary(self):
+        """add `pathology_summary` to the database"""
+        with self.execute_sql(
+            """CREATE VIEW IF NOT EXISTS pathology_summary 
+                       (id,name,nb_speakers,nb_sessions) AS 
+                       SELECT
+                        A.id,
+                        A.name,
+                        QTY.nb_speakers,
+                        QTY.nb_sessions
+                        FROM pathologies AS A LEFT JOIN
+                                (SELECT B.pathology_id, COUNT(DISTINCT C.speaker_id) AS nb_speakers, COUNT(B.pathology_id) AS nb_sessions
+                                FROM recording_session_pathologies AS B INNER JOIN recording_sessions AS C ON B.session_id=C.id
+                                GROUP BY B.pathology_id) AS QTY
+                                ON A.id = QTY.pathology_id
+                        ORDER BY A.name"""
+        ):
+            ...
