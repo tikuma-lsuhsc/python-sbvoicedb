@@ -763,6 +763,38 @@ class SbVoiceDb:
         with Session(self._db) as session:
             return session.scalar(select(Pathology.id).where(Pathology.name == name))
 
+    def get_pathology(
+        self,
+        pathology_id: int,
+        query_sessions: bool = False,
+        query_speaker: bool = False,
+        query_recordings: bool = False,
+    ) -> Pathology | None:
+        """retrieve the specified pathology info from `pathlogies` table
+
+        :param pathology_id: id of the pathology
+        :param query_sessions: True to populate `Pathology.sessions` attribute,
+                              defaults to False
+        :param query_speaker: True to populate `Pathology.sessions.speaker`
+                              attribute, defaults to False
+        :param query_recordings: True to populate `Pathology.sessions.recordings`
+                                 attribute, defaults to False
+        :return: queried output or None if `pathology_id` is not valid.
+        """
+
+        stmt = select(Pathology).where(Pathology.id == pathology_id)
+
+        if query_sessions or query_speaker or query_recordings:
+            opts = joinedload(Pathology.sessions)
+            if query_recordings:
+                opts = opts.subqueryload(RecordingSession.recordings)
+            if query_speaker:
+                opts = opts.subqueryload(RecordingSession.speaker)
+            stmt = stmt.options(opts)
+
+        with Session(self._db) as session:
+            return session.scalar(stmt)
+
     ##########################
     ### SPEAKER ACCESS METHODS
 
