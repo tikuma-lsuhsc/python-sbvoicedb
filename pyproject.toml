@@ -25,6 +25,8 @@ dependencies = [
     'typing_extensions',
     'platformdirs',
 ]
+[project.optional-dependencies]
+qt = ["qtpy"]
 
 [project.urls]
 Repository = "https://github.com/tikuma-lsuhsc/python-sbvoicedb"
