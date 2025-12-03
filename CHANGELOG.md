@@ -5,6 +5,17 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [0.4.0] - 2025-12-02
+
+### Added
+
+- 3 summary views `pathology_summary`, `recording_session_summary`, and `recording_summary`
+- `SbVoiceDb` methods to fetch these views (the same name as the views)
+- `qt` (independent) submodule
+- `SbVoiceDb.get_pathology()`
+- Default database directory using `platformdirs`
+
+
 ## [0.3.0] - 2025-09-12
 
 - Changed on-the-fly filter arguments
