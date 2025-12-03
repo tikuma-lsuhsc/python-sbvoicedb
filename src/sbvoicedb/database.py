@@ -777,7 +777,7 @@ class SbVoiceDb:
             ).fetchall()
 
         if include_healthy and self.includes_healthy:
-            patho_ids = tuple((0, *patho_ids))
+            patho_ids = [0, *patho_ids]
 
         return patho_ids
 
@@ -795,7 +795,7 @@ class SbVoiceDb:
             ).fetchall()
 
         if include_healthy and self.includes_healthy:
-            names = tuple((self._healthy_label, *names))
+            names = [self._healthy_label, *names]
         
         return names
 
