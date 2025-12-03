@@ -795,7 +795,9 @@ class SbVoiceDb:
             ).fetchall()
 
         if include_healthy and self.includes_healthy:
-            return tuple((self._healthy_label, *names))
+            names = tuple((self._healthy_label, *names))
+        
+        return names
 
     def get_pathology_name(self, pathology_id: int) -> str | None:
         """Return the name of the specified pathology id"""
