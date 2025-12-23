@@ -339,7 +339,7 @@ class RecordingSummaryTableModel(SummaryTableModel):
         ttparts = {}
         for k, v in field_values.items():
             if k == "gender":
-                ttparts["gender"] = {"m": "male", "w": "female"}[v]
+                ttparts["gen"] = {"m": "male", "w": "female"}[v]
             elif k == "age":
                 ttparts["age"] = f"{v}-y/o"
             elif k == "type":
