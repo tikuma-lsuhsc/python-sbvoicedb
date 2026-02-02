@@ -2,63 +2,58 @@
 
 from __future__ import annotations
 
-import logging
-from datetime import datetime, date
 import glob
-from os import path, makedirs
+import logging
 import re
 import unicodedata
-from shutil import rmtree
 from contextlib import contextmanager
-
+from datetime import date, datetime
+from os import makedirs, path
+from shutil import rmtree
 from tempfile import mkdtemp
 
-from typing_extensions import (
-    Literal,
-    List,
-    Sequence,
-    cast,
-    Iterator,
-    Any,
-    LiteralString,
-    Generator,
-)
 import numpy as np
-
-from sqlalchemy.orm import (
-    Mapped,
-    mapped_column,
-    relationship,
-    declarative_base,
-    Session,
-    joinedload,
-)
-
+import sqlalchemy.sql.expression as sql_expr
+import tqdm
+from nspfile import NSPHeaderDict
+from nspfile import read as nspread
+from platformdirs import user_data_dir
 from sqlalchemy import (
+    Column,
+    CursorResult,
+    Date,
     Engine,
     ForeignKey,
-    Column,
+    Result,
+    Row,
+    Select,
     String,
-    Date,
-    create_engine,
-    select,
-    insert,
-    update,
     Table,
     UniqueConstraint,
-    Select,
-    Result,
+    create_engine,
+    insert,
+    select,
     text,
-    CursorResult,
-    Row,
+    update,
 )
-
-import sqlalchemy.sql.expression as sql_expr
-
-from nspfile import read as nspread, NSPHeaderDict
-import tqdm
-
-from platformdirs import user_data_dir
+from sqlalchemy.orm import (
+    Mapped,
+    Session,
+    declarative_base,
+    joinedload,
+    mapped_column,
+    relationship,
+)
+from typing_extensions import (
+    Any,
+    Generator,
+    Iterator,
+    List,
+    Literal,
+    LiteralString,
+    Sequence,
+    cast,
+)
 
 from .download import download_data, download_database
 from .utils import fix_incomplete_nsp, swap_nsp_egg
@@ -720,7 +715,9 @@ class SbVoiceDb:
             session_filter = (
                 sql_expr.and_(*session_filters)
                 if nsfilt > 1
-                else session_filters[0] if nsfilt else None
+                else session_filters[0]
+                if nsfilt
+                else None
             )
             stmt = stmt.where(Pathology.sessions.any(session_filter))
 
@@ -756,7 +753,6 @@ class SbVoiceDb:
         """
 
         with Session(self._db) as session:
-
             if include_healthy and self.includes_healthy:
                 yield Pathology(0, self._healthy_label, self.has_healthy_dataset())
 
@@ -796,7 +792,7 @@ class SbVoiceDb:
 
         if include_healthy and self.includes_healthy:
             names = [self._healthy_label, *names]
-        
+
         return names
 
     def get_pathology_name(self, pathology_id: int) -> str | None:
@@ -865,7 +861,9 @@ class SbVoiceDb:
             session_filter = (
                 sql_expr.and_(*session_filters)
                 if nsfilt > 1
-                else session_filters[0] if nsfilt else None
+                else session_filters[0]
+                if nsfilt
+                else None
             )
             stmt = stmt.where(Speaker.sessions.any(session_filter))
 
@@ -985,7 +983,6 @@ class SbVoiceDb:
 
             npatho = len(patho_list)
             if npatho:
-
                 patho_col = (
                     Pathology.id if isinstance(patho_list[0], int) else Pathology.name
                 )
@@ -1175,7 +1172,6 @@ class SbVoiceDb:
         recording_filter: sql_expr.ColumnElement | None = None,
         **kwargs,
     ) -> Select:
-
         if self._try_download:
             self.download_data()
 
@@ -1321,7 +1317,8 @@ class SbVoiceDb:
         self,
         columns: (
             PathologySummaryColumn | Literal["*"] | Sequence[PathologySummaryColumn]
-        ) | dict[PathologySummaryColumn, str] = "*",
+        )
+        | dict[PathologySummaryColumn, str] = "*",
         *,
         minimum_speakers: int | None = None,
         maximum_speakers: int | None = None,
@@ -1383,7 +1380,7 @@ class SbVoiceDb:
         elif maximum_sessions is not None:
             where_list.append(f"nb_sessions<={maximum_sessions}")
         if len(where_list) > 0:
-            stmt += f" WHERE " + " AND ".join(where_list)
+            stmt += " WHERE " + " AND ".join(where_list)
 
         if order_by is not None:
             if isinstance(order_by, str):
@@ -1410,7 +1407,8 @@ class SbVoiceDb:
             RecordingSessionSummaryColumn
             | Literal["*"]
             | Sequence[RecordingSessionSummaryColumn]
-        ) | dict[RecordingSessionSummaryColumn, str] = "*",
+        )
+        | dict[RecordingSessionSummaryColumn, str] = "*",
         *,
         gender: Literal["w", "m"] | None = None,
         minimum_age: int | None = None,
@@ -1471,7 +1469,7 @@ class SbVoiceDb:
         if pathologies is not None:
             npatho = len(pathologies)
             if npatho == 0 and include_normal:
-                where_list.append(f"type='n'")
+                where_list.append("type='n'")
             elif npatho > 0:
                 patho_list = ",".join(f"'{p}'" for p in pathologies)
                 patho_where = (
@@ -1486,10 +1484,10 @@ class SbVoiceDb:
                     where_list.append(f"session_id in ({patho_select})")
         elif not include_normal:
             # only pathological recordings
-            where_list.append(f"type='p'")
+            where_list.append("type='p'")
 
         if len(where_list) > 0:
-            stmt += f" WHERE " + " AND ".join(where_list)
+            stmt += " WHERE " + " AND ".join(where_list)
 
         if order_by is not None:
             if isinstance(order_by, str):
@@ -1514,7 +1512,8 @@ class SbVoiceDb:
         self,
         columns: (
             RecordingSummaryColumn | Literal["*"] | Sequence[RecordingSummaryColumn]
-        ) | dict[RecordingSummaryColumn, str] = "*",
+        )
+        | dict[RecordingSummaryColumn, str] = "*",
         *,
         gender: Literal["w", "m"] | None = None,
         minimum_age: int | None = None,
@@ -1581,7 +1580,7 @@ class SbVoiceDb:
         if pathologies is not None:
             npatho = len(pathologies)
             if npatho == 0 and include_normal:
-                where_list.append(f"type='n'")
+                where_list.append("type='n'")
             elif npatho > 0:
                 patho_list = ",".join(f"'{p}'" for p in pathologies)
                 patho_where = (
@@ -1596,7 +1595,7 @@ class SbVoiceDb:
                     where_list.append(f"session_id in ({patho_select})")
         elif not include_normal:
             # only pathological recordings
-            where_list.append(f"type='p'")
+            where_list.append("type='p'")
         if utterances is not None and len(utterances) > 0:
             if isinstance(utterances, str):
                 utterances = [utterances]
@@ -1616,7 +1615,7 @@ class SbVoiceDb:
             where_list.append(f"duration<={maximum_duration}")
 
         if len(where_list) > 0:
-            stmt += f" WHERE " + " AND ".join(where_list)
+            stmt += " WHERE " + " AND ".join(where_list)
 
         if order_by is not None:
             if isinstance(order_by, str):
@@ -1661,7 +1660,6 @@ class SbVoiceDb:
         total_sessions = sum(session_counts.values())
 
         if total_sessions > 0:
-
             all_sessions = self.number_of_all_sessions
 
             if total_sessions > all_sessions:
@@ -1683,7 +1681,6 @@ class SbVoiceDb:
         sql_statement: str | sql_expr.Executable,
         params: dict[str, Any] | Sequence[dict[str, Any]] | None = None,
     ) -> Result:
-
         if isinstance(sql_statement, str):
             sql_statement = text(sql_statement)
 
@@ -1691,8 +1688,6 @@ class SbVoiceDb:
             return session.execute(sql_statement, params)
 
     def to_pandas(self) -> "pandas.DataFrame":
-        import pandas as pd
-
         raise NotImplementedError()
 
     ###################
@@ -1701,7 +1696,6 @@ class SbVoiceDb:
     def _populate_db(self):
         rexp = re.compile(r", ")
         with Session(self._db) as session:
-
             for row, _ in zip(
                 download_database(),
                 tqdm.tqdm(range(2225), desc="Populating SQLite database "),
@@ -1905,7 +1899,6 @@ class SbVoiceDb:
         with Session(self._db) as session:
             # check pathological samples
             for patho in session.scalars(select(Pathology)):
-
                 rsessions = patho.sessions
                 downloaded = all(
                     path.exists(path.join(self._datadir, str(rsession.id)))
@@ -1950,7 +1943,6 @@ class SbVoiceDb:
             stmt = stmt.where(self._pathology_filter)
 
         with Session(self._db) as session:
-
             for patho in session.scalars(stmt):
                 session_counts[patho.name] = session.scalar(
                     select(sql_expr.func.count(RecordingSession.id)).where(
