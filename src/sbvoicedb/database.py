@@ -1970,8 +1970,8 @@ class SbVoiceDb:
     def _datafile_to_full_path(self, rec: Recording):
         """modify Recording's nspfile and eggfile to have the full path of the file"""
         datadir = path.join(self._datadir, str(rec.session_id))
-        rec.nspfile = path.join(datadir, rec.nspfile)
-        rec.eggfile = path.join(datadir, rec.eggfile)
+        rec.nspfile = path.join(datadir, path.normpath(rec.nspfile))
+        rec.eggfile = path.join(datadir, path.normpath(rec.eggfile))
 
     def _build_session_filters(
         self,
