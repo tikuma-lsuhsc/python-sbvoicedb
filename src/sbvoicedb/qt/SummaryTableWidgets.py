@@ -174,3 +174,23 @@ class RecordingSummaryTableWidget(QWidget):
         return model.getRecording(
             self.view.currentIndex(), full_file_paths=True, **kwargs
         )
+
+    def recordingCount(self) -> int:
+        return self.model().rowCount()
+
+    def iterRecordings(
+        self,
+        full_file_paths: bool = True,
+        query_session: bool = True,
+        query_speaker: bool = False,
+    ) -> Iterator[Recording]:
+        """return the list of session_id-utterance pairs of all recordings"""
+
+        model = self.model()
+        for row in range(model.rowCount()):
+            yield model.getRecording(
+                model.createIndex(row, 0),
+                full_file_paths=full_file_paths,
+                query_session=query_session,
+                query_speaker=query_speaker,
+            )
