@@ -1,22 +1,23 @@
 from __future__ import annotations
 
 import logging
+from typing import Iterator
 
+from qtpy.QtCore import QItemSelectionModel, QModelIndex, Qt, Signal, Slot
+from qtpy.QtWidgets import QTableView, QVBoxLayout, QWidget
 from typing_extensions import cast, get_args
 
-from qtpy.QtWidgets import QTableView, QWidget, QVBoxLayout
-from qtpy.QtCore import QModelIndex, Signal, Slot, QItemSelectionModel, Qt
-
-from .. import SbVoiceDb, Recording
-
-from .SummaryTableModels import RecordingSummaryTableModel, RecordingSummaryColumn
+from .. import Recording, SbVoiceDb
+from .SummaryTableModels import (
+    RecordingSummaryColumn,
+    RecordingSummaryTableModel,
+)
 
 logger = logging.getLogger(__name__)
 logger.addHandler(logging.NullHandler())
 
 
 class RecordingSummaryTableWidget(QWidget):
-
     recordingSelected = Signal(Recording, name="recordingSelected")
     recordingUnselected = Signal(int, name="recordingUnselected")
 

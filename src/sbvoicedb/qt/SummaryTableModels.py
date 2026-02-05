@@ -3,24 +3,23 @@ from __future__ import annotations
 import logging
 from bisect import bisect_left
 from typing import Any, Callable, Literal, Sequence, get_args
+
 from qtpy.QtCore import (
     QAbstractTableModel,
-    QObject,
     QModelIndex,
+    QObject,
     QPersistentModelIndex,
     Qt,
 )
-
 from sqlalchemy import Row
 
-from ..database import SbVoiceDb, RecordingSummaryColumn, UtteranceLiteral, Recording
+from ..database import Recording, RecordingSummaryColumn, SbVoiceDb, UtteranceLiteral
 
 logger = logging.getLogger(__name__)
 logger.addHandler(logging.NullHandler())
 
 
 class SummaryTableModel(QAbstractTableModel):
-
     __summary_name__: str
 
     _db: SbVoiceDb
@@ -262,7 +261,6 @@ class SummaryTableModel(QAbstractTableModel):
 
 
 class RecordingSummaryTableModel(SummaryTableModel):
-
     __summary_name__: str = "recording_summary"
 
     def __init__(
