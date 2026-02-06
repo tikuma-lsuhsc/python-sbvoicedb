@@ -9,7 +9,7 @@ from tempfile import TemporaryDirectory
 import requests
 from tqdm import tqdm
 from tqdm.utils import CallbackIOWrapper
-from typing_extensions import TypedDict
+from typing_extensions import IO, TypedDict
 
 url = "https://stimmdb.coli.uni-saarland.de/data/voice_data.csv"
 zenodo_url = "https://zenodo.org/api/records/16874898"
@@ -44,16 +44,21 @@ def download_database(timeout: float = 10.0) -> csv.DictReader:
 
 
 def download_data(
-    dstdir: str, pathology: str | None = None, use_memory: bool | None = None
+    dstdir: str,
+    pathology: str | None = None,
+    use_memory: bool | None = None,
+    data_zip_file: str | None = None,
 ):
     """download nsp/egg data from Zenodo
 
     :param dstdir: destination folder (will create subfolders with recording id's as the names)
     :param pathology: specify the pathology to download (or 'healthy' for normals), defaults to None
     :param use_memory: specify if download only to memory, defaults to None to use memory for the download files < 127 MB
-    :raises ValueError: _description_
+    :param data_zip_file: specify if data.zip file is available locally to skip
+                          downloading
     """
-    if pathology is None:
+
+    if pathology is None or data_zip_file is not None:
         # download full dataset at once
         key = "data.zip"
         dstdir, datadir = path.split(dstdir)
@@ -62,6 +67,11 @@ def download_data(
     else:
         # specific dataset
         key = f"{unicodedata.normalize('NFC', pathology)}.zip"
+
+    if data_zip_file is not None:
+        nbytes = path.getsize(data_zip_file)
+        extract_data(dstdir, "data.zip", nbytes, data_zip_file)
+        return
 
     repo = requests.get(zenodo_url).json()
 
@@ -101,23 +111,35 @@ def download_data(
         if buf.seekable():
             buf.seek(0)
 
-        with (
-            zipfile.ZipFile(buf, "r") as f,
-            tqdm(
-                desc=f"unzipping {key}",
-                unit="B",
-                unit_scale=True,
-                unit_divisor=1024,
-                total=nbytes,
-                leave=True,
-            ) as progress,
-        ):
-            for i in f.infolist():
-                if not getattr(i, "file_size", 0):  # directory
-                    f.extract(i, dstdir)
-                else:
-                    with (
-                        f.open(i) as fi,
-                        open(path.join(dstdir, i.filename), "wb") as fo,
-                    ):
-                        copyfileobj(CallbackIOWrapper(progress.update, fi), fo)
+        extract_data(dstdir, key, nbytes, buf)
+
+
+def extract_data(dstdir: str, key: str, nbytes: int, buf: str | IO[bytes]):
+    """extract downloaded data file
+
+    :param dstdir: data directory
+    :param key: file name display for tqdm
+    :param nbytes: number of bytes of the data
+    :param buf: zipped byte buffer or path of the downloaded zip file
+    """
+
+    with (
+        zipfile.ZipFile(buf, "r") as f,
+        tqdm(
+            desc=f"unzipping {key}",
+            unit="B",
+            unit_scale=True,
+            unit_divisor=1024,
+            total=nbytes,
+            leave=True,
+        ) as progress,
+    ):
+        for i in f.infolist():
+            if not getattr(i, "file_size", 0):  # directory
+                f.extract(i, dstdir)
+            else:
+                with (
+                    f.open(i) as fi,
+                    open(path.join(dstdir, i.filename), "wb") as fo,
+                ):
+                    copyfileobj(CallbackIOWrapper(progress.update, fi), fo)

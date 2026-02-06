@@ -500,6 +500,7 @@ class SbVoiceDb:
     _healthy_label: str = "[Healthy]"
 
     _datadir: str
+    _data_zip: str | None
     _dbdir: str | None
     _db: Engine
     _try_download: bool = False
@@ -519,16 +520,20 @@ class SbVoiceDb:
         pathology_filter: sql_expr.ColumnElement | None = None,
         include_healthy: bool | None = None,
         download_mode: Literal["immediate", "lazy", "off"] = "lazy",
+        data_zip_file: str | None = None,
         connect_kws: dict | None = None,
         echo: bool = False,
         **create_engine_kws,
     ):
         if dbdir == ":memory:":  # in-memory database
             self._dbdir = None
-            self._datadir = mkdtemp()
+            self._datadir = path.join(mkdtemp(), "data")
         else:
             self._dbdir = user_data_dir("sbvoicedb") if dbdir is None else dbdir
             self._datadir = path.join(self._dbdir, "data")
+
+        if data_zip_file is not None:
+            download_mode = "immediate"
 
         if speaker_filter is not None:
             self._speaker_filter = speaker_filter
@@ -576,7 +581,7 @@ class SbVoiceDb:
 
         if download_mode == "immediate":
             # download full dataset if download_mode is 'immediate'
-            self.download_data()
+            self.download_data(data_zip_file=data_zip_file)
 
     def __del__(self):
         if self._dbdir is None:  # in-memory
@@ -1649,7 +1654,7 @@ class SbVoiceDb:
                 == "1"
             )
 
-    def download_data(self):
+    def download_data(self, data_zip_file: str | None = None):
         """download minimal dataset required for current filter configurations"""
 
         # download is tried only once
@@ -1660,18 +1665,22 @@ class SbVoiceDb:
         total_sessions = sum(session_counts.values())
 
         if total_sessions > 0:
-            all_sessions = self.number_of_all_sessions
+            if data_zip_file is None:
+                all_sessions = self.number_of_all_sessions
 
-            if total_sessions > all_sessions:
-                # duplicates in the pathologies are too large to warrant pathology-wise download
-                download_data(self._datadir)
-                patho_list = None
+                if total_sessions > all_sessions:
+                    # duplicates in the pathologies are too large to warrant pathology-wise download
+                    download_data(self._datadir)
+                    patho_list = None
 
+                else:
+                    # per-pathology downloads
+                    for patho_name in session_counts:
+                        download_data(self._datadir, patho_name)
+                    patho_list = list(session_counts)
             else:
-                # per-pathology downloads
-                for patho_name in session_counts:
-                    download_data(self._datadir, patho_name)
-                patho_list = list(session_counts)
+                patho_list = None
+                download_data(self._datadir, data_zip_file=data_zip_file)
 
             # insert the new recordings to the database
             self._populate_recordings(patho_list)
