@@ -1,0 +1,2226 @@
+AufnahmeID,AufnahmeTyp,AufnahmeDatum,Diagnose,SprecherID,Geburtsdatum,Geschlecht,Pathologien
+1,n,1997-11-20,,1,1977-04-07,w,
+2,n,1997-11-20,,2,1974-12-28,w,
+3,n,1997-11-20,,3,1974-03-29,w,
+4,n,1997-11-20,,4,1975-07-08,m,
+5,n,1997-11-20,,5,1975-09-01,m,
+6,n,1997-11-20,,6,1977-06-08,w,
+7,n,1997-11-20,,7,1978-02-14,w,
+8,n,1997-11-20,,10,1978-05-11,w,
+9,n,1997-11-20,,11,1972-10-23,m,
+10,n,1997-11-20,,12,1975-07-07,w,
+11,n,1997-11-20,,13,1974-10-30,m,
+12,n,1997-11-20,,14,1974-11-22,w,
+13,n,1997-11-20,,15,1976-06-18,w,
+14,n,1997-11-20,,16,1977-08-21,w,
+15,n,1997-11-20,,17,1973-03-03,m,
+16,n,1997-11-20,,18,1977-12-15,w,
+17,n,1997-11-20,,9,1978-09-02,w,
+18,n,1997-11-21,,26,1977-05-20,w,
+19,n,1997-11-21,,20,1974-06-22,w,
+20,n,1997-11-21,,21,1976-05-26,w,
+21,n,1997-11-21,,22,1977-09-05,w,
+22,n,1997-11-21,,23,1976-03-16,w,
+23,n,1997-11-21,,24,1971-07-24,w,
+24,n,1997-11-21,,25,1977-04-21,w,
+25,n,1997-11-21,,27,1970-02-17,w,
+26,n,1997-11-21,,19,1971-06-26,w,
+27,n,1997-11-22,,8,1977-04-12,w,
+28,n,1997-12-05,,32,1959-01-03,w,
+29,n,1997-12-05,,28,1939-05-06,m,
+30,n,1997-12-05,,29,1941-10-16,w,
+31,n,1997-12-05,,30,1957-06-11,w,
+32,n,1997-12-05,,31,1952-10-05,m,
+33,n,1997-12-10,,33,1970-09-10,w,
+34,n,1997-12-10,,34,1977-05-12,w,
+35,n,1997-12-10,,35,1975-07-05,w,
+36,n,1997-12-10,,36,1976-02-20,w,
+37,n,1997-12-11,,37,1977-12-06,w,
+38,n,1997-12-11,,38,1974-09-30,w,
+39,n,1997-12-11,,39,1975-03-15,w,
+40,n,1997-12-11,,40,1977-04-10,m,
+41,n,1997-12-11,,41,1977-03-23,m,
+42,n,1997-12-11,,42,1977-05-07,w,
+43,n,1997-12-18,,43,1965-05-24,m,
+44,n,1997-12-18,,44,1974-12-07,w,
+45,n,1997-12-18,,45,1960-03-25,w,
+46,n,1997-12-18,,46,1969-12-06,w,
+47,n,1998-01-08,,47,1965-01-21,w,
+48,n,1998-01-08,,48,1978-10-27,w,
+49,n,1998-01-08,,49,1977-05-22,w,
+50,n,1998-01-08,,50,1977-06-13,w,
+52,n,1998-01-08,,52,1973-06-12,w,
+53,n,1998-01-08,,53,1976-09-13,m,
+54,n,1998-01-08,,54,1975-10-29,w,
+55,n,1998-01-08,,55,1976-04-03,w,
+56,n,1998-01-09,,56,1975-10-03,w,
+57,n,1998-01-09,,57,1976-10-05,w,
+58,n,1998-01-09,,58,1972-08-22,w,
+59,n,1998-01-09,,59,1976-10-31,m,
+60,n,1998-01-09,,60,1973-07-01,m,
+61,n,1998-01-09,,61,1976-02-16,m,
+62,n,1998-01-09,,62,1975-11-14,w,
+63,n,1998-01-09,,63,1953-01-22,m,
+64,n,1998-01-12,,64,1932-12-14,w,
+65,n,1998-01-12,,65,1924-05-03,w,
+66,n,1998-01-12,,66,1936-09-21,m,
+67,n,1998-01-12,,69,1938-08-19,m,
+68,n,1998-01-12,,71,1932-06-02,m,
+69,n,1998-01-12,,72,1947-06-02,m,
+70,n,1998-01-12,,73,1924-08-25,w,
+71,n,1998-01-12,,74,1944-04-03,w,
+72,n,1998-01-12,,75,1939-07-26,w,
+74,n,1998-01-12,,77,1940-04-06,m,
+77,n,1998-01-13,,82,1934-06-17,w,
+78,n,1998-01-13,,79,1935-04-23,w,
+79,n,1998-01-13,,81,1937-07-10,w,
+80,n,1998-01-13,,83,1948-07-01,w,
+81,n,1998-01-13,,84,1955-08-19,m,
+82,n,1998-01-13,,87,1948-04-18,w,
+83,n,1998-01-13,,88,1951-01-27,w,
+84,n,1998-01-13,,89,1937-06-23,m,
+85,n,1998-01-15,,92,1938-05-18,m,
+86,n,1998-01-15,,94,1936-04-26,w,
+87,n,1998-01-15,,97,1929-05-18,m,
+88,n,1998-01-15,,100,1952-06-30,w,
+89,n,1998-01-15,,101,1944-12-22,w,
+90,n,1998-01-16,,104,1922-11-01,w,
+91,n,1998-01-16,,105,1932-04-14,w,
+92,n,1998-01-16,,108,1929-04-17,m,
+93,n,1998-01-16,,109,1955-05-17,w,
+94,n,1998-01-16,,110,1942-12-27,w,
+95,n,1998-01-16,,111,1946-07-16,w,
+96,n,1998-01-19,,112,1928-01-29,m,
+97,n,1998-01-19,,113,1976-02-08,w,
+98,n,1998-01-19,,114,1970-03-31,m,
+99,n,1998-01-19,,115,1913-09-02,w,
+100,n,1998-01-19,,117,1931-06-29,m,
+101,p,1998-01-20,Verdacht auf Bulbärparalyse,1301,1928-07-30,w,Bulbärparalyse
+102,n,1998-01-20,,118,1958-04-16,w,
+103,n,1998-01-20,,119,1976-05-05,m,
+104,n,1998-01-20,,120,1949-06-26,w,
+105,p,1998-01-21,"Phonatorisch kompensiert, links mit noch diskreter Bewegungseinschränkung und hyperfunktioneller Komponente bei hohen Frequenzen; Zustand nach Herz-OP",1302,1923-10-18,w,Rekurrensparese
+106,p,1998-01-21,Subglottisches Fibrom mit leichter Hyperfunktion,1303,1938-08-11,m,"Fibrom, Hyperfunktionelle Dysphonie"
+107,p,1998-01-21,Chronisch trockene Laryngitis mit Interaryschwellung,1304,1937-12-17,m,Laryngitis
+108,p,1998-01-21,"Strumipriv, mit beginnnender guter phonatorischer Kompensation",1305,1932-07-11,w,Rekurrensparese
+109,p,1998-01-21,Zustand nach Stütze und Polypabtragung; Stimmlippen stehen asymmetrisch,1306,1947-10-27,m,Stimmlippenpolyp
+110,p,1998-01-21,"Histologisch gesichertes Carcinoma in situ, jedoch keine echte phonatorische Bewegungseinschränkung; Stütze und Excision der Leukoplakie; asymmetrisches Schwingungsbild",1307,1935-03-09,m,Stimmlippenkarzinom
+111,p,1998-01-21,Zustand nach OP einer Lippen-Kiefer-Gaumenspalte und Velopharyngoplastik,1308,1988-05-15,w,Velopharyngoplastik
+112,n,1998-01-21,,122,1966-05-10,w,
+113,n,1998-01-21,,123,1979-04-25,w,
+114,n,1998-01-21,,124,1977-12-15,w,
+115,n,1998-01-23,,125,1975-07-17,w,
+116,n,1998-01-27,,126,1957-03-09,w,
+117,n,1998-01-27,,127,1976-07-03,w,
+118,p,1998-01-28,"Gut ausgebildete Sängerstimme, tragend",1309,1941-04-27,m,Sängerstimme
+119,p,1998-01-28,"Zustand nach zweimaliger Stütze  (Leukoplakieabtragung), abgerundete Stimmlippen; weitgehend symmetrisches Schwingungsbild, gute Stimme",1311,1940-03-25,m,Leukoplakie
+120,p,1998-01-28,"Strumipriv mit Stillstand links, Einschränkung der Beweglichkeit rechts, vollkommene phonatorische Kompensation",1312,1948-02-21,w,Rekurrensparese
+121,n,1998-01-28,,128,1977-01-25,w,
+122,n,1998-01-28,,129,1978-04-01,w,
+123,n,1998-01-28,,130,1978-01-27,w,
+124,n,1998-01-28,,131,1977-09-23,w,
+125,n,1998-01-28,,132,1977-05-18,w,
+126,n,1998-01-28,,133,1978-04-16,w,
+127,p,1998-01-28,"Beginnende Altersstimme, hyperfunktionelle Kompensation",64,1932-12-14,w,"Dysodie, Hyperfunktionelle Dysphonie"
+128,p,1998-01-29,"Frische links in Intermediärstellung, starke Verhauchung; keine stroboskopische Restbeweglichkeit; kein hyperfunktioneller Kompensationsversuch",1313,1950-08-14,m,Rekurrensparese
+129,p,1998-01-29,"Typische Kontaktpachydermie, starke hypotone Dysphonie",1314,1943-11-21,m,"Kontaktpachydermie, Hypotone Dysphonie"
+130,p,1998-01-29,"Links, mit noch unvollständiger Kompensation",1316,1938-01-02,w,Rekurrensparese
+131,p,1998-01-29,"Verdacht auf Phonationsknötchen oder Polyp rechts im vorderen Drittel vor Abtragung, keine phonatorische Einschränkung",1317,1949-10-17,m,"Phonationsknötchen, Stimmlippenpolyp"
+132,n,1998-01-29,,134,1973-09-13,m,
+133,n,1998-01-29,,135,1976-02-15,w,
+134,n,1998-01-29,,136,1976-01-17,m,
+135,n,1998-01-29,,137,1976-07-22,w,
+136,n,1998-01-29,,138,1977-03-18,w,
+137,n,1998-01-29,,139,1959-10-27,w,
+138,p,1998-01-29,Frische mit unvollständiger hyperfunktioneller Kompensation nach Elektrotherapie,1315,1937-01-23,w,Rekurrensparese
+139,p,1998-02-04,Abklingende Laryngitis mit lediglich etwas asymmetrischer Amplitude,1318,1979-12-27,m,Laryngitis
+140,p,1998-02-04,Psychogen hyperfunktionelle Dysphonie,1319,1953-06-09,w,Hyperfunktionelle Dysphonie
+141,p,1998-02-04,"Abklingende Laryngitis, sehr enge Epiglottis",1320,1956-02-11,m,Laryngitis
+142,p,1998-02-04,"Verbleibender doppelseitiger breiter Spalt, funktionelle Atemstörung; Zustand nach Lateralfixation rechts",1321,1935-08-09,w,Rekurrensparese
+143,p,1998-02-04,"Ausgeprägte spasmodische Dysphonie, keine sichere stroboskopische Bewertung möglich",1322,1929-08-06,w,Spasmodische Dysphonie
+144,p,1998-02-04,Leichte hyperfunktionelle Dysphonie,1323,1976-07-02,w,Hyperfunktionelle Dysphonie
+145,n,1998-02-04,,140,1969-05-07,w,
+146,p,1998-02-11,"Zustand nach Leukoplakieabtragung, kleine Narbe rechts mit phonatorisch partiellem Stillstand; hyperfunktionelle Kompensation, deutliche Dysphonie",1324,1941-02-27,m,Leukoplakie
+147,p,1998-02-11,Mutationsfistelstimme bei eingeschränkter phonatorischer Kontrolle; Rhinophonie aperta,1325,1960-01-07,m,"Mutationsfistelstimme, Rhinophonie aperta"
+148,p,1998-02-11,Vox senilis,73,1924-08-25,w,Vox senilis
+149,p,1998-02-11,"Abklingende Hyperfunktion, (Poltern)",1327,1975-02-24,w,Non-fluency-Syndrom
+150,p,1998-02-11,"Rechts (20 Jahre bekannt) mit Atrophie rechts, rechts hereditäre (erbliche) Muskelschwäche (Ardenne)",1329,1928-04-10,w,Rekurrensparese
+151,p,1998-02-11,,81,1937-07-10,w,Psychogene Dysphonie
+152,p,1998-02-11,Ältere rechts mit guter Kompensation,1331,1929-02-23,w,Rekurrensparese
+153,n,1998-02-11,,1332,1937-11-07,w,
+154,p,1998-02-11,"Ausgebildete Gesangsstimme, kein pathologischer Befund",1334,1977-08-12,w,Gesangsstimme
+155,p,1998-02-11,"Alte (Dezember 1996) nach Lungen-CA-OP, Lobektomie links mit Kompensation",1335,1953-05-01,m,Rekurrensparese
+156,n,1998-02-11,,141,1932-04-05,m,
+157,n,1998-02-11,,142,1944-01-07,w,
+158,n,1998-02-11,,143,1964-08-08,w,
+159,p,1998-02-11,Hyperfunktionelle Dysphonie,1314,1943-11-21,m,Hyperfunktionelle Dysphonie
+160,p,1998-02-12,Leicht psychogene hyperfunktionelle Dysphonie,1333,1955-10-08,m,Hyperfunktionelle Dysphonie
+348,p,1998-03-03,"Leichte hyperfunktionelle Dysphonie, ponogen",1336,1938-11-30,m,Hyperfunktionelle Dysphonie
+349,p,1998-03-03,Mutationsfistelstimme,1337,1981-11-13,m,Mutationsfistelstimme
+350,p,1998-03-04,Funktionelle Dysphonie,1339,1945-04-08,w,Funktionelle Dysphonie
+351,p,1998-03-04,Leichte funktionelle Dysphonie ,1340,1939-05-18,w,Funktionelle Dysphonie
+352,p,1998-03-04,Rechts mit Kompensation; Kontaktpachydermie,1341,1923-03-16,m,"Rekurrensparese, Kontaktpachydermie"
+355,p,1998-03-04,"Leichte hyperfunktionelle Dysphonie, Kiefergelenksathropie",120,1949-06-26,w,Hyperfunktionelle Dysphonie
+356,p,1998-03-11,Alte rechts mit Kompensation; geringe Bewegungseinschrängkung,1342,1947-01-14,w,Rekurrensparese
+357,p,1998-03-11,Verdacht auf Laryngeus-superior-Läsion,1343,1943-12-16,w,N. laryngeus superior Läsion
+358,p,1998-03-11,"Komplett idiophatische Dysphonie rechts, Paramedianstellung, keine stroboskopische Beweglichkeit, ohne Kompensation",1344,1928-09-25,m,Rekurrensparese
+359,p,1998-03-11,"Dysphagie, Speichelsekret",1345,1927-11-11,m,Zentral-laryngale Bewegungsstörung
+360,p,1998-03-11,"Beginnnende vox senilis, auffälliges voice onset",1347,1922-09-02,w,Vox senilis
+362,p,1998-03-11,Jetzt praktisch vollkommene Kompensation links,1305,1932-07-11,w,Rekurrensparese
+363,p,1998-03-18,Mit beginnenden Phonationsverdickungen (Gesangstätigkeit),1348,1968-10-03,w,Hyperfunktionelle Dysphonie
+364,p,1998-03-18,Idiophatische rechts in Intermediärstellung; breite glottische Insuffizienz,1313,1950-08-14,m,Rekurrensparese
+365,p,1998-03-18,Links mit sehr guter phonatorischer Kompensation nach logopädischer Therapie,1350,1933-10-24,m,Rekurrensparese
+366,p,1998-03-19,Psychogene Dysphonie bei Sprechberuf,1351,1946-11-13,w,Psychogene Dysphonie
+367,p,1998-03-19,Leichte beginnende hyperfunktionelle Dysphonie mit sehr enger Artikulation,1352,1975-03-09,w,Dysodie
+368,p,1998-03-19,Funktionelle ponogene Dysphonie,1353,1950-06-21,w,Dysphonie
+445,p,1998-03-25,Z. B. hormonelle Dysphonie mit hyperfunktioneller Einschwingung,1354,1970-07-12,w,Dysphonie
+446,p,1998-03-25,"Multifaktorielle ponogene Dysphonie (HWS-Reflex?), beginnende Kontaktpachydermie",1355,1940-05-09,m,"Dysphonie, Kontaktpachydermie"
+447,p,1998-03-25,Leichte Rhinophonie aperta,1356,1963-02-27,m,Rhinophonie aperta
+448,p,1998-03-25,Alte unvollständig kompensierte (mit phonasthetischer Schonhaltung?),1357,1963-06-15,w,Rekurrensparese
+449,p,1998-03-25,"Leichte phsychogene, phonasthetisch mäßige Dysphonie",1358,1939-08-15,w,Dysphonie
+450,p,1998-03-25,Doppelseitige bei Zustand nach Lateralfixation und Arytenoidektomie mit noch unvollständiger supraglottischer Kompensation,1359,1942-05-13,w,Rekurrensparese
+451,p,1998-03-25,Funktionelle Dsyphonie,1360,1941-06-20,w,Dysphonie
+491,p,1998-04-01,"Zustand nach Chordektomie mit ""Rezidiv-Granulationspolyp"" in vorderer Kommissur",1363,1919-07-26,m,"Chordektomie, Stimmlippenpolyp"
+492,p,1998-04-01,Nicht kompensierte idiophatische links,1364,1924-06-25,m,Rekurrensparese
+493,p,1998-04-01,Laryngitis,1365,1961-03-25,m,Laryngitis
+494,p,1998-04-01,Leichte funktionelle Dysphonie bei Stimmberuf,1366,1968-03-06,w,Dysphonie
+495,p,1998-04-01,"Reinke-Ödem beids., re > li; beginnendes Krankheitsbild",142,1944-01-07,w,"Dysphonie, Reinke Ödem"
+496,p,1998-04-22,Ausgeprägte Phonasthenie mit psychogener Komponente,1367,1954-10-26,w,Phonasthenie
+497,p,1998-04-22,Leukoplakie beidseitig bei chronischer Laryngitis,1368,1958-10-11,m,"Leukoplakie, Laryngitis"
+498,p,1998-04-22,"Chronische Laryngitis; beide Stimmlippen leicht ödematös, leichte Hyperfunktion",1369,1971-10-15,w,Laryngitis
+499,p,1998-04-22,"Leichte Tendenz zur Hyperfunktion, ausgebildete Gesangsstimme",1372,1969-05-28,w,Hyperfunktionelle Dysphonie
+500,p,1998-04-22,"Frischer Zustand nach Stütze, starke Fibrinbeläge; Keine Textdatei",1373,1953-07-04,m,Stimmlippenkarzinom
+501,p,1998-04-22,Eventuell kleiner subglottischer Polyp rechts,1374,1934-05-19,m,Stimmlippenpolyp
+502,p,1998-04-22,Phonasthenie,1375,1935-06-20,m,Phonasthenie
+503,p,1998-04-22,Typische Kontaktpachydermie beidseitig,1314,1943-11-21,m,Kontaktpachydermie
+504,p,1998-04-22,"Zustand nach Chordektomie, kleine Synechie, Zustand nach Granulationspolyp",1363,1919-07-26,m,"Chordektomie, Stimmlippenpolyp"
+561,p,1998-04-29,psychogene kompensierte Dysphonie bei Zustand nach Ödemabtragung,1376,1951-09-20,w,Dysphonie
+562,p,1998-04-29,Zustand nach Abtragung eines Granulationspolypen; Taschenband links vorgewölbt,1377,1943-11-28,w,Stimmlippenpolyp
+563,p,1998-04-29,Ausgebildete Gesangsstimme mit laryngitischem Ödem,1378,1969-08-07,m,Laryngitis
+564,p,1998-04-29,"Reinke-Ödem li, Rezidiv, Zustand nach OP; sehr unregelmäßige Stimmlippenschwingungen",1381,1951-06-18,w,Reinke Ödem
+565,p,1998-04-29,Beidseitige,1382,1943-09-25,w,Rekurrensparese
+567,p,1998-04-29,Dysodie,64,1932-12-14,w,Dysodie
+568,p,1998-04-29,"Überlagerte Laryngitis, z. B. N. laryngeus superior Neuralgie",1379,1939-01-10,w,Laryngitis
+612,p,1998-05-05,Mit Petechien (Einblutungen) rechte  Stimmlippe,1387,1921-11-23,w,Vox senilis
+627,p,1998-05-06,"Links mit Kompensation; Reinke-Ödem beidseitig, relativ ausgeprägt",1383,1953-03-01,w,"Rekurrensparese, Reinke Ödem"
+628,p,1998-05-06,Zustand nach Chordektomie mit Ersatzstimmband links; kleine Synechie vordere Kommissur,1384,1937-07-06,m,Chordektomie
+629,p,1998-05-06,"Zustand nach doppelseitiger, linkes Stimmband excaviert, unvollständiger Schluß",1385,1948-01-15,m,Rekurrensparese
+630,p,1998-05-06,Beidseitiges Reinke-Ödem,1386,1933-08-24,w,Reinke Ödem
+631,p,1998-05-06,"Ponogene funktionelle Dysphonie, gut austherapierte kompensierte Dysphonie",1388,1935-08-18,m,Funktionelle Dysphonie
+632,p,1998-05-06,"Doppelseitige nach Strumektomie + Reinke- Ödem beidseitig, Stridor!",1389,1941-10-06,w,"Rekurrensparese, Reinke Ödem"
+633,p,1998-05-06,Doppelseitige mit ausgesprägtem Stridor; Glottiserweiterung mit Laser?,1390,1928-12-01,w,Rekurrensparese
+634,p,1998-05-06,Ponogen,1391,1948-11-07,m,Funktionelle Dysphonie
+665,p,1998-05-13,Verdacht auf spasmodische Dysphonie bzw. hyperfunktionelle Dysphonie,1392,1929-08-07,w,"Spasmodische Dysphonie, Hyperfunktionelle Dysphonie"
+666,p,1998-05-13,Schönes symmetrisches Schwingungsbild,1393,1975-02-09,w,Gesangsstimme
+667,p,1998-05-13,"Juvenile Dysphonie, Phonationsverdickung beidseitig",1394,1992-03-20,m,Juvenile Dysphonie
+668,p,1998-05-13,Balbuties,1395,1962-01-09,w,Balbuties
+669,p,1998-05-13,Hyperfunktionelle Dysphonie,1396,1969-03-12,w,Hyperfunktionelle Dysphonie
+670,p,1998-05-13,"Links, unvollständige (hyperfunktionelle) Kompensation",1397,1921-08-24,m,Rekurrensparese
+671,p,1998-05-13,"Strumiprive links, unvollständige Kompensation",1398,1932-05-03,w,Rekurrensparese
+672,p,1998-05-13,Balbuties,1399,1970-09-17,m,Balbuties
+673,p,1998-05-13,"Beginnende Phonationsverdickung, links größer rechts",1400,1976-07-21,w,Dysodie
+674,p,1998-05-13,Postlaryngitische Dysphonie,1401,1956-12-19,w,Dysphonie
+675,n,1998-05-14,,603,1976-09-21,m,
+676,n,1998-05-14,,604,1977-05-27,w,
+677,n,1998-05-14,,605,1977-08-11,w,
+678,n,1998-05-14,,606,1978-04-21,w,
+679,n,1998-05-14,,607,1969-04-29,m,
+680,n,1998-05-14,,608,1978-01-23,m,
+681,n,1998-05-14,,609,1976-09-30,m,
+682,n,1998-05-14,,610,1977-01-10,w,
+683,n,1998-05-14,,611,1977-08-19,w,
+684,n,1998-05-14,,612,1977-05-08,w,
+685,n,1998-05-14,,613,1977-12-19,w,
+686,n,1998-05-14,,614,1978-01-26,w,
+687,n,1998-05-14,,615,1978-01-04,w,
+688,n,1998-05-14,,616,1978-09-03,w,
+689,n,1998-05-14,,617,1975-07-28,w,
+690,n,1998-05-14,,618,1977-02-25,m,
+691,n,1998-05-14,,619,1977-09-22,w,
+692,p,1998-05-15,"Sehr schnelles Sprechtempo, enge Artikulation",1402,1969-02-26,w,"Hyperfunktionelle Dysphonie, Dysodie"
+693,p,1998-05-15,"OP Lippen-Kiefer-Gaumenspalte, mäßige Rhinophonie, stoboskopisch O.K.",1403,1969-06-18,w,Rhinophonie aperta
+694,n,1998-05-15,,632,1977-01-17,m,
+695,n,1998-05-15,,620,1976-12-03,w,
+696,n,1998-05-15,,621,1977-09-12,w,
+697,n,1998-05-15,,622,1978-04-27,w,
+698,n,1998-05-15,,623,1978-04-06,m,
+699,n,1998-05-15,,624,1978-04-12,w,
+700,n,1998-05-15,,625,1977-06-06,w,
+701,n,1998-05-15,,626,1976-09-12,m,
+702,n,1998-05-15,,627,1976-04-28,w,
+703,n,1998-05-15,,628,1976-02-27,w,
+704,n,1998-05-15,,629,1976-08-06,m,
+705,n,1998-05-15,,630,1959-03-20,w,
+706,n,1998-05-15,,631,1971-05-07,m,
+707,n,1998-05-15,,633,1977-01-21,w,
+708,n,1998-05-15,,634,1977-02-27,m,
+709,n,1998-05-15,,635,1972-07-27,w,
+710,n,1998-05-15,,636,1976-07-28,w,
+711,n,1998-05-15,,637,1977-01-26,w,
+712,p,1998-05-20,"Nach Strumektomie mit fast vollständiger Kompensation, gute stroboskopische Eigenbeweglichkeit",1404,1956-03-03,w,Rekurrensparese
+713,p,1998-05-20,Keine Mutatio,1405,1984-08-16,m,Rhinophonie aperta
+714,p,1998-05-20,"Stimmlippen symmetrisch schwingend, knöcherne Vorwölbung Rachenhinterwand, HWS!",1406,1927-03-17,m,Dish-Syndrom
+715,p,1998-05-20,"Chronische Laryngitis, Leukoplakie, Zustand nach Stütze (2x), vernarbtes rechtes Stimmband",1407,1934-09-11,w,"Laryngitis, Leukoplakie"
+716,p,1998-05-20,Partielle links mit Kompensation,1408,1955-04-10,w,Rekurrensparese
+718,p,1998-05-20,Ausgeprägte Dysphonie mit ausgeprägter Kontaktpachydermie,1410,1944-02-18,m,"Funktionelle Dysphonie, Kontaktpachydermie"
+719,p,1998-05-20,"Zustand nach Chordektomie mit supraglottischer Kompensation, weiche Taschenfaltenstimme",1411,1949-05-14,m,"Chordektomie, Taschenfaltenstimme"
+720,p,1998-05-27,"Zustand nach Abtragung eines großen Reinke-Ödems + Stimmlippenpolyp, etwas unregelmäßiger Verlauf",1412,1929-12-06,w,"Reinke Ödem, Stimmlippenpolyp"
+721,p,1998-05-27,"Verdacht auf Kontaktpachydermie, leicht asymmetrisches Schwingungsbild, unvollständiger Glottisschluß",1413,1937-04-28,w,Kontaktpachydermie
+722,p,1998-05-27,Psychogene Komponente,1414,1939-08-18,w,Funktionelle Dysphonie
+723,p,1998-05-27,"""Kontaktpachydermie ohne Kontaktpachydermie"" nach Strumektomie",1416,1961-01-28,m,"Funktionelle Dysphonie, N. laryngeus superior Neuralgie"
+724,p,1998-05-27,Ponogen,1417,1952-10-28,w,Hyperfunktionelle Dysphonie
+725,p,1998-05-27,Mit beginnender Kompensation?,1419,1932-06-04,w,Rekurrensparese
+726,p,1998-05-27,Frischer Zustand nach beidseitiger laserchirurgischer Erweiterung der Glottis,1420,1932-02-06,m,Rekurrensparese
+727,p,1998-05-27,Diskret mit psychogener Komponente,1415,1961-09-20,w,Funktionelle Dysphonie
+728,p,1998-05-27,"Mit unvollständiger Kompensation, Verschlechterung der Stimme",1305,1932-07-11,w,Rekurrensparese
+729,p,1998-05-28,"Ödematöse Stimmlippen, beginnende Phonationsverdickung, Spalt",1421,1961-12-12,w,Funktionelle Dysphonie
+730,p,1998-05-28,"Hypoton, psychogene Komponente",1422,1938-01-20,m,Funktionelle Dysphonie
+731,p,1998-05-28,"Groß und metastasierend mit Starre, linker Kehlkopfbereich",1423,1931-07-16,m,Hypopharynxtumor
+732,n,1998-05-28,,644,1977-01-18,w,
+733,n,1998-05-28,,638,1975-03-17,w,
+734,n,1998-05-28,,639,1975-01-28,w,
+735,n,1998-05-28,,640,1976-11-10,w,
+736,n,1998-05-28,,641,1969-04-03,w,
+737,n,1998-05-28,,642,1978-01-10,w,
+738,n,1998-05-28,,643,1978-04-11,w,
+739,n,1998-05-28,,645,1976-07-15,m,
+740,n,1998-05-28,,646,1976-02-29,m,
+741,p,1998-05-28,Ponogen,1351,1946-11-13,w,Psychogene Dysphonie
+742,p,1998-05-29,Verdacht auf Stimmlippentumor mit beginnendem phonatorischem Sillstand,1425,1955-03-07,m,"Dysphonie, Stimmlippenkarzinom"
+743,n,1998-05-29,,647,1966-06-26,w,
+744,n,1998-05-29,,648,1975-07-30,m,
+745,n,1998-05-29,,649,1972-01-17,w,
+746,n,1998-05-29,,650,1973-10-22,w,
+747,n,1998-05-29,,651,1971-07-23,w,
+782,n,1998-06-09,,715,1979-12-12,m,
+803,n,1998-06-09,,707,1982-01-31,m,
+804,n,1998-06-09,,708,1980-12-10,m,
+805,n,1998-06-09,,709,1978-07-30,m,
+806,n,1998-06-09,,710,1978-07-03,m,
+807,n,1998-06-09,,711,1982-05-05,m,
+808,n,1998-06-09,,712,1981-12-29,m,
+809,n,1998-06-09,,713,1980-11-22,m,
+810,n,1998-06-09,,714,1979-11-04,m,
+811,n,1998-06-09,,716,1976-04-15,m,
+812,n,1998-06-09,,717,1978-07-19,m,
+813,n,1998-06-09,,718,1979-06-27,m,
+814,p,1998-06-10,"Mutationsfistelstimme?, Kontaktpachydermie ohne ""Kontaktpachydermie""",1426,1961-08-26,m,"Mutationsfistelstimme, Kontaktpachydermie"
+815,p,1998-06-10,"Zustand nach frontolateraler Teilresektion, hohe mittlere Sprechstimmlage",1427,1941-05-10,m,Frontolaterale Teilresektion
+816,p,1998-06-10,Vox senilis,1428,1927-08-01,w,Vox senilis
+817,p,1998-06-10,"Frühere Phonationsverdickung bei hyperfunktioneller Komponente, Zustand nach alter Phonationsknötchenabtragung",1429,1963-03-02,w,Gesangsstimme
+818,p,1998-06-10,"Multikausale Stimmstörung, Laryngitis, vox senilis, Schwerhörigkeit",1430,1926-04-29,m,"Laryngitis, Vox senilis"
+819,p,1998-06-10,Ausgeprägte Hyperfunktion mit laryngitischer Komponenete und Phonationsverdickung,1431,1960-02-17,w,"Hyperfunktionelle Dysphonie, Laryngitis"
+820,p,1998-06-24,"Lappige Aryregion, Cyste seitliche Rachenwand, unregelmäßiges stroboskopisches Bild",1432,1929-05-08,m,Dysplastischer Kehlkopf
+821,p,1998-06-24,Zustand nach Stütze bei rezidivierendem Reinke-Ödem ,1433,1941-07-17,m,Reinke Ödem
+822,p,1998-06-24,"Abgeklungene Hyperfunktion nach Therapie, keine Phonationsknötchen mehr nach logopädischer Therapie",1348,1968-10-03,w,Gesangsstimme
+823,p,1998-06-24,Depression,1435,1948-08-04,m,Psychogene Dysphonie
+824,p,1998-06-24,"Chronische Laryngitis, inkomplette Mutatio",1436,1981-07-06,m,Laryngitis
+825,p,1998-06-24,Restparese rechts nach Strumektomie mit hyperfunktioneller Kompensation,1437,1949-06-14,w,Rekurrensparese
+826,p,1998-06-24,Leicht ödematöse Stimmlippen,1438,1919-07-14,w,Vox senilis
+827,p,1998-06-24,"Ponogen, deutlich gebessert nach Therapie",1439,1958-12-23,w,Hyperfunktionelle Dysphonie
+828,p,1998-06-24,"Chronisch hyperplastisch, Monochorditis rechts",1440,1948-04-23,w,"Laryngitis, Monochorditis"
+829,p,1998-06-24,Ausgeprägt,1441,1927-01-22,w,Hyperfunktionelle Dysphonie
+830,p,1998-06-24,Überlastungssymptomatik,1442,1968-07-04,m,Dysodie
+831,n,1998-06-24,,719,1941-05-30,w,
+832,n,1998-06-25,,725,1981-05-21,w,
+833,n,1998-06-25,,720,1980-07-10,w,
+834,n,1998-06-25,,721,1978-08-17,w,
+835,n,1998-06-25,,722,1981-07-21,w,
+836,n,1998-06-25,,723,1980-12-04,w,
+837,n,1998-06-25,,724,1981-03-14,w,
+838,n,1998-06-25,,726,1979-08-01,w,
+839,n,1998-06-25,,727,1980-07-20,w,
+840,n,1998-06-25,,728,1980-07-20,w,
+841,n,1998-06-25,,729,1978-09-09,w,
+842,n,1998-06-25,,730,1979-06-24,w,
+843,n,1998-06-25,,731,1979-10-20,w,
+844,p,1998-07-01,"Bei kindlich jungendlicher Stimme, Mutatio? ",1443,1985-10-16,w,Laryngitis
+845,p,1998-07-01,Zustand nach Chordektomie (1995) mit Taschenfaltenstimme ,1444,1935-12-29,m,Chordektomie
+846,p,1998-07-01,Subglottale Cyste,1445,1929-11-02,w,Vox senilis
+847,p,1998-07-01,Zustand nach Chordektomie ,1446,1932-11-08,m,Chordektomie
+848,p,1998-07-01,"Funktionell, kleine intraepithele Cyste",1447,1948-04-06,w,Psychogene Dysphonie
+849,p,1998-07-01,"Doppelseitig ohne Kompensation, rechts eingeschränkt, links komplett, schlaffe Komponente, totale Strumektomie",1448,1924-07-22,m,Rekurrensparese
+850,p,1998-07-01,Ausgeprägt mit Phonationsverdickung,1449,1936-04-18,m,"Hyperfunktionelle Dysphonie, Diplophonie"
+851,p,1998-07-01,Hormonelle Komponente,1450,1945-03-11,w,"Funktionelle Dysphonie, Dysodie"
+852,n,1998-07-01,,732,1935-04-27,w,
+853,p,1998-07-08,,1451,1966-04-26,w,Rhinophonie mixta
+854,p,1998-07-08,"Schauspielerstimme, abklingende Hyperfunktion (sehr wenig Restsymptomatik)",1452,1975-06-22,m,Hyperfunktionelle Dysphonie
+855,p,1998-07-08,"Doppelseitig kompensiert, Zustand nach Lateralfixation links",1453,1925-09-09,w,Rekurrensparese
+857,p,1998-07-08,"Leichte, mit psychogener Komponente",1457,1956-07-18,w,Hyperfunktionelle Dysphonie
+859,p,1998-07-08,"Frischer Zustand nach Granulationspolypabtragung bei Rekurrensparese links, unvollständige Kompensation",1459,1944-09-29,w,"Rekurrensparese, Stimmlippenpolyp"
+860,n,1998-07-08,,733,1972-05-11,m,
+861,n,1998-07-08,,734,1976-04-22,m,
+862,n,1998-07-08,,735,1974-07-30,m,
+863,p,1998-07-08,Frischer Zustand nach Leukoplakieabtragung postoperativ (phonatorischer Stillstand) ; OP 07.07 98,1455,1957-06-09,w,Leukoplakie
+864,p,1998-07-08,"Keine Symptomatik mehr, unauffälliges stroboskopisches Bild",1456,1971-01-14,w,Rekurrensparese
+865,n,1998-07-09,,736,1980-03-14,w,
+867,n,1998-07-09,,738,1980-03-07,w,
+868,p,1998-07-15,"Ponogen, Nebenbemerkung: Cortison-Spray bei allergischem Asthma",1461,1949-01-14,w,Hyperfunktionelle Dysphonie
+869,p,1998-07-15,Mit phonatorischer Kompensation,1462,1930-10-15,w,Rekurrensparese
+870,p,1998-07-15,"Mit kleinem Phonationsknötchen rechts, Schauspielstimme, Bühnenstimme deutlich besser als Spontanstimme",1466,1969-08-10,w,"Funktionelle Dysphonie, Phonationsknötchen"
+871,p,1998-07-15,Dysphonie bei abklingender Laryngitis,1467,1939-04-11,w,Laryngitis
+872,p,1998-07-15,Hyperfunktionelle Dysphonie mit funktioneller phonasthenischer Dysphonie,1468,1957-10-13,w,"Dysphonie, Phonasthenie"
+873,p,1998-07-15,Zustand nach partieller Chordektomie,1469,1946-06-26,m,Chordektomie
+874,p,1998-07-15,"Frische strumiprive links, ohne Kompensation",1470,1947-11-12,w,Rekurrensparese
+875,p,1998-07-15,"Zustand nach Leukoplakieabtragung, noch deutliche Fibrinbeläge ",1455,1957-06-09,w,Leukoplakie
+876,p,1998-07-15,Massive Diplophonie bei excavierten Stimmlippen und Kontaktpachydermie,1472,1925-04-15,m,"Diplophonie, Kontaktpachydermie"
+877,p,1998-07-15,Zustand nach Abtragung mit Narbenbildung  ,1414,1939-08-18,w,Psychogene Dysphonie
+878,p,1998-07-15,Mit Neuralgie N. laryngeus superior (abklingend) ,1358,1939-08-15,w,Funktionelle Dysphonie
+879,p,1998-07-15,"Abklingend, paramedian mit beginnender Kompensation ",1398,1932-05-03,w,Rekurrensparese
+880,p,1998-07-22,Strumiprive mit Kompensation,1473,1942-04-25,w,Rekurrensparese
+881,p,1998-07-22,Asthenische Stimme,1474,1981-05-31,w,Hyperfunktionelle Dysphonie
+883,p,1998-07-22,"Links, idiopathisch, unvollständige Kompensation",1477,1933-02-16,m,Rekurrensparese
+884,p,1998-07-22,"Ausgeprägt, mit beginnendem linkem phonatorischem Stillstand",1478,1926-09-24,m,"Laryngitis, Leukoplakie"
+885,p,1998-07-22,Leichte funktionelle Störung ,1479,1944-08-23,w,Psychogene Dysphonie
+886,p,1998-07-22,"Beidseitig ausgeprägt, Flatterschwingungen",1480,1948-01-05,w,"Laryngitis, Reinke Ödem"
+887,p,1998-07-22,"Mamma-Ca, unvollständige Kompensation ",1386,1933-08-24,w,Rekurrensparese
+888,p,1998-07-22,"Ponogen, Lehrerdysphonie",1482,1955-02-06,w,Hyperfunktionelle Dysphonie
+889,p,1998-07-22,Rückläufig ,1340,1939-05-18,w,"Reinke Ödem, Hyperfunktionelle Dysphonie"
+890,p,1998-08-08,Ponogen,120,1949-06-26,w,Hyperfunktionelle Dysphonie
+891,p,1998-08-26,"Zustand nach Hemilaryngektomie mit mäßiger Dysphonie, leichte supraglottale Kompensation ",1485,1931-08-14,m,Frontolaterale Teilresektion
+892,p,1998-08-26,Leichte Diplophonie,1486,1975-03-05,m,Balbuties
+893,p,1998-08-26,Frische (8 Tage alt) links ohne Kompensation,1488,1948-06-07,w,Rekurrensparese
+894,p,1998-08-26,Bei etwas abgerundeten Stimmlippen,1489,1925-04-25,m,Hyperfunktionelle Dysphonie
+895,p,1998-08-26,"Zustand nach Abtragung, großes Rezidiv links, hinteres Drittel, stroboskopisch eher weites Schwingungsbild ",1454,1967-09-30,m,"Stimmlippenpolyp, Kontaktpachydermie"
+896,p,1998-08-26,"Beidseitig, zwischenzeitlich fast völlige Remission, nur noch diskrete Bewegungseinschränkung ",1448,1924-07-22,m,Rekurrensparese
+897,p,1998-08-26,"Mit unvollständiger Kompensation, z.B. Strumamalignom, Diagnose steht noch aus",1484,1917-05-15,m,Rekurrensparese
+898,p,1998-09-02,Ausgeprägt (eventuell noch unterschwellige Laryngitis),1490,1969-12-18,w,Hyperfunktionelle Dysphonie
+899,p,1998-09-02,Differentialdiagnose: eventuell alte Schädigung des Arygelenks rechts,1491,1913-08-27,m,Vox senilis
+900,p,1998-09-02,"Beidseitig, juvenile Dysphonie",1492,1989-06-06,m,Phonationsknötchen
+901,p,1998-09-02,Verdacht auf spasmodische Dysphonie mit beidseitigem Reinke-Ödem ,1494,1950-09-08,w,"Spasmodische Dysphonie, Reinke Ödem"
+902,p,1998-09-02,"Chronisch hyperplastisch mit ödematöser Schleimhaut und Leukoplakie links, kein phonatorischer Stillstand",1495,1929-12-01,m,"Laryngitis, Leukoplakie"
+903,p,1998-09-02,Zustand danach mit excavierter Narbe hinten rechts und Verdacht auf Rezidiv vordere Kommissur,1497,1936-12-08,m,Chordektomie
+904,p,1998-09-02,"Rückläufig, mäßige Dysphonie",1498,1949-09-24,m,Laryngitis
+907,p,1998-09-02,"Zustand nach Struma-OP, dysplastischer Kehlkopf mit Ödemen, keine Rekurrensparese",1432,1929-05-08,m,Dysodie
+908,p,1998-09-02,"Links in Intermediärstellung, excaviert, keine Kompensation ",1385,1948-01-15,m,Rekurrensparese
+909,p,1998-09-09,Ponogen mit eventuell phsychogen-phonasthenischer Komponente,1501,1948-10-29,w,Hyperfunktionelle Dysphonie
+910,p,1998-09-09,"Ohne ""Kontaktpachydermie"", mäßig dysplastischer Kehlkopf",1502,1958-01-01,m,"Laryngitis, Kontaktpachydermie"
+911,p,1998-09-09,"Hypoton, entzündliche Komponente",1503,1969-10-14,m,Psychogene Dysphonie
+912,p,1998-09-09,Nur noch diskret hinten ,1477,1933-02-16,m,Rekurrensparese
+913,p,1998-09-09,Trachealstenose,1505,1960-06-06,w,Funktionelle Dysphonie
+914,p,1998-09-09,"Links intermediär schlaff, keine Kompensation, ausgeprägte Dysphonie ",1313,1950-08-14,m,Rekurrensparese
+915,p,1998-09-09,"Zustand nach Chordektomie, beginnende gute Kompensation, keine Leukoplakie auf Narbe",1508,1937-02-26,m,Chordektomie
+916,p,1998-09-09,Bewegungseinschränkung linke Stimmlippe,1509,1921-04-10,m,Dysphonie
+917,p,1998-09-09,Ponogen; psychogene Dysphonie,1510,1940-05-04,w,Psychogene Dysphonie
+918,p,1998-09-09,Chronisch hyperplastisch ,1495,1929-12-01,m,Laryngitis
+919,p,1998-09-16,Akute mit funktioneller Belastung,1511,1972-11-25,w,Laryngitis
+920,p,1998-09-16,Zustand nach Chordektomie mit psychogener Komponente ,1427,1941-05-10,m,Chordektomie
+921,p,1998-09-16,"Ausgeprägte laryngale Bewegungsstörung, langsame monotone Prosodie",1513,1957-03-30,m,Dysarthrophonie
+922,p,1998-09-16,"Ausgeprägt, Sulcus glottidis?",1514,1936-12-25,m,Hyperfunktionelle Dysphonie
+923,p,1998-09-16,Kontaktpachydermie,1515,1937-01-03,m,Kontaktpachydermie
+924,p,1998-09-16,"Alte, kompensiert",1516,1925-04-09,w,Rekurrensparese
+925,p,1998-09-16,"Ausgeprägt ponogen, sekundär hypo-hyperfunktionell",1517,1940-03-01,m,Dysphonie
+926,p,1998-09-30,Strumiprive links mit beginnender Kompensation,1518,1977-04-18,w,Rekurrensparese
+927,p,1998-09-30,"Nach OP LKG-Spalte, vor Velopharyngalplastik",1519,1959-07-20,m,Rhinophonie aperta
+928,p,1998-09-30,"Beidseitig, strumipriv, abklingend mit beginnender phonatorischer Kompensation",1521,1972-12-23,w,Rekurrensparese
+929,p,1998-09-30,"Alte links mit hyperfunktioneller Komponente, sehr asymmetrisch, z.T. paradoxes Schwingungsbild  ",74,1944-04-03,w,Rekurrensparese
+930,p,1998-10-07,Akute Laryngitis,1522,1976-09-19,m,"Balbuties, Laryngitis"
+931,p,1998-10-07,Ponogen,1523,1945-11-14,w,Laryngitis
+932,p,1998-10-07,"Hinteres Drittel, Stroboskopie o. B., Stimme relativ euphon",1524,1937-04-07,w,Stimmlippenpolyp
+933,p,1998-10-07,Stimmlippenvarizen links ,1525,1919-01-14,w,Vox senilis
+934,p,1998-10-14,"Deutlich verkürztes Schwingungsbild, verkürzte Randkantenverschiebung",1526,1972-09-25,w,Hyperfunktionelle Dysphonie
+935,p,1998-10-14,"Ausgeprägt chronisch mit Leukoplakie, stark asymmetrisch verkürzte Amplituden",1527,1966-01-22,m,"Laryngitis, Leukoplakie"
+936,p,1998-10-14,"Zustand nach Hemilaryngektomie, unvollständige Kompensation ",1485,1931-08-14,m,Frontolaterale Teilresektion
+937,p,1998-10-14,"Zustand danach, jetzt stroboskopischer Normalbefund",1529,1984-05-01,w,Psychogene Aphonie
+938,p,1998-10-14,"Ausgeprägt, mit Gaumensegelparese links, Synechie vordere Kommissur, subglottische Stenose",1530,1943-08-30,w,Rhinophonie aperta
+939,p,1998-10-14,"Gut ausgebildet, organisch leichte Asymmetrie am Kehlkopf, Taschenband hyperplastisch, z.B. kleine innere Laryngozele",1531,1959-04-05,m,Gesangsstimme
+940,p,1998-10-14,"Riesiger KK-Tu links, transglottisch, 3-Etagen",1532,1959-11-17,m,Kehlkopftumor
+941,n,1998-10-26,,745,1948-10-21,m,
+942,n,1998-10-26,,746,1966-02-08,m,
+943,n,1998-10-26,,747,1953-03-12,m,
+944,n,1998-10-26,,748,1970-08-06,w,
+945,n,1998-10-26,,750,1950-02-25,m,
+946,n,1998-10-26,,751,1961-06-28,m,
+947,n,1998-10-26,,752,1956-02-29,m,
+948,n,1998-10-26,,753,1968-10-11,m,
+949,n,1998-10-26,,755,1959-06-15,m,
+950,n,1998-10-26,,758,1964-07-22,m,
+951,n,1998-10-26,,754,1966-07-11,m,
+952,n,1998-10-26,,756,1965-11-22,m,
+953,n,1998-10-26,,757,1961-03-23,m,
+954,n,1998-10-26,,759,1949-01-04,m,
+955,n,1998-10-26,,739,1962-01-21,m,
+956,n,1998-10-26,,740,1963-12-29,m,
+957,n,1998-10-26,,741,1964-07-25,m,
+958,n,1998-10-26,,742,1955-12-07,m,
+959,n,1998-10-26,,743,1958-08-06,m,
+960,n,1998-10-26,,744,1948-11-28,m,
+961,n,1998-10-27,,762,1961-11-23,m,
+962,n,1998-10-27,,763,1968-05-09,w,
+963,n,1998-10-27,,764,1954-01-06,m,
+964,n,1998-10-27,,765,1958-07-21,m,
+965,n,1998-10-27,,766,1960-08-17,m,
+967,n,1998-10-27,,770,1970-03-29,m,
+968,n,1998-10-27,,771,1962-06-10,m,
+969,n,1998-10-27,,773,1966-05-19,m,
+970,n,1998-10-27,,774,1957-03-16,m,
+971,n,1998-10-27,,775,1960-10-31,m,
+972,n,1998-10-27,,776,1970-12-24,m,
+973,n,1998-10-27,,777,1963-01-26,m,
+974,n,1998-10-27,,778,1956-12-03,m,
+975,n,1998-10-27,,779,1963-09-19,m,
+976,n,1998-10-27,,780,1961-01-03,m,
+977,n,1998-10-27,,781,1971-12-13,m,
+978,n,1998-10-27,,782,1958-03-22,m,
+979,n,1998-10-27,,783,1968-07-29,m,
+980,n,1998-10-27,,760,1957-01-26,m,
+981,n,1998-10-27,,768,1967-05-13,m,
+982,n,1998-10-27,,772,1964-08-16,m,
+983,n,1998-10-27,,785,1954-07-03,m,
+984,n,1998-10-27,,790,1966-07-28,m,
+985,n,1998-10-27,,761,1960-06-13,m,
+986,n,1998-10-27,,769,1966-07-13,m,
+987,n,1998-10-28,,784,1964-05-18,m,
+988,n,1998-10-28,,786,1964-03-23,m,
+989,n,1998-10-28,,787,1958-07-26,m,
+990,n,1998-10-28,,788,1969-04-13,w,
+991,n,1998-10-28,,789,1958-01-28,m,
+992,n,1998-10-28,,791,1964-06-06,m,
+993,n,1998-10-28,,793,1975-01-13,m,
+994,n,1998-10-28,,794,1970-10-11,m,
+995,n,1998-10-28,,795,1970-10-12,m,
+996,n,1998-10-28,,796,1967-06-11,m,
+997,n,1998-10-28,,797,1960-05-14,m,
+998,n,1998-10-28,,792,1969-07-24,m,
+999,n,1998-10-29,,817,1964-04-30,m,
+1000,n,1998-10-29,,798,1967-07-15,m,
+1002,n,1998-10-29,,800,1972-12-15,m,
+1003,n,1998-10-29,,802,1963-06-01,m,
+1004,n,1998-10-29,,803,1965-03-04,m,
+1005,n,1998-10-29,,804,1955-09-22,m,
+1006,n,1998-10-29,,805,1966-03-31,w,
+1007,n,1998-10-29,,806,1956-06-07,m,
+1008,n,1998-10-29,,808,1948-02-12,m,
+1009,n,1998-10-29,,809,1958-06-23,m,
+1010,n,1998-10-29,,810,1967-04-03,m,
+1011,n,1998-10-29,,812,1970-08-07,m,
+1012,n,1998-10-29,,813,1976-06-06,m,
+1013,n,1998-10-29,,814,1953-12-30,m,
+1014,n,1998-10-29,,815,1958-10-20,m,
+1015,n,1998-10-29,,816,1961-04-10,m,
+1016,n,1998-10-29,,818,1960-07-23,m,
+1017,n,1998-10-29,,820,1958-10-06,m,
+1018,n,1998-10-29,,801,1959-05-01,m,
+1019,n,1998-10-29,,811,1949-11-05,m,
+1020,n,1998-10-29,,819,1973-06-25,m,
+1021,n,1998-10-29,,807,1957-09-09,m,
+1022,n,1998-11-01,,821,1953-04-13,w,
+1023,n,1998-11-02,,822,1957-09-20,m,
+1024,n,1998-11-02,,823,1961-01-08,w,
+1025,n,1998-11-02,,824,1956-06-11,m,
+1026,n,1998-11-02,,825,1956-02-28,m,
+1027,n,1998-11-02,,826,1950-03-24,m,
+1028,n,1998-11-02,,827,1956-11-22,m,
+1029,n,1998-11-02,,828,1957-10-05,w,
+1030,n,1998-11-02,,829,1949-08-12,m,
+1031,n,1998-11-02,,830,1954-08-24,m,
+1032,n,1998-11-02,,833,1961-04-30,m,
+1033,n,1998-11-02,,834,1952-11-19,m,
+1034,n,1998-11-02,,835,1969-02-10,m,
+1035,n,1998-11-02,,832,1974-02-25,m,
+1036,n,1998-11-02,,831,1959-08-02,m,
+1037,p,1998-11-04,Ponogen ,1533,1948-01-14,w,Hyperfunktionelle Dysphonie
+1038,p,1998-11-04,Ausgebildete Gesangsstimme,1534,1955-10-26,w,Gesangsstimme
+1039,p,1998-11-04,Zentrallaryngale Komponente,1535,1923-03-18,m,Vox senilis
+1040,p,1998-11-04,"Fast paramedian, gute phonatorische Kompensation",1536,1937-02-05,w,Rekurrensparese
+1041,p,1998-11-04,Unauffälliger stroboskopischer Befund,1537,1975-02-12,w,Gesangsstimme
+1042,p,1998-11-04,Phonastetisch,1538,1951-08-09,m,Psychogene Dysphonie
+1043,p,1998-11-11,Verdacht auf hyperfunktionelle Dysphonie,1539,1956-04-14,m,Hyperfunktionelle Dysphonie
+1044,p,1998-11-11,Beidseitig,1540,1967-04-21,w,"Hyperfunktionelle Dysphonie, Phonationsknötchen"
+1045,p,1998-11-11,"Zustand nach Abtragung, beidseitig vor etwa 14 Tagen, noch schwere Dysphonie",1541,1964-03-15,w,Reinke Ödem
+1046,p,1998-11-11,"Beidseitiges Reinke-Ödem, chronische  Laryngitis",1542,1951-08-24,w,"Reinke Ödem, Laryngitis"
+1047,p,1998-11-11,"Chronische, Stimmlippen beidseitig frei",1543,1944-06-14,w,"Laryngitis, Epiglottiskarzinom"
+1048,p,1998-11-11,"Groß, mit komplettem phonatorischem Stillstand",1544,1939-10-29,m,Stimmlippenkarzinom
+1049,p,1998-11-11,Mit Kompensation,1545,1948-04-30,w,Rekurrensparese
+1050,p,1998-11-11,Eventuell leichter Trend dazu,1546,1962-09-03,w,Hyperfunktionelle Dysphonie
+1051,p,1998-11-11,Zweitaufnahme nach logop. Therapie,1402,1969-02-26,w,"Psychogene Dysphonie, Hyperfunktionelle Dysphonie"
+1052,p,1998-11-18,Links,1550,1966-01-22,w,Stimmlippenpolyp
+1053,p,1998-11-18,"Cervicogen, verlängertes Schwingungsbild",1551,1961-10-31,w,Psychogene Dysphonie
+1054,p,1998-11-18,"Zustand nach partieller links (gering eingeschränkt), jetzt allerdings vollkommen symmetrisches Schwingungsbild",1552,1974-03-15,w,Rekurrensparese
+1055,p,1998-11-18,"KK ohne Befund, diskrete Bewegungsstörung",1554,1929-08-09,m,Orofaciale Dyspraxie
+1056,p,1998-11-18,"Zustand nach Stütze, leichte Rötung und Schwellung, sehr unregelmäßiges Schwingungsbild ",1541,1964-03-15,w,Reinke Ödem
+1057,p,1998-11-18,"Cervicogen, asymmetrisches Schwingungsbild ",732,1935-04-27,w,Dysphonie
+1058,p,1998-11-18,"Hypohyperfunktionelles Schwingungsbild, Lehrerdysphonie ",1355,1940-05-09,m,Psychogene Dysphonie
+1059,n,1998-11-19,,836,1977-04-28,w,
+1060,n,1998-11-19,,837,1977-10-13,w,
+1061,n,1998-11-19,,838,1973-12-11,m,
+1062,n,1998-11-19,,839,1967-03-29,m,
+1063,n,1998-11-19,,840,1964-03-24,m,
+1064,n,1998-11-19,,841,1976-07-08,m,
+1065,n,1998-11-19,,842,1979-02-23,w,
+1066,n,1998-11-19,,843,1977-09-15,w,
+1067,n,1998-11-19,,844,1965-02-16,w,
+1068,n,1998-11-19,,845,1977-11-27,w,
+1069,n,1998-11-19,,847,1971-03-02,m,
+1070,n,1998-11-19,,848,1967-10-12,m,
+1071,n,1998-11-19,,850,1969-09-10,m,
+1072,n,1998-11-19,,851,1966-05-16,m,
+1073,n,1998-11-19,,853,1961-01-05,m,
+1074,n,1998-11-19,,854,1966-11-11,m,
+1075,n,1998-11-19,,855,1968-05-10,m,
+1076,n,1998-11-19,,856,1962-08-10,m,
+1077,n,1998-11-19,,858,1965-11-06,m,
+1078,n,1998-11-19,,846,1967-08-01,m,
+1079,n,1998-11-19,,849,1963-10-03,m,
+1080,n,1998-11-19,,852,1966-08-30,m,
+1081,n,1998-11-19,,857,1966-03-12,m,
+1082,n,1998-11-19,,859,1965-08-13,m,
+1083,p,1998-11-25,"Dysplastischer Kehlkopf, leicht ponogen",1555,1948-11-06,m,Hyperfunktionelle Dysphonie
+1084,p,1998-11-25,"Zustand nach Chordektomie rechts, kompensatorische Taschenfaltenstimme, ausgeprägte glottische Insuffizienz, stark eingeschränktes Stimmfeld ",1411,1949-05-14,m,"Chordektomie, Taschenfaltenstimme"
+1085,p,1998-11-25,"Leichte Form der hyperfunktionellen Dysphonie, ponogen",1557,1955-03-12,m,"Hyperfunktionelle Dysphonie, Rhinophonie clausa"
+1086,p,1998-11-25,Noch leichte Bewegungseinschränkung der linken Stimmlippe nach Thoraxtrauma und Notintubation,1559,1925-02-22,m,Dysphonie
+1087,p,1998-11-25,Leicht hypotone dünne Stimmgebung,639,1975-01-28,w,Hypofunktionelle Dysphonie
+1088,p,1998-11-25,"Ponogen, alte Rekurrensparese",1562,1942-11-30,w,Hyperfunktionelle Dysphonie
+1089,p,1998-11-25,"Zustand danach, mit noch unvollständiger Kompensation; logopädische Therapie eingeleitet",1485,1931-08-14,m,Chordektomie
+1090,p,1998-11-25,Zustand nach Abtragung ,1340,1939-05-18,w,"Hyperfunktionelle Dysphonie, Reinke Ödem"
+1091,n,1998-11-26,,860,1964-09-09,m,
+1092,n,1998-11-26,,861,1967-01-11,m,
+1093,n,1998-11-26,,862,1970-03-18,m,
+1094,n,1998-11-26,,863,1979-06-20,w,
+1095,n,1998-11-26,,864,1977-10-31,w,
+1096,n,1998-11-26,,867,1977-09-06,w,
+1097,n,1998-11-26,,868,1974-08-14,w,
+1098,n,1998-11-26,,869,1974-07-16,w,
+1099,n,1998-11-26,,870,1978-09-26,w,
+1100,n,1998-11-26,,871,1979-07-12,w,
+1101,n,1998-11-26,,872,1979-12-02,w,
+1102,n,1998-11-26,,873,1980-01-14,w,
+1103,n,1998-11-26,,875,1979-05-07,w,
+1104,n,1998-11-26,,877,1980-05-05,w,
+1105,n,1998-11-26,,878,1961-08-01,w,
+1106,n,1998-11-26,,879,1978-11-12,w,
+1107,n,1998-11-26,,880,1978-03-27,w,
+1108,n,1998-11-26,,881,1974-05-10,m,
+1109,n,1998-11-26,,865,1979-04-20,w,
+1110,n,1998-11-26,,866,1978-05-27,w,
+1111,n,1998-11-26,,874,1978-04-21,m,
+1112,n,1998-11-26,,876,1979-08-15,w,
+1113,p,1998-12-02,Leichte Tendenz dazu,1563,1972-05-19,w,Hyperfunktionelle Dysphonie
+1115,p,1998-12-02,"Bei LKG-Spalte, und Zustand nach Velopharyngoplastik",1565,1961-12-23,m,"Rhinophonie aperta, Velopharyngoplastik"
+1116,p,1998-12-02,"Strumipriv, rechts",1566,1930-09-23,m,N. laryngeus superior Läsion
+1117,p,1998-12-02,Hypofunktionelle Dysphonie + GERD (gastro-oesophagaler Reflux),1567,1939-05-18,m,"Hypofunktionelle Dysphonie, GERD"
+1118,p,1998-12-02,Leichte Form,1569,1977-03-01,w,Hyperfunktionelle Dysphonie
+1119,p,1998-12-02,Mit ausgeprägter Dysphonie,1570,1936-07-06,w,Laryngitis
+1120,p,1998-12-02,"Links, voll kompensiert ",1350,1933-10-24,m,Rekurrensparese
+1121,n,1998-12-03,,882,1973-07-30,w,
+1122,n,1998-12-03,,883,1978-08-01,w,
+1123,n,1998-12-03,,884,1970-07-01,w,
+1124,n,1998-12-03,,885,1974-03-06,w,
+1125,n,1998-12-03,,886,1976-07-30,m,
+1126,n,1998-12-03,,887,1974-02-04,m,
+1127,n,1998-12-03,,889,1978-04-11,w,
+1128,n,1998-12-03,,890,1979-03-29,w,
+1129,n,1998-12-03,,891,1974-12-19,w,
+1130,n,1998-12-03,,892,1976-06-16,w,
+1131,n,1998-12-03,,893,1979-04-20,w,
+1132,n,1998-12-03,,894,1977-10-20,w,
+1133,n,1998-12-03,,896,1977-09-14,w,
+1134,n,1998-12-03,,897,1979-07-09,w,
+1135,n,1998-12-03,,895,1978-07-07,w,
+1136,n,1998-12-03,,888,1976-07-16,m,
+1137,n,1998-12-04,,899,1973-02-13,w,
+1138,n,1998-12-04,,898,1978-07-10,m,
+1139,n,1998-12-04,,900,1973-09-25,w,
+1140,n,1998-12-04,,902,1978-05-27,m,
+1141,n,1998-12-04,,903,1975-04-16,m,
+1142,n,1998-12-04,,905,1976-12-09,m,
+1143,n,1998-12-04,,906,1972-12-13,m,
+1144,n,1998-12-04,,908,1974-12-11,w,
+1145,n,1998-12-04,,909,1977-07-07,w,
+1146,n,1998-12-04,,910,1976-11-06,w,
+1147,n,1998-12-04,,911,1972-12-17,w,
+1148,n,1998-12-04,,912,1975-04-16,w,
+1149,n,1998-12-04,,913,1979-01-02,w,
+1150,n,1998-12-04,,914,1979-09-04,w,
+1151,n,1998-12-04,,915,1974-12-25,w,
+1153,n,1998-12-04,,904,1974-07-03,m,
+1155,n,1998-12-04,,907,1978-03-17,m,
+1156,p,1998-12-09,Ponogen ,1573,1943-02-21,m,Hypofunktionelle Dysphonie
+1157,p,1998-12-09,"Zustand nach Abtragung, jetzt euphon ",1574,1938-03-06,m,Stimmlippenpolyp
+1158,p,1998-12-09,"Klein, hinteres Drittel links, Stimmlippen soweit o.k.",1575,1933-12-02,m,Intubationsgranulom
+1159,p,1998-12-09,Leichte subglottische Einengung ,1445,1929-11-02,w,Vox senilis
+1160,p,1998-12-09,"Alte, jetzt kompensierte Dysphonie",1577,1967-03-24,m,Gesangsstimme
+1161,p,1998-12-09,"Chronische, ausgeprägt",1578,1965-11-19,m,Laryngitis
+1162,p,1998-12-09,Zustand nach frontolateraler Teilresektion und Synechieabtrennung mit ausgeprägten Fibrinbelägen,1579,1933-05-24,m,"Frontolaterale Teilresektion, Synechie"
+1163,p,1998-12-09,"Chronische, Taschenfaltenstimme beginnt ",1495,1929-12-01,m,"Laryngitis, Taschenfaltenstimme"
+1164,p,1998-12-09,"Zustand nach Abtragung eines großen Polypen links, breithalsig, jetzt Fibrinbeläge, unregelmäßige Konfiguration ",1550,1966-01-22,w,Stimmlippenpolyp
+1165,p,1998-12-09,"Zustand danach, mit sehr schmalem Ersatzstimmband und hyperfunktioneller Komponente ",1427,1941-05-10,m,Frontolaterale Teilresektion
+1166,p,1998-12-10,"Strumiprive, beidseitig, alte rechts, hier excavierte Stimmlippe, links keine Restbeweglichkeit, Stridor",1581,1944-08-29,w,Rekurrensparese
+1167,n,1998-12-10,,920,1980-05-08,w,
+1168,n,1998-12-10,,922,1977-12-14,w,
+1169,n,1998-12-10,,917,1980-03-17,w,
+1170,n,1998-12-10,,918,1980-11-18,w,
+1171,n,1998-12-10,,919,1980-12-12,w,
+1172,n,1998-12-10,,921,1978-08-04,w,
+1173,n,1998-12-10,,923,1976-11-19,m,
+1174,n,1998-12-10,,924,1981-03-12,w,
+1175,n,1998-12-10,,925,1979-03-28,w,
+1176,n,1998-12-10,,926,1980-11-17,w,
+1177,n,1998-12-10,,928,1971-11-16,w,
+1178,n,1998-12-10,,930,1980-04-02,w,
+1179,n,1998-12-10,,931,1981-03-02,w,
+1180,n,1998-12-10,,933,1970-07-07,w,
+1181,n,1998-12-10,,934,1966-09-04,m,
+1182,n,1998-12-10,,935,1981-07-21,w,
+1183,n,1998-12-10,,929,1973-03-15,m,
+1184,n,1998-12-10,,932,1981-08-06,w,
+1185,n,1998-12-10,,927,1979-07-21,w,
+1186,p,1998-12-16,"Verdacht auf Tumor linkes Stimmband, hinteres Drittel; Nikotinabusus",1583,1939-12-18,m,Leukoplakie
+1187,p,1998-12-16,"Verdacht, Stroboskopie o.B., enge Artikulation",1585,1980-04-18,w,Dysphonie
+1188,p,1998-12-16,"Chronische, hyperplastisch, mit unregelmäßigem Schwingungsbild, kein Rezidiv bei Zustand nach Ploypabtragung",1587,1970-08-12,w,"Laryngitis, Stimmlippenpolyp"
+1189,p,1998-12-16,Leichte Tendenz dazu mit unvollständiger Schlußphase,1588,1973-04-21,w,Hyperfunktionelle Dysphonie
+1190,p,1998-12-16,"Zustand nach Abtragung, mit kleinem Rezidiv, verlängerte Amplituden, verlängerte Schlußphase ",1454,1967-09-30,m,Kontaktpachydermie
+1191,p,1998-12-16,Zustand danach ,1485,1931-08-14,m,Frontolaterale Teilresektion
+1192,p,1998-12-16,Deutliche Verbesserung ,1570,1936-07-06,w,Laryngitis
+1193,p,1998-12-16,Leichte; zur Hyperfunktion neigendes unregelmäßiges Schwingungsbild,1586,1935-03-16,w,"Funktionelle Dysphonie, Dysodie"
+1194,p,1999-01-06,"Lediglich etwas Schleim, sonst unauffällige Stimme",1590,1977-10-27,m,Dysphonie
+1195,p,1999-01-06,"Vorstufe zur Kontaktpachydermie ""ohne Kontaktpachydermie"", asymmetrisches Schwingungsbild mit etwas gedrückter Stimme",1591,1939-08-04,m,Kontaktpachydermie
+1196,p,1999-01-06,"Extrem enge Artikulation, orofacial-myofunktionelle Störung",1593,1959-05-06,w,"Hyperfunktionelle Dysphonie, Sigmatismus"
+1197,p,1999-01-06,"Leichte Form, kein pathologischer Befund, hohe mittlere Sprechstimmlage",1594,1929-05-14,m,Vox senilis
+1198,p,1999-01-06,Ponogen ,1510,1940-05-04,w,Psychogene Dysphonie
+1199,p,1999-01-06,Restsymptomatik ,1513,1957-03-30,m,Dysarthrophonie
+1200,p,1999-01-13,"Gering, z.B. ""flatus""?",1596,1954-10-04,w,Funktionelle Dysphonie
+1201,p,1999-01-13,"Zustand danach, Verlaufskontrolle ",1597,1963-06-15,w,Aryluxation
+1202,p,1999-01-13,Non-fluency-Syndrom,1598,1970-08-24,m,Non-fluency-Syndrom
+1203,p,1999-01-13,Leicht,1600,1937-12-20,w,"Dysodie, Vox senilis"
+1204,p,1999-01-13,"Alte, ponogene, jetzt noch diskrete Verdickung beidseitig",1601,1970-01-01,w,Hyperfunktionelle Dysphonie
+1205,p,1999-01-13,"Z.B. linkes Taschenband, Stimmlippen o.B.; Stroboskopie o.B.",1602,1952-01-16,m,Laryngozele
+1206,p,1999-01-13,Rec.par. links und Reinke-Ödem beidseitig ,1386,1933-08-24,w,"Rekurrensparese, Reinke Ödem"
+1207,n,1999-01-14,,936,1979-03-24,w,
+1208,n,1999-01-14,,939,1978-11-26,w,
+1209,n,1999-01-14,,940,1972-03-26,w,
+1210,n,1999-01-14,,941,1977-10-08,w,
+1211,n,1999-01-14,,942,1978-04-08,w,
+1212,n,1999-01-14,,943,1976-02-19,w,
+1214,n,1999-01-14,,938,1967-07-16,w,
+1215,n,1999-01-14,,937,1975-05-19,w,
+1216,n,1999-01-14,,944,1977-11-20,w,
+1217,p,1999-01-20,"Zustand danach, links, schönes Narbenstimmband mit phonatorischem Stillstand",1603,1931-06-10,m,Chordektomie
+1218,p,1999-01-20,"Z.B. verlängerte Schlußphase, beginnende Kontaktpachydermie (Gastrooesophagealer Reflux)",1604,1955-10-31,m,"GERD, Kontaktpachydermie"
+1219,p,1999-01-20,Z.B. leichte audiogene,1606,1961-10-01,m,Dysphonie
+1220,p,1999-01-20,Vox senilis,1608,1922-05-22,m,Vox senilis
+1221,p,1999-01-20,"Zustand nach Abtragung eines Reinke-Ödems, leicht exkavierte Stimmlippe ",1550,1966-01-22,w,"Laryngitis, Reinke Ödem"
+1222,p,1999-01-20,Mäßige mit Phonationsverdickung beidseitig,1466,1969-08-10,w,Hyperfunktionelle Dysphonie
+1223,p,1999-01-27,"Links, in Intermediärstellung",1611,1962-03-17,m,Rekurrensparese
+1224,p,1999-01-27,Ausgebildete Gesangsstimme ,1612,1971-04-27,m,Gesangsstimme
+1225,p,1999-01-27,Funktionelle,1613,1939-11-12,m,Psychogene Dysphonie
+1227,p,1999-01-27,"Mit Einschränkung der Stimmlippenfunktion, zentrallaryngale Dyskoordination",1615,1932-07-20,w,Bulbärparalyse
+1228,p,1999-01-27,Chronische,1616,1951-03-29,w,Laryngitis
+1229,p,1999-01-27,"Beidseitig, Dysphonie",1617,1961-06-08,w,"Laryngitis, Reinke Ödem"
+1230,p,1999-01-27,,1618,1949-10-12,m,"Psychogene Dysphonie, Funktionelle Dysphonie"
+1231,p,1999-01-27,"Alte, (Mutatio tardo), deutliche Verbesserung gegenüber Vorbefund ",1436,1981-07-06,m,Mutationsfistelstimme
+1232,p,1999-01-27,Dysphonie bei Zustand danach ,1485,1931-08-14,m,Frontolaterale Teilresektion
+1233,p,1999-02-03,Chronische mit ödematösen Stimmlippen,1619,1955-07-19,w,Laryngitis
+1234,p,1999-02-03,"Vor OP bei Verdacht auf Tumor in der vorderen Kommissur, subglottisch im vorderen Anteil, phonatorischer Stillstand ",1620,1940-03-19,m,Frontolaterale Teilresektion
+1235,p,1999-02-03,"Akute, mit Auflagerungen",1621,1945-11-21,m,Laryngitis
+1237,p,1999-02-03,Akute mit maßivem Ödem,1623,1953-07-08,m,Laryngitis
+1238,p,1999-02-05,Aufnahme 6 nach OP,1485,1931-08-14,m,Frontolaterale Teilresektion
+1239,p,1999-02-10,"Erste Aufnahme prä OP, heute Stütze mit PE",1625,1941-03-24,m,Stimmlippenkarzinom
+1240,p,1999-02-17,Zustand nach Strumektomie,1627,1944-04-19,w,Funktionelle Dysphonie
+1241,p,1999-02-17,"Diskret, ausgebildete Gesangsstimme",1628,1960-04-30,w,"Funktionelle Dysphonie, Dysodie"
+1242,p,1999-02-17,"Bei zentrallaryngaler Bewegungsstörung, Amyotrophe Lateralsklerose (ALS) ",1630,1936-04-29,m,"Dysarthrophonie, Amyotrophe Lateralsklerose"
+1243,p,1999-02-17,"Zustand danach, rechts mit ausgeprägter Vernarbung Am 14.08.99 eine T1-Ca OP;  MDVP signal not voiced",1497,1936-12-08,m,Frontolaterale Teilresektion
+1244,p,1999-02-17,Funktionell,1593,1959-05-06,w,Funktionelle Dysphonie
+1245,p,1999-02-17,"Rechts in gesamter Länge, mit komplettem phonatorischem Stillstand; erste Aufnahme nach PE",1625,1941-03-24,m,Stimmlippenkarzinom
+1246,p,1999-02-17,Abklingende bei chronischer Laryngitis ,1621,1945-11-21,m,Laryngitis
+1247,p,1999-02-24,"Verdacht, links, begrenzt auf Stimmlippe, vollkommener Stillstand rechts, ausgeprägte Dysphonie",1633,1956-07-13,m,"Dysphonie, Stimmlippenkarzinom"
+1248,p,1999-02-24,"Chronische Laryngitis. Sehr ausgeprägt bei extremem früherem Nikotinabusus, mehr als 40/die",1634,1939-05-11,w,"Laryngitis, Dysphonie"
+1249,p,1999-02-24,"Links, beidseitige Ödeme ; OP am 16.02.99, Erste Aufnahme nach OP",1635,1965-04-11,w,Rekurrensparese
+1250,p,1999-02-24,"Ausgeprägt asymmetrischer Kehlkopf, Vorwölbung des Sinus Morgagni re, kein Anhalt auf Laryngozele, Verdacht auf Aortenaneurisma",1636,1927-01-30,m,Dysphonie
+1251,p,1999-02-24,"Ohne Kontaktpachydermie, Intermediäre Schwäche",1637,1929-02-25,m,"Kontaktpachydermie, Rhinophonie aperta"
+1252,p,1999-02-24,"Zustand nach Stüze, keine Stroboskopie möglich",1638,1946-05-24,m,Leukoplakie
+1253,p,1999-02-24,Beidseitig mit tiefer Stimmlage,1639,1956-02-06,w,Reinke Ödem
+1254,p,1999-02-24,Funktionell,1593,1959-05-06,w,Funktionelle Dysphonie
+1255,p,1999-02-24,"Ausgeprägt, nach starker Belastung durch Stimmberuf ; Erste Aufnahme vor Therapie",1641,1938-07-12,m,Internusschwäche
+1256,p,1999-03-03,Idiopathische mit sehr breiter glottischer Insuffizienz,1642,1958-07-16,w,Rekurrensparese
+1257,p,1999-03-03,Chronische,1643,1966-12-16,w,Laryngitis
+1258,p,1999-03-03,Mit Tendenz zur Hyperfunktion,1644,1963-06-28,m,"Funktionelle Dysphonie, Psychogene Dysphonie"
+1259,p,1999-03-03,"Chronische Laryngitis, Alte mit beiseitig unregelmäßigen Stimmlippen, Kausale Therapie vorgesehen mit Kürettage",1645,1951-04-05,m,Laryngitis
+1260,p,1999-03-03,"Tendenz zur Hyperfunktion, Gesangstätigkeit",1649,1969-02-19,w,Laryngitis
+1261,p,1999-03-03,"Nach Intermediärschwäche, jetzt nur noch hypotones Schwingungsbild, keine Intermediärschwäche mehr ",1641,1938-07-12,m,Hypofunktionelle Dysphonie
+1262,p,1999-03-03,Links mit geringem Ödem/Hämatom ungefähr 4 Wochen her (27.01.99); Zweitaufnahme nach Therapie,1614,1956-09-06,w,Rekurrensparese
+1263,p,1999-03-03,Rechts nach Strumektomie ,1635,1965-04-11,w,Rekurrensparese
+1264,p,1999-03-03,Beide Stimmlippen mit gleichmäßigem Schweregrad; Aryregion leicht gerötet; z.B. Carotisdysregulation,1646,1933-10-23,m,Laryngitis
+1265,p,1999-03-10,Chronische,1652,1950-02-11,w,Laryngitis
+1266,p,1999-03-10,Leichte,1653,1951-08-12,w,"Hyperfunktionelle Dysphonie, Psychogene Dysphonie"
+1267,p,1999-03-10,"Zustand 10 Tage danach, links ; Zweitaufnahme, erste Aufnahme nach OP",1633,1956-07-13,m,Frontolaterale Teilresektion
+1268,p,1999-03-10,Mit Stimmschwäche,1656,1915-08-27,m,Vox senilis
+1269,p,1999-03-10,Chronische ,1311,1940-03-25,m,Laryngitis
+1270,p,1999-03-10,Rec.par.,1641,1938-07-12,m,Rekurrensparese
+1271,p,1999-03-17,"Links bei excavierter Stimmlippe, breiter glottischer Spalt, stark verhaucht, unter laufender logopädischer Therapie ",1385,1948-01-15,m,Rekurrensparese
+1272,p,1999-03-17,"Rechts, bei laufender logopädischer Therapie, mit beginnender phonatorischer Kompensation Erste Aufnahme nach 3. Therapie, OP 02.02.99",1658,1971-06-02,w,Rekurrensparese
+1273,p,1999-03-17,"Links, mit phonatorischem Stillstand; Verlaufskontrolle",1659,1934-11-01,m,Stimmlippenkarzinom
+1274,p,1999-03-17,"Chronisch hyperplastisch, beidseitiges Reinke-Ödem ",1617,1961-06-08,w,"Laryngitis, Reinke Ödem"
+1275,p,1999-03-17,Stroboskopisch Normalbefund,1662,1970-09-12,w,Gesangsstimme
+1276,p,1999-03-17,"Leichte, unter ponogener Belastung, Chorleiterin ",1372,1969-05-28,w,Dysphonie
+1277,p,1999-03-17,Verlauf unter logopädischer Therapie,1641,1938-07-12,m,Rekurrensparese
+1278,n,1999-03-17,,946,1965-02-09,w,
+1279,p,1999-03-17,"Zustand danach, mit breiter Synechie, glottische Insuffizienz Prä-OP am 03.02.99; Zweitaufnahme, erste Aufnahme nach OP,",1620,1940-03-19,m,Frontolaterale Teilresektion
+1280,p,1999-03-17,"Tendenz dahin, enge Artikulation, dünne Stimme ",936,1979-03-24,w,Hyperfunktionelle Dysphonie
+1281,p,1999-03-17,"funktionell ponogen, leicht gestörtes Schwingungsbild; prätherapeutisch 1. Aufnahme",1663,1977-01-14,w,Funktionelle Dysphonie
+1282,p,1999-03-24,Stottern,1668,1958-04-17,m,Hyperfunktionelle Dysphonie
+1283,p,1999-03-24,"Chronische, unregelmäßiges Schwingungsbild",1669,1962-06-30,m,Laryngitis
+1284,p,1999-03-24,Leichte Form bei Stimmberuf,1671,1965-07-18,w,Hyperfunktionelle Dysphonie
+1285,p,1999-03-24,"Beidseitig, eventuell Polyp rechts (klein)",1673,1935-01-02,m,"Phonationsknötchen, Hyperfunktionelle Dysphonie"
+1286,p,1999-03-24,Ausgebildet,1674,1937-09-30,w,Gesangsstimme
+1289,p,1999-03-24,"Kein pathologischer Befund mehr, Normalbefund ",1641,1938-07-12,m,Rekurrensparese
+1290,p,1999-03-24,Rezidiv rechts,1515,1937-01-03,m,Kontaktpachydermie
+1291,p,1999-03-24,Hypofunktionelle Dysphonie,1676,1927-10-15,m,Hypofunktionelle Dysphonie
+1292,p,1999-03-24,"Links, keine Restbeweglichkeit ",1614,1956-09-06,w,Rekurrensparese
+1293,p,1999-04-14,"Beidseitig, Zustand nach Glottiserweiterung, breiter Spalt ; Erste Aufnahme vor Therapie",1678,1935-03-12,w,Rekurrensparese
+1294,p,1999-04-14,Beidseitige Knötchen; 1. Aufnahme prä OP,1679,1959-09-27,w,"Hyperfunktionelle Dysphonie, Phonationsknötchen"
+1295,p,1999-04-14,"Subakut, asymmetrisches Schwingungsbild",1680,1957-06-13,w,Laryngitis
+1296,p,1999-04-14,Stimmlippen ohne Befund,1681,1967-05-24,m,Balbuties
+1297,p,1999-04-14,Stimmlippen ohne Befund,1682,1963-09-12,m,Balbuties
+1298,p,1999-04-14,"Persistierend, wobei auffallende Diskrepanz zwischen spontaner Sprechstimme und stroboskopischem Bild (o.B.), hier deutlich tiefere Lage",1683,1965-10-02,m,Mutationsfistelstimme
+1299,p,1999-04-21,"Leichte Tendenz dazu, beginnende Gesangsausbildung",1684,1981-06-14,w,Hyperfunktionelle Dysphonie
+1300,p,1999-04-21,Subakute mit sehr unregelmäßigem Schwingungsbild,1685,1968-10-03,w,Laryngitis
+1301,p,1999-04-21,Subakute Form,1686,1939-01-25,m,Laryngitis
+1302,p,1999-04-21,"Links, Stimmlippen zeigen unauffälliges Schwingungsbild ",1564,1937-04-15,w,Valleculacyste
+1303,p,1999-04-21,"Beidseitig, Rezidiv",1407,1934-09-11,w,Leukoplakie
+1304,p,1999-04-21,"Strumiprive, links mit unvollständiger Kompensation (schlaff)",1689,1938-02-20,m,Rekurrensparese
+1305,p,1999-04-21,"Beidseitig, verlängerte Schlußphase",1690,1933-08-14,m,Kontaktpachydermie
+1306,p,1999-04-21,Stroboskopie o.B.,1691,1950-09-09,w,Psychogene Dysphonie
+1307,p,1999-04-21,Ausgeprägte chronische Form,1692,1950-07-06,m,Laryngitis
+1308,n,1999-04-21,,947,1970-10-02,m,
+1309,p,1999-04-28,Psychogene Komponente,1694,1956-08-19,w,"Funktionelle Dysphonie, Dysodie"
+1310,p,1999-04-28,"Leicht ödematöse Stimmlippen, Gesangstechnik",1695,1973-01-03,m,Hyperfunktionelle Dysphonie
+1311,p,1999-04-28,"Chronische, bei früherem Nikotinabusus (60 die), beidseitig Stimmlippen verdeckt, sehr enges Schwingungsbild",1697,1946-03-11,w,Laryngitis
+1312,p,1999-04-28,"Ausgeprägte Form, Zustand nach Cystenabtragung rechte Stimmlippe und Reinke-Ödem ; OP Cyste ",1699,1948-04-06,w,Dysphonie
+1313,p,1999-04-28,"Zustand danach, rechts",1620,1940-03-19,m,Frontolaterale Teilresektion
+1314,p,1999-04-28,"Nicht kompensiert, strumipriv ",1397,1921-08-24,m,Rekurrensparese
+1315,p,1999-04-29,"Ausgeprägte chronischeForm, sehr unregelmäßiges Schwingungsbild, Taschenfaltenbeteiligung",1693,1942-01-09,m,Laryngitis
+1316,p,1999-05-05,Kinderstimme,1700,1987-04-27,m,Psychogene Mikrophonie
+1317,p,1999-05-05,"Stimmlippenpolyp, Zustand nach Polypentfernung; postoperativ phonatorischer Stillstand",1701,1956-06-29,m,Stimmlippenpolyp
+1318,p,1999-05-05,"Tendenz zur ""Kontaktpachydermie"", asymmetrischer Kehlkopf",1702,1958-12-15,m,Funktionelle Dysphonie
+1319,p,1999-05-05,Phonasthenie,1705,1960-01-23,w,Psychogene Dysphonie
+1320,n,1999-05-05,,948,1979-05-24,w,
+1321,p,1999-05-05,Zustand nach Cordektomie ,1620,1940-03-19,m,Chordektomie
+1322,p,1999-05-05,Ponogen; 2. Aufnahme nach Therapie,1699,1948-04-06,w,"Funktionelle Dysphonie, Psychogene Dysphonie"
+1323,p,1999-05-05,"Velopharyngale Insuffizienz , stroboskopisch leichte Tendenz zur Hyperfunktion ; prä-OP 1. Aufnahme",1703,1983-07-07,m,Rhinophonie aperta
+1324,p,1999-05-12,Leichte ponogene mit psychogener Komponente,1708,1951-09-28,w,Hyperfunktionelle Dysphonie
+1325,p,1999-05-12,Phonatorisch voll kompensiert,1611,1962-03-17,m,Rekurrensparese
+1326,p,1999-05-12,"Leichte Form, (eher funktionelle Atemstörung)",1710,1942-09-09,w,Funktionelle Dysphonie
+1327,p,1999-05-12,Diskrete Dysodie,1712,1962-11-20,w,Hyperfunktionelle Dysphonie
+1328,p,1999-05-12,"Leicht Form bei Sprechberuf, Verlängerte Schlußphase im Interarybereich",1713,1966-12-29,m,Funktionelle Dysphonie
+1329,p,1999-05-12,Psychogene Dysphonie,1714,1947-07-01,w,Psychogene Dysphonie
+1330,p,1999-05-12,"Beidseitig, frische Form, stroboskopisch keine sichere Beweglichkeit ; 1. Aufnahme",1716,1939-08-25,w,Rekurrensparese
+1331,p,1999-05-12,"Leichte Tendenz dazu, ponogener Faktor",1401,1956-12-19,w,Hyperfunktionelle Dysphonie
+1332,p,1999-05-12,Erster Tag nach laserchirurgischer Chordektomie li ; 2. Aufnahme,1659,1934-11-01,m,Stimmlippenkarzinom
+1333,p,1999-05-12,Verlaufskontrolle; 5. Aufnahme,1620,1940-03-19,m,Chordektomie
+1334,p,1999-05-19,"Zwei Tage nach Abtragung, hinters Drittel links",1717,1943-02-14,m,Stimmlippenpolyp
+1335,p,1999-05-19,Zweitaufnahme,101,1944-12-22,w,"Hyperfunktionelle Dysphonie, Psychogene Dysphonie"
+1336,n,1999-05-19,,1719,1949-07-12,m,
+1337,p,1999-05-19,Psychogene Dysphonie,1722,1957-06-28,w,Psychogene Dysphonie
+1338,p,1999-05-19,"Massive Form mit breiter Excavation, Subglottisches Chondrom",1720,1910-05-08,m,"Vox senilis, Chondrom"
+1339,p,1999-05-19,"Verlaufskontrolle, 6. Aufnahme nach Therapie",1620,1940-03-19,m,Chordektomie
+1340,p,1999-05-19,"Zustand nach Abtragung , stroboskopisch hyperfunktionell; 4. Aufnahme nach Therapie",1699,1948-04-06,w,"Psychogene Dysphonie, Cyste"
+1341,p,1999-05-19,"Zustand nach laserchirurgischer Behandlung, links noch großer Defekt ; 3. Aufnahme nach Resektion",1659,1934-11-01,m,Stimmlippenkarzinom
+1342,n,1999-05-20,,967,1976-10-01,w,
+1343,n,1999-05-20,,949,1979-02-20,w,
+1344,n,1999-05-20,,950,1976-07-25,m,
+1345,n,1999-05-20,,951,1978-06-23,m,
+1346,n,1999-05-20,,952,1978-09-24,w,
+1347,n,1999-05-20,,953,1978-11-13,w,
+1348,n,1999-05-20,,957,1975-10-29,m,
+1349,n,1999-05-20,,958,1977-04-07,w,
+1350,n,1999-05-20,,959,1978-08-26,w,
+1351,n,1999-05-20,,961,1978-02-18,w,
+1352,n,1999-05-20,,962,1964-04-07,w,
+1353,n,1999-05-20,,963,1978-02-22,w,
+1354,n,1999-05-20,,964,1978-04-04,m,
+1355,n,1999-05-20,,966,1977-12-16,w,
+1356,n,1999-05-20,,954,1978-09-05,w,
+1357,n,1999-05-20,,955,1976-10-12,w,
+1358,n,1999-05-20,,956,1976-03-19,m,
+1359,n,1999-05-20,,23,1976-03-16,w,
+1360,n,1999-05-20,,960,1972-08-28,m,
+1361,n,1999-05-21,,969,1978-11-16,w,
+1362,n,1999-05-21,,978,1976-10-08,w,
+1363,n,1999-05-21,,968,1978-09-29,w,
+1364,n,1999-05-21,,970,1978-08-20,w,
+1365,n,1999-05-21,,971,1977-09-07,w,
+1366,n,1999-05-21,,972,1979-06-29,w,
+1367,n,1999-05-21,,973,1979-04-04,w,
+1368,n,1999-05-21,,974,1978-12-16,w,
+1369,n,1999-05-21,,975,1979-06-05,w,
+1370,n,1999-05-21,,977,1976-07-13,w,
+1371,n,1999-05-21,,979,1977-11-21,w,
+1372,n,1999-05-21,,980,1977-10-21,w,
+1373,n,1999-05-21,,981,1972-08-03,w,
+1374,n,1999-05-21,,983,1977-03-03,w,
+1375,n,1999-05-21,,982,1974-12-28,w,
+1376,p,1999-05-21,"Zustand danach, zunehmende Stimmverschlechterung",1620,1940-03-19,m,Chordektomie
+1377,n,1999-05-21,,976,1976-04-12,m,
+1378,p,1999-05-26,Leichte Tendenz zur Hyperfunktion bei sehr schneller Sprechweise,1726,1977-04-12,w,Sigmatismus
+1379,p,1999-05-26,Ausgeprägte Gesangsstimme,1727,1960-10-23,w,Hyperfunktionelle Dysphonie
+1380,p,1999-05-26,"Leichte supraglottische, ponogen-psychische Faktoren",1729,1950-08-25,w,Hyperfunktionelle Dysphonie
+1381,p,1999-05-26,"Aphasie-Dysphonie, re Stimmlippe eingeschränkt",1730,1938-06-09,w,Zentral-laryngale Bewegungsstörung
+1382,p,1999-05-26,"Alte links, beidseitiges Reinke-Ödem",1733,1950-07-11,w,"Rekurrensparese, Reinke Ödem"
+1383,p,1999-05-26,Zustand nach laserchirurgischer Abtragung ; 4. Aufnahme,1659,1934-11-01,m,Stimmlippenkarzinom
+1384,p,1999-05-26,Ponogen,1699,1948-04-06,w,Psychogene Dysphonie
+1385,p,1999-05-26,Zustand danach,1620,1940-03-19,m,Chordektomie
+1386,p,1999-06-02,Polyp weniger glatt begrenzt; Hyperplasie re > li,1734,1930-08-22,m,"Stimmlippenpolyp, Taschenfaltenhyperplasie"
+1387,p,1999-06-02,Morbus Down + Dysphonie,1736,1951-06-19,m,"Morbus Down, Dysphonie"
+1388,p,1999-06-02,Chronische mit asymmetrischem Schwingungsbild,1739,1942-12-20,w,Laryngitis
+1389,p,1999-06-02,"Frischer Zustand nach Abtragung, OP am 26.5.99",1741,1942-03-03,m,Stimmlippenpolyp
+1390,p,1999-06-02,"Beidseitig, Zustand nach Glottiserweiterung",1678,1935-03-12,w,Rekurrensparese
+1391,p,1999-06-02,Zustand nach Abtragung ,1659,1934-11-01,m,Stimmlippenkarzinom
+1392,p,1999-06-02,"Zustand danach, ungefähr sieben Jahre her, links phonatorische Kompensation",1446,1932-11-08,m,Chordektomie
+1393,p,1999-06-02,Zustand danach ,1620,1940-03-19,m,Chordektomie
+1394,p,1999-06-02,Leichte psychogene Form ,1415,1961-09-20,w,Hyperfunktionelle Dysphonie
+1395,p,1999-06-09,"Zustand nach Abtragung re, leichte Hyperfunktion mit Sanduhrglottis",1743,1972-07-15,w,Phonationsknötchen
+1396,p,1999-06-09,"Zustand danach, stroboskopisch unregelmäßiges Schwingungsbild",1744,1929-01-08,w,Intubationsschaden
+1397,p,1999-06-09,"Links, ohne Kompensation nach Strumektomie, keine Eigenbeweglichkeit",1747,1932-01-21,w,Rekurrensparese
+1398,p,1999-06-09,Verlängerte Schlußphase hinteres Drittel,1749,1923-03-02,m,Zentral-laryngale Bewegungsstörung
+1399,p,1999-06-09,"Links, mit Verdickung hinteres Drittel, mit phonatorischem Stillstand; Verdacht auf Ca!",1751,1927-03-08,m,Rekurrensparese
+1400,p,1999-06-09,Psychogene Dysphonie + Funktionelle Dysphonie,1699,1948-04-06,w,"Psychogene Dysphonie, Funktionelle Dysphonie"
+1401,p,1999-06-09,"Verlaufskontrolle, 10. Aufnahme, Synechie in der vorderen Kommissur",1620,1940-03-19,m,Chordektomie
+1402,p,1999-06-09,"Links, komplett ohne Kompensation ",1614,1956-09-06,w,Rekurrensparese
+1403,p,1999-06-09,"Links, laserbehandelt, Zustand danach",1659,1934-11-01,m,Stimmlippenkarzinom
+1404,p,1999-06-16,Chronische,1755,1940-04-24,w,Laryngitis
+1405,p,1999-06-16,"Chronische, stroboskopisch unregelmäßiges Schwingungsbild",1756,1963-06-13,w,"Laryngitis, Leukoplakie"
+1406,p,1999-06-16,Ponogen,1757,1967-12-30,w,Hyperfunktionelle Dysphonie
+1407,p,1999-06-16,"Rechts, komplett, ohne stroboskopische Restbeweglichkeit",1758,1942-06-05,w,Rekurrensparese
+1408,p,1999-06-16,Psychogene Dysphonie,1759,1934-04-13,w,Psychogene Dysphonie
+1409,p,1999-06-16,Zustand danach ; 1. Aufnahme prä OP,1485,1931-08-14,m,Frontolaterale Teilresektion
+1410,p,1999-06-16,Verlaufskontrolle ,1659,1934-11-01,m,Chordektomie
+1411,p,1999-06-16,Stroboskopisch nur in Höhen Amplitudendifferenzen ,1683,1965-10-02,m,Mutationsfistelstimme
+1412,p,1999-06-16,Zustand danach,1620,1940-03-19,m,Chordektomie
+1414,p,1999-06-23,Chronische,1765,1939-04-22,m,Laryngitis
+1415,p,1999-06-23,"Ponogen, mit psychischer Komponente",1766,1944-02-26,w,Funktionelle Dysphonie
+1416,p,1999-06-23,"Links, Verdacht auf CA",1768,1940-04-13,m,Stimmlippenkarzinom
+1417,p,1999-06-23,Mit hypotoner Komponente,1769,1971-12-11,m,Phonasthenie
+1418,p,1999-06-23,"Ohne Kompensation links, keine stroboskopische Restbeweglichkeit, Chronische Laryngitis",1771,1930-12-08,w,"Rekurrensparese, Laryngitis"
+1421,p,1999-06-23,Verlaufskontrolle; 6. Aufnahme,1699,1948-04-06,w,Psychogene Dysphonie
+1422,p,1999-06-23,"Zustand danach, Verlaufskontrolle; 12. Aufnahme",1620,1940-03-19,m,Chordektomie
+1424,p,1999-06-30,"Strumipriv, ohne Kompensation",1772,1937-01-06,m,Rekurrensparese
+1425,p,1999-06-30,Mit leichter Hyperfunktion ,1773,1941-09-29,m,Psychogene Dysphonie
+1426,p,1999-06-30,"Chronische, hyperplastisch",1776,1953-04-03,m,Laryngitis
+1427,n,1999-06-30,,984,1979-06-06,m,
+1428,p,1999-06-30,"Zustand danach, Rezidiv nicht ausschließbar; 11. Aufnahme",1659,1934-11-01,m,Stimmlippenkarzinom
+1429,p,1999-06-30,"Nach frontolateraler Teilresektion, 13. Aufnahme",1620,1940-03-19,m,"Chordektomie, Taschenfaltenstimme"
+1430,p,1999-08-11,Rhinophonie aperta,1778,1988-06-13,m,Rhinophonie aperta
+1431,p,1999-08-11,Mit beginnender Phonationsverdickung; 1. Aufnahme prä Therapie,1779,1964-06-11,w,Hyperfunktionelle Dysphonie
+1432,p,1999-08-11,Verlaufskontrolle; 6. Aufnahme,1699,1948-04-06,w,"Psychogene Dysphonie, Funktionelle Dysphonie"
+1433,p,1999-08-11,"Zustand nach Abtragung, Verdacht auf Rezidiv mit ausgeprägter Dysphonie; 2. Aufnahme",1741,1942-03-03,m,Stimmlippenpolyp
+1434,p,1999-08-18,"Beiseitig, alte, mit kompensatorischer Kontaktpachydermie, mäßige Dysphonie, altersbedingte Dyspnoe",1781,1929-01-30,m,"Rekurrensparese, Kontaktpachydermie"
+1435,p,1999-08-18,"Leichte Form, ponogen",1729,1950-08-25,w,Funktionelle Dysphonie
+1436,p,1999-08-18,"Chronische, Zustand nach Abtragung des Ödems, zudem alte Rekurrensparese links",1785,1934-04-12,w,"Laryngitis, Reinke Ödem"
+1437,p,1999-08-18,"Links, komplette Form ohne Kompensation, dazu Dysphagie",1786,1920-01-27,w,Rekurrensparese
+1438,p,1999-08-18,Typische Form vor Botoxinjektion,1787,1929-09-09,m,Spasmodische Dysphonie
+1439,p,1999-08-18,"Links, Stimmlippenbeweglichkeit vorhanden; Aufnahme prä-OP",1788,1940-03-01,m,Hypopharynxtumor
+1440,p,1999-08-18,"Chronische, ausgeprägt ",1756,1963-06-13,w,Laryngitis
+1441,p,1999-08-18,Nach Intubation,1782,1963-06-13,w,Funktionelle Dysphonie
+1442,p,1999-08-25,"Ponogen, bei Stimmberuf",1789,1968-01-22,w,Hyperfunktionelle Dysphonie
+1443,p,1999-08-25,Hyperfunktionelle Dysphonie + Dysodie,1790,1946-01-06,w,"Hyperfunktionelle Dysphonie, Dysodie"
+1444,p,1999-08-25,"Alte Form, unvollständige hyperfunktionelle Kompensation",1794,1956-05-26,w,Rekurrensparese
+1445,p,1999-08-25,Mutatio,1795,1984-11-09,m,Mutatio
+1446,p,1999-08-25,"Zustand danach, erhöhte mittlere Sprechstimmlage, OP Mai 1999",1427,1941-05-10,m,Frontolaterale Teilresektion
+1447,p,1999-08-25,"Chronische, hyperplastisch, Rückbildung des Ödems, Verlaufskontrolle, Vorbefunde vorhanden",1617,1961-06-08,w,"Laryngitis, Reinke Ödem"
+1448,p,1999-08-25,"Beidseitig, Zustand nach zweimaliger Abtragung ",1747,1932-01-21,w,Leukoplakie
+1449,p,1999-08-25,Zustand nach Abtragung ,1633,1956-07-13,m,Laryngozele
+1450,p,1999-08-25,"Zustand nach Chordektomie, Synechie ",1363,1919-07-26,m,"Chordektomie, Kontaktpachydermie"
+1451,p,1999-08-25,"Zustand nach laserchirurgischer Abtragung, Verlaufskontrolle, frischer Zustand nach PE/Stütze; 10. Aufn., Logopäd. Therapie abgeschlossen ",1659,1934-11-01,m,Stimmlippenkarzinom
+1452,p,1999-09-08,"Mit nasalem Durchschlagsgrad, Stimmlippen ohne Befund",1799,1966-12-05,m,Rhinophonie aperta
+1453,p,1999-09-08,Beidseitiges Ödem mit hyperfunktioneller unvollständiger Kompensation,1801,1946-10-18,w,"Dysphonie, Reinke Ödem"
+1454,p,1999-09-08,Eventuell beginnende Vox senilis,1802,1937-07-26,w,Dysodie
+1455,p,1999-09-08,Ponogen; DD: zentral degenerative Systemerkrankung?,1803,1948-03-02,m,Dysphonie
+1456,p,1999-09-08,"Subakut, mit asymmetrischem Schwingungsbild",1804,1977-05-04,m,Laryngitis
+1457,p,1999-09-08,Ponogen,1805,1949-01-07,m,Dysphonie
+1458,p,1999-09-08,Zustand nach Tu-Resektion mit fibrinogener Stimmlippe links,1806,1933-01-18,m,Stimmlippenkarzinom
+1459,p,1999-09-08,Zweitaufnahme,1499,1948-12-02,w,"Hyperfunktionelle Dysphonie, Psychogene Dysphonie"
+1460,n,1999-09-09,,985,1950-04-20,m,
+1461,p,1999-09-15,Zweitaufnahme,1355,1940-05-09,m,Hypofunktionelle Dysphonie
+1462,p,1999-09-15,Beidseitig,1808,1956-04-24,w,"Hyperfunktionelle Dysphonie, Reinke Ödem"
+1463,p,1999-09-15,"Chronische, mit unregelmäßigem eher weitem Schwingungsbild",1811,1928-01-03,m,Laryngitis
+1464,p,1999-09-15,Kleines Knötchen rechts mit diskreter Hyperfunktion ,1319,1953-06-09,w,"Phonationsknötchen, Hyperfunktionelle Dysphonie"
+1465,p,1999-09-15,Zustand nach laserchirurgischer Behandlung ; Verlaufskontrolle,1659,1934-11-01,m,Stimmlippenkarzinom
+1466,p,1999-09-15,"Links, Zustand danach, vollkommene restitutio ad integrum ",1689,1938-02-20,m,Rekurrensparese
+1467,p,1999-09-15,Angebahnte Form ,1581,1944-08-29,w,Taschenfaltenstimme
+1468,p,1999-10-20,"Zustand nach Intubation mit Trachealstenose, psychogene Komponente ",1505,1960-06-06,w,Hyperfunktionelle Dysphonie
+1469,p,1999-10-20,Unauffälliger stroboskopischer Befund,1817,1974-04-05,w,Mediale Halscyste
+1470,p,1999-10-20,"Beidseitig, ohne stroboskopische Restbeweglichkeit nach Schilddrüsenmalignom und totaler Strumektomie",1818,1939-05-28,w,Rekurrensparese
+1471,p,1999-10-20,Dritte Aufnahme,936,1979-03-24,w,Hyperfunktionelle Dysphonie
+1472,p,1999-10-20,"Chronische Laryngitis, ausgeprägte Form mit Ca in situ, Zustand nach Stütze",1636,1927-01-30,m,"Laryngitis, Carcinoma in situ"
+1476,p,1999-10-27,"Leichte Form, Zustand nach Cystenabtragung",1824,1957-07-07,w,Hyperfunktionelle Dysphonie
+1477,p,1999-10-27,"Mit Tendenz zur verlängerten Schlußphase, asymmetrisches Schwingungsbild",1825,1954-05-19,m,Psychogene Dysphonie
+1478,p,1999-10-27,"Links, nach Strumektomie bei beginnender vox senilis",1826,1922-07-21,m,"Rekurrensparese, Vox senilis"
+1479,p,1999-10-27,Mit Tendenz zu Laryngospasmus,1827,1966-09-28,w,Psychogene Dysphonie
+1481,p,1999-10-27,Kontaktpachydermie,1410,1944-02-18,m,Kontaktpachydermie
+1482,p,1999-11-03,"Verdacht auf SD, DD: Hyperfunktionelle Dysphonie, asymmetrisch verkürztes Schwingungsbild",1828,1953-09-16,w,Spasmodische Dysphonie
+1483,p,1999-11-03,"Bei kleiner Phonatiosverdickung links, alte juvenile Dysphonie",1829,1982-09-16,m,Balbuties
+1484,p,1999-11-03,"Links, strumiprive, geringe Restbeweglichkeit",1832,1927-02-25,w,Rekurrensparese
+1485,p,1999-11-03,"Ponogen, Zustand nach Laryngitis",1833,1958-09-30,w,Dysphonie
+1486,p,1999-11-03,Zustand nach beidseitiger Chordektomie,1636,1927-01-30,m,"Chordektomie, Taschenfaltenstimme"
+1487,p,1999-11-03,Zustand danach mit plastischer Ersatzstimmlippe ,1768,1940-04-13,m,"Chordektomie, Frontolaterale Teilresektion"
+1488,p,1999-11-10,Hyperfunktionell,1834,1952-04-22,m,Dysodie
+1489,p,1999-11-10,"Idiopatische, links, mit geringer Restbeweglichkeit",1835,1966-07-27,w,Rekurrensparese
+1490,p,1999-11-10,"Zustand danach; 3. Aufnahme, 2. Aufnahme 24.08.99, 1. Aufnahme prä OP am 24.02.99 (OP am 01.03.99)",1633,1956-07-13,m,Frontolaterale Teilresektion
+1491,p,1999-11-10,Stroboskopisch kein pathologischer Befund,939,1978-11-26,w,Sigmatismus
+1492,p,1999-11-10,Hyperfunktionelle Dysphonie,1838,1958-02-17,m,Hyperfunktionelle Dysphonie
+1500,p,1999-11-24,Zustand nach Abtragung ,1846,1926-10-29,w,"Reinke Ödem, Hyperfunktionelle Dysphonie"
+1501,p,1999-11-24,Leichte funktionelle Form,1848,1978-03-13,w,Dysodie
+1502,p,1999-11-24,"Kontrolle, kein stroboskopisch pathologischer Befund",1849,1965-10-29,w,Dysphonie
+1503,p,1999-11-24,"Zustand danach, Synechie, subglottische Granulation ",1363,1919-07-26,m,Chordektomie
+1504,n,1999-11-25,,995,1979-09-24,w,
+1505,n,1999-11-25,,986,1977-02-19,w,
+1506,n,1999-11-25,,988,1976-09-20,w,
+1507,n,1999-11-25,,989,1976-03-14,m,
+1508,n,1999-11-25,,990,1977-11-01,w,
+1509,n,1999-11-25,,991,1979-10-01,w,
+1510,n,1999-11-25,,992,1977-06-16,w,
+1511,n,1999-11-25,,993,1961-09-05,w,
+1512,n,1999-11-25,,994,1976-09-05,m,
+1513,n,1999-11-25,,996,1979-08-28,w,
+1514,n,1999-11-25,,998,1977-07-01,w,
+1515,n,1999-11-25,,997,1977-12-14,w,
+1516,n,1999-11-25,,999,1979-10-11,w,
+1517,n,1999-11-25,,1001,1976-01-24,m,
+1518,n,1999-11-25,,1002,1977-05-07,w,
+1519,n,1999-11-25,,1003,1976-10-18,w,
+1520,n,1999-11-25,,1004,1978-08-06,m,
+1521,n,1999-11-25,,1005,1978-04-08,m,
+1522,n,1999-11-25,,987,1976-09-28,m,
+1523,n,1999-11-25,,1000,1956-12-15,w,
+1524,n,1999-11-25,,1006,1978-10-25,m,
+1525,p,1999-11-26,"Zustand nach Stütze und Abtragung, funktionelle Komponente, Kontaktpachydermie ohne ""Kontaktpachydermie""",1850,1951-09-10,m,"Stimmlippenpolyp, Kontaktpachydermie"
+1526,n,1999-11-26,,1007,1975-05-25,m,
+1527,n,1999-11-26,,1008,1979-12-17,w,
+1528,n,1999-11-26,,1009,1974-04-03,w,
+1529,n,1999-11-26,,1912,1976-12-16,w,
+1530,n,1999-11-26,,1011,1980-06-20,w,
+1531,n,1999-11-26,,1012,1980-04-27,w,
+1532,n,1999-11-26,,1944,1978-04-06,m,
+1533,n,1999-11-26,,1014,1978-01-02,w,
+1534,n,1999-11-26,,1015,1978-04-13,w,
+1535,n,1999-11-26,,1016,1977-10-15,w,
+1536,n,1999-11-26,,1017,1974-11-08,w,
+1537,n,1999-11-26,,1018,1975-02-06,m,
+1538,n,1999-11-26,,1019,1979-06-11,w,
+1539,n,1999-11-26,,1020,1978-11-05,m,
+1540,n,1999-11-26,,1021,1974-06-03,w,
+1541,n,1999-11-26,,1022,1975-10-05,w,
+1542,n,1999-11-26,,1023,1979-10-21,w,
+1543,n,1999-11-26,,1024,1990-04-24,w,
+1544,n,1999-11-26,,1025,1976-07-28,w,
+1545,p,1999-12-01,"Verdacht, vordere rechte Stimmlippe, beginnender phonatorischer Stillstand; 1. Aufn. vor Stütze (01.12.99)",1851,1932-09-05,m,Stimmlippenkarzinom
+1546,p,1999-12-01,Zustand nach Mesopharynx-OP + Radiatio; Ödem Aryhöcker,1852,1956-03-05,m,Mesopharynxtumor
+1547,p,1999-12-01,"Links, deutliche Verbesserung gegenüber Vorbefund ",1854,1936-09-06,w,Rekurrensparese
+1548,p,1999-12-01,"Beidseitig, jetzt faktisch ohne Befund, mit leichtem ""Hinken"" links",1448,1924-07-22,m,Rekurrensparese
+1549,p,1999-12-08,"Rechts, mit guter Kompensation",1856,1957-10-30,m,Rekurrensparese
+1550,p,1999-12-08,Funktionelle Form mit eher hyperfunktioneller Komponente,1857,1973-09-17,m,Dysodie
+1551,p,1999-12-08,"Kontaktpachydermie ohne ""Kontaktpachydermie""",1859,1941-10-19,m,"GERD, Kontaktpachydermie"
+1552,p,1999-12-08,"Ausgeprägte Form, mit ponogener Komponente; Diplophonieanteile",1861,1969-12-15,w,Funktionelle Dysphonie
+1553,p,1999-12-08,"Strumiprive, links, mit guter Eigenbeweglichkeit",1863,1948-02-12,w,Rekurrensparese
+1554,p,1999-12-08,Chronische Laryngitis mit hypotonem unregelmäßigem Schwingungsbild,1498,1949-09-24,m,Laryngitis
+1555,p,1999-12-08,"Dekompensiert, zwischen paramedian und intermediär, z.T. aphonisch",1865,1937-08-09,m,Rekurrensparese
+1556,p,1999-12-08,Verlaufskontrolle vor Abschluß der Therapie,1683,1965-10-02,m,Mutationsfistelstimme
+1557,p,1999-12-08,Verlaufskontrolle; 3. Aufnahme,1407,1934-09-11,w,Leukoplakie
+1558,p,1999-12-08,"Zustand danach, Ausräumung der zervikalen Halslymphknoten; glatte Heilung; kein Anhalt auf Rezidiv",1620,1940-03-19,m,Frontolaterale Teilresektion
+1559,p,1999-12-15,"Psychogen-depressive Komponente, Verlaufskontrolle",1407,1934-09-11,w,Leukoplakie
+1560,p,1999-12-15,Verdacht auf Hypopharynxtumor,1867,1954-09-12,m,Hypopharynxtumor
+1561,p,1999-12-15,"Zustand danach, ca. eine Woche postoperativ, starke erhöhte mittlere Sprechstimmlage",1868,1950-04-14,m,Frontolaterale Teilresektion
+1562,p,1999-12-15,"HWS-bedingt, Strahlenfolgen, Zustand nach Neckdissection + Radiatio (Schmicke-TU)",1869,1970-04-03,w,Hyperfunktionelle Dysphonie
+1563,p,1999-12-15,Rezidiv links ; Prä-OP,1733,1950-07-11,w,Reinke Ödem
+1564,p,1999-12-15,"Links, relativ gut kompensiert ",1397,1921-08-24,m,Rekurrensparese
+1565,p,2000-01-05,"Vorbekannt, seit ungef. 1 1/2 Jahren kein Botox",1872,1943-11-02,m,Spasmodische Dysphonie
+1566,p,2000-01-05,Mit akut excavierter entzündlicher Komponente ,1714,1947-07-01,w,"Hyperfunktionelle Dysphonie, Psychogene Dysphonie"
+1567,p,2000-01-05,"Chronische, Zustand nach Abtragung von Leukoplakien am Hypopharynx; 2. Aufnahme nach OP",1844,1948-08-29,m,Laryngitis
+1568,p,2000-01-05,"Mit N. laryngeus sup. Beteiligung, HWS?",1875,1956-04-27,m,Psychogene Dysphonie
+1569,p,2000-01-05,Ponogen,1876,1968-06-04,m,Hyperfunktionelle Dysphonie
+1570,p,2000-01-05,"Frische strumiprive, mit inkompletter Kompensation",1877,1931-05-29,w,Rekurrensparese
+1571,p,2000-01-05,"Ausgeprägte Form, mit Übergang zur Spasmodischen Dysphonie?",1878,1952-02-24,w,Hyperfunktionelle Dysphonie
+1572,p,2000-01-05,"Rechts, Zustand nach Abtragung, sehr unregelmäßige Konfiguration, alte Rec.par. links",1879,1941-08-08,m,Reinke Ödem
+1573,n,2000-01-05,,1027,1978-08-05,m,
+1574,p,2000-01-12,"Ausgebildet, mit leichter Spannung",1880,1964-10-04,w,Gesangsstimme
+1575,p,2000-01-12,"Zustand nach alter Luxation, kompensiert mit geringer Niveaudifferenz ",1597,1963-06-15,w,Aryluxation
+1576,p,2000-01-12,"Rechts, mittlerer Anteil, breithalsig aufsitzend",1882,1942-11-12,m,Stimmlippenpolyp
+1577,n,2000-01-12,,1883,1942-01-26,m,
+1578,p,2000-01-12,"Sicca, ausgeprägt, mit Fibrin, kein phonatorischer Stillstand",1884,1954-11-09,m,Laryngitis
+1579,n,2000-01-12,,46,1969-12-06,w,
+1580,p,2000-01-12,"Hypotone Komponente, (vox senilis)",1887,1924-04-07,m,"Morbus Parkinson, Dysphonie"
+1581,p,2000-01-12,"Jetzt kompensiert, lediglich Dysodie ",1832,1927-02-25,w,"Rekurrensparese, Dysodie"
+1582,n,2000-01-13,,1031,1978-10-10,m,
+1583,n,2000-01-13,,1030,1979-05-02,w,
+1584,n,2000-01-13,,1028,1977-09-30,w,
+1585,n,2000-01-13,,1029,1978-10-02,m,
+1586,n,2000-01-13,,1032,1974-10-01,m,
+1587,n,2000-01-13,,1033,1976-08-10,m,
+1588,p,2000-01-19,"Akuter Infekt im Resonanztrakt, ausgebildete Stimme",1888,1958-12-31,w,Gesangsstimme
+1589,p,2000-01-19,Funktionelle Dysphonie,1889,1958-05-22,w,Funktionelle Dysphonie
+1590,p,2000-01-26,"Ponogen, beginnende Altersstimme ",1355,1940-05-09,m,Hypofunktionelle Dysphonie
+1591,p,2000-01-26,"Beginnend, Laryngitis chronisch, Nikotinabusus",1891,1950-02-15,w,"Hyperfunktionelle Dysphonie, Laryngitis"
+1592,p,2000-01-26,Zustand nach akutem Infekt ,1663,1977-01-14,w,Gesangsstimme
+1593,p,2000-01-26,Zustand nach psychogener Aphonie,1893,1939-05-31,w,Psychogene Dysphonie
+1594,p,2000-01-26,Beginnend,1894,1935-04-22,w,Hyperfunktionelle Dysphonie
+1595,p,2000-01-26,Ausgeprägt chronische Form,1895,1974-11-15,m,Balbuties
+1596,p,2000-01-26,Bei Gesangsstimme und akutem Infekt,1896,1978-03-15,w,Dysodie
+1597,p,2000-01-26,"Ponogen, Zustand nach Infekt, ausgebildete Sprechstimme (Schauspieler)",1897,1971-02-18,m,Dysphonie
+1598,n,2000-01-26,,1898,1944-07-30,w,
+1599,p,2000-02-02,"Zustand danach, jetzt praktisch vollkommen zurückgebildet",1899,1967-05-16,m,"Laryngitis, Leukoplakie"
+1600,p,2000-02-02,"Ausgebildet, stroboskopisch ohne Befund, subj. ""zu hohe mittlere Sprechstimmlage""",1901,1976-03-11,w,Gesangsstimme
+1601,p,2000-02-02,"Rechts, mit ausgeprägter supraglottischer Kompensation ",1902,1944-01-23,m,Rekurrensparese
+1602,p,2000-02-02,Hyperfunktionelle Dysphonie,1907,1970-04-18,m,Hyperfunktionelle Dysphonie
+1603,p,2000-02-02,Hypofunktionelle Dysphonie,1908,1966-10-13,m,Hypofunktionelle Dysphonie
+1604,p,2000-02-02,"Linke, mit guter phonat. Kompensation",1419,1932-06-04,w,Rekurrensparese
+1605,n,2000-02-02,,46,1969-12-06,w,
+1606,p,2000-02-02,"Zustand danach, rechts, 1992, mit sehr schönem Ersatzstimmband ; 4. Aufnahme",1446,1932-11-08,m,Chordektomie
+1607,p,2000-02-02,"Ponogen, vorbekannt, mens grav. 7",1601,1970-01-01,w,"Hyperfunktionelle Dysphonie, Phonationsknötchen"
+1608,p,2000-02-02,Ausgebildete Gesangsstimme ,1727,1960-10-23,w,Hyperfunktionelle Dysphonie
+1609,p,2000-02-09,Stroboskopisch nur geringe Tendenz zur Hyperfunktion,1909,1968-01-17,w,Funktionelle Dysphonie
+1610,p,2000-02-09,"Beidseitig, beginnend, Laryngitis chronisch",1910,1955-07-15,w,"Reinke Ödem, Laryngitis"
+1611,p,2000-02-09,Enge Artikulation,1911,1953-05-04,w,Funktionelle Dysphonie
+1612,n,2000-02-09,,1912,1976-12-16,w,
+1613,p,2000-02-09,"Chronische Laryngitis; Diplophonie, Frequenzperturbationen",1913,1963-08-23,m,"Laryngitis, Leukoplakie"
+1614,p,2000-02-16,"Chronische Laryngitis, Verlaufskontrolle ",1311,1940-03-25,m,Laryngitis
+1615,p,2000-02-16,Ausgebildete Stimme,1915,1960-12-05,m,"Gesangsstimme, Hyperasthenie"
+1616,p,2000-02-16,"Beidseitig, Sandurglottis",1916,1979-09-17,w,"Gesangsstimme, Phonationsknötchen"
+1617,p,2000-02-16,"Chronische Laryngitis, ohne stroboskop. Stillstand",1917,1941-07-20,m,"Laryngitis, Leukoplakie"
+1620,p,2000-02-16,"Links, intubationsbedingt, mit guter stroboskopischer Restbeweglichkeit",1921,1952-03-15,w,Rekurrensparese
+1621,p,2000-02-16,"Zustand nach Abtragung, mäßige Dysphonie; 1. Aufnahme post-OP (OP = 10.02.00)",1922,1959-12-21,m,Stimmlippenpolyp
+1622,p,2000-02-16,"Zustand nach Abtragung, mit straker verlängerter Schlußphase, linke Stimmlippe excaviert bei Stütze ; Zeitaufnahme (1. Aufn. post OP, OP am 15.02.00), 1. Aufnahme (prä-OP, 12.01.00)",1882,1942-11-12,m,Stimmlippenpolyp
+1623,n,2000-02-16,,1034,1977-01-15,w,
+1624,p,2000-02-23,"Rechts, Zustand nach Stütze, Interarybereich verdickt geschwollen, Stridor",1923,1952-05-23,w,Rekurrensparese
+1625,p,2000-02-23,"Zustand danach, beidseitige Synechie, kompensierte Taschenfaltenstimme",1924,1936-11-17,m,"Chordektomie, Taschenfaltenstimme"
+1626,p,2000-02-23,"Zustand danach, jetzt vollständige Kompensation ",1863,1948-02-12,w,Rekurrensparese
+1627,p,2000-02-23,Multifaktoriell,1926,1945-02-12,w,Funktionelle Dysphonie
+1628,p,2000-02-23,"Dysplastisch, inkomplette Mutation, zu hohe Frequenz",1927,1975-10-09,m,"Dysphonie, Mutatio"
+1629,p,2000-02-23,"Chronische, Nikotinabusus, kein phonatorischer Stillstand",1928,1949-01-08,m,"Laryngitis, Leukoplakie"
+1630,p,2000-03-01,"Komplett, re, ohne stroboskopische Restbeweglichkeit bei Tumorverdacht",1929,1924-10-05,m,Rekurrensparese
+1631,p,2000-03-01,"Kompensierte, alte",1930,1946-10-08,w,Rekurrensparese
+1632,p,2000-03-01,"Kleine, umschriebene, rechte Stimmlippe mittleres Drittel, ohne stroboskopische Restbeweglichkeit, Nikotinabusus",1931,1943-03-07,m,Leukoplakie
+1633,p,2000-03-01,Leichte funktionelle,1933,1940-12-11,w,Dysphonie
+1634,p,2000-03-01,"Zustand danach, Granulationsabtragung im Interarybereich",1868,1950-04-14,m,Frontolaterale Teilresektion
+1635,p,2000-03-01,"Zustand danach, mit Ersatzstimmband, Verlaufskontrolle, hohe mittlere Sprechlage ",1427,1941-05-10,m,Frontolaterale Teilresektion
+1636,p,2000-03-01,Dyskoordination,1936,1926-04-05,w,"Vox senilis, Dysphonie"
+1637,p,2000-03-01,"Ponogen, sehr enge mittlere Stotter-Polter-Symptomatik; diplophone Anteile",1937,1954-10-02,m,Hyperfunktionelle Dysphonie
+1638,p,2000-03-01,Rechts bei Ösophagus-CA,1932,1943-10-26,m,Rekurrensparese
+1639,p,2000-03-22,"Zustand nach Abtragung, noch unregelmäßige Stimmlippenkonfiguration 1. Aufnahme post OP, OP am 13.03.00",1938,1970-08-23,m,Stimmlippenpolyp
+1640,p,2000-03-22,"Leichte Form, stroboskopisch o.B.",1940,1963-11-03,w,"Funktionelle Dysphonie, Phonasthenie"
+1641,p,2000-03-22,"Links, nach Bronchialtumor, beginnende Innervation mit vereinzelten Amplituden, z.Z. log. Therapie",1942,1936-04-09,m,Rekurrensparese
+1642,p,2000-03-22,"Leichte Form, ponogen, ohne sichere stroboskopisch erkennbare pathologische Komponente",1944,1978-04-06,m,Funktionelle Dysphonie
+1643,p,2000-03-22,"Beidseitig, mit Sanduhrglottis",1946,1959-04-06,m,"Phonationsknötchen, Hyperfunktionelle Dysphonie"
+1644,p,2000-03-22,"Beidseitig, keine Restbeweglichkeit, Frischer Zustand nach Glottiserweiterung ; 2. Aufnahme, 1. Aufnahme nach OP am 7.03.00",1819,1925-12-22,w,Rekurrensparese
+1645,p,2000-03-22,"Leichte beginnende Form, stroboskopisch unregelmäßig, leicht verkürzt ",47,1965-01-21,w,Funktionelle Dysphonie
+1646,p,2000-03-22,"Zustand danach, aber jetzt seit einem Jahr rezidivfrei, verlängerte Schlußphase ",1515,1937-01-03,m,Kontaktpachydermie
+1647,p,2000-03-22,"Zustand nach früherer Abtragung, stroboskopisch lediglich verlängerte Schlußphase",1941,1934-09-19,m,Kontaktpachydermie
+1648,p,2000-03-29,Nach Laryngitis,1947,1963-05-06,w,Hyperfunktionelle Dysphonie
+1649,p,2000-03-29,Zustand nach Abtragung des Granuloms ,1555,1948-11-06,m,"Dysplastische Dysphonie, Intubationsgranulom"
+1650,p,2000-03-29,Leichte verlängerte Schlußphase hinteres Drittel,1949,1980-12-13,m,Balbuties
+1651,p,2000-03-29,Zustand nach Chordektomie mit hyperfunktioneller Kompensation,1951,1943-02-02,m,Chordektomie
+1652,p,2000-03-29,Zweite Aufnahme vor Botox-Injektion ; Injektion am gleichen Tag,1787,1929-09-09,m,Spasmodische Dysphonie
+1653,p,2000-03-29,Leichte Form,1953,1944-02-02,m,Hyperfunktionelle Dysphonie
+1654,p,2000-03-29,Verdacht auf zentral bedingte Bewegungsstörung,1954,1935-01-31,m,Zentral-laryngale Bewegungsstörung
+1655,p,2000-03-29,"Beidseitig, ohne stroboskopische Restbeweglichkeit",1818,1939-05-28,w,Rekurrensparese
+1656,p,2000-04-05,"Beidseitig, gering ausgeprägt mit unregelmäßigem Schwingungsbild",1955,1956-04-16,w,Reinke Ödem
+1657,p,2000-04-05,"Ponogen, mit psychischer Komponente ",1879,1941-08-08,m,Dysphonie
+1658,p,2000-04-05,Mit beginnender Kompensation,1910,1955-07-15,w,Rekurrensparese
+1659,p,2000-04-05,Sehr unregelmäßiges Schwingungsbild,1959,1965-07-03,w,"Funktionelle Dysphonie, Dysodie"
+1660,p,2000-04-05,"Ausgeprägte Form, mit beginnender Phonationsverdickung beidseitig",1960,1967-03-30,w,Hyperfunktionelle Dysphonie
+1661,p,2000-04-05,Ponogen,1961,1943-08-12,w,Psychogene Dysphonie
+1662,p,2000-04-05,"Rechts, beginnnende Kompensation ",1902,1944-01-23,m,Rekurrensparese
+1663,p,2000-04-05,Psychogene Dysphonie,1965,1960-07-11,w,Psychogene Dysphonie
+1664,p,2000-04-05,"Beidseitig, mit geringer Restbeweglichkeit",1716,1939-08-25,w,Rekurrensparese
+1665,p,2000-04-05,Chronische mit beids. Leukoplakie ,1928,1949-01-08,m,"Laryngitis, Leukoplakie"
+1666,p,2000-04-05,"4. Aufnahme, Botox-Injektion am 29.03.00,  1. Aufnahme danach",1787,1929-09-09,m,Spasmodische Dysphonie
+1667,p,2000-04-12,"Beiseitig, sehr ausgeprägt mit unregelmäßigen Flatterschwingungen ; prä OP",1966,1946-11-06,w,Reinke Ödem
+1668,p,2000-04-12,Ohne Kontaktpachydermie bei primär hypofunktioneller Dysphonie mit sekundär hyperfunktioneller Kompensation,1967,1951-03-16,m,"Kontaktpachydermie, Hypofunktionelle Dysphonie"
+1669,p,2000-04-12,Zustand nach Abtragung ,1968,1970-11-26,w,"Phonationsknötchen, Hyperfunktionelle Dysphonie"
+1670,p,2000-04-12,Ausgeprägter T3/T4 Tumor vor Laryngektomie,1969,1941-09-17,m,Kehlkopftumor
+1671,p,2000-04-12,"Links mit unklarer Genese und hyperfunktioneller Kompensation ; 2. Aufnahme gemacht, beim Drehen des Kopfes nach li, Qualitätsverlust und keine glottale Anregung mehr (kein EGG)",1970,1969-07-21,m,Rekurrensparese
+1672,p,2000-04-12,Nach Botox ; 2. Aufnahme nach Injektion,1787,1929-09-09,m,Spasmodische Dysphonie
+1673,p,2000-05-03,Mit hyperfunktioneller Komponente,1973,1951-02-18,w,Psychogene Dysphonie
+1674,p,2000-05-03,"Zustand nach laserchirurgischer Rezidivabtragung, Chordektomie 1995",1974,1939-03-08,m,Chordektomie
+1675,p,2000-05-03,Psychogene Dysphonie,1976,1959-11-05,w,Psychogene Dysphonie
+1676,p,2000-05-03,"Zustand nach Glottiserweiterung bei beids. Rec. Par., strob. Keine Restbeweglichkeit ( nach Schilddrüsen CA) 2. Aufnahme (1. Nach laserchirurgischer Glott. Erweiterung)",1818,1939-05-28,w,Rekurrensparese
+1677,p,2000-05-03,Nach Botox ; 3. Aufnahme nach Injektion,1787,1929-09-09,m,Spasmodische Dysphonie
+1678,p,2000-05-10,Verdacht auf Luxation re,1977,1963-03-20,w,Aryluxation
+1679,p,2000-05-10,Spasmodische Dysphonie,1978,1918-02-22,w,Spasmodische Dysphonie
+1680,p,2000-05-10,Leichte Tendenz zur Hyperfunktion,1979,1983-07-20,w,Funktionelle Dysphonie
+1681,p,2000-05-17,Mit Trend zur Hyperfunktion,1980,1939-10-25,w,"Funktionelle Dysphonie, Dysodie"
+1682,p,2000-05-17,"Sehr enge Artikulation, Singstimmausbildung",1981,1978-12-18,w,Hyperfunktionelle Dysphonie
+1683,p,2000-05-17,"Beidseitig, keine Eigenbeweglichkeit, 3. Aufn. (2. Aufn. nach Glottiserweiterung, Erweiterung Nov.)",1781,1929-01-30,m,Rekurrensparese
+1684,p,2000-05-17,"Kleine, exophytische Granulome li hinteres Stimmlippendrittel",1983,1959-07-14,m,Granulom
+1685,p,2000-05-17,"Globus pharyngis, z.B. Struma, stoboskopisch o.B.",1984,1949-03-20,w,Funktionelle Dysphonie
+1686,p,2000-05-17,Hyperfunktionelle Dysphonie,1985,1941-12-25,w,Hyperfunktionelle Dysphonie
+1687,p,2000-05-17,Leichte Hyperfunktion,1986,1957-03-07,m,Dysodie
+1688,p,2000-05-17,Leicht beginnende Altersstimme,1987,1958-10-06,w,Funktionelle Dysphonie
+1689,p,2000-05-17,"Zustand nach Botox , 4. Aufnahme nach Injektion",1787,1929-09-09,m,Spasmodische Dysphonie
+1690,p,2000-05-24,Ponogen,1989,1945-03-21,w,"Hyperfunktionelle Dysphonie, Psychogene Dysphonie"
+1691,p,2000-05-24,"Alte, li",1990,1942-11-30,w,Rekurrensparese
+1692,p,2000-05-24,"Zustand danach, mit supraglottischer Kompensation, kleine Granulome an den Stimmlippen und supraglottal",1991,1934-06-26,m,Frontolaterale Teilresektion
+1693,p,2000-05-24,"Partielle mit mäßiger Dysphonie, R1 H1 B0",1992,1929-04-12,m,Chordektomie
+1694,p,2000-05-24,Funktionelle Dysphonie + Vox senilis,1993,1933-08-06,w,"Funktionelle Dysphonie, Vox senilis"
+1695,n,2000-05-25,,1035,1979-03-02,w,
+1696,n,2000-05-25,,1036,1978-07-31,w,
+1697,n,2000-05-25,,1037,1975-05-20,m,
+1698,n,2000-05-25,,1038,1977-08-13,m,
+1699,n,2000-05-25,,1040,1978-03-11,w,
+1700,n,2000-05-25,,1041,1970-02-20,m,
+1701,n,2000-05-25,,1042,1977-12-27,m,
+1702,n,2000-05-25,,1043,1978-04-08,m,
+1703,n,2000-05-25,,1044,1963-06-07,w,
+1704,n,2000-05-25,,1045,1972-05-08,m,
+1705,n,2000-05-25,,1046,1979-05-05,m,
+1706,n,2000-05-25,,1047,1976-03-15,m,
+1707,n,2000-05-25,,1048,1976-06-28,w,
+1708,n,2000-05-25,,1049,1977-12-05,w,
+1709,n,2000-05-25,,1050,1973-06-25,m,
+1710,n,2000-05-25,,1051,1949-09-23,w,
+1711,n,2000-05-25,,1052,1977-08-07,w,
+1712,n,2000-05-25,,1039,1979-01-20,w,
+1713,p,2000-05-31,"Beidseitig, strob. Restbeweglickeit",1716,1939-08-25,w,Rekurrensparese
+1714,p,2000-05-31,"Verdacht, re, Stimmlippen exophytisch; T2 N0,M0?",1995,1948-11-02,w,Stimmlippenkarzinom
+1715,p,2000-06-07,"Zustand nach Stütze, abgetragen vor 3 Wochen, leichte stroboskopische Asymmetrie",1919,1939-11-25,m,Leukoplakie
+1716,p,2000-06-07,Zustand danach; großer Stimmlippenpolyp bzw. Rezidiv li bei ausgeprägter Dysphonie,2000,1943-03-04,m,Frontolaterale Teilresektion
+1717,p,2000-06-07,"Beidseitig, ausgeprägte Dysphonie, R1, H2,    B0",2001,1938-06-27,w,Reinke Ödem
+1718,p,2000-06-07,"Bei Verdacht auf Leukoplakie, R2 H2 B2; 1. Aufn. prä OP, OP am 08.06.00",2002,1940-04-18,m,Dysphonie
+1719,p,2000-06-07,Links im hinteren Drittel,2004,1969-12-22,m,Stimmlippenpolyp
+1720,p,2000-06-07,Zustand nach Laserchirurgie mit kompensierender Taschenfaltenstimme,1998,1952-05-16,m,"Frontolaterale Teilresektion, Chordektomie"
+1721,p,2000-06-07,Zustand nach Abtragung,1475,1941-06-19,w,Reinke Ödem
+1722,p,2000-06-07,"Beidseitig, Zustand nach laserchirurgischer Glottiserweiterung; kleiner Granulationspolyp li",1819,1925-12-22,w,"Rekurrensparese, Stimmlippenpolyp"
+1723,p,2000-06-07,Fünfte Aufnahme nach Botox,1787,1929-09-09,m,Spasmodische Dysphonie
+1724,n,2000-06-08,,1053,1977-10-17,m,
+1725,n,2000-06-08,,1054,1980-02-27,w,
+1726,n,2000-06-08,,1056,1980-05-12,w,
+1727,n,2000-06-08,,1057,1980-03-10,w,
+1728,n,2000-06-08,,1059,1979-10-27,w,
+1729,n,2000-06-08,,1060,1978-09-22,w,
+1730,n,2000-06-08,,1061,1977-09-23,m,
+1731,n,2000-06-08,,2146,1980-03-18,w,
+1732,n,2000-06-08,,1063,1979-03-10,w,
+1733,n,2000-06-08,,1064,1978-11-19,w,
+1734,n,2000-06-08,,1065,1975-06-27,w,
+1735,n,2000-06-08,,1066,1980-02-20,m,
+1736,n,2000-06-08,,1067,1965-10-21,m,
+1737,n,2000-06-08,,1068,1980-03-14,w,
+1738,n,2000-06-08,,1058,1980-07-10,m,
+1739,n,2000-06-08,,1069,1974-10-15,w,
+1740,n,2000-06-08,,1055,1980-05-03,w,
+1741,p,2000-06-14,"Kontaktpachydermie ohne ""Kontaktpachydermie"", leichte Form der Hyperfunktion, lange Gesangstätigkeit",2005,1939-02-13,m,"Kontaktpachydermie, Hyperfunktionelle Dysphonie"
+1742,p,2000-06-14,"Ponogen, bei sehr ungünstiger enger Artikulation ",1981,1978-12-18,w,Funktionelle Dysphonie
+1743,p,2000-06-14,"Strumiprive Form li, paramedian, sehr gute Restbeweglichkeit, wenig dysphon",2007,1942-03-06,w,Rekurrensparese
+1744,p,2000-06-14,Hypotone Dysphonie + Psychogene Dysphonie,2008,1932-04-28,w,"Hypotone Dysphonie, Psychogene Dysphonie"
+1745,p,2000-06-21,"Knötchen im Anfangsstadium beidseitig, früher Stottern",2009,1972-10-23,w,"Hyperfunktionelle Dysphonie, Phonationsknötchen"
+1746,p,2000-06-21,"Kontaktpachydermie ohne ""Kontaktpachydermie"", leicht hypoton",2010,1936-08-03,m,Kontaktpachydermie
+1747,p,2000-06-21,"Verdacht auf Kontaktpachydermie, etwas atypisch, hinteres Drittel verlängerte Schlußphase ",2012,1931-08-14,m,Kontaktpachydermie
+1748,p,2000-06-21,"Links, mit gegenüber Vorbefund deutlich verbesserter Amplitude ",1942,1936-04-09,m,Rekurrensparese
+1749,p,2000-06-21,"Zustand danach, jetzt großer Granulationspolyp li; 2. Aufnahme prä OP, OP am 23.06.00",2000,1943-03-04,m,"Frontolaterale Teilresektion, Stimmlippenpolyp"
+1750,p,2000-06-28,"Phonationstrauma nach Intubation, keine Aryluxation",2014,1934-03-24,w,Intubationsschaden
+1751,p,2000-06-28,Dysphonie,2015,1983-08-13,m,Dysphonie
+1752,p,2000-06-28,"Botoxbedürftig ; 3. Aufnahme, letzte Injektion Jan. 00, Aufnahme prä erneuter Inj.",1872,1943-11-02,m,Spasmodische Dysphonie
+1753,p,2000-06-28,Juvenile Form; eventuell spraytoxische Nebenwirkung,2018,1986-08-17,w,Hyperfunktionelle Dysphonie
+1754,p,2000-06-28,"Ponogen, mit eventuell leichter Tendenz zur Altersstimme",2019,1940-11-17,w,Hyperfunktionelle Dysphonie
+1755,p,2000-06-28,"Li, mit guter phonatorischer Kompensation ",1559,1925-02-22,m,Rekurrensparese
+1756,p,2000-07-05,"Zustand danach, gepreßte Stimmgebung, R2 H2 B0 ",1868,1950-04-14,m,Frontolaterale Teilresektion
+1757,p,2000-07-05,"Mit stroboskopisch kleiner Hyperfunktion (Botox nach Diagnose am gleichen Tag, 05.07.00) Aufnahme prä Botox, Verlaufskontrolle",2027,1964-07-18,w,Spasmodische Dysphonie
+1758,p,2000-07-05,Leichte Form nach Infekt mit kleinen Phonationsverdickungen beidseitig,2022,1943-08-21,w,Hyperfunktionelle Dysphonie
+1759,p,2000-07-05,"Leichte ponogene Tendenz zur Hyperfunktion, enge Artikulation",2023,1972-04-03,w,Dysodie
+1760,p,2000-07-05,"Rechts in Intermediärstellung, keine Kompensation, breite glottische Insuffizienz; R1 B2 H1",2024,1945-01-25,w,Rekurrensparese
+1761,p,2000-07-05,,2025,1981-11-12,w,Dysodie
+1762,p,2000-07-05,Sechste Aufn. nach Botox,1787,1929-09-09,m,Spasmodische Dysphonie
+1763,p,2000-07-10,"Zweite Aufn. am 10.07.00,1. Aufnahme nach Botox am 05.07.00",2027,1964-07-18,w,Spasmodische Dysphonie
+1764,p,2000-08-02,"Re, Zustand nach Abtragung",2028,1922-01-05,m,Stimmlippenpolyp
+1766,p,2000-08-02,Bei Sprechberuf; KK-Asymmetrie,2030,1969-09-17,w,Phonasthenie
+1767,p,2000-08-02,Ponogen,2032,1943-07-14,w,Psychogene Dysphonie
+1768,p,2000-08-02,Ausgeprägte Form bei Verdacht auf durchgebrochenes Hypopharynx-Ca ,2033,1952-07-05,m,Dysphonie
+1769,p,2000-08-02,"Siebte Aufnahme, subjektiv und semiobjektiv beginnende Spasmen",1787,1929-09-09,m,Spasmodische Dysphonie
+1770,p,2000-08-02,Dritte Aufnahme; 2. nach Botox,2027,1964-07-18,w,Spasmodische Dysphonie
+1771,p,2000-08-02,Zustand danach,1469,1946-06-26,m,Chordektomie
+1772,p,2000-08-02,Dysarthrophonie mit zentral laryngaler Bewegungsstörung,2036,1923-02-15,w,"Dysarthrophonie, Vox senilis"
+1773,p,2000-08-09,"Großes Ca re, ohne strob. Abweichung",2037,1950-04-06,m,Hypopharynxtumor
+1774,p,2000-08-09,"re, Zustand danach, mit ausgeprägter glottischer Insuffizienz; supraglott. Cyste?",1995,1948-11-02,w,Chordektomie
+1775,n,2000-08-09,,2039,1976-12-16,m,
+1776,p,2000-08-09,"Re, in Intermediärstellung mit sehr wenig strob. Restbeweglichkeit, 2. Aufnahme nach Therapie",2040,1945-01-21,w,Rekurrensparese
+1777,p,2000-08-09,"Mäßige Form, multifaktoriell psychogen",2041,1957-02-18,w,Hyperfunktionelle Dysphonie
+1778,p,2000-08-09,Zusand nach Abtragung,1966,1946-11-06,w,"Hyperfunktionelle Dysphonie, Reinke Ödem"
+1779,p,2000-08-09,"Großer Polyp re, vorderes Drittel mit Dysphonie (Asymm.)",2044,1921-02-05,w,Stimmlippenpolyp
+1780,p,2000-08-09,Laryngitis gastrica und Hypotonie ,1314,1943-11-21,m,"Kontaktpachydermie, Laryngitis"
+1781,p,2000-08-16,"Leichte Form, mit ponogener Komponente",2045,1954-05-19,w,Fibrom
+1782,p,2000-08-16,Zustand nach Botox; 3. Aufnahme nach Injektion,2027,1964-07-18,w,Spasmodische Dysphonie
+1783,p,2000-08-16,"Chronische Laryngitis m. Leukoplakie, kein phonatorischer Stillstand",2049,1945-03-23,m,"Laryngitis, Leukoplakie"
+1784,p,2000-08-16,Beidseitig,1877,1931-05-29,w,Rekurrensparese
+1785,p,2000-08-16,"Zustand nach Glottiserweiterung bei beids. Rek-par., wenig Restbeweglichkeit; 2. Aufn. nach Laserresektion",1818,1939-05-28,w,Rekurrensparese
+1786,p,2000-09-06,Ponogen,2050,1944-08-06,w,Hyperfunktionelle Dysphonie
+1787,p,2000-09-06,"Funktionell psychogene Dysphonie, Reflux!, dicke Stimmlippe",2052,1953-05-12,w,Psychogene Dysphonie
+1788,p,2000-09-06,"Vorbekannte alte Parese re, z.B. zentral laryngale Bewegungsstörung bei Acustikusneurinom li",2053,1940-10-06,w,Rekurrensparese
+1789,p,2000-09-06,Beidseitig,2054,1939-09-25,m,Rekurrensparese
+1790,p,2000-09-06,"Vierte Aufnahme nach Botox, Verlaufskontrolle",2027,1964-07-18,w,Spasmodische Dysphonie
+1791,p,2000-09-13,Psychogener Formenkreis,2055,1978-12-30,m,Diplophonie
+1792,p,2000-09-13,"Leichte Form bei beginnender Phonationsverdickung, ponogene Komponente",2056,1971-01-31,w,Hyperfunktionelle Dysphonie
+1793,p,2000-09-13,"Tendenz zur Hyperfunktion, Mutationsstörung",2057,1965-02-06,m,Dysodie
+1794,p,2000-09-20,"Beginnende, bei ponogener Belastung",2060,1978-06-29,w,Hyperfunktionelle Dysphonie
+1795,p,2000-09-20,"Chronische, mit unregelmäßigen Amplituden",2059,1965-12-29,m,Laryngitis
+1796,p,2000-09-20,Ausgeprägte Form,2061,1931-09-13,m,Laryngitis
+1797,p,2000-09-20,Fünfte Aufnahme nach Botox,2027,1964-07-18,w,Spasmodische Dysphonie
+1798,p,2000-09-20,Mit psychogener Komponente,2032,1943-07-14,w,Funktionelle Dysphonie
+1799,p,2000-09-20,,2062,1932-06-05,w,Dysodie
+1800,p,2000-09-27,Zarte Knötchen,2065,1977-02-08,w,"Hyperfunktionelle Dysphonie, Phonationsknötchen"
+1801,p,2000-09-27,"Internusschwäche mit psychischer Komponente, auffällige Asymmetrie, re deutlich kürzer li",2066,1940-12-18,m,Funktionelle Dysphonie
+1802,p,2000-09-27,,2067,1943-04-20,w,"Hyperfunktionelle Dysphonie, Diplophonie"
+1803,p,2000-09-27,"Vorbekannte Rec.par. (strumipriv), li leichte Bewegungseinschränkung; Dysphagie",2069,1929-06-02,w,Rekurrensparese
+1804,p,2000-09-27,"Siebte Aufnahme, Verlaufskontrolle",2027,1964-07-18,w,Spasmodische Dysphonie
+1806,p,2000-10-18,"Chronische, mit zarter Leukoplakie; R2 B0 H2",2072,1973-09-03,w,Laryngitis
+1807,p,2000-10-18,,2027,1964-07-18,w,Spasmodische Dysphonie
+1808,p,2000-10-18,Zustand danach; Patient stand zur longitudinalen Betrachtung zur Verfügung,1620,1940-03-19,m,Frontolaterale Teilresektion
+1809,p,2000-10-25,Akute; transsexuell,2074,1968-10-28,w,Laryngitis
+1810,p,2000-10-25,"Zustand nach Stütze, jetzt regelmäßiges Schwingungsbild",2077,1944-05-14,m,Leukoplakie
+1811,p,2000-10-25,"Zustand nach Abtragung mit beidseitig ausgeprägtem starrem Schwingungsbild, event. Laryngitis, hyperfunktionelle Komponente",2078,1928-11-02,w,Reinke Ödem
+1812,p,2000-10-25,"Ponogen, Lehrerstimme",2079,1942-01-30,m,Hyperfunktionelle Dysphonie
+1813,p,2000-10-25,Sekundär hyperfunktionell,2080,1940-12-07,w,"Hyperfunktionelle Dysphonie, Dysodie"
+1814,p,2000-10-25,Tag vor Laryngektomie am 26.10.00,2081,1934-09-08,m,Hypopharynxtumor
+1815,n,2000-10-25,,2082,1944-08-03,w,
+1816,p,2000-10-25,"Vorbekannte, Tendenz dazu, Gesang als Nebenfach",1981,1978-12-18,w,Hyperfunktionelle Dysphonie
+1817,p,2000-10-25,Bisher kein Rezidiv,2027,1964-07-18,w,Spasmodische Dysphonie
+1818,p,2000-11-08,"Idiopatische, re",2083,1941-06-02,m,Rekurrensparese
+1819,p,2000-11-08,Ohne Reflux,2084,1934-03-30,m,"Kontaktpachydermie, Vox senilis"
+1820,p,2000-11-08,Strumiprive li mit spontan guter Kompensation,2085,1930-04-10,w,Rekurrensparese
+1821,p,2000-11-08,Longitudunal; 10. Aufnahme,2027,1964-07-18,w,Spasmodische Dysphonie
+1822,p,2000-11-15,Tendenz dazu,2086,1974-05-13,w,Hyperfunktionelle Dysphonie
+1823,p,2000-11-15,Vorbekannte ponogene Dysphonie,2088,1953-03-14,w,Hyperfunktionelle Dysphonie
+1824,p,2000-11-15,,2089,1943-08-20,w,Funktionelle Dysphonie
+1825,p,2000-11-15,"Links, paramedian, beginnende Kompensation",2090,1933-04-23,w,Rekurrensparese
+1826,p,2000-11-15,"Idiopatische Form li, kein Anhalt auf Aryluxation, strobosk. keine Restbeweglichkeit",2091,1943-03-07,w,Rekurrensparese
+1827,p,2000-11-22,"Multifaktoriell, mit cervicogener Komponente",2093,1964-09-10,m,Funktionelle Dysphonie
+1828,p,2000-11-22,"Zustand nach Abtragung mit starren Stimmlippen und fast strob. Stillstand ; 28. Aug. OP, 2. Aufnahme nach Abtragung",2078,1928-11-02,w,Reinke Ödem
+1829,p,2000-11-22,"Links paramedian, mit beginnender phonatorischer Kompensation",2095,1959-06-17,w,Rekurrensparese
+1830,p,2000-11-22,Fast komplett kompensiert,2097,1922-01-08,m,Rekurrensparese
+1831,p,2000-11-22,"Zustand nach alter Parese, guter Glottisschluß; jetzt Zungengrundtumor links",2098,1945-08-11,w,"Rekurrensparese, Zentral-laryngale Bewegungsstörung"
+1832,p,2000-11-22,Zustand nach Lungen-Ca mit folgender kompensierter Rec. par.,2100,1938-05-16,m,Rekurrensparese
+1833,p,2000-11-22,"Multifaktoriell, cervicogen",2102,1947-09-07,w,Dysphonie
+1834,p,2000-11-22,"Beim Lesen des Satzes Beginn der Irregularitäten,  11. Aufnahme",2027,1964-07-18,w,Spasmodische Dysphonie
+1835,p,2000-11-22,"Idiopatische Form, beidseitig",2091,1943-03-07,w,Rekurrensparese
+1836,p,2000-11-22,"Ausschluß einer Aryluxation re, z.B. Rec. par.",2103,1943-10-09,w,Rekurrensparese
+1837,n,2000-11-22,,1070,1967-01-07,w,
+1838,n,2000-11-22,,1071,1980-06-30,w,
+1839,n,2000-11-22,,1072,1972-05-07,w,
+1840,n,2000-11-22,,1073,1978-06-08,w,
+1841,n,2000-11-23,,2126,1978-10-24,m,
+1842,n,2000-11-23,,1074,1977-11-28,m,
+1843,n,2000-11-23,,1076,1980-11-20,w,
+1844,n,2000-11-23,,1077,1980-12-11,w,
+1845,n,2000-11-23,,1078,1981-06-04,w,
+1846,n,2000-11-23,,1079,1979-12-05,w,
+1847,n,2000-11-23,,1080,1975-06-03,m,
+1848,n,2000-11-23,,1081,1978-04-06,w,
+1849,n,2000-11-23,,1082,1976-05-09,m,
+1850,n,2000-11-23,,1083,1978-02-05,w,
+1851,n,2000-11-23,,1084,1979-12-09,m,
+1852,n,2000-11-23,,1085,1980-05-06,w,
+1853,n,2000-11-23,,1086,1981-04-19,w,
+1854,n,2000-11-23,,1087,1979-12-19,m,
+1855,n,2000-11-23,,1088,1977-11-15,w,
+1856,n,2000-11-23,,1089,1980-05-02,w,
+1857,n,2000-11-23,,1090,1980-12-16,w,
+1858,n,2000-11-23,,1091,1980-03-18,w,
+1859,n,2000-11-23,,1092,1975-09-18,m,
+1860,n,2000-11-23,,1093,1956-06-21,w,
+1861,p,2000-11-27,Leichte Form,2104,1974-09-30,m,Hyperfunktionelle Dysphonie
+1862,p,2000-11-27,,1,1977-04-07,w,Funktionelle Dysphonie
+1863,p,2000-11-29,Strumiprive re nach Schilddrüsentumorresektion,2007,1942-03-06,w,Rekurrensparese
+1864,p,2000-11-29,"Verlaufskontrolle, kein stroboskopischer Stillstand",1407,1934-09-11,w,Leukoplakie
+1865,n,2000-11-29,,1094,1952-07-24,w,
+1866,p,2000-12-06,"Kontrolle Phonationsverdickung bds. nach Therapie, Vorbefund 07.00",2022,1943-08-21,w,Phonationsknötchen
+1867,p,2000-12-06,Strumiprive frische Rec. par. li mit relativ guter Eigenbeweglichkeit,2108,1926-03-21,w,Rekurrensparese
+1868,p,2000-12-06,Ponogen,2109,1952-03-30,w,Psychogene Dysphonie
+1869,p,2000-12-06,"Longitudinal, 12. Aufnahme in der Verlaufskontrolle",2027,1964-07-18,w,Spasmodische Dysphonie
+1870,n,2000-12-07,,1095,1975-04-05,w,
+1871,n,2000-12-07,,1096,1977-03-15,m,
+1872,n,2000-12-07,,1097,1981-01-18,w,
+1873,n,2000-12-07,,1098,1980-12-04,w,
+1874,n,2000-12-07,,1099,1980-01-07,w,
+1875,n,2000-12-07,,1100,1980-10-30,w,
+1876,n,2000-12-07,,1101,1978-03-07,m,
+1877,n,2000-12-07,,1102,1980-01-24,m,
+1878,n,2000-12-07,,1103,1981-02-06,w,
+1879,n,2000-12-07,,1104,1977-09-23,w,
+1880,n,2000-12-07,,1105,1980-12-02,w,
+1881,n,2000-12-07,,1106,1981-04-18,w,
+1882,n,2000-12-07,,1107,1974-10-31,m,
+1883,n,2000-12-07,,1108,1979-07-22,w,
+1884,n,2000-12-07,,1109,1980-07-24,w,
+1885,n,2000-12-07,,1110,1981-03-04,w,
+1886,n,2000-12-07,,1111,1980-11-29,w,
+1887,p,2000-12-13,Zustand danach mit Reposition und ausgeprägter Hyperfunktion,2111,1969-06-03,w,"Aryluxation, Hyperfunktionelle Dysphonie"
+1888,p,2000-12-13,,2112,1969-07-20,w,Hyperfunktionelle Dysphonie
+1889,p,2000-12-13,"Links, prä OP",2114,1951-08-24,w,Reinke Ödem
+1890,p,2000-12-13,"Zustand nach zweimaliger Abtragung des Polypen; jetzt Reinke-Ödem li, eventuell Polyp re",2115,1958-07-01,w,"Stimmlippenpolyp, Reinke Ödem"
+1891,p,2000-12-13,,2116,1961-01-01,w,"Psychogene Dysphonie, Hyperfunktionelle Dysphonie"
+1892,p,2000-12-13,Strumiprive Rec. par. li; OP Aug. 1999,1990,1942-11-30,w,Rekurrensparese
+1894,p,2000-12-13,,1597,1963-06-15,w,"Dysphonie, Aryluxation"
+1895,p,2000-12-20,Mai 2000 2 x Stütze ,1987,1958-10-06,w,Hyperfunktionelle Dysphonie
+1896,p,2000-12-20,,2119,1954-09-28,w,Poltersyndrom
+1897,p,2000-12-20,"Kontaktpachydermie ohne ""Kontaktpachydermie"" bei Stimmberuf",2120,1969-10-31,m,Kontaktpachydermie
+1898,p,2000-12-20,Ausgeprägte Asymmetrie und Frequenzwechsel in den Perioden,2121,1966-10-26,w,Hyperfunktionelle Dysphonie
+1899,p,2000-12-20,Bei angegebenem Stimmberuf,2123,1980-04-07,w,Funktionelle Dysphonie
+1900,p,2000-12-20,Ponogene Komponente,2124,1948-07-24,w,"Hyperfunktionelle Dysphonie, Psychogene Dysphonie"
+1901,p,2000-12-20,"Vorbekannte re, (strumipriv), nur noch leicht inkompletter Verschluß ",1419,1932-06-04,w,Rekurrensparese
+1902,p,2000-12-20,Seit zehn Tagen wesentlich schlechter; Longitudinalanalyse Juli 2000 bis Februar 2001,2027,1964-07-18,w,Spasmodische Dysphonie
+1903,p,2001-01-10,Leichte Form der Dysphonie,2126,1978-10-24,m,Hyperfunktionelle Dysphonie
+1904,p,2001-01-10,,2127,1942-06-12,m,"Psychogene Dysphonie, Diplophonie"
+1905,p,2001-01-10,Mit habitueller Mikrophonie,2128,1964-11-10,w,Phonasthenie
+1906,p,2001-01-10,Zustand danach mit jetzt noch hyperfunktioneller Dysphonie,2129,1955-06-25,w,"Aryluxation, Hyperfunktionelle Dysphonie"
+1907,p,2001-01-10,Krankheitsbeginn August 2000 mit Bild der zerebellären Ataxie,2130,1962-03-08,m,Zentral-laryngale Bewegungsstörung
+1908,p,2001-01-10,Probleme vor allem bei /a/,2027,1964-07-18,w,Spasmodische Dysphonie
+1909,p,2001-01-10,Botox Injektion am 10.01.01,2027,1964-07-18,w,Spasmodische Dysphonie
+1910,p,2001-01-17,Mit Aphonie,2132,1974-04-15,w,"Psychogene Dysphonie, Hyperfunktionelle Dysphonie"
+1911,p,2001-01-17,Zustand nach laserchirurgischer Entfernung eines Tumors des weichen Gaumens mit Perforation,2134,1947-07-23,w,Rhinophonie aperta
+1912,p,2001-01-17,"Zustand nach Abtragung mit Rest li, wenig Dysphonie",2135,1950-02-03,m,Kontaktpachydermie
+1913,p,2001-01-17,Zustand danach mit Leukoplakie re; OP am 22.02.01,2000,1943-03-04,m,"Frontolaterale Teilresektion, Leukoplakie"
+1914,p,2001-01-17,Vorbekannte vor Injektion mit deutlich spasmodischen Anteilen,1787,1929-09-09,m,Spasmodische Dysphonie
+1915,n,2001-01-17,,1112,1971-04-24,w,
+1916,n,2001-01-18,,1113,1979-08-28,w,
+1917,n,2001-01-18,,1114,1979-02-16,m,
+1918,n,2001-01-18,,1115,1974-06-01,m,
+1919,n,2001-01-18,,1116,1977-09-24,m,
+1920,n,2001-01-18,,1117,1980-04-05,w,
+1921,n,2001-01-18,,1118,1979-11-24,m,
+1922,n,2001-01-18,,1119,1959-04-10,w,
+1923,n,2001-01-18,,1120,1973-01-31,m,
+1924,n,2001-01-18,,1121,1977-02-13,w,
+1925,n,2001-01-18,,1122,1979-07-02,w,
+1926,n,2001-01-18,,1123,1973-10-10,w,
+1927,p,2001-01-24,Phonationsverdickung beidseitig,2138,1981-03-13,w,"Hyperfunktionelle Dysphonie, Phonationsknötchen"
+1928,p,2001-01-24,Leicht funktionelle Dysphonie,2142,1965-06-13,w,"Psychogene Dysphonie, N. laryngeus superior Neuralgie"
+1929,p,2001-01-24,"Ponogen, jetzt abgeschlossene logopädische Therapie",2065,1977-02-08,w,Hyperfunktionelle Dysphonie
+1930,p,2001-01-24,Chronische Form mit stark asymmetrischem Schwingungsbild,1311,1940-03-25,m,Laryngitis
+1931,p,2001-01-24,"Zustand nach Abtragung der Cyste li Stimmlippe vor ca 1 Jahr, jetzt glatte Stimmlippe mit leichter Asymmetrie",1699,1948-04-06,w,"Cyste, Psychogene Dysphonie"
+1932,p,2001-01-24,Zustand danach mit Restdysplasie und supraglottischer Kompensation,1620,1940-03-19,m,Chordektomie
+1933,p,2001-01-31,Vor Velopharyngalplastik,2143,1989-06-20,w,Rhinophonie aperta
+1934,p,2001-01-31,Supraglottische Einengung mit enger Artikulation; noch Rehamaßnahme,2145,1950-12-14,m,Hyperfunktionelle Dysphonie
+1935,p,2001-01-31,Leichte Form,2146,1980-03-18,w,Funktionelle Dysphonie
+1936,p,2001-01-31,Leichte Form,2147,1939-07-06,w,Funktionelle Dysphonie
+1937,p,2001-01-31,Zustand nach Botox am 24.01.01; 1. Aufn.,2148,1941-07-18,w,Spasmodische Dysphonie
+1938,p,2001-01-31,"Zweite Aufn. nach Botox am 10.01.01. bei Vokal-Produktion zunächst ""/h/-Stellung"" eingenommen",2027,1964-07-18,w,Spasmodische Dysphonie
+1939,p,2001-02-07,Strumiprive li mit guter Kompensation,2150,1925-11-21,w,Rekurrensparese
+1940,p,2001-02-07,"Chronische Laryngitis, kein stroboskopischer Stillstand",2152,1945-10-15,w,"Laryngitis, Leukoplakie"
+1941,p,2001-02-07,Intraepithelisch,2153,1933-11-27,w,"Reinke Ödem, Cyste"
+1942,p,2001-02-07,Großer Rezidivtumor bei Zustand nach Chordektomie,1659,1934-11-01,m,"Kehlkopftumor, Chordektomie"
+1943,p,2001-02-07,,2130,1962-03-08,m,"Dysarthrophonie, Zentral-laryngale Bewegungsstörung"
+1944,p,2001-02-07,Ponogen,2060,1978-06-29,w,Hyperfunktionelle Dysphonie
+1945,p,2001-02-07,"Heute Botoxinjektion, letzte Aufnahme vor Botox",1787,1929-09-09,m,Spasmodische Dysphonie
+1946,p,2001-02-07,"Zustand nach Abtragung, OP am 28.08.00",2078,1928-11-02,w,Reinke Ödem
+1947,n,2001-02-07,,1124,1980-08-01,w,
+1948,p,2001-02-14,Dysarthrophonie mit hyperfunktionellem Schwingungsbild,2159,1945-05-09,m,Dysarthrophonie
+1949,p,2001-02-14,Zustand danach mit hyperfunktioneller Kompensation; bei Textproduktion supraglottale Angregung,1868,1950-04-14,m,Frontolaterale Teilresektion
+1950,p,2001-02-14,,2148,1941-07-18,w,Spasmodische Dysphonie
+1951,p,2001-02-14,,1499,1948-12-02,w,Psychogene Dysphonie
+1952,p,2001-02-21,Leichte Tendenz dazu bei ponogener Belastung,2161,1955-09-25,w,Hyperfunktionelle Dysphonie
+1953,p,2001-02-21,Bei ausgebildeter Singstimme,2163,1973-08-14,m,Laryngitis
+1955,p,2001-02-21,"Kompensiert, re",2090,1933-04-23,w,Rekurrensparese
+1956,n,2001-02-21,,2166,1940-10-13,m,
+1957,p,2001-02-21,"Großer, re Stimmlippe",2167,1958-09-20,w,Stimmlippenpolyp
+1958,p,2001-02-21,Leichte Form,2168,1976-04-03,w,"Funktionelle Dysphonie, Psychogene Dysphonie"
+1959,p,2001-02-21,,2169,1959-12-23,w,Psychogene Dysphonie
+1960,p,2001-02-21,Dritte Aufnahme nach Botox am 10.01.01,2027,1964-07-18,w,Spasmodische Dysphonie
+1961,p,2001-02-21,Erste Aufnahme nach Injektion am 07.02.01,1787,1929-09-09,m,Spasmodische Dysphonie
+1962,p,2001-03-07,Larynx strobosk. o.B.,2171,1970-03-23,m,Poltersyndrom
+1963,p,2001-03-07,Zustand nach Abtragung mit noch asymmetrischem Schwingungsbild,2172,1935-06-05,m,Reinke Ödem
+1964,p,2001-03-07,"Ponogen mit Zustand nach 3 x Knötchenabtragung, vernarbte Stimml. mit werdender Hyperfunktion",2174,1954-06-24,w,"Psychogene Dysphonie, Hyperfunktionelle Dysphonie"
+1965,p,2001-03-07,Subakut mit strobosk. sehr unregelmäßigem Schwingungsbild,2175,1933-02-01,w,Laryngitis
+1966,p,2001-03-07,"Mit Tendenz zur verlängerten Schlußphase, Räusperzwang / HWS",2176,1943-03-11,m,Funktionelle Dysphonie
+1967,p,2001-03-07,"Ohne ""Kontaktpachydermie"", excavierte Stimmlippe",2179,1940-10-02,m,Kontaktpachydermie
+1968,p,2001-03-07,"Großer Tumor im re Hypopharynx, re Kehlkopfstarre, Taschenband re infiltriert, re Stimmlippe nicht überschaubar, Fixierter Aryhöcker re",2178,1942-07-05,w,Kehlkopftumor
+1969,n,2001-03-07,,1524,1937-04-07,w,
+1970,p,2001-03-07,"Re, voll kompensiert mit Euphonie",2108,1926-03-21,w,Rekurrensparese
+1971,p,2001-03-14,Intermediärschwäche,2180,1923-03-22,w,Vox senilis
+1972,p,2001-03-14,Vierte Aufnahme nach Injektion,2027,1964-07-18,w,Spasmodische Dysphonie
+1973,p,2001-03-14,Chronisch hyperplastische Form mit ödematösen Stimmlippen und unregelmäßigem Schwingungsbild,2183,1941-11-26,m,Laryngitis
+1974,n,2001-03-14,,2184,1937-05-05,m,
+1976,p,2001-03-14,Leichte Form,2187,1927-04-07,w,Hyperfunktionelle Dysphonie
+1977,p,2001-03-14,,2188,1941-04-14,w,Funktionelle Dysphonie
+1978,p,2001-03-14,Ausgeprägte Form ,2189,1948-10-17,m,"Laryngitis, Hyperfunktionelle Dysphonie"
+1980,p,2001-03-21,Überlastungssyndrom bei ausgebildeter Stimme,2190,1978-01-23,m,Sängerstimme
+1981,p,2001-03-21,Zustand nach Extirpation,2191,1937-06-17,m,"Laryngozele, Dysodie"
+1982,p,2001-03-21,Lehrerstimme,2192,1965-03-03,w,Hyperfunktionelle Dysphonie
+1983,p,2001-03-21,Leichte Tendenz dazu mit Teleangieektasien,2193,1943-03-27,w,Hyperfunktionelle Dysphonie
+1984,p,2001-03-21,ausgeprägtes Papillom li; Taschenfaltenstimme,2194,1929-09-02,m,Dysphonie
+1986,p,2001-03-21,"Kontaktpachydermie ohne ""Kontaktpachydermie""",2176,1943-03-11,m,Kontaktpachydermie
+1987,p,2001-03-28,Chronische Laryng.; Asymmetrie nach Leukoplakieabtragung,2197,1952-06-11,m,"Laryngitis, Leukoplakie"
+1988,p,2001-03-28,Cervicogene Komponente,2198,1952-01-20,w,"Psychogene Dysphonie, Hyperfunktionelle Dysphonie"
+1989,p,2001-03-28,Ponogen,2199,1954-06-17,w,"Hyperfunktionelle Dysphonie, Psychogene Dysphonie"
+1990,p,2001-03-28,Posttraumatisch,2201,1940-07-29,w,Hyperfunktionelle Dysphonie
+1991,p,2001-03-28,Chordektomie mit supraglottischer Kompensation,1411,1949-05-14,m,Chordektomie
+1992,p,2001-03-28,,2148,1941-07-18,w,Spasmodische Dysphonie
+1993,p,2001-03-28,Ponogen,1959,1965-07-03,w,Hyperfunktionelle Dysphonie
+1994,p,2001-03-28,,1787,1929-09-09,m,Spasmodische Dysphonie
+1995,n,2001-03-28,,1125,1981-11-22,w,
+1996,n,2001-03-28,,1126,1981-10-30,w,
+1998,p,2001-04-04,,2027,1964-07-18,w,Spasmodische Dysphonie
+1999,p,2001-04-04,"Kontaktpachydermie ohne ""Kontaktpachydermie""",2208,1953-07-12,m,Kontaktpachydermie
+2000,p,2001-04-04,Transsexuell,2209,1960-01-06,m,Dysphonie
+2001,p,2001-04-04,,2210,1952-03-29,m,"Dysarthrophonie, Zentral-laryngale Bewegungsstörung"
+2002,p,2001-04-04,,2211,1940-08-17,w,Rekurrensparese
+2003,p,2001-04-04,Laryngitis subglottisch,2212,1923-08-25,m,"Laryngitis, Vox senilis"
+2004,p,2001-04-04,,1683,1965-10-02,m,Mutationsfistelstimme
+2005,p,2001-05-02,Zustand nach Abtragung am 24.4.01,2213,1931-04-16,w,Stimmlippenpolyp
+2006,p,2001-05-02,"Z.B. funkt. Dysphonie; transsexuell vor Therapie, ev. OP",2215,1971-07-16,m,Funktionelle Dysphonie
+2007,p,2001-05-02,Mit guter Kompensation nach Strumektomie,2216,1931-03-03,m,Rekurrensparese
+2008,p,2001-05-02,Abduktortyp; erste Aufnahme prä Botox,2217,1931-10-23,w,Spasmodische Dysphonie
+2009,p,2001-05-02,"Re, mit beginnender Kompensation",2219,1938-04-11,m,Rekurrensparese
+2010,p,2001-05-02,Ungefähr 4. Aufn. nach Botox,2148,1941-07-18,w,Spasmodische Dysphonie
+2011,p,2001-05-02,Zustand nach OP,1620,1940-03-19,m,Frontolaterale Teilresektion
+2012,p,2001-05-09,Chronische Laryngitis und ausgeprägte hyperf. Dysphonie,2220,1951-12-02,w,"Laryngitis, Hyperfunktionelle Dysphonie"
+2013,p,2001-05-09,Intermediärschwäche und verlängerte Schlußphase,2221,1939-11-01,m,"Balbuties, Hypotone Dysphonie"
+2014,p,2001-05-09,OP November 00,2222,1948-05-27,w,Rekurrensparese
+2015,p,2001-05-09,Verdacht auf spasmodische Dysphonie,2223,1958-09-29,m,Kontaktpachydermie
+2016,p,2001-05-09,Zustand nach Apoplex mit Sprechapraxie,2224,1948-09-24,m,Dysphonie
+2017,p,2001-05-09,,2225,1971-12-20,m,Mutationsfistelstimme
+2018,n,2001-05-09,,1127,1978-02-22,w,
+2019,p,2001-05-16,Zustand nach Vagusneurinomextirpation,2226,1978-02-05,w,Dysphonie
+2020,p,2001-05-16,,2227,1964-02-07,m,Hypotone Dysphonie
+2021,p,2001-05-16,Ausgeprägte chronische Form,2228,1950-04-19,w,Laryngitis
+2022,p,2001-05-16,,1787,1929-09-09,m,Spasmodische Dysphonie
+2023,p,2001-05-16,Spasmodisch,2148,1941-07-18,w,Spasmodische Dysphonie
+2024,p,2001-05-23,"Rec. par. li ohne Kompensation, eher schlaff, R1 H2 B1",2233,1930-01-10,w,Rekurrensparese
+2025,p,2001-05-23,,2234,1941-04-29,w,"Phonasthenie, Psychogene Dysphonie"
+2027,p,2001-05-23,Z.B. spasmodische Dysphonie,2237,1930-12-12,m,Kontaktpachydermie
+2028,p,2001-05-23,Leichte Form der Laryngitis mit mäßiger Dysphonie,2236,1965-05-09,m,"Laryngitis, Dysphonie"
+2029,p,2001-05-23,Zustand nach Chordektomie mit kompensierter Taschenfaltenstimme,1444,1935-12-29,m,"Chordektomie, Taschenfaltenstimme"
+2030,p,2001-05-23,,2027,1964-07-18,w,Spasmodische Dysphonie
+2031,p,2001-05-30,Zustand nach Abtragung im Aug. 00,2078,1928-11-02,w,Reinke Ödem
+2032,p,2001-05-30,Restsymptomatik,2240,1940-09-09,m,Dysarthrophonie
+2033,p,2001-05-30,"Links, ohne Kompensation",2242,1940-03-10,w,Rekurrensparese
+2034,p,2001-05-30,"Kontaktpachydermie ohne ""Kontaktpachydermie""",2225,1971-12-20,m,"Hyperfunktionelle Dysphonie, Kontaktpachydermie"
+2036,n,2001-05-31,,1129,1979-07-08,w,
+2037,n,2001-05-31,,1128,1980-08-01,w,
+2038,n,2001-05-31,,1130,1976-12-04,w,
+2039,n,2001-05-31,,1131,1979-10-31,w,
+2040,n,2001-05-31,,1132,1975-01-28,w,
+2041,n,2001-05-31,,1133,1978-11-28,w,
+2042,n,2001-05-31,,1134,1980-10-16,w,
+2043,n,2001-05-31,,1135,1980-09-16,w,
+2044,n,2001-05-31,,1136,1979-05-07,w,
+2045,n,2001-05-31,,1137,1974-11-08,m,
+2046,n,2001-05-31,,1138,1981-01-12,w,
+2047,n,2001-05-31,,1139,1977-09-01,w,
+2048,n,2001-05-31,,1140,1978-05-10,m,
+2049,n,2001-05-31,,1141,1980-07-13,w,
+2050,n,2001-05-31,,1142,1979-03-26,w,
+2051,n,2001-05-31,,1143,1981-05-05,w,
+2052,n,2001-05-31,,1144,1976-11-23,w,
+2053,n,2001-05-31,,1145,1980-04-29,w,
+2054,n,2001-05-31,,1146,1981-04-14,w,
+2055,p,2001-06-06,,2244,1919-09-21,m,Vox senilis
+2056,p,2001-06-06,"Links, ohne stroboskopischen Stillstand",2245,1949-03-09,w,Stimmlippenpolyp
+2057,p,2001-06-06,"Restsymptomatik mit Gaumensegelparese li, stark erhöhte mittl. Sprechstimmlage",2246,1975-06-11,m,Dysarthrophonie
+2058,p,2001-06-06,Schlaff mit wenig stroboskopischer Restbeweglichkeit,2247,1976-01-24,m,Rekurrensparese
+2061,p,2001-06-06,,2083,1941-06-02,m,Dysodie
+2062,p,2001-06-13,"Mit beginnenden Phonationsknötchen, li > re",2251,1972-11-06,w,Hyperfunktionelle Dysphonie
+2063,p,2001-06-13,,2254,1925-07-15,w,Zentral-laryngale Bewegungsstörung
+2064,p,2001-06-13,Zustand danach,1995,1948-11-02,w,Chordektomie
+2066,p,2001-07-25,Vokalische Dysfunktion mit Seufzer; spasmodische Komponente?,2255,1931-11-18,m,Dysphonie
+2067,p,2001-07-25,Zustand nach Stütze; hyperfunktionelle Komponente; hohe Sprechstimmlage,2256,1944-10-05,w,Hyperfunktionelle Dysphonie
+2068,p,2001-07-25,,2257,1941-12-26,m,Dysodie
+2069,p,2001-07-25,,2258,1950-04-04,m,Kehlkopftumor
+2070,p,2001-08-01,Hypofunktionelle Komponente primär,2261,1953-05-10,m,"Kontaktpachydermie, Hypofunktionelle Dysphonie"
+2071,p,2001-08-01,Ponogen,2263,1940-09-21,w,Hyperfunktionelle Dysphonie
+2072,p,2001-08-01,"Rechts, nach Strumektomie mit beginnender phonatorischer Kompensation",2264,1986-10-01,m,Rekurrensparese
+2073,p,2001-08-01,"Vollkompensiert, mit praktisch normalem Schwingungsbild",2265,1937-06-10,w,Rekurrensparese
+2074,p,2001-08-01,Funktionell,2266,1938-11-19,w,"Psychogene Dysphonie, Dysodie"
+2075,p,2001-08-01,"Leukoplakie li, ohne phonatorischen Stillstand; chron. Laryng.",2267,1947-03-12,m,"Leukoplakie, Laryngitis"
+2077,p,2001-08-01,"Ponogen, mit psychogener Komponente",1961,1943-08-12,w,Hyperfunktionelle Dysphonie
+2078,p,2001-08-01,Idiopatisch; mit inkompletter Kompensation,1970,1969-07-21,m,Rekurrensparese
+2079,p,2001-08-08,Ausgprägt chron. Laryngitis mit Leukoplakie,2272,1975-04-30,w,"Laryngitis, Leukoplakie"
+2080,p,2001-08-08,Tendenz dazu,2269,1957-04-17,w,Hyperfunktionelle Dysphonie
+2081,p,2001-08-08,Tendenz zur hyperfunktionellen Dysphonie; ev. auch inkomplette Mutatio ,2268,1973-07-29,m,Hyperfunktionelle Dysphonie
+2082,p,2001-08-08,,2148,1941-07-18,w,Spasmodische Dysphonie
+2083,p,2001-08-08,"Links, komplett kompensiert",1990,1942-11-30,w,Rekurrensparese
+2084,n,2001-08-22,,2025,1981-11-12,w,
+2085,p,2001-08-22,Funktionell,2276,1963-01-17,w,Psychogene Dysphonie
+2086,p,2001-08-22,Mit Kompensation,2275,1926-01-15,w,Rekurrensparese
+2087,p,2001-08-22,Multifaktorielle Dysphonie bei chron. Asthma mit spray-Nebenwirkungen,2266,1938-11-19,w,Dysphonie
+2088,p,2001-08-22,"Re, kompensiert",1448,1924-07-22,m,Rekurrensparese
+2089,p,2001-08-22,Ausgeprägte Form des Reinke-Ödems re mit Flatterschwingungen,2278,1938-03-06,m,"Reinke Ödem, Taschenfaltenhyperplasie"
+2090,p,2001-08-22,Sekundäre Hyperfunktion,2279,1959-10-17,w,"Stimmlippenpolyp, Hyperfunktionelle Dysphonie"
+2091,p,2001-08-29,"Zustand n. Leukoplakie mit mäßiger Dysphonie, asymmetrisches Schwingungsbild",2216,1931-03-03,m,"Leukoplakie, Dysphonie"
+2092,p,2001-08-29,"Kontaktpachydermie ohne ""Kontaktpachydermie""",2282,1941-07-05,m,Kontaktpachydermie
+2093,p,2001-08-29,"Psychogen, stroboskopisch o.B.",2284,1970-04-04,w,Phonasthenie
+2094,p,2001-08-29,Z.B. Dysarthrophonie,2285,1971-11-24,w,Dysarthrophonie
+2095,p,2001-08-29,,2286,1962-09-29,m,Zentral-laryngale Bewegungsstörung
+2096,p,2001-08-29,Organische Dysphonie nach Zustand einer Leukoplakieabtragung,2287,1948-02-16,w,"Dysphonie, Leukoplakie"
+2097,p,2001-08-29,Chron. Laryngitis,2283,1970-12-14,w,"Dysphonie, Laryngitis, Vox senilis"
+2098,p,2001-08-29,Beginnende Form,2281,1939-11-29,w,Reinke Ödem
+2099,p,2001-09-05,"Re, mit großer asymmetrischer Amplitude",2288,1965-07-08,m,Stimmlippenpolyp
+2100,p,2001-09-05,"Re, nach Halswirbelsäulenfraktur (in Intermediärstellung ohne Restbeweglichkeit)",2289,1958-06-27,m,Rekurrensparese
+2101,p,2001-09-05,"Chron. Laryngitis mit beids. Leukoplakie, re > li",2290,1959-12-06,m,"Laryngitis, Leukoplakie"
+2102,p,2001-09-05,"Zustand nach Knötchenabtragung vor 18 Jahren, aktuell keine Knötchen",2291,1947-05-11,w,"Dysodie, Hyperfunktionelle Dysphonie"
+2103,p,2001-09-05,"Kontaktpachydermie ohne ""Kontaktpachydermie""",2292,1967-08-15,m,"Dysodie, Kontaktpachydermie"
+2104,p,2001-09-05,,2293,1961-05-11,w,"Psychogene Dysphonie, Hyperfunktionelle Dysphonie"
+2105,p,2001-09-12,Sekundär?,2294,1946-10-14,w,Hyperfunktionelle Dysphonie
+2106,p,2001-09-12,Multifaktoriell mit beg. Reinke-Ödem bds.,2295,1955-04-20,w,Dysphonie
+2107,p,2001-09-12,,2296,1956-09-30,w,"Psychogene Dysphonie, Hyperfunktionelle Dysphonie"
+2108,n,2001-09-12,,2297,1941-11-20,w,
+2109,p,2001-09-12,"Kompensiert in Intermediärstellung, z.T. hyperfunkt. supraglott. Eineingung",2040,1945-01-21,w,Rekurrensparese
+2110,p,2001-09-12,"Laryngitis ist chronisch mit bds. beginnendem Reinke-Ödem, Nikotinabusus",2299,1924-01-26,w,"Laryngitis, Reinke Ödem, Vox senilis"
+2112,p,2001-09-12,,2301,1961-06-11,w,"Funktionelle Dysphonie, Psychogene Dysphonie, Reinke Ödem, Phonationsknötchen, Phonationsknötchen"
+2113,p,2001-09-19,Z.B. Glossopharyngeusneuralgie,2302,1950-05-03,m,Dysarthrophonie
+2114,p,2001-09-19,,2304,1963-02-13,w,"Hyperfunktionelle Dysphonie, Dysodie"
+2115,p,2001-09-19,"Li, ohne stroboskopische Restbeweglichkeit",2305,1935-06-06,w,Rekurrensparese
+2116,p,2001-09-19,Leichte Form der hypofunktionellen Dysph.,2306,1944-10-28,w,"Hypofunktionelle Dysphonie, Kontaktpachydermie"
+2117,p,2001-09-19,Ponogen und phonasthetisch,2307,1950-02-25,w,Dysphonie
+2118,p,2001-09-19,"Organisch-funktionelle Dysphonie, ponogene Belastung",2303,1957-03-02,w,"Dysphonie, Reinke Ödem"
+2119,p,2001-09-26,Bei Zustand nach Polyp/Granulationsabtragung,2213,1931-04-16,w,Dysphonie
+2120,p,2001-09-26,Chronische Laryngitis mit starker Schleimansammlung um den Kehlkopf,1307,1935-03-09,m,"Dysphonie, Laryngitis"
+2121,p,2001-09-26,,2310,1932-09-16,w,"Vox senilis, Hyperfunktionelle Dysphonie"
+2122,p,2001-09-26,Leichte Form (Carcinophobie),2311,1941-11-13,w,Hyperfunktionelle Dysphonie
+2123,p,2001-09-26,Sängerstimme,2312,1982-10-13,w,"Funktionelle Dysphonie, Psychogene Dysphonie"
+2124,p,2001-09-26,Multifaktoriell mit beginnender Altersstimme,2313,1937-08-22,w,"Hyperfunktionelle Dysphonie, Dysodie"
+2125,p,2001-09-26,Ponogen,2314,1968-01-14,m,Dysphonie
+2126,p,2001-09-26,Chronische Laryngitis mit hyperfunktioneller Komponente,2315,1936-06-05,m,"Dysphonie, Laryngitis"
+2127,p,2001-09-26,Ponogen-psychogen mit psychisch-manischer Komponente,2316,1974-03-06,w,Dysphonie
+2128,p,2001-09-26,Chronische Form der Laryngitis; Zustand nach Stütze,2317,1938-09-10,w,Laryngitis
+2129,p,2001-10-17,Stroboskopischer Normalbefund,2318,1956-01-06,m,Balbuties
+2130,p,2001-10-17,Beginnende Form mit beids. unregelmäßigem Schwingungsbild; primär Dysglossie,2319,1949-01-15,w,Dysarthrophonie
+2131,p,2001-10-17,Zustand danach und nach mehreren Granulationsabtragungen,2000,1943-03-04,m,Frontolaterale Teilresektion
+2133,p,2001-10-17,Phonasthenisch mit verlängerter Schlußphase im hintern Drittel,2322,1938-12-31,m,Hypotone Dysphonie
+2134,p,2001-10-17,,2323,1974-05-07,w,Psychogene Dysphonie
+2135,p,2001-10-17,"Kontaktpachydermie ohne ""Kontaktpachydermie""",2324,1938-04-10,m,"Hyperfunktionelle Dysphonie, Kontaktpachydermie"
+2136,p,2001-10-24,Zustand nach linksseitiger Chordektomie mit supraglottaler Kompensation,1868,1950-04-14,m,Chordektomie
+2137,p,2001-10-24,"Intraepithelare Cyste, li Stimmlippe",2326,1970-04-28,w,Cyste
+2138,p,2001-10-24,"Leichte Hyperfunktion bei cervicogenem Räusperzwang, leichte Asymmetrie",2327,1940-08-19,w,Hyperfunktionelle Dysphonie
+2139,p,2001-10-24,Multifaktoriell,2328,1953-03-16,w,Hyperfunktionelle Dysphonie
+2140,p,2001-10-24,,2329,1981-07-01,w,Rhinophonie aperta
+2141,p,2001-10-24,,2148,1941-07-18,w,Spasmodische Dysphonie
+2142,n,2001-10-24,,2331,1956-05-23,m,
+2143,p,2001-11-14,Überlastungssyndrom bei ausgebildeter Sopranstimme,2340,1963-03-30,w,Dysodie
+2144,p,2001-11-14,"Zustand n. Stütze mit intraepith. Cystenabtragung li, 1. Aufnahme nach OP",2326,1970-04-28,w,Cyste
+2145,p,2001-11-14,Chron. Laryngitis mit unregelmäßigem Schwingungsbild,2342,1962-01-20,m,Balbuties
+2146,p,2001-11-14,"Kontaktpachydermie ohne ""Kontaktpachydermie"" mit hypotonem Schwingungsbild",2343,1925-09-23,m,Kontaktpachydermie
+2147,p,2001-11-14,Multifaktorielle funktionelle Dysphonie mit Tendenz zur Hyperfunktion,2344,1960-03-19,w,Dysphonie
+2148,p,2001-11-14,"Rec Par. in Intermediärstellung, keine strob. Restbeweglichkeit",2345,1978-06-13,m,Rekurrensparese
+2149,p,2001-11-14,Strobosk. o. B.,2346,1973-02-01,m,Balbuties
+2150,p,2001-11-14,Restparese mit kompletter phonatorischer Kompensation,1614,1956-09-06,w,Rekurrensparese
+2151,p,2001-11-14,"Ponogen, ausgeprägt mit typischem stroboskopischem Bild",2019,1940-11-17,w,Hyperfunktionelle Dysphonie
+2152,p,2001-11-21,Alte kompensierte Rec. Par. und funktionelle Dysphonie mit eher hypotonem Schwingungsbild,2349,1950-07-14,m,"Rekurrensparese, Dysphonie"
+2153,p,2001-11-21,Rechts ohne Kompensation,2350,1949-02-05,w,Rekurrensparese
+2154,p,2001-11-21,"Funktionelle Dysphonie mit Kontaktpachydermie ohne ""Kontaktpachydermie""",2351,1953-04-20,m,"Dysphonie, Kontaktpachydermie"
+2155,p,2001-11-21,"Rec. Par. li, kompensiert",2211,1940-08-17,w,Rekurrensparese
+2156,p,2001-11-21,Abklingender akuter Schub einer chronischen Laryngitis,2353,1968-07-20,m,Laryngitis
+2157,p,2001-11-21,"Links, mit hyperfunktioneller Komponente",2354,1943-11-08,m,Stimmlippenpolyp
+2158,p,2001-11-21,,2148,1941-07-18,w,Spasmodische Dysphonie
+2159,p,2001-11-21,,1787,1929-09-09,m,Spasmodische Dysphonie
+2160,p,2001-11-21,"Rechts, keine Kompensation nach Nebenschilddrüsenadenom",2357,1961-06-21,w,Rekurrensparese
+2161,p,2001-11-21,Ausgeprägte Form beidseitig mit stark vertiefter mittlerer Sprechstimmlage vor OP,2358,1959-06-21,w,Reinke Ödem
+2162,n,2001-11-22,,1147,1981-07-11,w,
+2163,n,2001-11-22,,1148,1967-03-13,w,
+2164,n,2001-11-22,,1149,1974-11-29,w,
+2165,n,2001-11-22,,1150,1982-03-05,w,
+2166,n,2001-11-22,,1151,1982-08-10,w,
+2167,n,2001-11-22,,1152,1981-09-29,w,
+2168,n,2001-11-22,,1153,1981-06-23,w,
+2169,n,2001-11-22,,1154,1978-02-10,w,
+2170,n,2001-11-22,,1155,1978-02-10,w,
+2171,n,2001-11-22,,1156,1982-09-10,w,
+2172,n,2001-11-22,,1157,1981-09-09,w,
+2173,n,2001-11-22,,1158,1982-07-09,w,
+2174,n,2001-11-22,,1159,1980-05-31,w,
+2175,n,2001-11-22,,1089,1980-05-02,w,
+2176,n,2001-11-22,,1161,1977-07-11,m,
+2177,n,2001-11-22,,1162,1982-06-15,w,
+2178,n,2001-11-22,,1163,1982-06-16,w,
+2179,n,2001-11-22,,1164,1982-01-10,w,
+2180,n,2001-11-22,,1165,1982-06-01,w,
+2181,n,2001-11-22,,1166,1979-08-07,m,
+2182,p,2001-12-05,"Komplette Parese li in Kadaverstellung, keine strobosk. Restbeweglichkeit, keine Kompensation",2359,1931-08-13,m,Rekurrensparese
+2183,p,2001-12-05,"Zustand danach mit fast kompletter Kompensation, Synechie vordere Kommissur",2360,1956-10-14,m,"Chordektomie, Synechie"
+2184,p,2001-12-05,,2361,1983-09-27,w,"Hyperfunktionelle Dysphonie, Dysodie"
+2185,p,2001-12-05,,2362,1940-02-03,m,Hyperfunktionelle Dysphonie
+2186,p,2001-12-05,Bei ausgebildeter Gesangsstimme,2120,1969-10-31,m,Hyperfunktionelle Dysphonie
+2187,p,2001-12-05,Ausgebildete Gesangsstimme,2365,1979-03-22,m,Dysodie
+2188,p,2001-12-05,Zustand nach Abtragung mit Restödem re,2358,1959-06-21,w,Reinke Ödem
+2189,p,2001-12-12,Zustand danach mit praktisch kompletter Kompensation,1603,1931-06-10,m,Chordektomie
+2190,p,2001-12-12,"Links, mit kompletter Kompensation",1990,1942-11-30,w,Rekurrensparese
+2191,p,2001-12-12,Chronische Form mit akutem Ausbruch,2368,1963-01-13,m,Laryngitis
+2192,p,2001-12-12,"Rechts, mit inkompletter Kompensation",2369,1925-03-02,m,Rekurrensparese
+2193,p,2001-12-12,Beidseitig mäßiggradig mit funktioneller Komponente,2371,1948-10-31,w,Reinke Ödem
+2194,p,2001-12-12,Verlaufsbehandlung,2148,1941-07-18,w,Spasmodische Dysphonie
+2195,n,2001-12-13,,1167,1981-01-05,m,
+2196,n,2001-12-13,,1168,1981-08-20,w,
+2197,n,2001-12-13,,1169,1981-05-11,m,
+2198,n,2001-12-13,,1170,1980-09-20,w,
+2199,n,2001-12-13,,1171,1981-10-26,w,
+2200,n,2001-12-13,,12,1975-07-07,w,
+2201,n,2001-12-13,,1173,1981-08-31,w,
+2202,n,2001-12-13,,1174,1979-09-14,m,
+2203,n,2001-12-13,,1175,1975-03-10,w,
+2204,n,2001-12-13,,1176,1983-10-26,w,
+2205,n,2001-12-13,,1177,1982-06-20,w,
+2206,n,2001-12-13,,1178,1975-10-21,w,
+2207,n,2001-12-13,,1179,1982-07-22,w,
+2208,n,2001-12-13,,1180,1981-12-25,w,
+2209,n,2001-12-13,,1181,1969-07-30,w,
+2210,n,2001-12-13,,1182,1981-09-12,w,
+2211,p,2001-12-19,Zustand nach Abtragung,2358,1959-06-21,w,Reinke Ödem
+2212,p,2001-12-19,,2373,1951-02-08,m,Hypofunktionelle Dysphonie
+2213,p,2001-12-19,,2261,1953-05-10,m,Psychogene Dysphonie
+2214,p,2001-12-19,Nach Apoplex,2375,1924-02-21,m,Zentral-laryngale Bewegungsstörung
+2215,p,2001-12-19,,2376,1967-01-21,w,Hyperfunktionelle Dysphonie
+2216,p,2001-12-19,Beidseitig kompensiert,2377,1965-11-10,w,Rekurrensparese
+2217,p,2001-12-19,Multifaktoriell,2378,1961-06-28,w,Dysphonie
+2218,p,2002-01-02,Beginnende Parese li mit Kompensation,2379,1949-02-05,w,Rekurrensparese
+2219,p,2002-01-02,Laryngitis klingt ab,2380,1939-06-20,m,"Laryngitis, Dysphonie"
+2220,p,2002-01-02,Monochorditis links,2381,1934-06-07,m,"Kontaktpachydermie, Monochorditis"
+2221,p,2002-01-02,Leichte Form bei ausgebildeter Gesangsstimme,2383,1972-12-13,w,Hyperfunktionelle Dysphonie
+2222,p,2002-01-02,Ausgebildete Gesangsstimme,2382,1951-09-19,w,Dysodie
+2223,p,2002-01-02,Bei MS,2384,1941-03-10,w,Dysarthrophonie
+2224,p,2002-01-02,,2385,1974-10-09,w,Hyperfunktionelle Dysphonie
+2225,p,2002-01-02,,2386,1951-06-02,w,Hyperfunktionelle Dysphonie
+2226,p,2002-01-09,Nach Cordektomie,2387,1930-01-15,m,"Dysphonie, Chordektomie"
+2227,p,2002-01-09,,2027,1964-07-18,w,Spasmodische Dysphonie
+2228,p,2002-01-09,,2390,1965-04-08,w,Hyperfunktionelle Dysphonie
+2229,p,2002-01-09,,2391,1977-09-24,w,Hyperfunktionelle Dysphonie
+2230,p,2002-01-09,Leichte Form,2392,1948-09-09,m,Hyperfunktionelle Dysphonie
+2231,p,2002-01-09,"Kontaktpachydermie ohne ""Kontaktpachydermie""",2393,1964-12-31,m,"Funktionelle Dysphonie, Kontaktpachydermie"
+2232,p,2002-01-09,,2389,1950-01-01,m,Hyperfunktionelle Dysphonie
+2233,p,2002-01-16,"Ponogen bei Sprechberuf, erhöhte mittlere Sprechstimmlage",2395,1966-06-20,m,Hyperfunktionelle Dysphonie
+2234,p,2002-01-16,Nach Botox,2027,1964-07-18,w,Spasmodische Dysphonie
+2235,p,2002-01-16,"Links, schlaff, keine Kompensation",2396,1943-08-28,m,Rekurrensparese
+2236,p,2002-01-16,"Neural-organisch?, Dyskoordination",2398,1940-08-11,m,Balbuties
+2237,p,2002-01-16,Inkomplett kompensiert,2397,1956-05-16,w,Rekurrensparese
+2238,p,2002-01-16,Organische Form mit Synechie vordere Kommissur,2399,1970-09-28,w,Dysphonie
+2239,p,2002-01-16,,2400,1950-01-27,m,Hyperfunktionelle Dysphonie
+2240,p,2002-01-16,,2401,1954-07-10,m,Hyperfunktionelle Dysphonie
+2241,p,2002-01-23,,2402,1938-11-24,m,Hyperfunktionelle Dysphonie
+2242,p,2002-01-23,"Zustand nach Abtragung, chronische Laryngitis",2403,1966-06-02,w,"Leukoplakie, Laryngitis"
+2243,p,2002-01-23,Zustand nach Thyreoplastik nach Rec. par. links,1970,1969-07-21,m,Rekurrensparese
+2244,n,2002-01-23,,2405,1935-10-26,m,
+2245,p,2002-01-23,,2406,1939-12-14,w,Hyperfunktionelle Dysphonie
+2246,p,2002-01-23,,1714,1947-07-01,w,Psychogene Dysphonie
+2247,p,2002-01-23,"Rechts, fast komplette Kompensation",2408,1953-06-11,w,Rekurrensparese
+2248,n,2002-01-25,,1183,1979-02-11,w,
+2249,n,2002-01-25,,1184,1977-06-11,m,
+2250,n,2002-01-25,,1185,1972-10-23,w,
+2251,n,2002-01-25,,1186,1981-06-17,m,
+2252,n,2002-01-25,,1187,1971-04-29,w,
+2253,n,2002-01-25,,1188,1982-05-08,w,
+2254,n,2002-01-25,,1189,1980-08-09,w,
+2255,n,2002-01-25,,1190,1981-09-02,w,
+2256,n,2002-01-25,,1191,1982-06-20,w,
+2257,n,2002-01-25,,1192,1982-07-20,w,
+2258,n,2002-01-25,,1193,1980-09-12,w,
+2259,n,2002-01-25,,1194,1981-07-21,w,
+2260,n,2002-01-25,,1195,1982-02-05,w,
+2261,n,2002-01-25,,1196,1981-11-18,w,
+2262,n,2002-01-25,,1197,1980-10-23,m,
+2263,n,2002-01-25,,1198,1982-05-10,w,
+2264,n,2002-01-25,,1199,1980-08-19,w,
+2265,p,2002-01-30,,2409,1933-12-09,m,"Funktionelle Dysphonie, Kontaktpachydermie"
+2266,p,2002-01-30,,2410,1954-07-20,w,Dysphonie
+2267,p,2002-01-30,,2411,1936-07-10,w,Funktionelle Dysphonie
+2268,p,2002-01-30,Zustand danach mit Ersatzstimmband,1427,1941-05-10,m,Chordektomie
+2269,p,2002-02-06,,2413,1972-11-13,w,Balbuties
+2270,p,2002-02-06,,2414,1956-09-26,m,Hyperfunktionelle Dysphonie
+2271,p,2002-02-06,Zustand nach Abtragung,2078,1928-11-02,w,Reinke Ödem
+2272,p,2002-02-06,,2416,1974-01-13,w,Hyperfunktionelle Dysphonie
+2273,p,2002-02-06,,2417,1967-01-29,m,Spasmodische Dysphonie
+2274,p,2002-02-06,Rechts,2418,1954-07-09,w,Rekurrensparese
+2275,p,2002-02-06,Multifaktoriell,2419,1951-04-02,w,Psychogene Dysphonie
+2276,p,2002-02-06,Chronische Form,2420,1928-08-29,w,Laryngitis
+2278,n,2002-02-08,,1200,1954-11-25,w,
+2279,n,2002-02-08,,1201,1981-12-10,w,
+2280,n,2002-02-08,,1202,1979-07-11,w,
+2281,n,2002-02-08,,1203,1980-11-26,w,
+2282,n,2002-02-08,,1204,1982-05-12,w,
+2283,n,2002-02-08,,1205,1980-10-11,w,
+2284,n,2002-02-08,,1206,1981-08-04,w,
+2285,n,2002-02-08,,1207,1969-11-10,w,
+2286,n,2002-02-08,,1208,1981-07-09,w,
+2288,p,2002-02-20,Leichte Form,2422,1952-10-22,w,Hyperfunktionelle Dysphonie
+2289,p,2002-02-20,Keine funktionelle Dysphonie,2423,1954-03-09,m,Balbuties
+2290,p,2002-02-20,,2424,1954-11-14,w,"Funktionelle Dysphonie, Dysodie"
+2291,p,2002-02-20,Zustand danach mit beginnendem Ersatzstimmband,2387,1930-01-15,m,Chordektomie
+2292,p,2002-02-27,,2426,1966-06-17,w,Hyperfunktionelle Dysphonie
+2293,p,2002-02-27,Ponogen,2174,1954-06-24,w,Hyperfunktionelle Dysphonie
+2294,p,2002-02-27,Tonsillentumor,2428,1950-03-27,w,Rhinophonie aperta
+2295,p,2002-02-27,Restsymptomatik bei zentral laryngaler Bewegungsstörung,2429,1935-12-19,m,Dysarthrophonie
+2296,p,2002-02-27,Chronisch,1311,1940-03-25,m,Laryngitis
+2297,p,2002-02-27,,2431,1948-05-12,w,Funktionelle Dysphonie
+2298,p,2002-02-27,,2432,1949-03-26,w,Hyperfunktionelle Dysphonie
+2299,p,2002-02-27,Verdacht auf Diagnose,2433,1957-07-09,w,N. laryngeus superior Läsion
+2300,p,2002-02-27,,2434,1939-01-21,w,Stimmlippenpolyp
+2301,p,2002-02-27,Chronische Form,2435,1955-01-02,m,Laryngitis
+2302,p,2002-02-27,,2436,1949-02-22,w,"Funktionelle Dysphonie, Psychogene Dysphonie"
+2303,p,2002-03-06,Zustand nach Abtragung des Polyps,2420,1928-08-29,w,"Funktionelle Dysphonie, Vox senilis, Stimmlippenpolyp"
+2304,p,2002-03-06,,2027,1964-07-18,w,Spasmodische Dysphonie
+2305,p,2002-03-06,Chronisch hyperplastische Laryngitis mit beids. Reinke-Ödem,2439,1935-04-05,m,"Laryngitis, Reinke Ödem"
+2306,p,2002-03-06,,2440,1963-04-09,m,Poltersyndrom
+2307,p,2002-03-06,,2441,1926-03-24,w,"Vox senilis, Hyperfunktionelle Dysphonie"
+2308,p,2002-03-06,Ponogene Komponente,2442,1966-06-02,w,"Funktionelle Dysphonie, Dysodie"
+2309,p,2002-03-06,Multifaktoriell,2443,1955-01-24,w,"Dysphonie, Dysodie"
+2310,p,2002-03-06,,2444,1956-02-11,w,"Funktionelle Dysphonie, Psychogene Dysphonie"
+2311,p,2002-03-06,Posttraumatisch mit psychogener Komponente,1505,1960-06-06,w,Dysphonie
+2312,p,2002-03-06,,2446,1965-11-29,w,"Funktionelle Dysphonie, Psychogene Dysphonie"
+2313,p,2002-03-06,,2448,1969-01-01,m,"Funktionelle Dysphonie, Dysodie"
+2314,p,2002-03-06,Zustand nach Ödemabtragung,2447,1945-07-10,m,Funktionelle Dysphonie
+2315,p,2002-03-13,Chronisch hyperplastische Form,2449,1932-11-10,w,Laryngitis
+2316,p,2002-03-13,,2450,1938-07-22,m,Psychogene Dysphonie
+2317,p,2002-03-13,Multifaktoriell,2451,1948-01-22,w,"Hyperfunktionelle Dysphonie, Psychogene Dysphonie"
+2318,p,2002-03-13,,2452,1940-11-29,m,Funktionelle Dysphonie
+2319,p,2002-03-13,Vox senilis,2453,1921-01-04,m,Vox senilis
+2320,p,2002-03-13,Vor allem bei /o/ Probleme mit der Phonation,2027,1964-07-18,w,Spasmodische Dysphonie
+2321,p,2002-03-13,Chronische Form,2455,1941-05-09,m,Laryngitis
+2322,p,2002-03-13,Mit Tendenz  zur Hyperfunktion,2456,1956-08-20,w,Dysodie
+2323,p,2002-03-13,Multifaktoriell ponogen,2457,1942-05-24,m,Dysphonie
+2325,p,2002-04-17,Funktionelle Dysphonie,2459,1930-11-12,m,Dysphonie
+2326,p,2002-04-17,Multifaktorielle Dysphonie mit Kontaktpachydermie re,1937,1954-10-02,m,"Dysphonie, Kontaktpachydermie"
+2327,p,2002-04-24,,2461,1941-10-04,m,"Dysodie, Funktionelle Dysphonie"
+2328,p,2002-04-24,Chronische,2462,1937-09-21,m,Laryngitis
+2329,p,2002-04-24,,2463,1927-04-10,m,Dysarthrophonie
+2330,p,2002-04-24,Rec.par. rechts,2350,1949-02-05,w,Rekurrensparese
+2331,p,2002-04-24,Mit beginnender Phonationsverdickung,2465,1978-05-23,w,Hyperfunktionelle Dysphonie
+2332,p,2002-04-24,,2466,1947-07-31,m,Dysarthrophonie
+2333,p,2002-05-08,"Funktionelle Dysphonie, Zustand nach Reinke-Ödem-Abtragung",2467,1970-12-27,w,"Dysphonie, Reinke Ödem"
+2334,p,2002-05-08,Z.B. ALS,2010,1936-08-03,m,Dysarthrophonie
+2335,p,2002-05-08,Tendenz Hyperfunktion,2469,1977-12-18,w,Dysodie
+2336,p,2002-05-08,,2470,1958-03-07,w,"Funktionelle Dysphonie, Psychogene Dysphonie"
+2337,p,2002-05-08,,2471,1940-12-19,m,Psychogene Dysphonie
+2338,p,2002-05-08,,2472,1977-12-06,w,Hyperfunktionelle Dysphonie
+2339,p,2002-05-08,,2473,1944-04-20,m,Psychogene Dysphonie
+2340,p,2002-05-08,"Kontaktpachydermie ohne ""Kontaktpachydermie""",2474,1947-05-22,m,"Funktionelle Dysphonie, Kontaktpachydermie"
+2341,p,2002-05-15,Inkomplette Kompensation,2246,1975-06-11,m,Rekurrensparese
+2342,p,2002-05-15,"Links, kompensiert",2476,1936-10-08,m,Rekurrensparese
+2343,p,2002-05-15,Zustand nach Abtragung li,2477,1926-12-12,m,Stimmlippenkarzinom
+2344,p,2002-05-15,Zustand nach Abtragung,2478,1949-07-23,m,Reinke Ödem
+2345,p,2002-05-15,Links,2479,1957-01-15,w,Reinke Ödem
+2346,p,2002-05-15,Strumiprive Rec.par. li mit guter Restbeweglichkeit,2480,1955-12-09,m,Rekurrensparese
+2347,p,2002-05-22,"Multifaktoriell, ponogen",2481,1973-07-05,w,Dysphonie
+2348,p,2002-05-22,Postlaryngitisch,2482,1957-09-07,m,Dysphonie
+2349,p,2002-05-22,,2483,1954-05-27,m,Hypofunktionelle Dysphonie
+2350,p,2002-05-22,Multifunktionell,2484,1968-03-18,w,Dysphonie
+2351,p,2002-05-22,Organische Dysphonie bei chron Laryngitis und Zustand n. Leukoplakieabtragung,1931,1943-03-07,m,"Laryngitis, Leukoplakie"
+2352,p,2002-05-22,Prä-Botox,1787,1929-09-09,m,Spasmodische Dysphonie
+2353,p,2002-05-29,,2487,1978-10-10,m,Rhinophonie aperta
+2354,p,2002-05-29,,2488,1961-10-17,w,Dysodie
+2355,p,2002-05-29,"Posttraumatisch, Trachealstenose",1947,1963-05-06,w,Dysarthrophonie
+2356,p,2002-05-29,Funktionell,2490,1960-12-16,m,Dysphonie
+2357,p,2002-06-12,,2491,1960-11-27,w,Funktionelle Dysphonie
+2358,p,2002-06-12,Zustand nach Abtragung,2420,1928-08-29,w,Reinke Ödem
+2359,p,2002-06-12,,2493,1952-07-30,w,Funktionelle Dysphonie
+2360,p,2002-06-12,Z.B. Mutationsfistelstimme,714,1979-11-04,m,Funktionelle Dysphonie
+2361,p,2002-06-12,prä-Botox (heute),1787,1929-09-09,m,Spasmodische Dysphonie
+2362,p,2002-06-12,Organische Dysphonie bei Zustand nach Chordektomie,1446,1932-11-08,m,Chordektomie
+2363,p,2002-06-19,,1601,1970-01-01,w,Hyperfunktionelle Dysphonie
+2364,p,2002-06-19,,2499,1983-04-24,w,Dysodie
+2365,p,2002-06-19,,2500,1953-03-27,m,Funktionelle Dysphonie
+2366,p,2002-06-19,Ponogen,2019,1940-11-17,w,Dysphonie
+2367,p,2002-06-19,,2497,1928-04-18,w,Funktionelle Dysphonie
+2368,p,2002-06-19,,2502,1967-09-19,m,Rhinophonie aperta
+2369,p,2002-07-03,Multifaktoriell,2503,1937-03-13,w,Dysphonie
+2370,p,2002-07-03,"Chronische Laryngitis Zustand n. Leukoplakieabtragung, leichte Hyperfunktion",2504,1954-02-07,w,"Laryngitis, Leukoplakie, Hyperfunktionelle Dysphonie"
+2371,p,2002-07-03,Nach Therapie; Stimml. jetzt o.B.,2456,1956-08-20,w,Dysodie
+2372,p,2002-07-03,,2506,1934-10-09,w,Psychogene Dysphonie
+2373,p,2002-07-17,Erste Aufnahme nach Botox,1787,1929-09-09,m,Amyotrophe Lateralsklerose
+2374,p,2002-08-07,Leicht ponogen,2508,1962-03-21,w,Hyperfunktionelle Dysphonie
+2375,p,2002-08-07,"Zustand nach Ödemabtragung, rezidiv beidseitig",2509,1950-06-10,w,Reinke Ödem
+2376,p,2002-08-07,,2510,1935-03-06,m,Zentral-laryngale Bewegungsstörung
+2377,p,2002-08-07,,2511,1935-03-16,m,Vox senilis
+2378,p,2002-08-07,"Rec.par. li, beginnende Kompensation, hyperfunktionell",2512,1955-07-11,w,"Rekurrensparese, Hyperfunktionelle Dysphonie"
+2380,p,2002-08-07,"Zustand nach Chordektomie, beginnende Taschenfaltenstimme",2514,1946-09-12,m,"Chordektomie, Taschenfaltenstimme"
+2381,p,2002-08-07,Zustand nach Ödemabtragung,2515,1954-12-14,w,Reinke Ödem
+2382,p,2002-08-14,,2258,1950-04-04,m,Funktionelle Dysphonie
+2383,p,2002-08-14,Zustand danach,1868,1950-04-14,m,Frontolaterale Teilresektion
+2384,p,2002-08-14,"Multifaktoriell, ponogen",1805,1949-01-07,m,"Dysphonie, Kontaktpachydermie"
+2385,p,2002-08-14,,2402,1938-11-24,m,Kontaktpachydermie
+2386,p,2002-08-14,Zustand danach,2520,1935-03-14,m,Frontolaterale Teilresektion
+2387,p,2002-08-14,"Funktionelle Dysphonie, Verdacht auf Kontaktpachydermie",2521,1970-04-14,m,Dysphonie
+2388,p,2002-08-14,"Funktionelle Dysphonie, beginnende Altersstimme",2522,1936-04-16,w,Dysphonie
+2389,p,2002-08-14,"Ponogen, multifaktoriell",2523,1951-01-10,w,Dysphonie
+2390,p,2002-08-21,Bei M. Parkinson,2524,1930-03-22,m,Dysarthrophonie
+2391,p,2002-08-21,Psychogen,2525,1936-06-26,w,Dysphonie
+2392,p,2002-08-21,Funktionelle Dysphonie,2526,1929-08-06,w,Dysphonie
+2393,p,2002-08-21,"Re, zur Zeit noch unklare Genese",2527,1938-11-08,m,Rekurrensparese
+2394,p,2002-08-21,"Li, strumipriv, gute Restbeweglichkeit",2528,1930-04-02,w,Rekurrensparese
+2395,p,2002-08-21,"Re, vollkommene phonatorische Kompensation",1448,1924-07-22,m,Rekurrensparese
+2396,p,2002-08-21,"Leichte Hyperfunktion, 13.08.2002 Botox, re (Göttingen)",2148,1941-07-18,w,Spasmodische Dysphonie
+2397,p,2002-08-21,Zweite Aufnahme nach Botox,1787,1929-09-09,m,Spasmodische Dysphonie
+2398,p,2002-09-04,,2532,1907-12-20,w,"Hyperfunktionelle Dysphonie, Dysodie"
+2399,p,2002-09-04,Phonatorische Verdickung re,2533,1971-06-28,w,Hyperfunktionelle Dysphonie
+2400,p,2002-09-04,Zustand danach,2534,1936-09-23,m,"Chordektomie, Taschenfaltenstimme"
+2401,p,2002-09-04,Funktionell psychogen; Kontaktpachydermie,2535,1953-01-31,m,"Dysphonie, Kontaktpachydermie"
+2402,p,2002-09-04,"Verdacht auf Hypopharynxtumor li, Stimmlippen weißlich, o.B.",2536,1931-06-13,m,Hypopharynxtumor
+2403,p,2002-09-04,"Akute Pachydermie li, Monochorditis li",2537,1931-09-22,m,"Kontaktpachydermie, Monochorditis"
+2404,p,2002-09-04,Chronisch; Zustand nach 2x Stütze; Verdacht auf phonatorischen Stillstand re,2538,1950-02-03,m,Laryngitis
+2405,p,2002-09-04,Beginnender Laryngospasmus,2539,1934-06-16,w,Dysphonie
+2406,p,2002-09-04,Kontaktpachydermie,2540,1938-04-05,m,Kontaktpachydermie
+2407,n,2002-09-18,,2541,1938-12-03,w,
+2408,p,2002-09-18,"Idiopathisch, gute Restbeweglichkeit, gute Kompensation",2542,1937-12-09,m,Rekurrensparese
+2410,p,2002-09-18,,2484,1968-03-18,w,Funktionelle Dysphonie
+2411,p,2002-09-18,"Zustand nach Abtragung, Restdysphonie",2545,1943-04-14,w,Reinke Ödem
+2412,p,2002-09-18,"Zustand danach, eingeschränkte Beweglichkeit re",1357,1963-06-15,w,Intubationsschaden
+2413,p,2002-09-18,,1314,1943-11-21,m,Funktionelle Dysphonie
+2414,p,2002-09-18,Strumipriv,2548,1953-12-13,w,Rekurrensparese
+2415,p,2002-09-18,,2549,1928-01-13,w,Vox senilis
+2416,p,2002-09-25,,2550,1939-09-12,m,Funktionelle Dysphonie
+2417,p,2002-09-25,,2550,1939-09-12,m,Funktionelle Dysphonie
+2418,p,2002-09-25,"Li, schlaff, keine Kompensation",2552,1942-09-29,m,Rekurrensparese
+2419,p,2002-09-25,"Kontaktpachydermie ohne ""Kontaktpachydermie""",2553,1937-02-09,m,"Funktionelle Dysphonie, Kontaktpachydermie"
+2420,p,2002-09-25,"Mit hypofunktionellen Komponenten; Kontaktpachydermie ohne ""Kontaktpachydermie""",2554,1966-08-17,m,"Hyperfunktionelle Dysphonie, Kontaktpachydermie"
+2421,p,2002-09-25,,2555,1915-02-13,w,Vox senilis
+2422,p,2002-09-25,"Organisch; Synechie, Zustand nach mehreren Papillomabtragungen",2399,1970-09-28,w,Dysphonie
+2423,p,2002-10-02,,2557,1946-11-20,w,N. laryngeus superior Neuralgie
+2424,p,2002-10-02,Chronisch,2558,1952-07-25,m,Laryngitis
+2425,p,2002-10-02,Sehr ausgeprägt,2559,1967-09-19,w,Hyperfunktionelle Dysphonie
+2426,p,2002-10-02,Beidseitig,2560,1957-05-05,w,Reinke Ödem
+2427,p,2002-10-02,,2561,1940-06-28,w,Funktionelle Dysphonie
+2428,p,2002-10-02,Ödem aryepiglottische Falte,2562,1974-03-10,w,Dysphonie
+2429,p,2002-10-02,Leichte Form; Stottern,2563,1981-11-25,m,Funktionelle Dysphonie
+2430,p,2002-10-23,Links,2357,1961-06-21,w,Rekurrensparese
+2431,p,2002-10-30,,2565,1970-05-30,w,"Psychogene Dysphonie, Funktionelle Dysphonie"
+2432,p,2002-10-30,Strumipriv,2525,1936-06-26,w,Funktionelle Dysphonie
+2433,p,2002-10-30,,2541,1938-12-03,w,Psychogene Dysphonie
+2434,p,2002-10-30,,2513,1964-10-08,m,Intubationsgranulom
+2435,p,2002-10-30,Chronisch,2569,1946-06-22,m,Laryngitis
+2436,p,2002-10-30,,2570,1926-11-14,m,Dysphonie
+2437,p,2002-11-06,"Zustand danach, Synechie",2360,1956-10-14,m,Frontolaterale Teilresektion
+2438,p,2002-11-06,,2483,1954-05-27,m,Hyperfunktionelle Dysphonie
+2439,p,2002-11-06,"Kontaktpachydermie ohne ""Kontaktpachydermie""",2216,1931-03-03,m,Kontaktpachydermie
+2440,p,2002-11-06,,2148,1941-07-18,w,Spasmodische Dysphonie
+2441,p,2002-11-06,,2575,1944-05-08,w,Psychogene Dysphonie
+2442,p,2002-11-13,,2521,1970-04-14,m,Funktionelle Dysphonie
+2443,p,2002-11-13,Chronisch; Zustand nach Leukoplakieabtragung,2577,1952-09-29,m,"Laryngitis, Leukoplakie"
+2444,p,2002-11-13,,2578,1931-04-01,m,Funktionelle Dysphonie
+2445,p,2002-11-13,Ponogen,2579,1949-09-24,w,Funktionelle Dysphonie
+2446,p,2002-11-13,,2580,1939-10-29,w,Funktionelle Dysphonie
+2447,p,2002-11-20,Leichte Form,2581,1950-08-31,w,Hyperfunktionelle Dysphonie
+2448,p,2002-11-20,"Multifunkionell, auch organisch (Zustand nach Ödemabtragung)",2582,1945-08-26,w,Funktionelle Dysphonie
+2449,p,2002-11-20,Zustand nach Abtragung,2583,1937-04-06,w,"Reinke Ödem, Hyperfunktionelle Dysphonie"
+2450,p,2002-11-20,"Links, gute Restbeweglichkeit",2584,1952-11-26,m,Rekurrensparese
+2451,p,2002-11-20,Verdacht auf zentrallaryngale Bewegungsstörung,2585,1949-11-24,w,Zentral-laryngale Bewegungsstörung
+2452,p,2002-12-04,Funktionelle Komponente,2586,1947-02-15,w,Psychogene Dysphonie
+2453,p,2002-12-04,"Zustand danach, rechts",1603,1931-06-10,m,Chordektomie
+2454,p,2002-12-04,,2588,1938-01-21,m,Hyperfunktionelle Dysphonie
+2455,p,2002-12-04,"Rechts, voll kompensiert",1448,1924-07-22,m,Rekurrensparese
+2456,p,2002-12-04,Organisch; Zustand nach Resektion,2534,1936-09-23,m,"Dysphonie, Frontolaterale Teilresektion"
+2457,p,2002-12-04,,2591,1941-11-29,w,Funktionelle Dysphonie
+2458,p,2002-12-11,Zustand danach; Taschenfaltenstimme kopensatorisch,2000,1943-03-04,m,"Chordektomie, Taschenfaltenstimme"
+2459,p,2002-12-11,Multifaktoriell,2593,1946-04-06,w,Funktionelle Dysphonie
+2460,p,2003-01-08,"Strumipriv, rechts, ohne phonatorische Kompensation",2594,1945-04-27,w,Rekurrensparese
+2461,p,2003-01-08,"Organisch, Zustand nach Abtragung, Entzündung links, beginnender phonatorischer Stillstand links",2595,1965-12-16,m,Dysphonie
+2462,n,2003-01-08,,2596,1972-06-12,w,
+2463,p,2003-01-15,"Multifaktoriell, ponogen",2597,1964-04-11,m,Hyperfunktionelle Dysphonie
+2464,p,2003-01-15,"Re, phonatorische Kompensation",2598,1928-11-15,w,Rekurrensparese
+2465,p,2003-01-15,"Rechts, hyperfunktionelle Kompensation",2599,1952-07-25,w,Rekurrensparese
+2466,p,2003-01-15,"Ausgeprägte Form, phonatorischer Stillstand links; Zustand nach Abtragung des Polypen links",2600,1957-11-18,w,"Hyperfunktionelle Dysphonie, Stimmlippenpolyp"
+2467,p,2003-01-22,"Verdacht auf Ca linke Stimmlippe, kein kompletter phonatorischer Stillstand",2601,1931-09-13,m,Stimmlippenkarzinom
+2468,p,2003-01-22,,2602,1981-12-09,m,Mutationsfistelstimme
+2469,p,2003-01-22,Links mit Kompensation,1614,1956-09-06,w,Rekurrensparese
+2470,p,2003-02-05,Stoboskopisch o.B.,2604,1974-11-04,m,Balbuties
+2471,p,2003-02-05,"Zustand nach Ödemabtragung, organisch funktionell",2605,1955-10-30,w,Hyperfunktionelle Dysphonie
+2474,p,2003-02-12,"Kontaktpachydermie ohne ""Kontaktpachydermie""",2608,1941-07-27,m,"Dysodie, Kontaktpachydermie"
+2475,p,2003-02-12,,2609,1964-05-19,w,Dysodie
+2476,p,2003-02-12,"Rechts, phonatorisch komplett kompensiert",2610,1949-01-18,w,Rekurrensparese
+2477,p,2003-02-19,,2022,1943-08-21,w,Funktionelle Dysphonie
+2478,n,2003-02-19,,2612,1947-10-13,m,
+2479,p,2003-02-19,,2613,1956-02-29,w,Hyperfunktionelle Dysphonie
+2480,p,2003-02-19,,2614,1956-04-27,w,Hyperfunktionelle Dysphonie
+2481,p,2003-03-05,Hypoton,2615,1940-07-01,m,Funktionelle Dysphonie
+2482,p,2003-03-05,Ponogen,2088,1953-03-14,w,Hyperfunktionelle Dysphonie
+2483,p,2003-03-05,Leichte Form,2402,1938-11-24,m,Funktionelle Dysphonie
+2484,p,2003-03-05,"Zustand danach, Leukoplakie links",2535,1953-01-31,m,"Chordektomie, Leukoplakie"
+2485,p,2003-03-05,Letzte Botox ,1787,1929-09-09,m,Spasmodische Dysphonie
+2486,p,2003-06-04,Leichte Asymmetrie,2620,1952-08-29,w,Dysodie
+2487,p,2003-06-04,Zustand nach akuter Form der Laryngitis,2621,1932-06-16,m,"Laryngitis, Hyperfunktionelle Dysphonie"
+2488,p,2003-06-04,"Organisch, mit Verdacht auf Stimmbandpolyp",2622,1948-11-18,m,Dysphonie
+2489,p,2003-06-04,,2623,1948-03-30,m,"Kontaktpachydermie, Psychogene Dysphonie"
+2490,p,2003-06-04,"Zustand danach, Tendenz Hyperfunktion",1634,1939-05-11,w,Chordektomie
+2491,p,2003-06-04,Zustand nach Abtragung; kompensierte Parese rechts,2001,1938-06-27,w,"Reinke Ödem, Rekurrensparese"
+2492,p,2003-06-11,Kontaktpachydermie rechts,2626,1969-03-29,m,"Kontaktpachydermie, Hyperfunktionelle Dysphonie"
+2493,p,2003-06-11,"Kompensiert, rechts",2627,1941-01-28,w,Rekurrensparese
+2494,p,2003-06-11,"Zustand nach Chordektomie links, Synechie",2360,1956-10-14,m,Chordektomie
+2495,n,2003-06-11,,2629,1985-09-20,w,
+2496,p,2003-06-11,"Schlaff, rechts, nicht kompensiert",2630,1942-03-03,w,Rekurrensparese
+2497,p,2003-07-09,Mit psychogener Komponente,2631,1975-01-24,m,Funktionelle Dysphonie
+2498,p,2003-07-09,"Kontaktpachydermie ohne ""Kontaktpachydermie""",2632,1974-02-13,m,Kontaktpachydermie
+2499,p,2003-07-09,,2633,1953-08-28,w,Funktionelle Dysphonie
+2500,p,2003-07-09,Intraepithelisch,2634,1938-09-22,m,Cyste
+2501,p,2003-07-09,Rechts,2635,1956-10-05,w,Rekurrensparese
+2502,p,2003-07-09,,2636,1946-08-11,w,Funktionelle Dysphonie
+2503,p,2003-07-16,"Zustand danach, rechts; Ersatzstimmband",1768,1940-04-13,m,Chordektomie
+2504,p,2003-07-16,,2467,1970-12-27,w,Funktionelle Dysphonie
+2505,p,2003-07-16,,2639,1954-12-16,w,Funktionelle Dysphonie
+2506,p,2003-07-16,,2640,1937-05-02,m,"Funktionelle Dysphonie, Kontaktpachydermie"
+2507,p,2003-07-16,"Doppelseitig, nach Strumektomie",2641,1965-07-08,w,Rekurrensparese
+2508,p,2003-10-29,"Links, vollständige Kompensation",2642,1955-03-04,m,Rekurrensparese
+2509,p,2003-10-29,,2643,1939-12-09,w,Vox senilis
+2510,p,2003-11-05,Chronische Laryngitis mit hyperfunktioneller Komponente,2644,1963-12-10,w,Laryngitis
+2511,p,2003-11-05,Chronisch,2645,1949-06-23,m,Laryngitis
+2512,p,2003-11-05,"Phonatorisch komplett kompensiert, links, hyperfunktionelle Tendenz",1357,1963-06-15,w,Rekurrensparese
+2513,p,2003-11-05,Nach Tonsillen-Ca OP,2647,1941-08-19,w,Rhinophonie aperta
+2514,p,2003-11-05,"Chronisch, leichte Ödeme beidseitig mit Hyperfunktion",2648,1954-05-25,w,Laryngitis
+2515,p,2003-11-05,,2649,1928-08-27,w,Vox senilis
+2516,p,2003-11-05,Links,2650,1949-06-25,w,Laryngitis
+2517,p,2003-11-12,,2651,1937-01-12,w,"Hyperfunktionelle Dysphonie, Psychogene Dysphonie"
+2518,p,2003-11-12,,2434,1939-01-21,w,"Stimmlippenpolyp, Reinke Ödem"
+2519,p,2003-11-12,Zustand nach Abtragung,2653,1948-09-14,m,Kontaktpachydermie
+2520,p,2003-11-12,Z.B. Balbuties,2654,1948-05-14,m,Psychogene Dysphonie
+2521,p,2003-11-12,Chronische Laryngitis; organische hyperfunktionelle Dysphonie,2655,1951-12-08,m,"Hyperfunktionelle Dysphonie, Laryngitis"
+2522,p,2003-11-12,,2656,1919-10-06,w,Vox senilis
+2523,p,2003-11-12,,2657,1936-12-13,w,Hyperfunktionelle Dysphonie
+2524,p,2003-11-19,Tenzend zur Hyperfunktion,2658,1963-02-17,m,"Funktionelle Dysphonie, Dysodie"
+2525,p,2003-11-19,"Chronische Laryngitis, Zustand nach Polypabtragung",2659,1933-05-31,m,"Stimmlippenpolyp, Laryngitis"
+2526,p,2003-11-19,,2660,1941-10-25,w,"Psychogene Dysphonie, Hyperfunktionelle Dysphonie"
+2527,p,2003-11-19,"Ohne Kompensation, links",2661,1943-02-12,m,Rekurrensparese
+2528,p,2003-11-19,,2662,1936-08-22,w,"Funktionelle Dysphonie, Psychogene Dysphonie"
+2529,p,2003-11-19,"Zustand nach Abtragung, postoperativer phonatorischer Stillstand rechts",2663,1959-04-23,m,Papillom
+2530,p,2003-11-19,"Juvenile Form, Verdacht auf Phonationsknötchen",2664,1992-04-05,m,Dysphonie
+2531,p,2003-11-26,"Kontaktpachydermie ohne ""Kontaktpachydermie"", Verdacht auf Reflux",2665,1957-09-18,m,Kontaktpachydermie
+2532,n,2003-11-26,,2666,1984-05-23,w,
+2533,p,2003-11-26,,2336,1940-02-02,w,Psychogene Dysphonie
+2534,p,2003-11-26,,2668,1941-06-23,w,Psychogene Dysphonie
+2535,p,2003-11-26,,2669,1939-09-21,w,Psychogene Dysphonie
+2536,p,2003-11-26,"Alte, beidseitig, phonatorische Kompensation",1818,1939-05-28,w,Rekurrensparese
+2537,p,2003-11-26,,2582,1945-08-26,w,Dysphonie
+2538,p,2003-11-26,"Links, kompensiert",2672,1957-07-10,w,Rekurrensparese
+2539,p,2003-11-26,"Links, alte voll kompensierte Form",2673,1933-04-20,m,Rekurrensparese
+2540,p,2003-11-26,Ponogen,2674,1947-06-02,w,Hyperfunktionelle Dysphonie
+2541,p,2003-12-03,Chronisch,2675,1940-12-30,m,Laryngitis
+2542,p,2003-12-03,Akute Form der Laryngitis,2676,1949-04-02,m,Laryngitis
+2543,p,2003-12-03,Rezidiv,2381,1934-06-07,m,Kontaktpachydermie
+2544,p,2003-12-03,Zustand nach Ödemabtragung,2678,1953-02-05,w,Dysphonie
+2545,p,2003-12-03,,2679,1937-08-06,w,Hyperfunktionelle Dysphonie
+2546,p,2003-12-03,,2680,1946-05-03,w,Hyperfunktionelle Dysphonie
+2547,p,2003-12-03,"Kontaktpachydermie ohne ""Kontaktpachydermie""",2681,1945-07-01,m,Kontaktpachydermie
+2548,p,2003-12-10,Zustand danach,1603,1931-06-10,m,Chordektomie
+2549,p,2003-12-10,Zustand nach Abtragung,2683,1939-02-13,m,Leukoplakie
+2550,p,2003-12-10,,2684,1939-05-17,w,Phonasthenie
+2552,p,2003-12-10,,2686,1980-09-03,m,Dysodie
+2553,p,2003-12-17,Ponogen,2687,1960-12-20,w,Hyperfunktionelle Dysphonie
+2554,p,2003-12-17,,2688,1980-05-25,m,Balbuties
+2555,p,2003-12-17,"Chronische Form, Zustand nach Stütze",2691,1951-07-20,m,"Kontaktpachydermie, Laryngitis"
+2556,p,2003-12-17,Chronische Form,2689,1940-03-09,m,"Laryngitis, Leukoplakie"
+2557,p,2003-12-17,"Relativ große Ausprägung, rechts, Stimmberuf",2690,1960-04-05,m,Stimmlippenpolyp
+2558,p,2003-12-17,,1695,1973-01-03,m,"Dysodie, Sigmatismus"
+2559,p,2003-12-17,"Primär Lymphom, Zungengrund, starke supraglottische Einengung",2693,1967-07-16,m,Dysphonie
+2560,p,2003-12-17,Adduktortyp,2694,1932-06-01,w,Spasmodische Dysphonie
+2561,n,2004-01-07,,2695,1953-01-28,w,
+2562,p,2004-01-07,"Kompensiert, li",2696,1937-01-22,w,Rekurrensparese
+2563,p,2004-01-07,Kompensiert,2697,1941-09-16,w,Rekurrensparese
+2564,p,2004-01-07,"Kompensiert, alte",2007,1942-03-06,w,"Rekurrensparese, Vox senilis"
+2565,p,2004-01-07,"Frische, hyperfunktionell, inkomplett kompensierte Parese li in intermediärer Stellung",2699,1937-07-22,w,Rekurrensparese
+2566,p,2004-02-18,"Intubationsbedingt, li",2700,1954-05-26,w,Granulom
+2567,p,2004-03-03,"Chronische, verstärkte Adduktion",2701,1934-01-14,m,Laryngitis
+2568,p,2004-03-03,,2702,1936-04-20,m,Kontaktpachydermie
+2569,p,2004-03-03,"Zustand nach Strumektomie, keine Rekurrensparese",2703,1930-04-21,w,Vox senilis
+2570,p,2004-03-03,"Links, beginnende Kompensation",2704,1950-01-23,m,Rekurrensparese
+2571,p,2004-03-03,,2705,1948-01-26,m,Intubationsgranulom
+2572,p,2004-03-10,"Zustand nach Abtragung, hyperfunktionelle Kompensation",2706,1965-04-26,m,"Stimmlippenpolyp, Hyperfunktionelle Dysphonie"
+2573,p,2004-03-10,Mäßige Form,2707,1942-01-26,w,Reinke Ödem
+2574,p,2004-03-10,Zustand danach,2708,1934-07-10,m,Laryngitis
+2575,p,2004-03-10,"Organische Dysphonie nach Chordektomie, mäßige Hyperfunktion",2601,1931-09-13,m,"Dysphonie, Chordektomie"
+2576,n,2004-03-10,,1695,1973-01-03,m,
+2577,p,2004-03-10,Multifaktoriell,2711,1957-02-05,w,"Hyperfunktionelle Dysphonie, Psychogene Dysphonie"
+2578,p,2004-03-17,Chronisch hyperplastisch,2712,1959-11-11,w,Laryngitis
+2579,p,2004-03-17,Mit Phonationsverdickungen bds,2713,1980-11-17,w,Hypofunktionelle Dysphonie
+2580,p,2004-03-17,"Kontaktpachydermie ohne ""Kontaktpachydermie""",2714,1965-01-14,m,Kontaktpachydermie
+2581,p,2004-03-17,Links,2715,1963-01-04,w,Rekurrensparese
+2582,p,2004-03-24,"Chronisch hyperplastisch, Zustand nach Stütze",2716,1941-12-11,m,Laryngitis
+2583,p,2004-03-24,"Ponogen, multifaktoriell",2717,1967-04-25,w,Dysphonie
+2584,p,2004-03-31,Mit Phonationsvedickungen bds,2718,1968-08-13,w,Hypofunktionelle Dysphonie
+2585,p,2004-03-31,Chronische Form,2719,1941-10-01,m,Laryngitis
+2586,p,2004-03-31,Rezidiv,2653,1948-09-14,m,Kontaktpachydermie
+2587,p,2004-03-31,Rechts,2721,1957-01-15,w,Stimmlippenpolyp
+2588,p,2004-04-21,"Chronische Form der Laryngitis, Ödem rechts",2722,1958-12-01,w,"Reinke Ödem, Laryngitis"
+2589,p,2004-04-21,"Ponogen, mit Phonationsverdickungen bds",2723,1982-05-17,w,Hyperfunktionelle Dysphonie
+2590,p,2004-04-21,Ponogen,2724,1979-09-03,w,Hyperfunktionelle Dysphonie
+2591,p,2004-04-21,Zustand nach Abtragung,2725,1962-11-06,w,"Reinke Ödem, Hyperfunktionelle Dysphonie"
+2592,p,2004-04-28,"Zustand nach Stütze Polypabtragung, Stimmlippen o.B.",2332,1943-11-05,m,Stimmlippenpolyp
+2594,p,2004-04-28,Leichte Hyperfunktion,2333,1943-01-21,m,Reinke Ödem
+2595,p,2004-04-28,"Zustand nach Ödemabtragung, Komplikation: Zungengrundschwellung",2335,1960-11-11,w,Reinke Ödem
+2596,p,2004-04-28,"Funktionelle Dysphonie, Vox senilis beginnend",2336,1940-02-02,w,"Dysphonie, Vox senilis"
+2599,p,2004-05-05,,1445,1929-11-02,w,Zentral-laryngale Bewegungsstörung
+2600,p,2004-05-05,Chronische Form,2726,1960-12-24,m,Laryngitis
+2601,p,2004-05-05,,2727,1939-09-07,w,"Funktionelle Dysphonie, Vox senilis"
+2602,p,2004-05-12,"Chronische Form, mit ausgeprägter Unregelmäßigkeit in den Schwingungen",2728,1943-09-21,w,Laryngitis
+2603,p,2004-05-12,Leichte Form,2729,1983-02-28,w,Hyperfunktionelle Dysphonie
+2604,p,2004-05-12,Ponogene Form,2730,1963-05-30,w,Hyperfunktionelle Dysphonie
+2605,p,2004-05-12,Chronische Form mit phonatorischem Stillstand li,2731,1944-10-03,m,Laryngitis
+2606,p,2004-05-19,Tendenz dazu,2732,1968-11-24,w,Hypofunktionelle Dysphonie
+2607,p,2004-05-19,Multifaktoriell,2733,1977-09-04,w,Dysphonie
+2608,p,2004-05-19,Multifaktoriell,2734,1967-06-25,m,Dysphonie
+2609,p,2004-06-16,Kehlkopf o. Befund,2735,1986-02-12,m,Balbuties
+2610,p,2004-06-16,Chronische Laryngitis gastrica?,2736,1930-10-07,w,Laryngitis
+2611,p,2004-06-16,Nicht ganz abgeschlossene Mutatio,2737,1986-03-17,m,Balbuties
+2612,n,1998-02-23,,249,1965-12-08,m,
+2613,n,1998-02-13,,250,1960-07-13,m,
+2614,n,1998-02-23,,251,1956-07-22,m,
+2615,n,1998-02-23,,253,1953-02-10,m,
+2616,n,1998-02-23,,254,1956-11-25,m,
+2617,n,1998-02-23,,255,1950-04-07,m,
+2618,n,1998-02-23,,256,1955-02-08,m,
+2619,n,1998-02-23,,257,1949-06-12,m,
+2620,n,1998-02-23,,258,1961-05-03,m,
+2621,n,1998-02-23,,259,1961-04-28,m,
+2622,n,1998-02-23,,2739,1954-01-18,m,
+2623,n,1998-02-23,,261,1956-06-03,m,
+2624,n,1998-02-23,,262,1962-01-26,m,
+2625,n,1998-02-23,,263,1969-03-29,m,
+2626,n,1998-02-23,,264,1956-10-20,m,
+2627,n,1998-02-23,,265,1959-10-03,m,
+2628,n,1998-02-23,,266,1952-10-26,m,
+2629,n,1998-02-23,,267,1946-10-28,m,
+2630,n,1998-02-24,,268,1955-04-21,m,
+2631,n,1998-02-24,,269,1956-03-31,m,
+2632,n,1998-02-24,,271,1956-11-11,m,
+2633,n,1998-02-24,,272,1951-05-24,m,
+2634,n,1998-02-24,,273,1959-03-07,m,
+2635,n,1998-02-25,,278,1977-01-22,m,
+2636,n,1998-02-25,,279,1981-02-13,m,
+2637,n,1998-02-25,,280,1981-07-09,m,
+2638,n,1998-02-25,,281,1979-12-05,m,
+2639,n,1998-02-25,,282,1980-07-21,m,
+2640,n,1998-02-25,,283,1980-03-03,m,
+2641,n,1998-02-25,,284,1980-08-07,m,
+2642,n,1998-02-24,,2740,1958-09-29,m,
+2643,n,1998-02-25,,285,1953-07-16,m,
+2644,n,1998-02-25,,289,1981-10-31,m,
+2645,n,1998-02-25,,290,1981-03-29,m,
+2646,n,1998-02-25,,291,1978-07-25,m,
+2647,n,1998-02-25,,292,1977-11-12,m,
+2648,n,1998-02-25,,293,1976-04-15,m,
+2649,n,1998-02-25,,294,1981-03-18,m,
+2650,n,1998-02-25,,295,1960-10-20,m,
+2651,n,1998-02-25,,2741,1978-02-21,m,
+2652,n,1998-02-25,,297,1980-02-23,m,
+2653,n,1998-02-25,,298,1980-02-02,m,
+2654,n,1998-02-25,,299,1980-05-08,m,
+2655,n,1998-02-26,,303,1977-03-16,m,
+2656,n,1998-02-26,,310,1971-11-19,m,
+2657,n,1998-02-26,,311,1978-04-16,m,
+2658,n,1998-02-26,,312,1980-05-11,m,
+2659,n,1998-02-26,,313,1977-08-17,m,
+2660,n,1998-02-26,,314,1979-08-05,m,
+2661,n,1998-02-26,,315,1978-10-30,m,
+2662,n,1998-02-26,,316,1978-11-07,m,
+2663,n,1998-02-26,,317,1978-11-08,m,
+2664,n,1998-02-26,,318,1976-04-29,m,
+2665,n,1998-02-26,,327,1959-11-11,m,
+2666,n,1998-02-27,,328,1978-12-12,m,
+2667,n,1998-02-27,,329,1981-06-29,m,
+2668,n,1998-02-27,,330,1982-03-05,m,
+2669,n,1998-02-27,,331,1980-05-15,m,
+2670,n,1998-02-27,,332,1957-05-08,m,
+2671,n,1998-02-27,,333,1964-09-07,m,
+2672,n,1998-02-27,,212,1980-05-23,m,
+2673,n,1998-02-27,,335,1981-07-04,m,
+2674,n,1998-02-27,,336,1978-11-10,m,
+2675,n,1998-02-27,,337,1981-06-28,m,
+2676,n,1998-03-23,,350,1967-11-08,m,
+2677,n,1998-03-23,,351,1967-10-24,m,
+2678,n,1998-03-23,,352,1966-09-26,m,
+2679,n,1998-03-23,,353,1973-03-30,w,
+2680,n,1998-03-23,,354,1960-02-03,m,
+2681,n,1998-03-23,,355,1962-05-28,m,
+2682,n,1998-03-23,,357,1965-01-12,m,
+2683,n,1998-03-23,,358,1947-12-18,m,
+2684,n,1998-03-23,,359,1969-04-30,m,
+2685,n,1998-03-23,,360,1964-12-10,m,
+2686,n,1998-03-23,,361,1963-10-13,m,
+2687,n,1998-03-23,,362,1952-02-23,m,
+2688,n,1998-03-23,,363,1956-09-13,m,
+2689,n,1998-03-23,,364,1982-11-06,m,
+2690,n,1998-03-23,,365,1968-11-16,m,
+2691,n,1998-03-23,,366,1967-06-28,m,
+2692,n,1998-03-23,,367,1951-10-15,m,
+2693,n,1998-03-23,,368,1958-04-26,m,
+2694,n,1998-03-23,,369,1944-12-05,m,
+2695,n,1998-03-23,,370,1967-08-02,m,
+2698,n,1998-03-23,,373,1974-05-18,m,
+2699,n,1998-03-23,,374,1966-05-27,m,
+2700,n,1998-03-23,,375,1964-07-22,m,
+2701,n,1998-03-23,,376,1972-05-19,m,
+2702,n,1998-03-23,,377,1961-09-02,m,
+2703,n,1998-03-23,,378,1971-01-31,m,
+2705,n,1998-03-27,,438,1956-02-26,m,
+2706,n,1998-03-27,,441,1948-12-10,m,
+2707,n,1998-03-27,,442,1959-05-24,m,
+2708,n,1998-03-27,,444,1964-05-13,m,
+2709,n,1998-03-30,,445,1969-04-05,m,
+2710,n,1998-03-31,,455,1967-06-22,m,
+2711,n,1998-04-25,,514,1944-08-29,w,
+2712,n,1998-04-30,,515,1955-05-26,m,
+2713,n,1998-04-30,,516,1955-09-01,m,
+2714,n,1998-04-30,,520,1949-09-16,m,
+2715,n,1998-04-30,,521,1954-08-27,m,
+2716,n,1998-04-30,,522,1955-05-03,w,
+2717,n,1998-04-30,,523,1949-01-11,m,
+2718,n,1998-04-30,,524,1964-08-25,w,
+2719,n,1998-04-30,,525,1959-08-30,m,
+2720,n,1998-04-30,,526,1962-05-06,m,
+2721,n,1998-04-30,,527,1968-01-26,m,
+2722,n,1998-04-30,,528,1954-03-14,m,
+2724,n,1998-05-04,,555,1970-03-08,m,
+2725,n,1998-05-04,,556,1962-12-29,m,
+2726,n,1998-05-04,,557,1963-09-16,m,
+2727,n,1998-05-05,,558,1964-07-14,m,
+2728,n,1998-05-05,,571,1964-03-28,m,
+2729,n,1998-05-05,,572,1954-07-17,m,
+2730,n,1998-05-06,,573,1924-12-08,m,
+2731,n,1998-05-06,,574,1968-08-25,w,
+2732,n,1998-05-07,,575,1954-09-22,m,
+2733,n,1998-05-07,,576,1963-02-15,m,
+2734,n,1998-05-07,,578,1951-04-28,m,
+2735,n,1998-05-07,,579,1960-10-11,m,
+2736,n,1998-05-07,,580,1956-07-13,m,
+2737,n,1998-05-07,,581,1954-05-27,m,
+2738,n,1998-05-07,,582,1962-05-22,m,
+2739,n,1998-05-07,,583,1966-07-08,m,
+2740,n,1998-05-08,,599,1965-04-05,m,
+2741,n,1998-05-08,,600,1954-03-18,m,
+2742,n,1998-05-08,,601,1961-08-05,m,
+2743,n,1998-05-08,,602,1960-07-22,m,
+2744,n,1998-06-04,,652,1976-12-11,m,
+2745,n,1998-06-04,,653,1977-12-07,m,
+2746,n,1998-06-04,,654,1970-06-19,m,
+2747,n,1998-06-04,,314,1979-08-05,m,
+2748,n,1998-06-04,,313,1977-08-17,m,
+2749,n,1998-06-04,,657,1978-03-15,m,
+2750,n,1998-06-04,,302,1976-03-12,m,
+2751,n,1998-06-04,,306,1977-01-27,m,
+2752,n,1998-06-04,,315,1978-10-30,m,
+2753,n,1998-06-04,,317,1978-11-08,m,
+2754,n,1998-06-04,,312,1980-05-11,m,
+2755,n,1998-06-04,,301,1979-04-08,m,
+2756,n,1998-06-04,,316,1978-11-07,m,
+2757,n,1998-06-04,,318,1976-04-29,m,
+2758,n,1998-06-04,,303,1977-03-16,m,
+2759,n,1998-06-04,,306,1977-01-27,m,
+2760,n,1998-06-04,,300,1980-04-17,m,
+2761,n,1998-06-04,,669,1965-08-26,m,
+2762,n,1998-06-04,,671,1969-02-23,m,
+2763,n,1998-06-04,,672,1969-03-07,m,
+2764,n,1998-06-04,,673,1971-11-10,m,
+2765,n,1998-06-04,,674,1975-05-25,m,
+2766,n,1998-06-04,,675,1976-05-01,m,
+2767,n,1998-06-04,,676,1975-10-05,m,
+2768,n,1998-06-04,,677,1977-11-19,m,
+2769,n,1998-06-04,,678,1970-01-21,m,
+2770,n,1998-06-04,,679,1968-02-11,m,
+2771,n,1998-06-04,,680,1970-01-02,m,
+2772,n,1998-06-04,,681,1966-04-19,m,
+2773,n,1998-06-04,,682,1966-02-21,m,
+2774,n,1998-06-04,,683,1977-06-27,m,
+2775,n,1998-06-04,,684,1973-05-08,m,
+2776,n,1998-06-04,,685,1976-05-11,m,
+2777,n,1998-06-05,,686,1979-06-13,m,
+2778,n,1998-06-09,,687,1976-07-14,m,
+2779,n,1998-06-09,,688,1980-02-08,m,
+2780,n,1998-06-09,,689,1978-08-29,m,
+2781,n,1998-06-09,,690,1978-04-18,m,
+2782,n,1998-06-09,,691,1975-12-01,m,
+2783,n,1998-06-09,,692,1977-06-28,m,
+2784,n,1998-06-09,,693,1978-12-10,m,
+2785,n,1998-06-09,,694,1977-09-06,m,
+2786,n,1998-06-09,,695,1977-03-16,m,
+2787,n,1998-06-09,,696,1976-11-25,m,
+2788,n,1998-06-09,,697,1977-01-24,m,
+2789,n,1998-06-09,,698,1979-07-12,m,
+2790,n,1998-06-09,,699,1979-03-22,w,
+2791,n,1998-06-09,,700,1976-07-25,w,
+2792,n,1998-06-09,,701,1979-05-02,m,
+2793,n,1998-06-09,,702,1975-07-03,m,
+2794,n,1998-06-09,,703,1979-05-06,m,
+2795,n,1998-06-09,,704,1978-02-09,w,
+2796,n,1998-06-09,,705,1977-07-14,m,
+2797,n,1998-06-09,,706,1979-08-17,m,

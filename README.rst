@@ -204,3 +204,16 @@ To retrieve the acoustic and egg data, use ``Recording.nspdata`` and ``Recording
 
 .. Downloaded vowel files
 .. 1573 normal vowels (i-a-u) not cut correctly, recreated
+
+
+License
+-------
+
+* ``sbvoicedb`` is released under the GNU General Public License, version 2. See 
+  `the LICENSE file <./LICENSE>`__ for details.
+
+* `Saarbruecken Voice Database <https://zenodo.org/records/16874898>`__ released 
+  under `CC BY 4.0 (Creative Commons Attribution 4.0 International) <https://creativecommons.org/licenses/by/4.0>`__. 
+  ``sbvoicedb`` programmatically downloads the recordings directly from https://zenodo.org,
+  except for the metadata CSV file (``summary.csv``) in `data.zip <https://zenodo.org/records/16874898/files/data.zip>`__.
+  This file is included in the ``sbvoicedb`` package at ``sbvoicedb/summary.csv``.

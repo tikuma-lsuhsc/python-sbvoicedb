@@ -35,3 +35,6 @@ Pull_Requests = "https://github.com/tikuma-lsuhsc/python-sbvoicedb/pulls"
 
 [tool.setuptools.dynamic]
 version = { attr = "sbvoicedb.__version__" }
+
+[tool.setuptools.package-data]
+sbvoicedb = ["summary.csv"]

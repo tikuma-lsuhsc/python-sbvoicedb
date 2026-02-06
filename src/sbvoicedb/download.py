@@ -1,15 +1,15 @@
-from typing_extensions import TypedDict
-from os import path
+import csv
+import io
 import unicodedata
 import zipfile
+from os import path
 from shutil import copyfileobj
+from tempfile import TemporaryDirectory
 
 import requests
 from tqdm import tqdm
 from tqdm.utils import CallbackIOWrapper
-
-from tempfile import TemporaryDirectory
-import csv, io
+from typing_extensions import TypedDict
 
 url = "https://stimmdb.coli.uni-saarland.de/data/voice_data.csv"
 zenodo_url = "https://zenodo.org/api/records/16874898"
@@ -29,7 +29,7 @@ class CsvDict(TypedDict):
 def download_database(timeout: float = 10.0) -> csv.DictReader:
 
     # site-packages/sbvoicedb/voice_data.csv
-    cached_file = path.join(path.dirname(__file__), "voice_data.csv")
+    cached_file = path.join(path.dirname(__file__), "summary.csv")
 
     try:
         with open(cached_file, "rt", encoding="utf8") as f:
@@ -82,7 +82,6 @@ def download_data(
             io.BytesIO() if use_memory else open(path.join(tmpdir, "data.zip"), "+bw")
         ) as buf,
     ):
-
         # Streaming, so we can iterate over the response.
         response = requests.get(file["links"]["self"], stream=True)
 
