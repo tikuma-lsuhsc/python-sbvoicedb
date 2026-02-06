@@ -5,6 +5,17 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [0.6.0] - 2026-02-06
+
+### Added
+
+- `SbVoiceDb` class constructor to take predownloaded `data.zip` via `data_zip_file`
+              argument
+
+### Fixed
+
+- a bug in displaying gender info in `RecordingSummaryTableModel._compose_tooltip()`
+
 ## [0.5.0] - 2026-02-06
 
 ### Added
