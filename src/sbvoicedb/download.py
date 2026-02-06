@@ -56,6 +56,9 @@ def download_data(
     if pathology is None:
         # download full dataset at once
         key = "data.zip"
+        dstdir, datadir = path.split(dstdir)
+        if datadir != "data":
+            raise ValueError("dstdir be a 'data' subfolder")
     else:
         # specific dataset
         key = f"{unicodedata.normalize('NFC', pathology)}.zip"
