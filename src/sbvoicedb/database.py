@@ -579,7 +579,7 @@ class SbVoiceDb:
             self._create_recording_session_summary()
             self._create_recording_summary()
 
-        if download_mode == "immediate":
+        if download_mode == "immediate" or data_zip_file is not None:
             # download full dataset if download_mode is 'immediate'
             self.download_data(data_zip_file=data_zip_file)
 
