@@ -1685,6 +1685,9 @@ class SbVoiceDb:
             # insert the new recordings to the database
             self._populate_recordings(patho_list)
 
+            # update pathology download flags
+            self._mark_downloaded()
+
     def query(
         self,
         sql_statement: str | sql_expr.Executable,
