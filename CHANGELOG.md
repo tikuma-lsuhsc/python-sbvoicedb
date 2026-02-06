@@ -5,6 +5,18 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [0.5.0] - 2026-02-06
+
+### Added
+
+- summary metafile `summary.csv` is added to the package
+- [`qt.RecordingSummaryTableWidget`] added `recordingCount()` and `iterRecordings()` 
+  methods to `RecordingSummaryTableWidget` class
+
+### Fixed
+
+- a bug in displaying gender info in `RecordingSummaryTableModel._compose_tooltip()`
+
 ## [0.4.0] - 2025-12-02
 
 ### Added
