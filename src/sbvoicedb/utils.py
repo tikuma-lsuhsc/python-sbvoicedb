@@ -1,13 +1,12 @@
+import re
+from glob import glob
 from os import path
 from shutil import copyfile
-from .utils import *
 
-import re
-from os import path
-from glob import glob
 import nspfile
 import numpy as np
-from os import path
+
+from .utils import *
 
 
 def fix_incomplete_nsp(file: str, root_dir: str) -> str:
@@ -72,6 +71,7 @@ def swap_nsp_egg(
 
 
 data_dir = "data"
+
 
 def align_vowels(id, file, segm_dir):
 
@@ -146,7 +146,7 @@ def pad_timing(timing, task, fs, padding=0.0):
                 talt = ts.iloc[i0, 0]
                 if tend > talt:
                     tend = talt
-                    
+
         return tstart, tend
     else:
         return timing.loc[task]

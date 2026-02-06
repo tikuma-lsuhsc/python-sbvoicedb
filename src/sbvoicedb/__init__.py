@@ -3,13 +3,13 @@
 __version__ = "0.4.0"
 
 from .database import (
+    Pathology,
     PathologyLiteral,
-    UtteranceLiteral,
+    Recording,
+    RecordingSession,
     SbVoiceDb,
     Speaker,
-    RecordingSession,
-    Recording,
-    Pathology,
+    UtteranceLiteral,
     sql_expr,
 )
 
