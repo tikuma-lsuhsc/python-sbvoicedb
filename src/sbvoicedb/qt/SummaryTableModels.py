@@ -38,6 +38,7 @@ class SummaryTableModel(QAbstractTableModel):
         self,
         db: SbVoiceDb,
         batch_size: int | None = None,
+        order_by: list[str | tuple[str, Literal["asc", "desc"]]] | None = None,
         parent: QObject | None = None,
     ):
         """Base class to display SbVoiceDb's summary views in Qt Framework
@@ -56,6 +57,7 @@ class SummaryTableModel(QAbstractTableModel):
         self._columns = []
         self._filter_kws = {}
         self._row_cache = {}  # TODO consider cachetools.LRUCache
+        self._sort_arg = order_by
 
     def database(self) -> SbVoiceDb:
         """Returns the model's SbVoiceDb database object"""
@@ -268,10 +270,11 @@ class RecordingSummaryTableModel(SummaryTableModel):
         db: SbVoiceDb,
         *,
         batch_size: int | None = None,
+        order_by: list[str | tuple[str, Literal["asc", "desc"]]] | None = None,
         parent: QObject | None = None,
     ):
 
-        super().__init__(db, batch_size, parent)
+        super().__init__(db, batch_size, order_by, parent)
 
     def setGender(self, value: Literal["m", "w"] | None):
         """set a filter condition on speaker's gender"""

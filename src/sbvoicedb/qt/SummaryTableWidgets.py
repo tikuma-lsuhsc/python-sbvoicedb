@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 import logging
-from typing import Iterator
+from typing import Iterator, Literal
 
 from qtpy.QtCore import QItemSelectionModel, QModelIndex, Qt, Signal, Slot
 from qtpy.QtWidgets import QTableView, QVBoxLayout, QWidget
@@ -30,6 +30,7 @@ class RecordingSummaryTableWidget(QWidget):
         column_names: dict[RecordingSummaryColumn, str] | None = None,
         show_columns: list[str] | None = None,
         hide_columns: list[str] | None = None,
+        order_by: list[str | tuple[str, Literal["asc", "desc"]]] | None = None,
         parent: QWidget | None = None,
     ):
         """Qt Widget to display the SbVoiceDb's recording_summary view
@@ -83,7 +84,7 @@ class RecordingSummaryTableWidget(QWidget):
             if columns["id"] != "id":
                 raise ValueError('column_names cannot modify the "id" column name.')
 
-        model = RecordingSummaryTableModel(db, parent=self)
+        model = RecordingSummaryTableModel(db, parent=self, order_by=order_by)
         self.setModel(model)
 
     def model(self) -> RecordingSummaryTableModel:
