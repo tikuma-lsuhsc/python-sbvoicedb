@@ -23,16 +23,21 @@ from sqlalchemy import (
     CursorResult,
     Date,
     Engine,
+    Float,
     ForeignKey,
+    Integer,
     Result,
     Row,
     Select,
     String,
     Table,
     UniqueConstraint,
+    column,
     create_engine,
     insert,
+    or_,
     select,
+    table,
     text,
     update,
 )
@@ -1323,7 +1328,7 @@ class SbVoiceDb:
         columns: (
             PathologySummaryColumn | Literal["*"] | Sequence[PathologySummaryColumn]
         )
-        | dict[PathologySummaryColumn, str] = "*",
+        | dict[PathologySummaryColumn, str | None] = "*",
         *,
         minimum_speakers: int | None = None,
         maximum_speakers: int | None = None,
@@ -1358,53 +1363,125 @@ class SbVoiceDb:
                        defaults to None (from the first recording)
         :return: sequence of the fetched rows
         """
-        if isinstance(columns, str):
-            columns = [columns]
+
+        summary_table = table(
+            "pathology_summary",
+            column("id", Integer),
+            column("name", String),
+            column("nb_speakers", Integer),
+            column("nb_sessions", Integer),
+        )
+
+        if columns is None or columns == "*":
+            stmt = select(summary_table)
+        elif isinstance(columns, str):
+            stmt = select(summary_table.c[columns])
         elif isinstance(columns, dict):
-            columns = [f"{c} AS {alias}" for c, alias in columns.items()]
+            stmt = select(
+                *(
+                    summary_table.c[c]
+                    if label is None
+                    else summary_table.c[c].label(label)
+                    for c, label in columns.items()
+                )
+            )
+        else:
+            stmt = select(*(summary_table.c[c] for c in columns))
 
-        columns_list = ",".join(columns)
+        # reflect the current SbVoiceDb filter configuration
+        pathology_select = self._pathology_select(Pathology.id)
+        if pathology_select.whereclause is not None:
+            stmt = stmt.where(summary_table.c.id.in_(pathology_select))
 
-        stmt = f"SELECT {columns_list} FROM pathology_summary"
-
-        where_list = []
         if minimum_speakers is not None and maximum_speakers is not None:
-            where_list.append(
-                f"nb_speakers BETWEEN {minimum_speakers} AND {maximum_speakers}"
+            stmt = stmt.where(
+                summary_table.c.nb_speakers.between(minimum_speakers, maximum_speakers)
             )
         elif minimum_speakers is not None:
-            where_list.append(f"nb_speakers>={minimum_speakers}")
+            stmt = stmt.where(summary_table.c.nb_speakers >= minimum_speakers)
         elif maximum_speakers is not None:
-            where_list.append(f"nb_speakers<={maximum_speakers}")
+            stmt = stmt.where(summary_table.c.nb_speakers <= maximum_speakers)
         if minimum_sessions is not None and maximum_sessions is not None:
-            where_list.append(
-                f"nb_sessions BETWEEN {minimum_sessions} AND {maximum_sessions}"
+            stmt = stmt.where(
+                summary_table.c.nb_sessions.between(minimum_sessions, maximum_sessions)
             )
         elif minimum_sessions is not None:
-            where_list.append(f"nb_sessions>={minimum_sessions}")
+            stmt = stmt.where(summary_table.c.nb_sessions >= minimum_sessions)
         elif maximum_sessions is not None:
-            where_list.append(f"nb_sessions<={maximum_sessions}")
-        if len(where_list) > 0:
-            stmt += " WHERE " + " AND ".join(where_list)
+            stmt = stmt.where(summary_table.c.nb_sessions <= maximum_sessions)
 
         if order_by is not None:
             if isinstance(order_by, str):
-                order_by = [order_by]
-            order_by_list = ",".join(
-                o if isinstance(o, str) else f"{o[0]} {o[1].upper()}" for o in order_by
-            )
-            if len(order_by_list):
-                stmt += " ORDER BY " + order_by_list
+                stmt = stmt.order_by(summary_table.c[order_by])
+            else:
+                stmt = stmt.order_by(
+                    *(
+                        summary_table.c[c]
+                        if isinstance(c, str)
+                        else summary_table.c[c[0]]
+                        if c[1] == "asc"
+                        else summary_table.c[c[0]].desc()
+                        for c in order_by
+                    )
+                )
 
         if limit is not None:
-            stmt += f" LIMIT {limit}"
-            if offset is not None:
-                stmt += f" OFFSET {offset}"
+            stmt = stmt.limit(limit)
+        if offset is not None:
+            stmt = stmt.offset(offset)
 
-        logger.info("SbVoiceDb.recording_session_summary.SQL:\n%s  ", stmt)
+        logger.info("SbVoiceDb.pathology_summary.SQL:\n%s  ", stmt)
 
-        with self.execute_sql(stmt) as results:
-            return results.fetchall()
+        with self._db.connect() as connection:
+            return connection.execute(stmt).fetchall()
+
+    @staticmethod
+    def _session_summary_where(
+        stmt,
+        summary_table,
+        gender: Literal["w", "m"] | None = None,
+        minimum_age: int | None = None,
+        maximum_age: int | None = None,
+        pathologies: str | Sequence[str] | None = None,
+        include_normal: bool = True,
+    ):
+        if gender is not None:
+            stmt = stmt.where(summary_table.c.gender == gender)
+        if minimum_age is not None and maximum_age is not None:
+            stmt = stmt.where(summary_table.c.age.between(minimum_age, maximum_age))
+        elif minimum_age is not None:
+            stmt = stmt.where(summary_table.c.age >= minimum_age)
+        elif maximum_age is not None:
+            stmt = stmt.where(summary_table.c.age <= maximum_age)
+
+        if pathologies is not None and len(pathologies) > 0:
+            if isinstance(pathologies, str):
+                pathologies = [pathologies]
+            npatho = len(pathologies)
+            if npatho > 0:
+                patho_select = select(recording_session_pathologies.c.session_id).join(
+                    Pathology,
+                    recording_session_pathologies.c.pathology_id == Pathology.id,
+                )
+                if npatho == 1:
+                    patho_select = patho_select.where(Pathology.name == pathologies[0])
+                else:
+                    patho_select = patho_select.where(Pathology.name.in_(pathologies))
+
+            if include_normal:
+                stmt = stmt.where(
+                    or_(
+                        summary_table.c.type == "n",
+                        summary_table.c.session_id.in_(patho_select),
+                    )
+                )
+            else:
+                stmt = stmt.where(summary_table.c.session_id.in_(patho_select))
+
+        elif not include_normal:
+            # only pathological recordings
+            stmt = stmt.where(summary_table.c.type == "p")
+        return stmt
 
     def recording_session_summary(
         self,
@@ -1413,7 +1490,7 @@ class SbVoiceDb:
             | Literal["*"]
             | Sequence[RecordingSessionSummaryColumn]
         )
-        | dict[RecordingSessionSummaryColumn, str] = "*",
+        | dict[RecordingSessionSummaryColumn, str | None] = "*",
         *,
         gender: Literal["w", "m"] | None = None,
         minimum_age: int | None = None,
@@ -1451,67 +1528,71 @@ class SbVoiceDb:
                        defaults to None (from the first recording)
         :return: sequence of the fetched rows
         """
-        if isinstance(columns, str):
-            columns = [columns]
+
+        summary_table = table(
+            "recording_session_summary",
+            column("speaker_id", Integer),
+            column("gender", String),
+            column("age", Integer),
+            column("session_id", Integer),
+            column("type", String),
+            column("nb_recordings", Integer),
+        )
+
+        if columns is None or columns == "*":
+            stmt = select(summary_table)
+        elif isinstance(columns, str):
+            stmt = select(summary_table.c[columns])
         elif isinstance(columns, dict):
-            columns = [f"{c} AS {alias}" for c, alias in columns.items()]
-
-        columns_list = ",".join(columns)
-
-        stmt = f"SELECT {columns_list} FROM recording_summary"
-
-        where_list = []
-        if gender is not None:
-            where_list.append(f"gender='{gender}'")
-        if minimum_age is not None and maximum_age is not None:
-            where_list.append(f"age BETWEEN {minimum_age} AND {maximum_age}")
-        elif minimum_age is not None:
-            where_list.append(f"age>={minimum_age}")
-        elif maximum_age is not None:
-            where_list.append(f"age<={maximum_age}")
-        if isinstance(pathologies, str):
-            pathologies = [pathologies]
-        if pathologies is not None:
-            npatho = len(pathologies)
-            if npatho == 0 and include_normal:
-                where_list.append("type='n'")
-            elif npatho > 0:
-                patho_list = ",".join(f"'{p}'" for p in pathologies)
-                patho_where = (
-                    f"B.name={patho_list}"
-                    if npatho == 1
-                    else f"B.name IN ({patho_list})"
+            stmt = select(
+                *(
+                    summary_table.c[c]
+                    if label is None
+                    else summary_table.c[c].label(label)
+                    for c, label in columns.items()
                 )
-                patho_select = f"SELECT A.session_id FROM recording_session_pathologies AS A INNER JOIN pathologies AS B ON A.pathology_id=B.id WHERE {patho_where}"
-                if include_normal:
-                    where_list.append(f"(session_id in ({patho_select}) OR type='n')")
-                else:
-                    where_list.append(f"session_id in ({patho_select})")
-        elif not include_normal:
-            # only pathological recordings
-            where_list.append("type='p'")
+            )
+        else:
+            stmt = select(*(summary_table.c[c] for c in columns))
 
-        if len(where_list) > 0:
-            stmt += " WHERE " + " AND ".join(where_list)
+        session_select = self._session_select(RecordingSession.id)
+        if session_select.whereclause is not None:
+            stmt = stmt.where(summary_table.c.session_id.in_(session_select))
+
+        stmt = self._session_summary_where(
+            stmt,
+            summary_table,
+            gender,
+            minimum_age,
+            maximum_age,
+            pathologies,
+            include_normal,
+        )
 
         if order_by is not None:
             if isinstance(order_by, str):
-                order_by = [order_by]
-            order_by_list = ",".join(
-                o if isinstance(o, str) else f"{o[0]} {o[1].upper()}" for o in order_by
-            )
-            if len(order_by_list):
-                stmt += " ORDER BY " + order_by_list
+                stmt = stmt.order_by(summary_table.c[order_by])
+            else:
+                stmt = stmt.order_by(
+                    *(
+                        summary_table.c[c]
+                        if isinstance(c, str)
+                        else summary_table.c[c[0]]
+                        if c[1] == "asc"
+                        else summary_table.c[c[0]].desc()
+                        for c in order_by
+                    )
+                )
 
         if limit is not None:
-            stmt += f" LIMIT {limit}"
-            if offset is not None:
-                stmt += f" OFFSET {offset}"
+            stmt = stmt.limit(limit)
+        if offset is not None:
+            stmt = stmt.offset(offset)
 
         logger.info("SbVoiceDb.recording_session_summary.SQL:\n%s  ", stmt)
 
-        with self.execute_sql(stmt) as results:
-            return results.fetchall()
+        with self._db.connect() as connection:
+            return connection.execute(stmt).fetchall()
 
     def recording_summary(
         self,
@@ -1562,84 +1643,89 @@ class SbVoiceDb:
                        defaults to None (from the first recording)
         :return: sequence of the fetched rows
         """
-        if isinstance(columns, str):
-            columns = [columns]
+
+        summary_table = table(
+            "recording_summary",
+            column("id", Integer),
+            column("speaker_id", Integer),
+            column("gender", String),
+            column("age", Integer),
+            column("session_id", Integer),
+            column("type", String),
+            column("utterance", String),
+            column("duration", Float),
+        )
+
+        if columns is None or columns == "*":
+            stmt = select(summary_table)
+        elif isinstance(columns, str):
+            stmt = select(summary_table.c[columns])
         elif isinstance(columns, dict):
-            columns = [f"{c} AS {alias}" for c, alias in columns.items()]
-
-        columns_list = ",".join(columns)
-
-        stmt = f"SELECT {columns_list} FROM recording_summary"
-
-        where_list = []
-        if gender is not None:
-            where_list.append(f"gender='{gender}'")
-        if minimum_age is not None and maximum_age is not None:
-            where_list.append(f"age BETWEEN {minimum_age} AND {maximum_age}")
-        elif minimum_age is not None:
-            where_list.append(f"age>={minimum_age}")
-        elif maximum_age is not None:
-            where_list.append(f"age<={maximum_age}")
-        if isinstance(pathologies, str):
-            pathologies = [pathologies]
-        if pathologies is not None:
-            npatho = len(pathologies)
-            if npatho == 0 and include_normal:
-                where_list.append("type='n'")
-            elif npatho > 0:
-                patho_list = ",".join(f"'{p}'" for p in pathologies)
-                patho_where = (
-                    f"B.name={patho_list}"
-                    if npatho == 1
-                    else f"B.name IN ({patho_list})"
+            stmt = select(
+                *(
+                    summary_table.c[c]
+                    if label is None
+                    else summary_table.c[c].label(label)
+                    for c, label in columns.items()
                 )
-                patho_select = f"SELECT A.session_id FROM recording_session_pathologies AS A INNER JOIN pathologies AS B ON A.pathology_id=B.id WHERE {patho_where}"
-                if include_normal:
-                    where_list.append(f"(session_id in ({patho_select}) OR type='n')")
-                else:
-                    where_list.append(f"session_id in ({patho_select})")
-        elif not include_normal:
-            # only pathological recordings
-            where_list.append("type='p'")
+            )
+        else:
+            stmt = select(*(summary_table.c[c] for c in columns))
+
+        recording_select = self._recording_select(Recording.id)
+        if recording_select.whereclause is not None:
+            stmt = stmt.where(summary_table.c.id.in_(recording_select))
+
+        stmt = self._session_summary_where(
+            stmt,
+            summary_table,
+            gender,
+            minimum_age,
+            maximum_age,
+            pathologies,
+            include_normal,
+        )
+
         if utterances is not None and len(utterances) > 0:
             if isinstance(utterances, str):
                 utterances = [utterances]
-            utter_list = ",".join(f"'{u}'" for u in utterances)
-            where_list.append(
-                f"utterance={utter_list}"
-                if len(utter_list) == 1
-                else f"utterance IN ({utter_list})"
-            )
+            if len(utterances) == 1:
+                stmt = stmt.where(summary_table.c.utterance == utterances[0])
+            else:
+                stmt = stmt.where(summary_table.c.utterance.in_(utterances))
         if minimum_duration is not None and maximum_duration is not None:
-            where_list.append(
-                f"duration BETWEEN {minimum_duration} AND {maximum_duration}"
+            stmt = stmt.where(
+                summary_table.c.duration.between(minimum_duration, maximum_duration)
             )
         elif minimum_duration is not None:
-            where_list.append(f"duration>={minimum_duration}")
+            stmt = stmt.where(summary_table.c.duration >= minimum_duration)
         elif maximum_duration is not None:
-            where_list.append(f"duration<={maximum_duration}")
-
-        if len(where_list) > 0:
-            stmt += " WHERE " + " AND ".join(where_list)
+            stmt = stmt.where(summary_table.c.duration <= maximum_duration)
 
         if order_by is not None:
             if isinstance(order_by, str):
-                order_by = [order_by]
-            order_by_list = ",".join(
-                o if isinstance(o, str) else f"{o[0]} {o[1].upper()}" for o in order_by
-            )
-            if len(order_by_list):
-                stmt += " ORDER BY " + order_by_list
+                stmt = stmt.order_by(summary_table.c[order_by])
+            else:
+                stmt = stmt.order_by(
+                    *(
+                        summary_table.c[c]
+                        if isinstance(c, str)
+                        else summary_table.c[c[0]]
+                        if c[1] == "asc"
+                        else summary_table.c[c[0]].desc()
+                        for c in order_by
+                    )
+                )
 
         if limit is not None:
-            stmt += f" LIMIT {limit}"
-            if offset is not None:
-                stmt += f" OFFSET {offset}"
+            stmt = stmt.limit(limit)
+        if offset is not None:
+            stmt = stmt.offset(offset)
 
         logger.info("SbVoiceDb.recording_summary.SQL:\n%s  ", stmt)
 
-        with self.execute_sql(stmt) as results:
-            return results.fetchall()
+        with self._db.connect() as connection:
+            return connection.execute(stmt).fetchall()
 
     ###################
     ### GENERAL METHODS
