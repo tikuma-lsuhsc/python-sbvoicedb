@@ -5,6 +5,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [0.6.1] - 2026-02-14
+
+### Changed
+
+- `database.SbVoiceDb` - summary functions internally use SQLAlchemy (no API change)
+
 ## [0.6.0] - 2026-02-06
 
 ### Added

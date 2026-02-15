@@ -1,6 +1,6 @@
 """Saarbruecken Voice Database Reader"""
 
-__version__ = "0.6.0.post"
+__version__ = "0.6.1"
 
 from .database import (
     Pathology,
