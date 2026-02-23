@@ -11,7 +11,7 @@ from qtpy.QtCore import (
     QPersistentModelIndex,
     Qt,
 )
-from sqlalchemy import Row
+from sqlalchemy import Row, func
 
 from ..database import Recording, RecordingSummaryColumn, SbVoiceDb, UtteranceLiteral
 
@@ -147,7 +147,7 @@ class SummaryTableModel(QAbstractTableModel):
             )
 
         # get the row count
-        self._row_count = self._db_method("COUNT(id)", **self._filter_kws)[0][0]
+        self._row_count = self._db_method(func.count(), **self._filter_kws)[0][0]
         logger.info(
             "SummaryTableModel.fetchMore: number of rows = %d",
             self._row_count,

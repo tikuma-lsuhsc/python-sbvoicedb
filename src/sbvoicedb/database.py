@@ -1376,6 +1376,8 @@ class SbVoiceDb:
             stmt = select(summary_table)
         elif isinstance(columns, str):
             stmt = select(summary_table.c[columns])
+        elif isinstance(columns, sql_expr.Function):
+            stmt = select(columns).select_from(summary_table)
         elif isinstance(columns, dict):
             stmt = select(
                 *(
@@ -1543,6 +1545,8 @@ class SbVoiceDb:
             stmt = select(summary_table)
         elif isinstance(columns, str):
             stmt = select(summary_table.c[columns])
+        elif isinstance(columns, sql_expr.Function):
+            stmt = select(columns).select_from(summary_table)
         elif isinstance(columns, dict):
             stmt = select(
                 *(
@@ -1660,6 +1664,8 @@ class SbVoiceDb:
             stmt = select(summary_table)
         elif isinstance(columns, str):
             stmt = select(summary_table.c[columns])
+        elif isinstance(columns, sql_expr.Function):
+            stmt = select(columns).select_from(summary_table)
         elif isinstance(columns, dict):
             stmt = select(
                 *(
