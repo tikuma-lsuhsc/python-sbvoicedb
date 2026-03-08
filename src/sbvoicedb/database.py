@@ -764,7 +764,15 @@ class SbVoiceDb:
 
         with Session(self._db) as session:
             if include_healthy and self.includes_healthy:
-                yield Pathology(0, self._healthy_label, self.has_healthy_dataset())
+                entry = Pathology(
+                    id=0,
+                    name=self._healthy_label,
+                    downloaded=self.has_healthy_dataset(),
+                )
+                entry.sessions = [
+                    *self.iter_sessions(session_filter=RecordingSession.type == "n")
+                ]
+                yield entry
 
             for patho in session.scalars(
                 self._pathology_select(Pathology, downloaded=downloaded)
