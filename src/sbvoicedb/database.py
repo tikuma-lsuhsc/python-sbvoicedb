@@ -834,14 +834,14 @@ class SbVoiceDb:
 
     def get_pathology(
         self,
-        pathology_id: int,
+        pathology_id_or_name: int | str,
         query_sessions: bool = False,
         query_speaker: bool = False,
         query_recordings: bool = False,
     ) -> Pathology | None:
         """retrieve the specified pathology info from `pathlogies` table
 
-        :param pathology_id: id of the pathology
+        :param pathology_id_or_name: id or name of the pathology
         :param query_sessions: True to populate `Pathology.sessions` attribute,
                               defaults to False
         :param query_speaker: True to populate `Pathology.sessions.speaker`
@@ -850,6 +850,12 @@ class SbVoiceDb:
                                  attribute, defaults to False
         :return: queried output or None if `pathology_id` is not valid.
         """
+
+        pathology_id = (
+            self.get_pathology_id(pathology_id_or_name)
+            if isinstance(pathology_id_or_name, str)
+            else pathology_id_or_name
+        )
 
         stmt = select(Pathology).where(Pathology.id == pathology_id)
 
