@@ -1161,6 +1161,7 @@ class SbVoiceDb:
         query_speaker: bool = False,
         query_pathologies: bool = False,
         query_recordings: bool = False,
+        full_file_paths: bool = False,
     ) -> RecordingSession | None:
         """Return a row of the `recording_sessions` table
 
@@ -1171,6 +1172,10 @@ class SbVoiceDb:
                                   attribute, defaults to False
         :param query_recordings: True to populate `RecordingSession.recordings`
                                  attribute, defaults to False
+        :param full_file_paths: (Only relevant if ``recording_filter=True``)
+                                True for the returned `Session.recordings[i].nspfile`
+                                and `Session.recordings[i].recording.eggfile` to
+                                contain the full paths, defaults to False
         :return: queried output or None if `session_id` is not valid.
         """
 
@@ -1183,7 +1188,13 @@ class SbVoiceDb:
             stmt = stmt.options(joinedload(RecordingSession.speaker))
 
         with Session(self._db) as session:
-            return session.scalar(stmt)
+            session = session.scalar(stmt)
+
+        if session and query_recordings and full_file_paths:
+            for rec in Session.recordings:
+                self._datafile_to_full_path(rec)
+
+        return session
 
     ############################
     ### RECORDING ACCESS METHODS
