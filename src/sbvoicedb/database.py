@@ -1191,7 +1191,7 @@ class SbVoiceDb:
             session = session.scalar(stmt)
 
         if session and query_recordings and full_file_paths:
-            for rec in Session.recordings:
+            for rec in session.recordings:
                 self._datafile_to_full_path(rec)
 
         return session
