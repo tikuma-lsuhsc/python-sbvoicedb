@@ -1202,7 +1202,7 @@ class SbVoiceDb:
     def _recording_select(
         self,
         *args,
-        session_id: int | None = None,
+        session_id: int | Sequence[int] | None = None,
         session_filter: sql_expr.ColumnElement | None = None,
         recording_filter: sql_expr.ColumnElement | None = None,
         **kwargs,
@@ -1212,8 +1212,10 @@ class SbVoiceDb:
 
         stmt = select(*args, **kwargs)
 
-        if session_id is not None:
+        if isinstance(session_id, int):
             stmt = stmt.where(Recording.session_id == session_id)
+        elif session_id is not None:
+            stmt = stmt.where(Recording.session_id.in_(session_id))
 
         if self._recording_filter is not None:
             recording_filter = (
@@ -1261,12 +1263,14 @@ class SbVoiceDb:
         session_id: int | Sequence[int] | None = None,
         session_filter: sql_expr.ColumnElement | None = None,
         recording_filter: sql_expr.ColumnElement | None = None,
+        order_by: sql_expr.ColumnElement | None = None,
     ) -> Sequence[int]:
         """Return an id list of all the unique recordings
 
-        :param session_id: only of the specified session_id, defaults to None
+        :param session_id: only of the specified session_id (or id's), defaults to None
         :param session_filter: additional filter on RecordingSession columns, defaults to None
         :param recording_filter: additional filter on Recording columns, defaults to None
+        :param order_by: order of the returned recording ids, defaults to ascending recording ids.
         """
 
         stmt = self._recording_select(
@@ -1274,7 +1278,7 @@ class SbVoiceDb:
             session_id=session_id,
             session_filter=session_filter,
             recording_filter=recording_filter,
-        ).order_by(Recording.id)
+        ).order_by(order_by or Recording.id)
 
         with Session(self._db) as recording:
             return recording.scalars(stmt).fetchall()
