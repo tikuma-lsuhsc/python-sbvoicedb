@@ -439,6 +439,7 @@ class SbVoiceDb:
                           - 'lazy' (default) download when recordings table is first accessed
                           - 'immediate' to download at the instantiation
                           - 'off' to disable download feature.
+    :param data_zip_file: Optional path to pre-downloaded `data.zip` file from Zenodo.
     :param connect_kws: a dictionary of options which will be passed directly
                         to sqlite3.connect() as additional keyword arguments,
                         defaults to None
@@ -483,22 +484,16 @@ class SbVoiceDb:
     Automatic Dataset Downloading
     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-    `SbVoiceDb` will automatically download the dataset. The `download_mode`
-    argument dictates
+    `SbVoiceDb` will automatically download the dataset if it is missing in the
+    `data` folder. The `download_mode` argument sets the download mode. The
+    default is `download_mode='lazy'`. Only the pathologies that are included
+    in the session will be downloaded when a recording entry is accessed.
+    Alternately, `download_mode='immediate'` which downloads the full dataset
+    (`data.zip` from Zenodo) when an `SbVoiceDb` object is created.
 
-    All the subdirectories and files are created by ``SbVoiceDb`` unless the
-    `data` subdirectory is pre-populated
-
-    The ``data`` subdirectory will be created and populated immediately by
-    ``SbVoiceDb` if instantiated with `download_mode='once'`.  or  as
-    it will automatically download datasets as recordings are accessed.
-    Alternately, ``SbVoiceDb.download_data()``
-
-    may be pre-populated form the data.zip ZIP file
-    downloaded from Zenodo (v2) by unzipping its content. Only a portion of
-    dataset could be downloaded if so desired. Otherwise, this subdirectory
-
-    Downloading
+    Another option to load dataset is to pre-download the `data.zip` from
+    Zenodo, and run `SbVoiceDb(data_zip_file='data.zip')` once to initialize
+    the shared database directory `dbdir`.
 
     """
 

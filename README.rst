@@ -110,6 +110,13 @@ of the datasets are available by
 
 The ``db.number_of_all_sessions`` property should always return 2043.
 
+It is also possible to pre-download the waveform data file (`data.zip`, a 18-GB file) 
+from Zenodo, and initialize the shared database by running
+
+.. code-block:: python
+
+  SbVoiceDb(data_zip_file='data.zip')
+
 Your study may only use a subset of the database. In such case, you can set filters
 on each table when creating the database object. For example, the following creates
 a subset of the database which only consists of recordings of sustained /a/ or /i/
