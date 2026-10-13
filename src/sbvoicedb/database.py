@@ -1773,36 +1773,42 @@ class SbVoiceDb:
     def download_data(self, data_zip_file: str | None = None):
         """download minimal dataset required for current filter configurations"""
 
+        # list of new pathologies downloaded (None if all pathologies)
+        patho_list: list[str] | None = None
+
         # download is tried only once
         self._try_download = False
 
-        session_counts = self._get_download_list()
+        if data_zip_file is None:
+            # download data files from Zenodo
 
-        total_sessions = sum(session_counts.values())
+            # get all pathologies and their session counts in the current database session
+            session_counts = self._get_download_list()
 
-        if total_sessions > 0:
-            if data_zip_file is None:
-                all_sessions = self.number_of_all_sessions
+            # all recording sessions for the current database session
+            total_sessions = sum(session_counts.values())
 
-                if total_sessions > all_sessions:
-                    # duplicates in the pathologies are too large to warrant pathology-wise download
-                    download_data(self._datadir)
-                    patho_list = None
+            # all recording sessions in SVD
+            all_sessions = self.number_of_all_sessions
 
-                else:
-                    # per-pathology downloads
-                    for patho_name in session_counts:
-                        download_data(self._datadir, patho_name)
-                    patho_list = list(session_counts)
+            if total_sessions >= all_sessions:
+                # duplicates in the pathologies are too large to warrant pathology-wise download
+                download_data(self._datadir)
+
             else:
-                patho_list = None
-                download_data(self._datadir, data_zip_file=data_zip_file)
+                # per-pathology downloads
+                for patho_name in session_counts:
+                    download_data(self._datadir, patho_name)
+                patho_list = list(session_counts)
+        else:
+            # use user supplied data.zip
+            download_data(self._datadir, data_zip_file=data_zip_file)
 
-            # insert the new recordings to the database
-            self._populate_recordings(patho_list)
+        # insert the new recordings to the database
+        self._populate_recordings(patho_list)
 
-            # update pathology download flags
-            self._mark_downloaded()
+        # update pathology download flags
+        self._mark_downloaded()
 
     def query(
         self,
@@ -2061,29 +2067,30 @@ class SbVoiceDb:
         return patho_list
 
     def _get_download_list(self) -> dict[str, int]:
-        """returns dataset names (keys) and the number of recording sessions in each"""
+        """returns dataset names (keys) and the numbers of recording
+        sessions of the pathologies in the current database session
+        if pathology data has not been already downloaded"""
 
         # get all pathologies (and healthy) and their sessions
         need_healthy = self.includes_healthy and not self.has_healthy_dataset()
         session_counts = {}
-        stmt = select(Pathology).where(Pathology.downloaded == sql_expr.false())
-        if self._pathology_filter is not None:
-            stmt = stmt.where(self._pathology_filter)
 
         with Session(self._db) as session:
-            for patho in session.scalars(stmt):
-                session_counts[patho.name] = session.scalar(
-                    select(sql_expr.func.count(RecordingSession.id)).where(
-                        RecordingSession.pathologies.any(Pathology.id == patho.id)
+            for patho in self.iter_pathologies(include_healthy=need_healthy):
+                if patho.downloaded:
+                    continue
+                if patho.id == 0:  # healthy
+                    session_counts["healthy"] = session.scalar(
+                        select(sql_expr.func.count(RecordingSession.id)).where(
+                            RecordingSession.type == "n"
+                        )
                     )
-                )
-
-            if need_healthy:
-                session_counts["healthy"] = session.scalar(
-                    select(sql_expr.func.count(RecordingSession.id)).where(
-                        RecordingSession.type == "n"
+                else:
+                    session_counts[patho.name] = session.scalar(
+                        select(sql_expr.func.count(RecordingSession.id)).where(
+                            RecordingSession.pathologies.any(Pathology.id == patho.id)
+                        )
                     )
-                )
 
         return session_counts
 
