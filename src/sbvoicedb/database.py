@@ -714,7 +714,7 @@ class SbVoiceDb:
             )
             return stmt
 
-        session_filters = self._build_session_filters(exclude_pathology=True)
+        session_filters = self._build_session_filters(exclude_record=True)
         nsfilt = len(session_filters)
         if nsfilt > 0:
             session_filter = (
