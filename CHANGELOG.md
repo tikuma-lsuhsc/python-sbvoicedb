@@ -5,6 +5,23 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [0.7.0] - 2026-10-12
+
+### Changed
+
+- changed development state classifier to "5 - Production/Stable"
+- SbVoiceDb.get_pathology() to take either pathology id or name
+- full_file_paths argument added to SbVoiceDb.get_session()
+- recording selection to accept multiple multiple session ids
+- pathology select to ignore recording filters
+
+### Fixed
+
+- summary queries to accept a single SQL function as `columns`
+- error in SbVoiceDb.iter_pathologies() to handle include_healthy=True
+- full_file_paths handling
+- lazy downloading
+
 ## [0.6.1] - 2026-02-14
 
 ### Changed
